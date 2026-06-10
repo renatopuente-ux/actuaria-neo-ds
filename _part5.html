@@ -1,0 +1,317 @@
+<!-- ═══════ LAYOUTS ═══════ -->
+<section id="layouts" class="ds-section">
+  <div class="section-header">
+    <h2>Layouts</h2>
+    <p>Estructuras de página y grillas de datos. Definen cómo se organiza el espacio y el contenido a nivel macro.</p>
+  </div>
+
+  <div class="comp-block" id="app-shell">
+    <h3>App Shell</h3>
+    <div class="demo-box" style="padding:0;overflow:hidden;height:220px;display:block;">
+      <div style="display:flex;height:220px;overflow:hidden;border-radius:16px;">
+        <div style="width:64px;flex-shrink:0;background:linear-gradient(160deg,rgba(232,236,244,0.98),rgba(220,228,242,0.95));border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:8px;">
+          <div style="width:28px;height:28px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff">A</div>
+          <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in-sm);display:flex;align-items:center;justify-content:center;color:var(--indigo);font-size:12px"><i class="fa-solid fa-house"></i></div>
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px"><i class="fa-solid fa-briefcase"></i></div>
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px"><i class="fa-solid fa-chart-bar"></i></div>
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+          <div style="height:40px;background:linear-gradient(90deg,var(--navy-2),var(--navy));flex-shrink:0;display:flex;align-items:center;padding:0 16px;gap:8px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3)"></div>
+            <div style="flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,0.1)"></div>
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.2);font-size:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">RP</div>
+          </div>
+          <div style="flex:1;padding:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start;">
+            <div style="background:var(--bg);border-radius:10px;box-shadow:var(--neu-out-sm);padding:12px;grid-column:span 2;height:36px"></div>
+            <div style="background:var(--bg);border-radius:10px;box-shadow:var(--neu-out-sm);height:48px"></div>
+            <div style="background:var(--bg);border-radius:10px;box-shadow:var(--neu-out-sm);height:48px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Dimensiones</div>
+      <table class="token-table">
+        <thead><tr><th>Zona</th><th>Tamaño</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td>Sidebar completo</td><td>272px</td><td>Desktop ≥ 1025px</td></tr>
+          <tr><td>Sidebar colapsado</td><td>64px</td><td>Solo íconos, sin labels</td></tr>
+          <tr><td>Top header</td><td>56px altura</td><td>z-index: 200, position fixed</td></tr>
+          <tr><td>Main padding mobile</td><td>0 16px</td><td>max-width ilimitado en mobile</td></tr>
+          <tr><td>Main padding desktop</td><td>24px 28px</td><td>max-width ~960px recomendado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="comp-block" id="bento">
+    <h3>Bento Grid</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:24px;width:100%;">
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">2+1 — dos cols + full-width</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="bento-cell" style="background:var(--indigo-soft);color:var(--indigo)">Panel A</div>
+          <div class="bento-cell" style="background:rgba(0,199,129,0.08);color:var(--green-text)">Panel B</div>
+          <div class="bento-cell span-2" style="background:rgba(255,187,56,0.1);color:var(--yellow-text)">Panel C — ancho completo</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Dashboard — 4 cols asimétrico</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+          <div class="bento-cell span-2" style="background:var(--indigo-soft);color:var(--indigo);min-height:90px">Feature Card</div>
+          <div class="bento-cell" style="font-size:11px">KPI 1</div>
+          <div class="bento-cell" style="font-size:11px">KPI 2</div>
+          <div class="bento-cell" style="font-size:11px">Métrica</div>
+          <div class="bento-cell" style="font-size:11px">Gráfico</div>
+          <div class="bento-cell span-2" style="font-size:11px">Tabla de datos</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">3 cols fluid</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div class="bento-cell span-2" style="min-height:100px;background:rgba(222,94,45,0.08);color:var(--orange)">Principal (2/3)</div>
+          <div class="bento-cell" style="min-height:100px">Lateral (1/3)</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase base: .bento-cell</div>
+      <div class="desc-text">Combinar con <span class="ds-code-inline">.span-2</span> o <span class="ds-code-inline">.span-3</span>. Siempre usar <span class="ds-code-inline">grid-template-columns: repeat(N, 1fr)</span> con gap de 16px. En mobile colapsas a 1 col con <span class="ds-code-inline">grid-template-columns: 1fr</span>.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="grids">
+    <h3>Grids de Datos</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:20px;width:100%;">
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">.field-grid — 2 cols (campos)</div>
+        <div class="field-grid">
+          <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 1</div>
+          <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 2</div>
+          <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 3</div>
+          <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 4</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">.score-grid — 4 cols (KPIs)</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+          <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 1</div>
+          <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 2</div>
+          <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 3</div>
+          <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 4</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <table class="token-table">
+        <thead><tr><th>Clase</th><th>Columnas</th><th>Gap</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ds-code-inline">.field-grid</span></td><td>2 (1fr 1fr)</td><td>16px</td><td>Campos de detalle en cards</td></tr>
+          <tr><td><span class="ds-code-inline">.cards-grid</span></td><td>2 (1fr 1fr)</td><td>18px</td><td>Cards de contenido en page</td></tr>
+          <tr><td><span class="ds-code-inline">.eval-grid</span></td><td>3 (repeat 3,1fr)</td><td>16px</td><td>Evaluaciones y comparativas</td></tr>
+          <tr><td><span class="ds-code-inline">.score-grid</span></td><td>4 (repeat 4,1fr)</td><td>16px</td><td>Métricas y scores</td></tr>
+          <tr><td><span class="ds-code-inline">.fin-grid</span></td><td>5 (repeat 5,1fr)</td><td>12px</td><td>Resumen financiero compacto</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════ PATTERNS ═══════ -->
+<section id="patterns" class="ds-section">
+  <div class="section-header">
+    <h2>Patrones</h2>
+    <p>Recetas reutilizables, guías de uso y reglas de decisión que garantizan consistencia entre todos los productos.</p>
+  </div>
+
+  <div class="comp-block" id="glass-recipe">
+    <h3>Glass Effect Recipe</h3>
+    <div class="demo-box" style="background:linear-gradient(135deg,var(--navy-2) 0%,var(--indigo) 50%,var(--navy) 100%);padding:32px;">
+      <div style="background:rgba(232,236,244,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),var(--neu-out-sm);border-radius:16px;padding:24px;max-width:320px;width:100%">
+        <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-layer-group" style="color:var(--indigo);margin-right:6px"></i>Superficie Glass</div>
+        <div style="font-size:12px;color:var(--text-sub)">Este panel usa backdrop-filter:blur(12px) sobre el gradiente navy del fondo. Nota cómo el fondo se desenfoca a través del panel.</div>
+      </div>
+    </div>
+    <pre class="ds-code">.glass-surface {
+  background: rgba(232, 236, 244, 0.72);     /* --glass-bg      */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.60); /* --glass-border  */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.95),       /* --glass-shine   */
+    var(--neu-out-sm);                           /* elevación suave */
+  border-radius: 16px;
+}
+
+/* IMPORTANTE: requiere fondo con variación (gradiente o imagen)
+   No visible sobre fondo plano --bg #e8ecf4 */</pre>
+    <div class="comp-desc">
+      <div class="desc-title">Cuándo usar Glass</div>
+      <div class="desc-text">Modales sobre contenido con gradiente · Overlays sobre dashboards con gráficas · Panels flotantes en pantallas con background imagen. <strong>No usar</strong> sobre fondo plano --bg — el blur no es visible.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="neu-surfaces">
+    <h3>Neumorphic Surface Types</h3>
+    <div class="demo-box" style="gap:24px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <div style="width:140px;height:90px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;">
+          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:20px"></i>
+          <span style="font-size:11px;font-weight:700;color:var(--text-sub)">Raised</span>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:11px;font-weight:800;color:var(--indigo)">--neu-out</div>
+          <div style="font-size:10px;color:var(--text-dim)">Interactivo · Clickeable</div>
+          <div style="font-size:10px;color:var(--text-dim)">Botones · Cards · Tabs default</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <div style="width:140px;height:90px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:20px"></i>
+          <span style="font-size:11px;font-weight:700;color:var(--text-sub)">Sunken</span>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:11px;font-weight:800;color:var(--text-sub)">--neu-in</div>
+          <div style="font-size:10px;color:var(--text-dim)">Estático · Solo lectura</div>
+          <div style="font-size:10px;color:var(--text-dim)">Inputs · Tabs activos · Datos</div>
+        </div>
+      </div>
+    </div>
+    <div class="shadow-rule" style="margin-top:0">
+      <i class="fa-solid fa-lightbulb"></i>
+      <strong>Regla de oro:</strong> ¿Puedes hacer clic? → Raised &nbsp;·&nbsp; ¿Solo leer? → Sunken &nbsp;·&nbsp; ¿Overlay? → Glass
+    </div>
+  </div>
+
+  <div class="comp-block" id="responsive">
+    <h3>Breakpoints Responsivos</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <table class="token-table">
+        <thead><tr><th>Breakpoint</th><th>Rango</th><th>Sidebar</th><th>Grids</th><th>Padding lateral</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip chip-blue" style="font-size:9px">Mobile</span></td><td>≤ 768px</td><td>Drawer overlay</td><td>1 columna</td><td>16px</td></tr>
+          <tr><td><span class="chip chip-yellow" style="font-size:9px">Tablet</span></td><td>769–1024px</td><td>64px (íconos)</td><td>2 columnas</td><td>20px</td></tr>
+          <tr><td><span class="chip chip-green" style="font-size:9px">Desktop</span></td><td>≥ 1025px</td><td>272px completo</td><td>Todos habilitados</td><td>28px</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <pre class="ds-code">/* Mobile-first override pattern */
+@media (max-width: 768px) {
+  .sidebar { left: -300px; }          /* off-screen */
+  .sidebar.mobile-open { left: 0; }   /* drawer activo */
+  .main {
+    margin-left: 0 !important;
+    padding: 0 16px 60px !important;
+    overflow: visible !important;
+  }
+  .field-grid,
+  .cards-grid,
+  .eval-grid,
+  .score-grid { grid-template-columns: 1fr; }
+  .btn-neu, .btn-exec { width: 100%; justify-content: center; }
+}</pre>
+  </div>
+
+  <div class="comp-block" id="states">
+    <h3>Estados de Interacción</h3>
+    <div class="demo-box" style="gap:20px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="pointer-events:none">Default</button>
+        <span style="font-size:10px;color:var(--text-dim)">box-shadow: --neu-out-sm</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="box-shadow:var(--neu-out);transform:translateY(-1px);pointer-events:none">Hover</button>
+        <span style="font-size:10px;color:var(--text-dim)">--neu-out + translateY(-1px)</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="box-shadow:var(--neu-in-sm);transform:translateY(0);pointer-events:none">Active</button>
+        <span style="font-size:10px;color:var(--text-dim)">--neu-in-sm + translateY(0)</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="box-shadow:var(--neu-out),0 0 0 2px var(--indigo);pointer-events:none">Focus</button>
+        <span style="font-size:10px;color:var(--text-dim)">--neu-out + outline indigo</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="opacity:0.45;cursor:not-allowed;pointer-events:none">Disabled</button>
+        <span style="font-size:10px;color:var(--text-dim)">opacity: 0.45</span>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Secuencia obligatoria para todos los elementos interactivos</div>
+      <div class="desc-text">Default → Hover → Active → Focus → Disabled. Nunca omitas el estado Focus (accesibilidad). Disabled: agrega <span class="ds-code-inline">cursor:not-allowed</span> y <span class="ds-code-inline">pointer-events:none</span>.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="color-usage">
+    <h3>Color Usage Guidelines</h3>
+    <div class="demo-box demo-box-col" style="padding:0;gap:0;overflow:hidden;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;">
+        <div style="padding:20px;border-right:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:800;color:var(--green-text);margin-bottom:12px;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-circle-check"></i> SÍ hacer</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--navy para títulos principales y valores importantes</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--indigo para elementos interactivos y brand</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--text-sub para texto secundario y labels</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--text-dim para metadatos y timestamps</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>Semánticos (green/yellow/red) solo para estados</li>
+          </ul>
+        </div>
+        <div style="padding:20px;">
+          <div style="font-size:11px;font-weight:800;color:var(--red-text);margin-bottom:12px;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-circle-xmark"></i> NO hacer</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>Mezclar más de 2 colores brand en un componente</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>--red para estados no-error</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>--orange como color de acción (solo acento visual)</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>Texto --text-dim en tamaño menor a 11px</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>Usar --navy directo sobre --bg en texto pequeño (bajo contraste)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+  </main>
+</div>
+
+<footer class="ds-footer">
+  <div style="margin-bottom:8px"><strong style="color:var(--navy)">Actuaria Consultores</strong> · Neo Design System v1.0</div>
+  <div style="opacity:0.6">Glass UI + Neumorphism + Bento Boxes · Atomic Design · 35+ años, 6,000+ clientes</div>
+  <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <span class="chip chip-blue" style="font-size:9px">Actuaria Plus</span>
+    <span class="chip chip-blue" style="font-size:9px">Data Wave</span>
+    <span class="chip chip-blue" style="font-size:9px">Data Analytics</span>
+    <span class="chip chip-blue" style="font-size:9px">ActuaFast</span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.ds-nav-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.ds-nav-link').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.ds-nav-link').forEach(l => {
+        if (l.getAttribute('href') === '#' + id) l.classList.add('active');
+        else l.classList.remove('active');
+      });
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-56px 0px 0px 0px' });
+document.querySelectorAll('.ds-section[id], .comp-block[id]').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

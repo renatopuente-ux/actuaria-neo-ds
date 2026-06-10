@@ -1,0 +1,372 @@
+<!-- ═══════ MOLECULES ═══════ -->
+<section id="molecules" class="ds-section">
+  <div class="section-header">
+    <h2>Moléculas</h2>
+    <p>Combinaciones de 2 o más átomos que forman unidades de UI con un rol claro. Cada molécula tiene una función específica.</p>
+  </div>
+
+  <div class="comp-block" id="field">
+    <h3>Field Display</h3>
+    <div class="demo-box demo-box-start">
+      <div class="field-grid" style="width:100%;max-width:480px;">
+        <div class="field"><div class="fl"><i class="fa-solid fa-tag"></i> Tipo de tarifa</div><div class="fv">NIIF (US$)</div></div>
+        <div class="field"><div class="fl"><i class="fa-solid fa-users"></i> Trabajadores</div><div class="fv">50</div></div>
+        <div class="field"><div class="fl"><i class="fa-solid fa-calendar"></i> Fecha corte</div><div class="fv">31/12/2024</div></div>
+        <div class="field"><div class="fl"><i class="fa-solid fa-circle-info"></i> Estado</div><div class="fv"><span class="chip chip-blue">En Curso</span></div></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .field · .fl · .fv</div>
+      <div class="desc-text">Par label/valor para datos de solo lectura. <span class="ds-code-inline">.fl</span> = label micro uppercase + icono opcional. <span class="ds-code-inline">.fv</span> = valor 13px bold. Usar en <span class="ds-code-inline">.field-grid</span> (2 cols) dentro de .nc-body.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="form-group">
+    <h3>Form Group</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;max-width:400px;width:100%;">
+      <div class="form-group" style="width:100%">
+        <label class="form-label">Nombre del proceso</label>
+        <input class="neu-input" type="text" placeholder="Ej. VE-00152954">
+        <span class="form-hint">Identificador único del proceso</span>
+      </div>
+      <div class="form-group" style="width:100%;margin-top:12px">
+        <label class="form-label">Tipo</label>
+        <select class="neu-input">
+          <option>Desahucio NIIF</option>
+        </select>
+        <span class="form-hint" style="color:var(--red-text)">Campo requerido</span>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .form-group · .form-label · .form-hint</div>
+      <div class="desc-text">Label uppercase 11px + input + hint text. Hint en --text-dim para ayuda, en --red-text para error. Unidad mínima de formulario.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="nav-item">
+    <h3>Nav Item</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;max-width:260px;width:100%;background:linear-gradient(160deg,rgba(232,236,244,0.95),rgba(220,228,242,0.90));">
+      <div class="nav-section-label">Administración</div>
+      <a class="nav-item"><span class="nav-icon"><i class="fa-solid fa-users"></i></span><span>Gestión</span></a>
+      <div class="nav-section-label">Procesos</div>
+      <a class="nav-item active"><span class="nav-icon"><i class="fa-solid fa-briefcase"></i></span><span>Procesos</span></a>
+      <a class="nav-item"><span class="nav-icon"><i class="fa-solid fa-chart-bar"></i></span><span>Reportes</span></a>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .nav-item</div>
+      <div class="desc-text">Default = color sub, sin shadow. Hover = raised-sm. Active = sunken-sm + color indigo. Separadores de sección con <span class="ds-code-inline">.nav-section-label</span> micro uppercase.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="breadcrumb">
+    <h3>Breadcrumb</h3>
+    <div class="demo-box">
+      <nav class="breadcrumb">
+        <a href="#"><i class="fa-solid fa-house" style="font-size:10px"></i></a>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:0.4"></i>
+        <a href="#">Procesos</a>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:0.4"></i>
+        <a href="#">Desahucio NIIF</a>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:0.4"></i>
+        <span>VE-00152954</span>
+      </nav>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .breadcrumb</div>
+      <div class="desc-text">Links = --text-sub. Último elemento = <span class="ds-code-inline">span</span> color --navy (activo, no clickeable). Separadores con <span class="ds-code-inline">fa-chevron-right</span> opacity 0.4.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="tabs">
+    <h3>Tabs</h3>
+    <div class="demo-box">
+      <div class="tabs-bar">
+        <div class="tab active"><i class="fa-solid fa-list-ul"></i> Detalles</div>
+        <div class="tab"><i class="fa-solid fa-cart-shopping"></i> Items <span class="tab-count">2</span></div>
+        <div class="tab"><i class="fa-solid fa-clock-rotate-left"></i> Historial <span class="tab-count">6</span></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .tabs-bar · .tab · .tab-count</div>
+      <div class="desc-text">Container sunken + cada tab como botón. Active = sunken-sm + navy. Count badge con fondo indigo-soft. Transición fast.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="timeline-item">
+    <h3>Timeline Item</h3>
+    <div class="demo-box demo-box-col" style="padding:16px 24px;width:100%;max-width:560px;">
+      <div class="timeline-item">
+        <div class="t-avatar navy">AD</div>
+        <div style="flex:1">
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+            <span class="t-user">Admin</span>
+            <span class="t-date">19/11/2025, 14:05</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-dim);margin-bottom:5px">Campo: <span class="chip chip-gray" style="font-size:9px">Estado</span></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="chip chip-gray" style="font-size:9px;text-decoration:line-through">Datos validados</span>
+            <i class="fa-solid fa-arrow-right" style="font-size:10px;color:var(--text-dim)"></i>
+            <span class="chip chip-blue" style="font-size:9px">Completado</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-avatar orange">RP</div>
+        <div style="flex:1">
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+            <span class="t-user">Renato Puente</span>
+            <span class="t-date">18/11/2025, 09:30</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-dim)">Proceso asignado y revisión iniciada.</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .timeline-item</div>
+      <div class="desc-text">Avatar + nombre + fecha + campo modificado + chips de transición. Separador inferior 1px border. Último item sin border.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="metric-tile">
+    <h3>Metric Tile</h3>
+    <div class="demo-box" style="gap:16px;">
+      <div class="metric-tile">
+        <div class="mt-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="mt-val">50</div>
+        <div class="mt-lbl">Trabajadores</div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+        <div class="mt-val">$315</div>
+        <div class="mt-lbl">Total</div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <div class="mt-val">4</div>
+        <div class="mt-lbl">Días hábiles</div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-icon"><i class="fa-solid fa-chart-pie"></i></div>
+        <div class="mt-val">2</div>
+        <div class="mt-lbl">Items activos</div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .metric-tile</div>
+      <div class="desc-text">KPI compacto con ícono + valor grande + etiqueta. Usar en grids de 3-4 columnas (.score-grid). Raised-sm shadow.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="pipeline-step">
+    <h3>Pipeline Step</h3>
+    <div class="demo-box" style="gap:24px;">
+      <div class="pipe-step completed"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">Planificado</div></div>
+      <div class="pipe-step completed"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">Asignado</div></div>
+      <div class="pipe-step completed"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">En Curso</div></div>
+      <div class="pipe-step active"><div class="pipe-dot">4</div><div class="pipe-lbl">En Revisión</div></div>
+      <div class="pipe-step pending"><div class="pipe-dot">5</div><div class="pipe-lbl">Para Entregar</div></div>
+      <div class="pipe-step pending"><div class="pipe-dot">6</div><div class="pipe-lbl">Rev. Cliente</div></div>
+      <div class="pipe-step pending"><div class="pipe-dot">7</div><div class="pipe-lbl">Completado</div></div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .pipe-step · .pipe-dot · .pipe-lbl</div>
+      <div class="desc-text">Completado = verde + checkmark. Activo = indigo + glow ring + número. Pendiente = sunken gris. 7 etapas fijas en ActuaFast.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════ ORGANISMS ═══════ -->
+<section id="organisms" class="ds-section">
+  <div class="section-header">
+    <h2>Organismos</h2>
+    <p>Secciones de UI completas compuestas por moléculas y átomos. Cada organismo es un bloque de interfaz autónomo y reutilizable.</p>
+  </div>
+
+  <div class="comp-block" id="neu-card">
+    <h3>Neu Card</h3>
+    <div class="demo-box demo-box-start" style="padding:24px;">
+      <div class="neu-card" style="width:100%;max-width:480px;">
+        <div class="nc-header">
+          <div class="nc-icon"><i class="fa-solid fa-file-contract"></i></div>
+          <div class="nc-title">Información del proceso</div>
+          <button class="btn-neu" style="font-size:11px;padding:5px 10px"><i class="fa-solid fa-pen"></i> Editar</button>
+        </div>
+        <div class="nc-body">
+          <div class="field-grid">
+            <div class="field"><div class="fl"><i class="fa-solid fa-hashtag"></i> Número</div><div class="fv"><span class="item-code">VE-00152954</span></div></div>
+            <div class="field"><div class="fl"><i class="fa-solid fa-tag"></i> Tipo</div><div class="fv">Desahucio NIIF</div></div>
+            <div class="field"><div class="fl"><i class="fa-solid fa-users"></i> Trabajadores</div><div class="fv">50</div></div>
+            <div class="field"><div class="fl"><i class="fa-solid fa-circle-info"></i> Estado</div><div class="fv"><span class="chip chip-blue">En Curso</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .neu-card · .nc-header · .nc-icon · .nc-title · .nc-body</div>
+      <div class="desc-text">Contenedor principal de información. Header con ícono + título + acción opcional. Body flexible para .field-grid, .items-table u otro contenido. Max 6-8 campos por card. Raised shadow —neu-out.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="glass-card">
+    <h3>Glass Card</h3>
+    <div class="demo-box demo-box-start" style="background:linear-gradient(135deg,#1e3a6e,#0f1f3d);padding:32px;">
+      <div class="glass-card" style="width:100%;max-width:400px;">
+        <div class="nc-header" style="background:transparent;border-bottom:1px solid rgba(255,255,255,0.15)">
+          <div class="nc-icon" style="background:rgba(255,255,255,0.15)"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="nc-title">Análisis financiero</div>
+        </div>
+        <div class="nc-body">
+          <div class="field-grid">
+            <div class="field"><div class="fl">Reserva total</div><div class="fv">$48,250</div></div>
+            <div class="field"><div class="fl">Capital mínimo</div><div class="fv">$12,400</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .glass-card</div>
+      <div class="desc-text">Variante glass de .neu-card. Requiere fondo con gradiente o imagen para que el backdrop-filter sea visible. Usar para overlays, paneles de analytics y modales. No usar sobre fondo plano --bg.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="topheader">
+    <h3>Top Header</h3>
+    <div class="demo-box" style="padding:0;border-radius:12px;overflow:hidden;">
+      <div style="background:linear-gradient(90deg,var(--navy-2),var(--navy));color:#fff;display:flex;align-items:center;padding:0 20px;height:52px;width:100%;gap:12px;">
+        <button style="background:none;border:none;color:rgba(255,255,255,0.8);font-size:16px;cursor:pointer;padding:8px"><i class="fa-solid fa-bars"></i></button>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600">
+          <span style="font-size:11px;opacity:0.6">Renato Puente</span>
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">RP</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Top Header</div>
+      <div class="desc-text">Barra superior fija. Navy gradient. Altura: 56px. z-index: var(--z-header) = 200. Hamburger izquierdo (mobile). Usuario + avatar derecho.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="data-table">
+    <h3>Data Table</h3>
+    <div class="demo-box" style="padding:0;overflow:hidden;display:block;">
+      <div class="neu-card">
+        <div class="nc-header">
+          <div class="nc-icon"><i class="fa-solid fa-table"></i></div>
+          <div class="nc-title">Items Vendidos</div>
+        </div>
+        <div class="nc-body" style="padding:0;">
+          <table class="items-table">
+            <thead>
+              <tr><th>#</th><th>Código</th><th>Producto</th><th>Cant.</th><th>P. Unit.</th><th>Total</th><th>Estado</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--text-dim)">1</td>
+                <td><span class="item-code">I-212240</span></td>
+                <td style="font-weight:700;color:var(--navy)">Desahucio NIIF</td>
+                <td>50</td><td>$3,70</td>
+                <td style="font-weight:800;color:var(--navy)">$185,00</td>
+                <td><span class="chip chip-green">Ejecutable</span></td>
+                <td><button class="btn-exec"><i class="fa-solid fa-play"></i> Ejecutar</button></td>
+              </tr>
+              <tr>
+                <td style="color:var(--text-dim)">2</td>
+                <td><span class="item-code">I-212241</span></td>
+                <td style="font-weight:700;color:var(--navy)">Jubilación Patronal</td>
+                <td>50</td><td>$2,60</td>
+                <td style="font-weight:800;color:var(--navy)">$130,00</td>
+                <td><span class="chip chip-yellow">Pendiente</span></td>
+                <td><button class="btn-exec"><i class="fa-solid fa-play"></i> Ejecutar</button></td>
+              </tr>
+              <tr style="background:rgba(163,177,198,0.06)">
+                <td colspan="5" style="text-align:right;font-size:11px;font-weight:700;color:var(--text-sub)">SUBTOTAL</td>
+                <td style="font-weight:900;color:var(--navy)">$315,00</td>
+                <td></td><td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .items-table</div>
+      <div class="desc-text">Cabeceras micro uppercase. Hover en filas. Siempre dentro de .neu-card para el contenedor. Fila de totales con fondo ligeramente diferente. En mobile: convierte a tarjetas verticales con data-label.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="tab-system">
+    <h3>Tab System</h3>
+    <div class="demo-box demo-box-col" style="padding:0;overflow:hidden;display:block;">
+      <div style="background:rgba(232,236,244,0.8);padding:12px 16px 0;border-bottom:1px solid var(--border)">
+        <div class="tabs-bar" style="border-radius:10px 10px 0 0">
+          <div class="tab active"><i class="fa-solid fa-list-ul"></i> Detalles</div>
+          <div class="tab"><i class="fa-solid fa-cart-shopping"></i> Items <span class="tab-count">2</span></div>
+          <div class="tab"><i class="fa-solid fa-clock-rotate-left"></i> Historial <span class="tab-count">6</span></div>
+        </div>
+      </div>
+      <div style="padding:20px 16px">
+        <div class="field-grid">
+          <div class="field"><div class="fl">Número</div><div class="fv"><span class="item-code">VE-00152954</span></div></div>
+          <div class="field"><div class="fl">Estado</div><div class="fv"><span class="chip chip-blue">En Curso</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Tab System</div>
+      <div class="desc-text">Barra de tabs + panel de contenido. Tabs en contenedor sunken. Panel activo sin tab indicator line — la sombra interna del tab activo es suficiente. Cambiar panel via JS con display:block/none.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="pipeline">
+    <h3>Pipeline Tracker</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:16px;width:100%">
+      <div style="display:flex;justify-content:space-between;width:100%;position:relative">
+        <div style="position:absolute;top:14px;left:14px;right:14px;height:4px;background:var(--bg);box-shadow:var(--neu-in-sm);border-radius:99px;z-index:0">
+          <div style="width:57%;height:100%;background:linear-gradient(90deg,var(--indigo),var(--navy));border-radius:99px;transition:width 0.4s"></div>
+        </div>
+        <div class="pipe-step completed" style="z-index:1"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">Planificado</div></div>
+        <div class="pipe-step completed" style="z-index:1"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">Asignado</div></div>
+        <div class="pipe-step completed" style="z-index:1"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">En Curso</div></div>
+        <div class="pipe-step active" style="z-index:1"><div class="pipe-dot">4</div><div class="pipe-lbl">En Revisión</div></div>
+        <div class="pipe-step pending" style="z-index:1"><div class="pipe-dot">5</div><div class="pipe-lbl">Para Entregar</div></div>
+        <div class="pipe-step pending" style="z-index:1"><div class="pipe-dot">6</div><div class="pipe-lbl">Rev. Cliente</div></div>
+        <div class="pipe-step pending" style="z-index:1"><div class="pipe-dot">7</div><div class="pipe-lbl">Completado</div></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Pipeline Tracker</div>
+      <div class="desc-text">Barra de progreso sunken + dots de etapa por encima. Progress fill = width % calculado desde la etapa activa. 7 etapas fijas. Conectar con JS para actualizar width dinámicamente.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="modal">
+    <h3>Modal</h3>
+    <div class="demo-box" style="background:rgba(15,31,61,0.15);padding:32px;min-height:200px;">
+      <div style="background:var(--bg);border-radius:20px;padding:28px;box-shadow:var(--neu-out);max-width:360px;width:100%">
+        <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px">Crear documento</div>
+        <div style="font-size:13px;color:var(--text-sub);margin-bottom:16px">Selecciona el tipo de acceso para este documento.</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:12px;cursor:pointer;border:1px solid var(--indigo);box-shadow:var(--neu-in-sm)">
+            <div style="width:18px;height:18px;border-radius:50%;border:2px solid var(--indigo);background:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px"><div style="width:6px;height:6px;border-radius:50%;background:#fff"></div></div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--navy)">Privado</div><div style="font-size:11px;color:var(--text-dim)">Solo tú puedes ver este documento</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:12px;cursor:pointer;border:1px solid transparent;">
+            <div style="width:18px;height:18px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px"></div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--navy)">Compartido</div><div style="font-size:11px;color:var(--text-dim)">El equipo puede acceder al documento</div></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn-neu">Cancelar</button>
+          <button class="btn-neu primary">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Modal</div>
+      <div class="desc-text">Overlay semitransparente navy + card neumórfico centrado. z-index: var(--z-modal) = 500. Max-width 420px. Botones de acción en footer derecho: secundario izquierda + primario derecha.</div>
+    </div>
+  </div>
+
+</section>

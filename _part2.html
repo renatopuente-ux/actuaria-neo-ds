@@ -1,0 +1,200 @@
+<!-- ═══════ INTRO ═══════ -->
+<section id="intro" class="ds-hero">
+  <div style="position:relative;z-index:1">
+    <div class="ds-hero-badges" style="margin-bottom:20px">
+      <span class="ds-hero-badge"><i class="fa-solid fa-glass-water"></i> Glass UI</span>
+      <span class="ds-hero-badge"><i class="fa-solid fa-circle-half-stroke"></i> Neumorphism</span>
+      <span class="ds-hero-badge"><i class="fa-solid fa-table-cells-large"></i> Bento Boxes</span>
+      <span class="ds-hero-badge"><i class="fa-solid fa-atom"></i> Atomic Design</span>
+    </div>
+    <h1>Actuaria Neo<br>Design System</h1>
+    <p class="hero-sub">Sistema de diseño oficial para productos de Actuaria Consultores.<br>Componentes, tokens y patrones para construir interfaces consistentes y modernas.</p>
+    <div class="hero-stats">
+      <div><div class="hero-stat-val">3</div><div class="hero-stat-lbl">Estilos base</div></div>
+      <div><div class="hero-stat-val">30+</div><div class="hero-stat-lbl">Componentes</div></div>
+      <div><div class="hero-stat-val">60+</div><div class="hero-stat-lbl">Tokens CSS</div></div>
+      <div><div class="hero-stat-val">6</div><div class="hero-stat-lbl">Capas atómicas</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOUNDATIONS ═══════ -->
+<section id="foundations" class="ds-section">
+  <div class="section-header">
+    <h2>Fundamentos</h2>
+    <p>Los tokens y valores base del sistema. Todo componente se construye encima de estas primitivas.</p>
+  </div>
+
+  <!-- COLORS -->
+  <div class="comp-block" id="colors">
+    <h3>Colores</h3>
+    <div class="demo-box demo-box-col" style="gap:24px;">
+      <div>
+        <div class="swatch-group-label">Brand</div>
+        <div class="swatch-grid">
+          <div class="swatch-item"><div class="swatch" style="background:#0f1f3d"></div><span class="swatch-name">--navy</span><span class="swatch-hex">#0f1f3d</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#1e3a6e"></div><span class="swatch-name">--navy-2</span><span class="swatch-hex">#1e3a6e</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#253d6e"></div><span class="swatch-name">--navy-3</span><span class="swatch-hex">#253d6e</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#4c64d9"></div><span class="swatch-name">--indigo</span><span class="swatch-hex">#4c64d9</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#3b51c0"></div><span class="swatch-name">--indigo-2</span><span class="swatch-hex">#3b51c0</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#de5e2d"></div><span class="swatch-name">--orange</span><span class="swatch-hex">#de5e2d</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="swatch-group-label">Semántico</div>
+        <div class="swatch-grid">
+          <div class="swatch-item"><div class="swatch" style="background:#00c781"></div><span class="swatch-name">--green</span><span class="swatch-hex">#00c781</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#00925e"></div><span class="swatch-name">--green-text</span><span class="swatch-hex">#00925e</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#ffbb38"></div><span class="swatch-name">--yellow</span><span class="swatch-hex">#ffbb38</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#b07d00"></div><span class="swatch-name">--yellow-text</span><span class="swatch-hex">#b07d00</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#ff4040"></div><span class="swatch-name">--red</span><span class="swatch-hex">#ff4040</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#c0392b"></div><span class="swatch-name">--red-text</span><span class="swatch-hex">#c0392b</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="swatch-group-label">Superficies</div>
+        <div class="swatch-grid">
+          <div class="swatch-item"><div class="swatch" style="background:#e8ecf4;border:1px solid rgba(163,177,198,0.35)"></div><span class="swatch-name">--bg</span><span class="swatch-hex">#e8ecf4</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:rgba(232,236,244,0.72);border:1px solid rgba(255,255,255,0.6)"></div><span class="swatch-name">--glass-bg</span><span class="swatch-hex">rgba</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:rgba(163,177,198,0.35);border:1px solid rgba(163,177,198,0.5)"></div><span class="swatch-name">--border</span><span class="swatch-hex">rgba</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Uso</div>
+      <div class="desc-text">Navy = jerarquía, títulos, acciones primarias. Indigo = brand interactivo, estados activos, CTAs. Orange = acento/alerta. Semánticos solo para estados (éxito, advertencia, error).</div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="comp-block" id="typography">
+    <h3>Tipografía</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <div class="type-scale">
+        <div class="type-row"><div class="type-meta"><span class="type-token">display</span><span class="type-size">56px / 64px</span></div><div class="type-sample" style="font-size:56px;font-weight:900;line-height:1">Actuaria</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">h1</span><span class="type-size">40px / 48px</span></div><div class="type-sample" style="font-size:40px;font-weight:900;line-height:1">Actuaria</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">h2</span><span class="type-size">32px / 40px</span></div><div class="type-sample" style="font-size:32px;font-weight:800">Actuaria Consultores</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">h3</span><span class="type-size">24px / 32px</span></div><div class="type-sample" style="font-size:24px;font-weight:800">Actuaria Consultores</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">h4</span><span class="type-size">20px / 28px</span></div><div class="type-sample" style="font-size:20px;font-weight:700">Actuaria Consultores</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">body</span><span class="type-size">16px / 24px</span></div><div class="type-sample" style="font-size:16px;font-weight:400">Actuaria Consultores, 35+ años de experiencia</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">small</span><span class="type-size">14px / 20px</span></div><div class="type-sample" style="font-size:14px;font-weight:400">Actuaria Consultores, 35+ años de experiencia</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">mini</span><span class="type-size">12px / 18px</span></div><div class="type-sample" style="font-size:12px;font-weight:600">Actuaria Consultores, 35+ años de experiencia actuarial</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">micro</span><span class="type-size">10px / 16px</span></div><div class="type-sample" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">ETIQUETA DE CAMPO · UPPERCASE</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">nano</span><span class="type-size">8px / 14px</span></div><div class="type-sample" style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px">METADATO · TIMESTAMP</div></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Font Family</div>
+      <div class="desc-text">Nunito en todos los pesos (400–900). Micro y nano siempre en uppercase + letter-spacing para legibilidad. H4+ requiere font-weight mínimo 700.</div>
+    </div>
+  </div>
+
+  <!-- SPACING -->
+  <div class="comp-block" id="spacing">
+    <h3>Espaciado</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <div class="spacing-rows">
+        <div class="spacing-row"><span class="spacing-token">--spacing-4</span><span class="spacing-val">4px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-8</span><span class="spacing-val">8px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-12</span><span class="spacing-val">12px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-16</span><span class="spacing-val">16px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-20</span><span class="spacing-val">20px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:40px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-24</span><span class="spacing-val">24px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-32</span><span class="spacing-val">32px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-40</span><span class="spacing-val">40px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:80px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-48</span><span class="spacing-val">48px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-64</span><span class="spacing-val">64px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:128px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-80</span><span class="spacing-val">80px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:160px"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHADOWS -->
+  <div class="comp-block" id="shadows">
+    <h3>Sombras</h3>
+    <div class="demo-box" style="background:var(--bg);min-height:120px;">
+      <div class="shadow-demos">
+        <div class="shadow-tile" style="box-shadow:var(--neu-out)">
+          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:16px"></i>
+          <span>--neu-out</span>
+          <span style="font-size:9px;color:var(--text-dim)">Raised / Interactivo</span>
+        </div>
+        <div class="shadow-tile" style="box-shadow:var(--neu-out-sm)">
+          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:14px"></i>
+          <span>--neu-out-sm</span>
+          <span style="font-size:9px;color:var(--text-dim)">Raised SM</span>
+        </div>
+        <div class="shadow-tile" style="box-shadow:var(--neu-in)">
+          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:16px"></i>
+          <span>--neu-in</span>
+          <span style="font-size:9px;color:var(--text-dim)">Sunken / Estático</span>
+        </div>
+        <div class="shadow-tile" style="box-shadow:var(--neu-in-sm)">
+          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:14px"></i>
+          <span>--neu-in-sm</span>
+          <span style="font-size:9px;color:var(--text-dim)">Sunken SM</span>
+        </div>
+        <div class="shadow-tile" style="background:var(--glass-bg);backdrop-filter:blur(12px);border:1px solid var(--glass-border);box-shadow:var(--glass-shine)">
+          <i class="fa-solid fa-layer-group" style="color:var(--indigo);font-size:16px"></i>
+          <span>Glass</span>
+          <span style="font-size:9px;color:var(--text-dim)">Overlay/Modal</span>
+        </div>
+      </div>
+    </div>
+    <div class="shadow-rule"><i class="fa-solid fa-lightbulb"></i> Raised = interactivo (puedes hacer clic) &nbsp;·&nbsp; Sunken = estático (solo leer) &nbsp;·&nbsp; Glass = overlay/modal</div>
+  </div>
+
+  <!-- RADIUS -->
+  <div class="comp-block" id="radius">
+    <h3>Border Radius</h3>
+    <div class="demo-box">
+      <div class="radius-row">
+        <div class="radius-item"><div class="radius-box" style="border-radius:4px"></div><span class="radius-label">--r-4<br>4px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><span class="radius-label">--r-8<br>8px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:12px"></div><span class="radius-label">--r-12<br>12px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:16px"></div><span class="radius-label">--r-16<br>16px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:20px"></div><span class="radius-label">--r-20<br>20px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:24px"></div><span class="radius-label">--r-24<br>24px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:9999px;width:52px;height:52px"></div><span class="radius-label">--r-full<br>9999px</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Z-INDEX -->
+  <div class="comp-block" id="z-index">
+    <h3>Z-Index</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <div class="z-layers">
+        <div class="z-layer"><span class="z-name">--z-toast</span><span class="z-val">600</span><span class="z-use">Notificaciones y toasts</span></div>
+        <div class="z-layer"><span class="z-name">--z-modal</span><span class="z-val">500</span><span class="z-use">Modales y diálogos</span></div>
+        <div class="z-layer"><span class="z-name">--z-overlay</span><span class="z-val">400</span><span class="z-use">Overlays y backdrops</span></div>
+        <div class="z-layer"><span class="z-name">--z-sidebar</span><span class="z-val">300</span><span class="z-use">Sidebar de navegación</span></div>
+        <div class="z-layer"><span class="z-name">--z-header</span><span class="z-val">200</span><span class="z-use">Top header fijo</span></div>
+        <div class="z-layer"><span class="z-name">--z-sticky</span><span class="z-val">100</span><span class="z-use">Breadcrumbs y elementos sticky</span></div>
+        <div class="z-layer"><span class="z-name">--z-raised</span><span class="z-val">10</span><span class="z-use">Cards elevadas, dropdowns locales</span></div>
+        <div class="z-layer"><span class="z-name">--z-base</span><span class="z-val">1</span><span class="z-use">Contenido base</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANIMATIONS -->
+  <div class="comp-block" id="animations">
+    <h3>Animaciones</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ds-code-inline">--ease-out</span></td><td>cubic-bezier(0.4,0,0.2,1)</td><td>Salidas suaves, respuestas a input del usuario</td></tr>
+          <tr><td><span class="ds-code-inline">--ease-spring</span></td><td>cubic-bezier(0.34,1.56,0.64,1)</td><td>Entradas con rebote, elementos emergentes</td></tr>
+          <tr><td><span class="ds-code-inline">--dur-fast</span></td><td>120ms</td><td>Hover, focus, micro-interacciones</td></tr>
+          <tr><td><span class="ds-code-inline">--dur-normal</span></td><td>220ms</td><td>Transiciones de estado, toggles</td></tr>
+          <tr><td><span class="ds-code-inline">--dur-slow</span></td><td>360ms</td><td>Entradas de pantalla, modales</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Regla general</div>
+      <div class="desc-text">Usa siempre <span class="ds-code-inline">transition: all var(--dur-fast) var(--ease-out)</span> para hover/focus. Reserve --ease-spring para elementos que "aparecen" (modales, tooltips, chips que entran). Nunca animes sin duración explícita.</div>
+    </div>
+  </div>
+</section>

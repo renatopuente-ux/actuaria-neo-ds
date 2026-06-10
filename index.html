@@ -1,0 +1,1359 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actuaria Neo Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* â”€â”€ TOKENS â”€â”€ */
+:root {
+  --navy:#0f1f3d; --navy-2:#1e3a6e; --navy-3:#253d6e;
+  --indigo:#4c64d9; --indigo-2:#3b51c0; --indigo-soft:rgba(76,100,217,0.10);
+  --orange:#de5e2d; --green:#00c781; --green-text:#00925e;
+  --yellow:#ffbb38; --yellow-text:#b07d00; --red:#ff4040; --red-text:#c0392b;
+  --bg:#e8ecf4; --surface:rgba(232,236,244,0.92); --border:rgba(163,177,198,0.35);
+  --text:#0f1f3d; --text-sub:#475569; --text-dim:rgba(15,31,61,0.45);
+  --glass-bg:rgba(232,236,244,0.72); --glass-border:rgba(255,255,255,0.60);
+  --glass-shine:inset 0 1px 0 rgba(255,255,255,0.95);
+  --neu-out:6px 6px 16px rgba(163,177,198,0.55),-4px -4px 12px rgba(255,255,255,0.95);
+  --neu-out-sm:3px 3px 8px rgba(163,177,198,0.42),-2px -2px 6px rgba(255,255,255,0.88);
+  --neu-in:inset 3px 3px 8px rgba(163,177,198,0.45),inset -2px -2px 6px rgba(255,255,255,0.90);
+  --neu-in-sm:inset 2px 2px 5px rgba(163,177,198,0.38),inset -1px -1px 4px rgba(255,255,255,0.90);
+  --font:'Nunito',sans-serif;
+  --ease-out:cubic-bezier(0.4,0,0.2,1); --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+  --dur-fast:120ms; --dur-normal:220ms; --dur-slow:360ms;
+  --z-base:1; --z-raised:10; --z-sticky:100; --z-header:200;
+  --z-sidebar:300; --z-overlay:400; --z-modal:500; --z-toast:600;
+  --r-4:4px; --r-8:8px; --r-12:12px; --r-16:16px; --r-20:20px; --r-24:24px; --r-full:9999px;
+}
+
+/* â”€â”€ RESET â”€â”€ */
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);}
+a{text-decoration:none;}
+
+/* â”€â”€ TOPBAR â”€â”€ */
+.ds-topbar{position:fixed;top:0;left:0;right:0;height:56px;background:linear-gradient(90deg,var(--navy-2),var(--navy));z-index:1000;display:flex;align-items:center;padding:0 24px;gap:16px;box-shadow:0 2px 12px rgba(15,31,61,0.4);}
+.ds-topbar-title{color:rgba(255,255,255,0.7);font-size:13px;font-weight:600;}
+.ds-version{background:rgba(255,255,255,0.15);color:#fff;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;margin-left:auto;}
+
+/* â”€â”€ LAYOUT â”€â”€ */
+.ds-layout{display:flex;margin-top:56px;min-height:calc(100vh - 56px);}
+.ds-nav{width:220px;flex-shrink:0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;padding:16px 12px;border-right:1px solid var(--border);background:rgba(232,236,244,0.8);backdrop-filter:blur(8px);}
+.ds-content{flex:1;padding:32px 40px;max-width:1100px;overflow-x:hidden;}
+.ds-nav-group{margin-bottom:8px;}
+.ds-nav-label{font-size:9px;font-weight:900;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;padding:12px 12px 4px;display:block;}
+.ds-nav-link{display:block;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--text-sub);cursor:pointer;}
+.ds-nav-link:hover{color:var(--navy);background:rgba(255,255,255,0.6);}
+.ds-nav-link.active{color:var(--indigo);box-shadow:var(--neu-in-sm);}
+
+/* â”€â”€ SECTIONS â”€â”€ */
+.ds-section{margin-bottom:64px;scroll-margin-top:80px;}
+.section-header{margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid var(--border);}
+.section-header h2{font-size:28px;font-weight:900;color:var(--navy);margin-bottom:6px;}
+.section-header p{font-size:14px;color:var(--text-sub);max-width:600px;}
+
+/* â”€â”€ HERO â”€â”€ */
+.ds-hero{background:linear-gradient(135deg,var(--navy-2),var(--navy));border-radius:20px;padding:48px;margin-bottom:48px;color:#fff;position:relative;overflow:hidden;}
+.ds-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(76,100,217,0.3),transparent);border-radius:50%;}
+.ds-hero h1{font-size:36px;font-weight:900;margin-bottom:8px;}
+.ds-hero .hero-sub{font-size:14px;opacity:0.75;margin-bottom:24px;}
+.ds-hero-badges{display:flex;gap:8px;flex-wrap:wrap;}
+.ds-hero-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:6px 14px;border-radius:99px;font-size:12px;font-weight:700;}
+.hero-stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;}
+.hero-stat-val{font-size:24px;font-weight:900;}
+.hero-stat-lbl{font-size:11px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* â”€â”€ COMPONENT BLOCKS â”€â”€ */
+.comp-block{margin-bottom:40px;}
+.comp-block h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.comp-block h3::before{content:'';width:4px;height:20px;background:var(--indigo);border-radius:4px;display:inline-block;}
+.demo-box{background:var(--bg);border-radius:16px;box-shadow:var(--neu-out-sm);padding:32px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;min-height:80px;}
+.demo-box-start{justify-content:flex-start;}
+.demo-box-col{flex-direction:column;align-items:flex-start;}
+.demo-box-dark{background:linear-gradient(135deg,var(--navy-2),var(--navy));}
+.comp-desc{background:rgba(255,255,255,0.5);border-radius:12px;padding:16px 20px;border:1px solid var(--border);}
+.desc-title{font-size:10px;font-weight:800;color:var(--indigo);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
+.desc-text{font-size:13px;color:var(--text-sub);margin-bottom:8px;line-height:1.5;}
+.usage-note{font-size:12px;color:var(--text-dim);font-style:italic;}
+
+/* â”€â”€ TOKEN TABLES â”€â”€ */
+.token-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px;}
+.token-table th{text-align:left;padding:6px 10px;font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);}
+.token-table td{padding:6px 10px;border-bottom:1px solid rgba(163,177,198,0.15);}
+.token-table tr:last-child td{border-bottom:none;}
+
+/* â”€â”€ CODE BLOCKS â”€â”€ */
+.ds-code{background:#1a2332;color:#e8ecf4;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;overflow-x:auto;margin-top:8px;white-space:pre;}
+.ds-code-inline{font-family:'Courier New',monospace;background:rgba(76,100,217,0.1);color:var(--indigo);padding:2px 6px;border-radius:4px;font-size:11px;}
+
+/* â”€â”€ SWATCH GRID â”€â”€ */
+.swatch-grid{display:flex;flex-wrap:wrap;gap:12px;}
+.swatch-group{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.swatch-group-label{font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
+.swatch-item{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.swatch{width:56px;height:56px;border-radius:10px;box-shadow:var(--neu-out-sm);}
+.swatch-name{font-size:9px;font-weight:700;color:var(--text-dim);text-align:center;max-width:64px;font-family:monospace;}
+.swatch-hex{font-size:8px;color:var(--text-dim);font-family:monospace;}
+
+/* â”€â”€ SHADOW DEMOS â”€â”€ */
+.shadow-demos{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.shadow-tile{width:130px;height:88px;border-radius:12px;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:10px;font-weight:700;color:var(--text-sub);text-align:center;padding:8px;}
+.shadow-rule{background:rgba(76,100,217,0.08);border:1px solid rgba(76,100,217,0.2);border-radius:10px;padding:12px 20px;font-size:13px;font-weight:700;color:var(--indigo);text-align:center;margin-top:12px;}
+
+/* â”€â”€ SPACING â”€â”€ */
+.spacing-rows{display:flex;flex-direction:column;gap:10px;}
+.spacing-row{display:flex;align-items:center;gap:12px;}
+.spacing-token{font-size:11px;font-weight:700;color:var(--text-sub);width:90px;font-family:monospace;}
+.spacing-val{font-size:11px;color:var(--text-dim);width:36px;}
+.spacing-bar-wrap{flex:1;}
+.spacing-bar{height:8px;background:var(--indigo);border-radius:4px;opacity:0.7;}
+
+/* â”€â”€ RADIUS â”€â”€ */
+.radius-row{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;}
+.radius-item{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.radius-box{width:52px;height:52px;background:var(--indigo-soft);border:2px solid var(--indigo);}
+.radius-label{font-size:9px;font-weight:700;color:var(--text-dim);text-align:center;font-family:monospace;}
+
+/* â”€â”€ Z-INDEX â”€â”€ */
+.z-layers{display:flex;flex-direction:column;gap:4px;}
+.z-layer{display:flex;align-items:center;gap:12px;padding:8px 14px;border-radius:8px;background:rgba(255,255,255,0.4);border-left:3px solid var(--indigo);}
+.z-name{font-size:12px;font-weight:700;color:var(--navy);width:100px;font-family:monospace;}
+.z-val{font-size:12px;font-weight:800;color:var(--indigo);width:40px;}
+.z-use{font-size:11px;color:var(--text-sub);}
+
+/* â”€â”€ TYPE SCALE â”€â”€ */
+.type-scale{display:flex;flex-direction:column;gap:4px;}
+.type-row{display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid var(--border);}
+.type-meta{width:140px;flex-shrink:0;}
+.type-token{font-size:10px;font-weight:800;color:var(--indigo);font-family:monospace;display:block;}
+.type-size{font-size:10px;color:var(--text-dim);display:block;}
+.type-sample{flex:1;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* â”€â”€ COMPONENT STYLES â”€â”€ */
+.btn-neu{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:10px;border:none;background:var(--bg);box-shadow:var(--neu-out-sm);color:var(--text-sub);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:all var(--dur-fast) var(--ease-out);}
+.btn-neu:hover{box-shadow:var(--neu-out);transform:translateY(-1px);}
+.btn-neu:active{box-shadow:var(--neu-in-sm);transform:translateY(0);}
+.btn-neu.primary{background:linear-gradient(90deg,#1e3a6e,#0f1f3d);color:#fff;box-shadow:4px 4px 14px rgba(15,31,61,0.42),-2px -2px 8px rgba(255,255,255,0.9),var(--glass-shine);}
+.btn-neu.primary:hover{background:linear-gradient(90deg,#253d6e,#1a2f52);}
+.btn-neu.danger{color:var(--red-text);}
+.btn-neu.danger:hover{background:rgba(255,64,64,0.06);}
+.btn-neu.icon-only{width:38px;height:38px;padding:0;justify-content:center;}
+.btn-exec{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;border:none;background:linear-gradient(90deg,#1e3a6e,#0f1f3d);color:#fff;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;box-shadow:4px 4px 12px rgba(15,31,61,0.42),-2px -2px 8px rgba(255,255,255,0.9);}
+.btn-exec:hover{background:linear-gradient(90deg,#253d6e,#1a2f52);transform:translateY(-1px);}
+.chip,.status-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:99px;font-size:10px;font-weight:700;cursor:default;user-select:none;}
+.chip-gray{background:var(--bg);color:var(--text-sub);box-shadow:var(--neu-in-sm);}
+.chip-blue{background:var(--indigo-soft);color:var(--indigo);}
+.chip-green{background:rgba(0,199,129,0.12);color:var(--green-text);}
+.chip-green-solid{background:var(--green);color:#fff;}
+.chip-yellow{background:rgba(255,187,56,0.15);color:var(--yellow-text);}
+.chip-red{background:rgba(255,64,64,0.12);color:var(--red-text);}
+.t-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;}
+.t-avatar.navy{background:var(--navy);}
+.t-avatar.orange{background:var(--orange);}
+.t-avatar.indigo{background:var(--indigo);}
+.neu-input{background:var(--bg);box-shadow:var(--neu-in);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font);font-size:13px;color:var(--text);outline:none;transition:box-shadow var(--dur-fast);width:100%;}
+.neu-input:focus{box-shadow:var(--neu-in),0 0 0 2px var(--indigo);border-color:var(--indigo);}
+.neu-toggle{position:relative;display:inline-block;cursor:pointer;width:44px;height:24px;}
+.neu-toggle input{opacity:0;width:0;height:0;position:absolute;}
+.neu-toggle-track{display:block;width:44px;height:24px;border-radius:99px;background:var(--bg);box-shadow:var(--neu-in);transition:background var(--dur-normal);position:relative;}
+.neu-toggle input:checked + .neu-toggle-track{background:var(--green);}
+.neu-toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:var(--neu-out-sm);transition:transform var(--dur-normal) var(--ease-spring);}
+.neu-toggle input:checked ~ .neu-toggle-track .neu-toggle-thumb{transform:translateX(20px);}
+.item-code{font-family:monospace;font-size:11px;background:var(--bg);padding:3px 8px;border-radius:6px;color:var(--text-dim);box-shadow:var(--neu-in-sm);}
+.ds-divider{height:1px;background:var(--border);margin:8px 0;}
+.field{display:flex;flex-direction:column;gap:4px;}
+.fl{font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:5px;}
+.fv{font-size:13px;font-weight:700;color:var(--text);}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-label{font-size:11px;font-weight:800;color:var(--text-sub);text-transform:uppercase;letter-spacing:0.4px;}
+.form-hint{font-size:11px;color:var(--text-dim);}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;color:var(--text-sub);cursor:pointer;text-decoration:none;position:relative;transition:all var(--dur-fast) var(--ease-out);}
+.nav-item:hover{box-shadow:var(--neu-out-sm);}
+.nav-item.active{color:var(--indigo);box-shadow:var(--neu-in-sm);}
+.nav-icon{width:20px;text-align:center;flex-shrink:0;}
+.nav-section-label{font-size:9px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.8px;padding:8px 14px 4px;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text-dim);}
+.breadcrumb a{color:var(--text-sub);}
+.breadcrumb span{color:var(--navy);}
+.tabs-bar{display:flex;gap:4px;padding:12px 16px;background:rgba(255,255,255,0.3);border-radius:12px;box-shadow:var(--neu-in-sm);}
+.tab{padding:8px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-sub);display:flex;align-items:center;gap:8px;transition:all var(--dur-fast) var(--ease-out);}
+.tab.active{color:var(--navy);box-shadow:var(--neu-in-sm);}
+.tab-count{background:var(--indigo-soft);color:var(--indigo);border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800;}
+.timeline-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
+.timeline-item:last-child{border-bottom:none;}
+.t-user{font-size:13px;font-weight:700;color:var(--navy);}
+.t-date{font-size:11px;color:var(--text-dim);}
+.metric-tile{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 20px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out-sm);text-align:center;}
+.mt-icon{color:var(--indigo);font-size:18px;margin-bottom:4px;}
+.mt-val{font-size:22px;font-weight:900;color:var(--navy);}
+.mt-lbl{font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;}
+.pipe-step{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.pipe-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
+.pipe-step.completed .pipe-dot{background:var(--green);color:#fff;box-shadow:0 0 0 3px rgba(0,199,129,0.2);}
+.pipe-step.active .pipe-dot{background:var(--indigo);color:#fff;box-shadow:0 0 0 4px var(--indigo-soft);}
+.pipe-step.pending .pipe-dot{background:var(--bg);color:var(--text-dim);box-shadow:var(--neu-in-sm);}
+.pipe-lbl{font-size:10px;font-weight:700;color:var(--text-dim);}
+.pipe-step.active .pipe-lbl{color:var(--indigo);}
+.neu-card{background:var(--bg);border-radius:16px;box-shadow:var(--neu-out);overflow:hidden;}
+.nc-header{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.35);}
+.nc-icon{width:32px;height:32px;border-radius:8px;background:var(--indigo-soft);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.nc-title{font-size:13px;font-weight:800;color:var(--navy);flex:1;}
+.nc-body{padding:18px 20px;}
+.glass-card{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);border-radius:16px;box-shadow:var(--glass-shine),var(--neu-out-sm);}
+.items-table{width:100%;border-collapse:collapse;}
+.items-table th{padding:10px 14px;font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.4px;background:rgba(163,177,198,0.06);border-bottom:1px solid var(--border);text-align:left;}
+.items-table td{padding:12px 14px;font-size:13px;border-bottom:1px solid var(--border);color:var(--text-sub);font-weight:600;}
+.items-table tr:hover td{background:rgba(163,177,198,0.06);}
+.items-table tr:last-child td{border-bottom:none;}
+.bento-cell{background:var(--bg);border-radius:12px;box-shadow:var(--neu-out-sm);padding:16px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-sub);min-height:80px;}
+.span-2{grid-column:span 2;}
+.span-3{grid-column:span 3;}
+.ds-footer{text-align:center;padding:32px;color:var(--text-dim);font-size:12px;border-top:1px solid var(--border);margin-top:48px;}
+</style>
+</head>
+<body>
+
+<header class="ds-topbar">
+  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="13" viewBox="0 0 312 40" fill="none">
+    <path d="M0 39.1963L16.4561 0.187256L33.1085 39.1963H27.9292L24.1922 31.0012H11.9323L14.0302 26.3463H22.3565L16.4561 12.644L5.31057 39.1963H0Z" fill="#fff"/>
+    <path d="M75.2023 30.2859C72.9793 33.9379 69.5875 36.3059 65.6049 37.8608C61.6222 39.4156 57.2391 39.6188 53.1297 38.4391C49.0203 37.2594 45.4123 34.7621 42.8609 31.3315C40.3095 27.9008 38.956 23.7269 39.0086 19.4519C39.0611 15.1768 40.5169 11.0375 43.152 7.67063C45.787 4.30381 49.4553 1.89604 53.5925 0.817771C57.7296-0.260502 62.1065 0.050452 66.0497 1.70279C69.9928 3.35514 73.3601 5.5266 75.4927 9.23214L71.8551 12.545C70.2588 9.77118 67.1844 7.09618 64.2327 5.85932C61.2811 4.62246 57.8298 4.45844 54.733 5.26558C51.6361 6.07272 48.7687 8.13138 46.7963 10.6516C44.8238 13.1718 43.7882 16.2518 43.7489 19.4519C43.7095 22.652 44.638 25.9805 46.5479 28.5485C48.4578 31.1165 51.6569 33.0939 54.733 33.9769C57.809 34.86 61.2515 34.6319 64.2327 33.468C67.2139 32.3041 69.8987 29.8963 71.5628 27.1626L75.2023 30.2859Z" fill="#fff"/>
+    <path d="M83.7849 6.46582L85.4902 1.5437H114.559L112.854 6.46582H101.614V39.3717H96.4977V6.46582H83.7849Z" fill="#fff"/>
+    <path d="M125.3 1.51587L130.354 0C129.964 26.5753 130.354 34.5783 140.532 34.5783C149.42 34.5783 150.026 28.278 149.412 1.51587L154.681 0C156.096 34.5783 154.032 39.3428 140.532 39.3428C123.524 39.3428 124.393 27.0497 125.3 1.51587Z" fill="#fff"/>
+    <path d="M163.569 39.2405L180.022 0.275635L196.625 39.2405H191.24L187.8 31.1633H175.385L177.704 26.2273H185.93L180.022 12.915L168.953 39.2405H163.569Z" fill="#fff"/>
+  </svg>
+  <span class="ds-topbar-title">Neo Design System</span>
+  <span class="ds-version">v1.0</span>
+</header>
+
+<div class="ds-layout">
+  <nav class="ds-nav">
+    <div class="ds-nav-group"><a class="ds-nav-link active" href="#intro">IntroducciÃ³n</a></div>
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Fundamentos</span>
+      <a class="ds-nav-link" href="#colors">Colores</a>
+      <a class="ds-nav-link" href="#typography">TipografÃ­a</a>
+      <a class="ds-nav-link" href="#spacing">Espaciado</a>
+      <a class="ds-nav-link" href="#shadows">Sombras</a>
+      <a class="ds-nav-link" href="#radius">Radios</a>
+      <a class="ds-nav-link" href="#z-index">Z-Index</a>
+      <a class="ds-nav-link" href="#animations">Animaciones</a>
+    </div>
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Ãtomos</span>
+      <a class="ds-nav-link" href="#buttons">Botones</a>
+      <a class="ds-nav-link" href="#chips">Chips &amp; Badges</a>
+      <a class="ds-nav-link" href="#avatars">Avatares</a>
+      <a class="ds-nav-link" href="#inputs">Inputs</a>
+      <a class="ds-nav-link" href="#toggle">Toggle</a>
+    </div>
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">MolÃ©culas</span>
+      <a class="ds-nav-link" href="#field">Field Display</a>
+      <a class="ds-nav-link" href="#form-group">Form Group</a>
+      <a class="ds-nav-link" href="#nav-item">Nav Item</a>
+      <a class="ds-nav-link" href="#breadcrumb">Breadcrumb</a>
+      <a class="ds-nav-link" href="#tabs">Tabs</a>
+      <a class="ds-nav-link" href="#timeline-item">Timeline Item</a>
+      <a class="ds-nav-link" href="#metric-tile">Metric Tile</a>
+      <a class="ds-nav-link" href="#pipeline-step">Pipeline Step</a>
+    </div>
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Organismos</span>
+      <a class="ds-nav-link" href="#neu-card">Neu Card</a>
+      <a class="ds-nav-link" href="#glass-card">Glass Card</a>
+      <a class="ds-nav-link" href="#sidebar">Sidebar</a>
+      <a class="ds-nav-link" href="#topheader">Top Header</a>
+      <a class="ds-nav-link" href="#data-table">Data Table</a>
+      <a class="ds-nav-link" href="#tab-system">Tab System</a>
+      <a class="ds-nav-link" href="#pipeline">Pipeline</a>
+      <a class="ds-nav-link" href="#modal">Modal</a>
+    </div>
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Layouts</span>
+      <a class="ds-nav-link" href="#app-shell">App Shell</a>
+      <a class="ds-nav-link" href="#bento">Bento Grid</a>
+      <a class="ds-nav-link" href="#grids">Grids de datos</a>
+    </div>
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Patrones</span>
+      <a class="ds-nav-link" href="#glass-recipe">Glass Recipe</a>
+      <a class="ds-nav-link" href="#neu-surfaces">Neu Surfaces</a>
+      <a class="ds-nav-link" href="#responsive">Responsivo</a>
+      <a class="ds-nav-link" href="#states">Estados</a>
+      <a class="ds-nav-link" href="#color-usage">Color Usage</a>
+    </div>
+  </nav>
+  <main class="ds-content">
+<!-- â•â•â•â•â•â•â• INTRO â•â•â•â•â•â•â• -->
+<section id="intro" class="ds-hero">
+  <div style="position:relative;z-index:1">
+    <div class="ds-hero-badges" style="margin-bottom:20px">
+      <span class="ds-hero-badge"><i class="fa-solid fa-glass-water"></i> Glass UI</span>
+      <span class="ds-hero-badge"><i class="fa-solid fa-circle-half-stroke"></i> Neumorphism</span>
+      <span class="ds-hero-badge"><i class="fa-solid fa-table-cells-large"></i> Bento Boxes</span>
+      <span class="ds-hero-badge"><i class="fa-solid fa-atom"></i> Atomic Design</span>
+    </div>
+    <h1>Actuaria Neo<br>Design System</h1>
+    <p class="hero-sub">Sistema de diseÃ±o oficial para productos de Actuaria Consultores.<br>Componentes, tokens y patrones para construir interfaces consistentes y modernas.</p>
+    <div class="hero-stats">
+      <div><div class="hero-stat-val">3</div><div class="hero-stat-lbl">Estilos base</div></div>
+      <div><div class="hero-stat-val">30+</div><div class="hero-stat-lbl">Componentes</div></div>
+      <div><div class="hero-stat-val">60+</div><div class="hero-stat-lbl">Tokens CSS</div></div>
+      <div><div class="hero-stat-val">6</div><div class="hero-stat-lbl">Capas atÃ³micas</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â• FOUNDATIONS â•â•â•â•â•â•â• -->
+<section id="foundations" class="ds-section">
+  <div class="section-header">
+    <h2>Fundamentos</h2>
+    <p>Los tokens y valores base del sistema. Todo componente se construye encima de estas primitivas.</p>
+  </div>
+
+  <!-- COLORS -->
+  <div class="comp-block" id="colors">
+    <h3>Colores</h3>
+    <div class="demo-box demo-box-col" style="gap:24px;">
+      <div>
+        <div class="swatch-group-label">Brand</div>
+        <div class="swatch-grid">
+          <div class="swatch-item"><div class="swatch" style="background:#0f1f3d"></div><span class="swatch-name">--navy</span><span class="swatch-hex">#0f1f3d</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#1e3a6e"></div><span class="swatch-name">--navy-2</span><span class="swatch-hex">#1e3a6e</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#253d6e"></div><span class="swatch-name">--navy-3</span><span class="swatch-hex">#253d6e</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#4c64d9"></div><span class="swatch-name">--indigo</span><span class="swatch-hex">#4c64d9</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#3b51c0"></div><span class="swatch-name">--indigo-2</span><span class="swatch-hex">#3b51c0</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#de5e2d"></div><span class="swatch-name">--orange</span><span class="swatch-hex">#de5e2d</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="swatch-group-label">SemÃ¡ntico</div>
+        <div class="swatch-grid">
+          <div class="swatch-item"><div class="swatch" style="background:#00c781"></div><span class="swatch-name">--green</span><span class="swatch-hex">#00c781</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#00925e"></div><span class="swatch-name">--green-text</span><span class="swatch-hex">#00925e</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#ffbb38"></div><span class="swatch-name">--yellow</span><span class="swatch-hex">#ffbb38</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#b07d00"></div><span class="swatch-name">--yellow-text</span><span class="swatch-hex">#b07d00</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#ff4040"></div><span class="swatch-name">--red</span><span class="swatch-hex">#ff4040</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#c0392b"></div><span class="swatch-name">--red-text</span><span class="swatch-hex">#c0392b</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="swatch-group-label">Superficies</div>
+        <div class="swatch-grid">
+          <div class="swatch-item"><div class="swatch" style="background:#e8ecf4;border:1px solid rgba(163,177,198,0.35)"></div><span class="swatch-name">--bg</span><span class="swatch-hex">#e8ecf4</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:rgba(232,236,244,0.72);border:1px solid rgba(255,255,255,0.6)"></div><span class="swatch-name">--glass-bg</span><span class="swatch-hex">rgba</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:rgba(163,177,198,0.35);border:1px solid rgba(163,177,198,0.5)"></div><span class="swatch-name">--border</span><span class="swatch-hex">rgba</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Uso</div>
+      <div class="desc-text">Navy = jerarquÃ­a, tÃ­tulos, acciones primarias. Indigo = brand interactivo, estados activos, CTAs. Orange = acento/alerta. SemÃ¡nticos solo para estados (Ã©xito, advertencia, error).</div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="comp-block" id="typography">
+    <h3>TipografÃ­a</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <div class="type-scale">
+        <div class="type-row"><div class="type-meta"><span class="type-token">display</span><span class="type-size">56px / 64px</span></div><div class="type-sample" style="font-size:56px;font-weight:900;line-height:1">Actuaria</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">h1</span><span class="type-size">40px / 48px</span></div><div class="type-sample" style="font-size:40px;font-weight:900;line-height:1">Actuaria</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">h2</span><span class="type-size">32px / 40px</span></div><div class="type-sample" style="font-size:32px;font-weight:800">Actuaria Consultores</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">h3</span><span class="type-size">24px / 32px</span></div><div class="type-sample" style="font-size:24px;font-weight:800">Actuaria Consultores</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">h4</span><span class="type-size">20px / 28px</span></div><div class="type-sample" style="font-size:20px;font-weight:700">Actuaria Consultores</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">body</span><span class="type-size">16px / 24px</span></div><div class="type-sample" style="font-size:16px;font-weight:400">Actuaria Consultores, 35+ aÃ±os de experiencia</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">small</span><span class="type-size">14px / 20px</span></div><div class="type-sample" style="font-size:14px;font-weight:400">Actuaria Consultores, 35+ aÃ±os de experiencia</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">mini</span><span class="type-size">12px / 18px</span></div><div class="type-sample" style="font-size:12px;font-weight:600">Actuaria Consultores, 35+ aÃ±os de experiencia actuarial</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">micro</span><span class="type-size">10px / 16px</span></div><div class="type-sample" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">ETIQUETA DE CAMPO Â· UPPERCASE</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">nano</span><span class="type-size">8px / 14px</span></div><div class="type-sample" style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px">METADATO Â· TIMESTAMP</div></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Font Family</div>
+      <div class="desc-text">Nunito en todos los pesos (400â€“900). Micro y nano siempre en uppercase + letter-spacing para legibilidad. H4+ requiere font-weight mÃ­nimo 700.</div>
+    </div>
+  </div>
+
+  <!-- SPACING -->
+  <div class="comp-block" id="spacing">
+    <h3>Espaciado</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <div class="spacing-rows">
+        <div class="spacing-row"><span class="spacing-token">--spacing-4</span><span class="spacing-val">4px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-8</span><span class="spacing-val">8px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-12</span><span class="spacing-val">12px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-16</span><span class="spacing-val">16px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-20</span><span class="spacing-val">20px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:40px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-24</span><span class="spacing-val">24px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-32</span><span class="spacing-val">32px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-40</span><span class="spacing-val">40px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:80px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-48</span><span class="spacing-val">48px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-64</span><span class="spacing-val">64px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:128px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--spacing-80</span><span class="spacing-val">80px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:160px"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHADOWS -->
+  <div class="comp-block" id="shadows">
+    <h3>Sombras</h3>
+    <div class="demo-box" style="background:var(--bg);min-height:120px;">
+      <div class="shadow-demos">
+        <div class="shadow-tile" style="box-shadow:var(--neu-out)">
+          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:16px"></i>
+          <span>--neu-out</span>
+          <span style="font-size:9px;color:var(--text-dim)">Raised / Interactivo</span>
+        </div>
+        <div class="shadow-tile" style="box-shadow:var(--neu-out-sm)">
+          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:14px"></i>
+          <span>--neu-out-sm</span>
+          <span style="font-size:9px;color:var(--text-dim)">Raised SM</span>
+        </div>
+        <div class="shadow-tile" style="box-shadow:var(--neu-in)">
+          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:16px"></i>
+          <span>--neu-in</span>
+          <span style="font-size:9px;color:var(--text-dim)">Sunken / EstÃ¡tico</span>
+        </div>
+        <div class="shadow-tile" style="box-shadow:var(--neu-in-sm)">
+          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:14px"></i>
+          <span>--neu-in-sm</span>
+          <span style="font-size:9px;color:var(--text-dim)">Sunken SM</span>
+        </div>
+        <div class="shadow-tile" style="background:var(--glass-bg);backdrop-filter:blur(12px);border:1px solid var(--glass-border);box-shadow:var(--glass-shine)">
+          <i class="fa-solid fa-layer-group" style="color:var(--indigo);font-size:16px"></i>
+          <span>Glass</span>
+          <span style="font-size:9px;color:var(--text-dim)">Overlay/Modal</span>
+        </div>
+      </div>
+    </div>
+    <div class="shadow-rule"><i class="fa-solid fa-lightbulb"></i> Raised = interactivo (puedes hacer clic) &nbsp;Â·&nbsp; Sunken = estÃ¡tico (solo leer) &nbsp;Â·&nbsp; Glass = overlay/modal</div>
+  </div>
+
+  <!-- RADIUS -->
+  <div class="comp-block" id="radius">
+    <h3>Border Radius</h3>
+    <div class="demo-box">
+      <div class="radius-row">
+        <div class="radius-item"><div class="radius-box" style="border-radius:4px"></div><span class="radius-label">--r-4<br>4px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><span class="radius-label">--r-8<br>8px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:12px"></div><span class="radius-label">--r-12<br>12px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:16px"></div><span class="radius-label">--r-16<br>16px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:20px"></div><span class="radius-label">--r-20<br>20px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:24px"></div><span class="radius-label">--r-24<br>24px</span></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:9999px;width:52px;height:52px"></div><span class="radius-label">--r-full<br>9999px</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Z-INDEX -->
+  <div class="comp-block" id="z-index">
+    <h3>Z-Index</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <div class="z-layers">
+        <div class="z-layer"><span class="z-name">--z-toast</span><span class="z-val">600</span><span class="z-use">Notificaciones y toasts</span></div>
+        <div class="z-layer"><span class="z-name">--z-modal</span><span class="z-val">500</span><span class="z-use">Modales y diÃ¡logos</span></div>
+        <div class="z-layer"><span class="z-name">--z-overlay</span><span class="z-val">400</span><span class="z-use">Overlays y backdrops</span></div>
+        <div class="z-layer"><span class="z-name">--z-sidebar</span><span class="z-val">300</span><span class="z-use">Sidebar de navegaciÃ³n</span></div>
+        <div class="z-layer"><span class="z-name">--z-header</span><span class="z-val">200</span><span class="z-use">Top header fijo</span></div>
+        <div class="z-layer"><span class="z-name">--z-sticky</span><span class="z-val">100</span><span class="z-use">Breadcrumbs y elementos sticky</span></div>
+        <div class="z-layer"><span class="z-name">--z-raised</span><span class="z-val">10</span><span class="z-use">Cards elevadas, dropdowns locales</span></div>
+        <div class="z-layer"><span class="z-name">--z-base</span><span class="z-val">1</span><span class="z-use">Contenido base</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANIMATIONS -->
+  <div class="comp-block" id="animations">
+    <h3>Animaciones</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ds-code-inline">--ease-out</span></td><td>cubic-bezier(0.4,0,0.2,1)</td><td>Salidas suaves, respuestas a input del usuario</td></tr>
+          <tr><td><span class="ds-code-inline">--ease-spring</span></td><td>cubic-bezier(0.34,1.56,0.64,1)</td><td>Entradas con rebote, elementos emergentes</td></tr>
+          <tr><td><span class="ds-code-inline">--dur-fast</span></td><td>120ms</td><td>Hover, focus, micro-interacciones</td></tr>
+          <tr><td><span class="ds-code-inline">--dur-normal</span></td><td>220ms</td><td>Transiciones de estado, toggles</td></tr>
+          <tr><td><span class="ds-code-inline">--dur-slow</span></td><td>360ms</td><td>Entradas de pantalla, modales</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Regla general</div>
+      <div class="desc-text">Usa siempre <span class="ds-code-inline">transition: all var(--dur-fast) var(--ease-out)</span> para hover/focus. Reserve --ease-spring para elementos que "aparecen" (modales, tooltips, chips que entran). Nunca animes sin duraciÃ³n explÃ­cita.</div>
+    </div>
+  </div>
+</section>
+<!-- â•â•â•â•â•â•â• ATOMS â•â•â•â•â•â•â• -->
+<section id="atoms" class="ds-section">
+  <div class="section-header">
+    <h2>Ãtomos</h2>
+    <p>Las unidades mÃ¡s pequeÃ±as e indivisibles de la UI. Cada Ã¡tomo es un elemento HTML con un Ãºnico propÃ³sito y su propio conjunto de variantes.</p>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="comp-block" id="buttons">
+    <h3>Botones</h3>
+    <div class="demo-box" style="gap:12px;flex-wrap:wrap;">
+      <button class="btn-neu"><i class="fa-solid fa-pen"></i> Modificar</button>
+      <button class="btn-neu primary"><i class="fa-solid fa-arrow-right"></i> Iniciar proceso</button>
+      <button class="btn-neu danger"><i class="fa-solid fa-triangle-exclamation"></i> No conformidad</button>
+      <button class="btn-neu icon-only"><i class="fa-solid fa-print"></i></button>
+      <button class="btn-exec"><i class="fa-solid fa-play"></i> Ejecutar en AF</button>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Variantes</div>
+      <table class="token-table">
+        <thead><tr><th>Clase</th><th>JerarquÃ­a</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ds-code-inline">.btn-neu</span></td><td>Secundario</td><td>AcciÃ³n no destructiva de menor jerarquÃ­a. Fondo neumÃ³rfico elevado.</td></tr>
+          <tr><td><span class="ds-code-inline">.btn-neu.primary</span></td><td>Primario</td><td>AcciÃ³n mÃ¡s importante de la vista. Solo UNO por pantalla.</td></tr>
+          <tr><td><span class="ds-code-inline">.btn-neu.danger</span></td><td>Destructivo</td><td>AcciÃ³n con consecuencias irreversibles. Color rojo.</td></tr>
+          <tr><td><span class="ds-code-inline">.btn-neu.icon-only</span></td><td>Icono</td><td>AcciÃ³n sin texto. Solo para iconos universalmente reconocibles.</td></tr>
+          <tr><td><span class="ds-code-inline">.btn-exec</span></td><td>Ejecutar</td><td>AcciÃ³n de ejecuciÃ³n en tablas o listas. Background navy gradiente.</td></tr>
+        </tbody>
+      </table>
+      <div class="usage-note" style="margin-top:8px">Estados: Default (raised) â†’ Hover (mÃ¡s raised + translateY(-1px)) â†’ Active (sunken + translateY(0)) â†’ Disabled (opacity 0.45)</div>
+    </div>
+  </div>
+
+  <!-- CHIPS -->
+  <div class="comp-block" id="chips">
+    <h3>Chips &amp; Badges</h3>
+    <div class="demo-box" style="gap:8px;flex-wrap:wrap;">
+      <span class="chip chip-gray">Neutral</span>
+      <span class="chip chip-blue"><i class="fa-solid fa-circle-half-stroke"></i> En proceso</span>
+      <span class="chip chip-green"><i class="fa-solid fa-circle-check"></i> Aprobado</span>
+      <span class="chip chip-green-solid"><i class="fa-solid fa-check"></i> Completado</span>
+      <span class="chip chip-yellow"><i class="fa-solid fa-clock"></i> Pendiente</span>
+      <span class="chip chip-red"><i class="fa-solid fa-xmark"></i> Rechazado</span>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Variantes</div>
+      <table class="token-table">
+        <thead><tr><th>Clase</th><th>Color</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ds-code-inline">.chip-gray</span></td><td>Neutro</td><td>Sin estado definido. Sunken shadow.</td></tr>
+          <tr><td><span class="ds-code-inline">.chip-blue</span></td><td>Indigo</td><td>Informativo, En proceso, activo.</td></tr>
+          <tr><td><span class="ds-code-inline">.chip-green</span></td><td>Verde suave</td><td>Aprobado, validado (tono suave).</td></tr>
+          <tr><td><span class="ds-code-inline">.chip-green-solid</span></td><td>Verde sÃ³lido</td><td>Completado, activo confirmado.</td></tr>
+          <tr><td><span class="ds-code-inline">.chip-yellow</span></td><td>Amarillo</td><td>Advertencia, pendiente, en espera.</td></tr>
+          <tr><td><span class="ds-code-inline">.chip-red</span></td><td>Rojo</td><td>Error, rechazado, no conformidad.</td></tr>
+        </tbody>
+      </table>
+      <div class="usage-note" style="margin-top:8px">Alias: <span class="ds-code-inline">.status-badge</span> es sinÃ³nimo de <span class="ds-code-inline">.chip</span> â€” mismos estilos base.</div>
+    </div>
+  </div>
+
+  <!-- AVATARS -->
+  <div class="comp-block" id="avatars">
+    <h3>Avatares</h3>
+    <div class="demo-box" style="gap:24px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="display:flex;gap:8px;align-items:flex-end">
+          <div class="t-avatar navy" style="width:24px;height:24px;font-size:9px">AD</div>
+          <div class="t-avatar navy">AD</div>
+          <div class="t-avatar navy" style="width:40px;height:40px;font-size:13px">AD</div>
+        </div>
+        <span style="font-size:10px;color:var(--text-dim)">Navy â€” Admin</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="display:flex;gap:8px;align-items:flex-end">
+          <div class="t-avatar orange" style="width:24px;height:24px;font-size:9px">RP</div>
+          <div class="t-avatar orange">RP</div>
+          <div class="t-avatar orange" style="width:40px;height:40px;font-size:13px">RP</div>
+        </div>
+        <span style="font-size:10px;color:var(--text-dim)">Orange â€” Cliente</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="display:flex;gap:8px;align-items:flex-end">
+          <div class="t-avatar indigo" style="width:24px;height:24px;font-size:9px">SC</div>
+          <div class="t-avatar indigo">SC</div>
+          <div class="t-avatar indigo" style="width:40px;height:40px;font-size:13px">SC</div>
+        </div>
+        <span style="font-size:10px;color:var(--text-dim)">Indigo â€” Actuario</span>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase base: .t-avatar</div>
+      <div class="desc-text">Siempre 2 iniciales en mayÃºscula. TamaÃ±os: SM 24px Â· MD 32px (default) Â· LG 40px. Colores segÃºn rol: navy = admin/sistema, orange = cliente/externo, indigo = actuario/analista.</div>
+    </div>
+  </div>
+
+  <!-- INPUTS -->
+  <div class="comp-block" id="inputs">
+    <h3>Inputs</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:16px;max-width:500px;width:100%;">
+      <div class="form-group" style="width:100%">
+        <label class="form-label">NÃºmero de proceso</label>
+        <input class="neu-input" type="text" placeholder="Ej. VE-00152954">
+      </div>
+      <div class="form-group" style="width:100%">
+        <label class="form-label">DescripciÃ³n</label>
+        <textarea class="neu-input" rows="3" placeholder="Describe el proceso..."></textarea>
+      </div>
+      <div class="form-group" style="width:100%">
+        <label class="form-label">Estado</label>
+        <select class="neu-input">
+          <option>Planificado</option>
+          <option selected>En Curso</option>
+          <option>Completado</option>
+        </select>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .neu-input</div>
+      <div class="desc-text">Box-shadow inset (sunken) refuerza el estado "escribir aquÃ­". Focus agrega outline de 2px en --indigo. Aplica a input, textarea y select por igual.</div>
+    </div>
+  </div>
+
+  <!-- TOGGLE -->
+  <div class="comp-block" id="toggle">
+    <h3>Toggle / Switch</h3>
+    <div class="demo-box" style="gap:32px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <label class="neu-toggle">
+          <input type="checkbox">
+          <span class="neu-toggle-track"><span class="neu-toggle-thumb"></span></span>
+        </label>
+        <span style="font-size:11px;color:var(--text-dim)">OFF</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <label class="neu-toggle">
+          <input type="checkbox" checked>
+          <span class="neu-toggle-track"><span class="neu-toggle-thumb"></span></span>
+        </label>
+        <span style="font-size:11px;color:var(--green-text)">ON</span>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .neu-toggle</div>
+      <div class="desc-text">Toggle puro CSS. OFF = track sunken gris. ON = track verde + thumb desplazado. Thumb con --ease-spring para rebote natural.</div>
+    </div>
+  </div>
+
+  <!-- CODE INLINE -->
+  <div class="comp-block" id="code-inline">
+    <h3>CÃ³digo Inline</h3>
+    <div class="demo-box" style="gap:12px;">
+      <span class="item-code">I-212240</span>
+      <span class="item-code">PRO-2025-0042</span>
+      <span class="item-code">VE-00152954</span>
+      <span class="ds-code-inline">--indigo</span>
+      <span class="ds-code-inline">rgba(76,100,217,0.10)</span>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Variantes</div>
+      <div class="desc-text"><span class="ds-code-inline">.item-code</span>: para IDs y cÃ³digos de negocio (proceso, pÃ³liza, factura). Color neutro.<br><span class="ds-code-inline">.ds-code-inline</span>: para nombres de tokens CSS y variables. Color indigo.</div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="comp-block">
+    <h3>Divider</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:12px;">
+      <span style="font-size:13px;color:var(--text-sub)">SecciÃ³n superior</span>
+      <div class="ds-divider"></div>
+      <span style="font-size:13px;color:var(--text-sub)">SecciÃ³n inferior</span>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .ds-divider</div>
+      <div class="desc-text">Separador visual de 1px. Color --border. Usar con moderaciÃ³n â€” el espaciado implÃ­cito suele ser suficiente.</div>
+    </div>
+  </div>
+
+</section>
+<!-- â•â•â•â•â•â•â• MOLECULES â•â•â•â•â•â•â• -->
+<section id="molecules" class="ds-section">
+  <div class="section-header">
+    <h2>MolÃ©culas</h2>
+    <p>Combinaciones de 2 o mÃ¡s Ã¡tomos que forman unidades de UI con un rol claro. Cada molÃ©cula tiene una funciÃ³n especÃ­fica.</p>
+  </div>
+
+  <div class="comp-block" id="field">
+    <h3>Field Display</h3>
+    <div class="demo-box demo-box-start">
+      <div class="field-grid" style="width:100%;max-width:480px;">
+        <div class="field"><div class="fl"><i class="fa-solid fa-tag"></i> Tipo de tarifa</div><div class="fv">NIIF (US$)</div></div>
+        <div class="field"><div class="fl"><i class="fa-solid fa-users"></i> Trabajadores</div><div class="fv">50</div></div>
+        <div class="field"><div class="fl"><i class="fa-solid fa-calendar"></i> Fecha corte</div><div class="fv">31/12/2024</div></div>
+        <div class="field"><div class="fl"><i class="fa-solid fa-circle-info"></i> Estado</div><div class="fv"><span class="chip chip-blue">En Curso</span></div></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .field Â· .fl Â· .fv</div>
+      <div class="desc-text">Par label/valor para datos de solo lectura. <span class="ds-code-inline">.fl</span> = label micro uppercase + icono opcional. <span class="ds-code-inline">.fv</span> = valor 13px bold. Usar en <span class="ds-code-inline">.field-grid</span> (2 cols) dentro de .nc-body.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="form-group">
+    <h3>Form Group</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;max-width:400px;width:100%;">
+      <div class="form-group" style="width:100%">
+        <label class="form-label">Nombre del proceso</label>
+        <input class="neu-input" type="text" placeholder="Ej. VE-00152954">
+        <span class="form-hint">Identificador Ãºnico del proceso</span>
+      </div>
+      <div class="form-group" style="width:100%;margin-top:12px">
+        <label class="form-label">Tipo</label>
+        <select class="neu-input">
+          <option>Desahucio NIIF</option>
+        </select>
+        <span class="form-hint" style="color:var(--red-text)">Campo requerido</span>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .form-group Â· .form-label Â· .form-hint</div>
+      <div class="desc-text">Label uppercase 11px + input + hint text. Hint en --text-dim para ayuda, en --red-text para error. Unidad mÃ­nima de formulario.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="nav-item">
+    <h3>Nav Item</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;max-width:260px;width:100%;background:linear-gradient(160deg,rgba(232,236,244,0.95),rgba(220,228,242,0.90));">
+      <div class="nav-section-label">AdministraciÃ³n</div>
+      <a class="nav-item"><span class="nav-icon"><i class="fa-solid fa-users"></i></span><span>GestiÃ³n</span></a>
+      <div class="nav-section-label">Procesos</div>
+      <a class="nav-item active"><span class="nav-icon"><i class="fa-solid fa-briefcase"></i></span><span>Procesos</span></a>
+      <a class="nav-item"><span class="nav-icon"><i class="fa-solid fa-chart-bar"></i></span><span>Reportes</span></a>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .nav-item</div>
+      <div class="desc-text">Default = color sub, sin shadow. Hover = raised-sm. Active = sunken-sm + color indigo. Separadores de secciÃ³n con <span class="ds-code-inline">.nav-section-label</span> micro uppercase.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="breadcrumb">
+    <h3>Breadcrumb</h3>
+    <div class="demo-box">
+      <nav class="breadcrumb">
+        <a href="#"><i class="fa-solid fa-house" style="font-size:10px"></i></a>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:0.4"></i>
+        <a href="#">Procesos</a>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:0.4"></i>
+        <a href="#">Desahucio NIIF</a>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:0.4"></i>
+        <span>VE-00152954</span>
+      </nav>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .breadcrumb</div>
+      <div class="desc-text">Links = --text-sub. Ãšltimo elemento = <span class="ds-code-inline">span</span> color --navy (activo, no clickeable). Separadores con <span class="ds-code-inline">fa-chevron-right</span> opacity 0.4.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="tabs">
+    <h3>Tabs</h3>
+    <div class="demo-box">
+      <div class="tabs-bar">
+        <div class="tab active"><i class="fa-solid fa-list-ul"></i> Detalles</div>
+        <div class="tab"><i class="fa-solid fa-cart-shopping"></i> Items <span class="tab-count">2</span></div>
+        <div class="tab"><i class="fa-solid fa-clock-rotate-left"></i> Historial <span class="tab-count">6</span></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .tabs-bar Â· .tab Â· .tab-count</div>
+      <div class="desc-text">Container sunken + cada tab como botÃ³n. Active = sunken-sm + navy. Count badge con fondo indigo-soft. TransiciÃ³n fast.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="timeline-item">
+    <h3>Timeline Item</h3>
+    <div class="demo-box demo-box-col" style="padding:16px 24px;width:100%;max-width:560px;">
+      <div class="timeline-item">
+        <div class="t-avatar navy">AD</div>
+        <div style="flex:1">
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+            <span class="t-user">Admin</span>
+            <span class="t-date">19/11/2025, 14:05</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-dim);margin-bottom:5px">Campo: <span class="chip chip-gray" style="font-size:9px">Estado</span></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="chip chip-gray" style="font-size:9px;text-decoration:line-through">Datos validados</span>
+            <i class="fa-solid fa-arrow-right" style="font-size:10px;color:var(--text-dim)"></i>
+            <span class="chip chip-blue" style="font-size:9px">Completado</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-avatar orange">RP</div>
+        <div style="flex:1">
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+            <span class="t-user">Renato Puente</span>
+            <span class="t-date">18/11/2025, 09:30</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-dim)">Proceso asignado y revisiÃ³n iniciada.</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .timeline-item</div>
+      <div class="desc-text">Avatar + nombre + fecha + campo modificado + chips de transiciÃ³n. Separador inferior 1px border. Ãšltimo item sin border.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="metric-tile">
+    <h3>Metric Tile</h3>
+    <div class="demo-box" style="gap:16px;">
+      <div class="metric-tile">
+        <div class="mt-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="mt-val">50</div>
+        <div class="mt-lbl">Trabajadores</div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+        <div class="mt-val">$315</div>
+        <div class="mt-lbl">Total</div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <div class="mt-val">4</div>
+        <div class="mt-lbl">DÃ­as hÃ¡biles</div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-icon"><i class="fa-solid fa-chart-pie"></i></div>
+        <div class="mt-val">2</div>
+        <div class="mt-lbl">Items activos</div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .metric-tile</div>
+      <div class="desc-text">KPI compacto con Ã­cono + valor grande + etiqueta. Usar en grids de 3-4 columnas (.score-grid). Raised-sm shadow.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="pipeline-step">
+    <h3>Pipeline Step</h3>
+    <div class="demo-box" style="gap:24px;">
+      <div class="pipe-step completed"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">Planificado</div></div>
+      <div class="pipe-step completed"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">Asignado</div></div>
+      <div class="pipe-step completed"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">En Curso</div></div>
+      <div class="pipe-step active"><div class="pipe-dot">4</div><div class="pipe-lbl">En RevisiÃ³n</div></div>
+      <div class="pipe-step pending"><div class="pipe-dot">5</div><div class="pipe-lbl">Para Entregar</div></div>
+      <div class="pipe-step pending"><div class="pipe-dot">6</div><div class="pipe-lbl">Rev. Cliente</div></div>
+      <div class="pipe-step pending"><div class="pipe-dot">7</div><div class="pipe-lbl">Completado</div></div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .pipe-step Â· .pipe-dot Â· .pipe-lbl</div>
+      <div class="desc-text">Completado = verde + checkmark. Activo = indigo + glow ring + nÃºmero. Pendiente = sunken gris. 7 etapas fijas en ActuaFast.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- â•â•â•â•â•â•â• ORGANISMS â•â•â•â•â•â•â• -->
+<section id="organisms" class="ds-section">
+  <div class="section-header">
+    <h2>Organismos</h2>
+    <p>Secciones de UI completas compuestas por molÃ©culas y Ã¡tomos. Cada organismo es un bloque de interfaz autÃ³nomo y reutilizable.</p>
+  </div>
+
+  <div class="comp-block" id="neu-card">
+    <h3>Neu Card</h3>
+    <div class="demo-box demo-box-start" style="padding:24px;">
+      <div class="neu-card" style="width:100%;max-width:480px;">
+        <div class="nc-header">
+          <div class="nc-icon"><i class="fa-solid fa-file-contract"></i></div>
+          <div class="nc-title">InformaciÃ³n del proceso</div>
+          <button class="btn-neu" style="font-size:11px;padding:5px 10px"><i class="fa-solid fa-pen"></i> Editar</button>
+        </div>
+        <div class="nc-body">
+          <div class="field-grid">
+            <div class="field"><div class="fl"><i class="fa-solid fa-hashtag"></i> NÃºmero</div><div class="fv"><span class="item-code">VE-00152954</span></div></div>
+            <div class="field"><div class="fl"><i class="fa-solid fa-tag"></i> Tipo</div><div class="fv">Desahucio NIIF</div></div>
+            <div class="field"><div class="fl"><i class="fa-solid fa-users"></i> Trabajadores</div><div class="fv">50</div></div>
+            <div class="field"><div class="fl"><i class="fa-solid fa-circle-info"></i> Estado</div><div class="fv"><span class="chip chip-blue">En Curso</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clases: .neu-card Â· .nc-header Â· .nc-icon Â· .nc-title Â· .nc-body</div>
+      <div class="desc-text">Contenedor principal de informaciÃ³n. Header con Ã­cono + tÃ­tulo + acciÃ³n opcional. Body flexible para .field-grid, .items-table u otro contenido. Max 6-8 campos por card. Raised shadow â€”neu-out.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="glass-card">
+    <h3>Glass Card</h3>
+    <div class="demo-box demo-box-start" style="background:linear-gradient(135deg,#1e3a6e,#0f1f3d);padding:32px;">
+      <div class="glass-card" style="width:100%;max-width:400px;">
+        <div class="nc-header" style="background:transparent;border-bottom:1px solid rgba(255,255,255,0.15)">
+          <div class="nc-icon" style="background:rgba(255,255,255,0.15)"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="nc-title">AnÃ¡lisis financiero</div>
+        </div>
+        <div class="nc-body">
+          <div class="field-grid">
+            <div class="field"><div class="fl">Reserva total</div><div class="fv">$48,250</div></div>
+            <div class="field"><div class="fl">Capital mÃ­nimo</div><div class="fv">$12,400</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .glass-card</div>
+      <div class="desc-text">Variante glass de .neu-card. Requiere fondo con gradiente o imagen para que el backdrop-filter sea visible. Usar para overlays, paneles de analytics y modales. No usar sobre fondo plano --bg.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="topheader">
+    <h3>Top Header</h3>
+    <div class="demo-box" style="padding:0;border-radius:12px;overflow:hidden;">
+      <div style="background:linear-gradient(90deg,var(--navy-2),var(--navy));color:#fff;display:flex;align-items:center;padding:0 20px;height:52px;width:100%;gap:12px;">
+        <button style="background:none;border:none;color:rgba(255,255,255,0.8);font-size:16px;cursor:pointer;padding:8px"><i class="fa-solid fa-bars"></i></button>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600">
+          <span style="font-size:11px;opacity:0.6">Renato Puente</span>
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">RP</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Top Header</div>
+      <div class="desc-text">Barra superior fija. Navy gradient. Altura: 56px. z-index: var(--z-header) = 200. Hamburger izquierdo (mobile). Usuario + avatar derecho.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="data-table">
+    <h3>Data Table</h3>
+    <div class="demo-box" style="padding:0;overflow:hidden;display:block;">
+      <div class="neu-card">
+        <div class="nc-header">
+          <div class="nc-icon"><i class="fa-solid fa-table"></i></div>
+          <div class="nc-title">Items Vendidos</div>
+        </div>
+        <div class="nc-body" style="padding:0;">
+          <table class="items-table">
+            <thead>
+              <tr><th>#</th><th>CÃ³digo</th><th>Producto</th><th>Cant.</th><th>P. Unit.</th><th>Total</th><th>Estado</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--text-dim)">1</td>
+                <td><span class="item-code">I-212240</span></td>
+                <td style="font-weight:700;color:var(--navy)">Desahucio NIIF</td>
+                <td>50</td><td>$3,70</td>
+                <td style="font-weight:800;color:var(--navy)">$185,00</td>
+                <td><span class="chip chip-green">Ejecutable</span></td>
+                <td><button class="btn-exec"><i class="fa-solid fa-play"></i> Ejecutar</button></td>
+              </tr>
+              <tr>
+                <td style="color:var(--text-dim)">2</td>
+                <td><span class="item-code">I-212241</span></td>
+                <td style="font-weight:700;color:var(--navy)">JubilaciÃ³n Patronal</td>
+                <td>50</td><td>$2,60</td>
+                <td style="font-weight:800;color:var(--navy)">$130,00</td>
+                <td><span class="chip chip-yellow">Pendiente</span></td>
+                <td><button class="btn-exec"><i class="fa-solid fa-play"></i> Ejecutar</button></td>
+              </tr>
+              <tr style="background:rgba(163,177,198,0.06)">
+                <td colspan="5" style="text-align:right;font-size:11px;font-weight:700;color:var(--text-sub)">SUBTOTAL</td>
+                <td style="font-weight:900;color:var(--navy)">$315,00</td>
+                <td></td><td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase: .items-table</div>
+      <div class="desc-text">Cabeceras micro uppercase. Hover en filas. Siempre dentro de .neu-card para el contenedor. Fila de totales con fondo ligeramente diferente. En mobile: convierte a tarjetas verticales con data-label.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="tab-system">
+    <h3>Tab System</h3>
+    <div class="demo-box demo-box-col" style="padding:0;overflow:hidden;display:block;">
+      <div style="background:rgba(232,236,244,0.8);padding:12px 16px 0;border-bottom:1px solid var(--border)">
+        <div class="tabs-bar" style="border-radius:10px 10px 0 0">
+          <div class="tab active"><i class="fa-solid fa-list-ul"></i> Detalles</div>
+          <div class="tab"><i class="fa-solid fa-cart-shopping"></i> Items <span class="tab-count">2</span></div>
+          <div class="tab"><i class="fa-solid fa-clock-rotate-left"></i> Historial <span class="tab-count">6</span></div>
+        </div>
+      </div>
+      <div style="padding:20px 16px">
+        <div class="field-grid">
+          <div class="field"><div class="fl">NÃºmero</div><div class="fv"><span class="item-code">VE-00152954</span></div></div>
+          <div class="field"><div class="fl">Estado</div><div class="fv"><span class="chip chip-blue">En Curso</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Tab System</div>
+      <div class="desc-text">Barra de tabs + panel de contenido. Tabs en contenedor sunken. Panel activo sin tab indicator line â€” la sombra interna del tab activo es suficiente. Cambiar panel via JS con display:block/none.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="pipeline">
+    <h3>Pipeline Tracker</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:16px;width:100%">
+      <div style="display:flex;justify-content:space-between;width:100%;position:relative">
+        <div style="position:absolute;top:14px;left:14px;right:14px;height:4px;background:var(--bg);box-shadow:var(--neu-in-sm);border-radius:99px;z-index:0">
+          <div style="width:57%;height:100%;background:linear-gradient(90deg,var(--indigo),var(--navy));border-radius:99px;transition:width 0.4s"></div>
+        </div>
+        <div class="pipe-step completed" style="z-index:1"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">Planificado</div></div>
+        <div class="pipe-step completed" style="z-index:1"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">Asignado</div></div>
+        <div class="pipe-step completed" style="z-index:1"><div class="pipe-dot"><i class="fa-solid fa-check"></i></div><div class="pipe-lbl">En Curso</div></div>
+        <div class="pipe-step active" style="z-index:1"><div class="pipe-dot">4</div><div class="pipe-lbl">En RevisiÃ³n</div></div>
+        <div class="pipe-step pending" style="z-index:1"><div class="pipe-dot">5</div><div class="pipe-lbl">Para Entregar</div></div>
+        <div class="pipe-step pending" style="z-index:1"><div class="pipe-dot">6</div><div class="pipe-lbl">Rev. Cliente</div></div>
+        <div class="pipe-step pending" style="z-index:1"><div class="pipe-dot">7</div><div class="pipe-lbl">Completado</div></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Pipeline Tracker</div>
+      <div class="desc-text">Barra de progreso sunken + dots de etapa por encima. Progress fill = width % calculado desde la etapa activa. 7 etapas fijas. Conectar con JS para actualizar width dinÃ¡micamente.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="modal">
+    <h3>Modal</h3>
+    <div class="demo-box" style="background:rgba(15,31,61,0.15);padding:32px;min-height:200px;">
+      <div style="background:var(--bg);border-radius:20px;padding:28px;box-shadow:var(--neu-out);max-width:360px;width:100%">
+        <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px">Crear documento</div>
+        <div style="font-size:13px;color:var(--text-sub);margin-bottom:16px">Selecciona el tipo de acceso para este documento.</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:12px;cursor:pointer;border:1px solid var(--indigo);box-shadow:var(--neu-in-sm)">
+            <div style="width:18px;height:18px;border-radius:50%;border:2px solid var(--indigo);background:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px"><div style="width:6px;height:6px;border-radius:50%;background:#fff"></div></div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--navy)">Privado</div><div style="font-size:11px;color:var(--text-dim)">Solo tÃº puedes ver este documento</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:12px;cursor:pointer;border:1px solid transparent;">
+            <div style="width:18px;height:18px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px"></div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--navy)">Compartido</div><div style="font-size:11px;color:var(--text-dim)">El equipo puede acceder al documento</div></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn-neu">Cancelar</button>
+          <button class="btn-neu primary">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Modal</div>
+      <div class="desc-text">Overlay semitransparente navy + card neumÃ³rfico centrado. z-index: var(--z-modal) = 500. Max-width 420px. Botones de acciÃ³n en footer derecho: secundario izquierda + primario derecha.</div>
+    </div>
+  </div>
+
+</section>
+<!-- â•â•â•â•â•â•â• LAYOUTS â•â•â•â•â•â•â• -->
+<section id="layouts" class="ds-section">
+  <div class="section-header">
+    <h2>Layouts</h2>
+    <p>Estructuras de pÃ¡gina y grillas de datos. Definen cÃ³mo se organiza el espacio y el contenido a nivel macro.</p>
+  </div>
+
+  <div class="comp-block" id="app-shell">
+    <h3>App Shell</h3>
+    <div class="demo-box" style="padding:0;overflow:hidden;height:220px;display:block;">
+      <div style="display:flex;height:220px;overflow:hidden;border-radius:16px;">
+        <div style="width:64px;flex-shrink:0;background:linear-gradient(160deg,rgba(232,236,244,0.98),rgba(220,228,242,0.95));border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:8px;">
+          <div style="width:28px;height:28px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff">A</div>
+          <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in-sm);display:flex;align-items:center;justify-content:center;color:var(--indigo);font-size:12px"><i class="fa-solid fa-house"></i></div>
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px"><i class="fa-solid fa-briefcase"></i></div>
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px"><i class="fa-solid fa-chart-bar"></i></div>
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+          <div style="height:40px;background:linear-gradient(90deg,var(--navy-2),var(--navy));flex-shrink:0;display:flex;align-items:center;padding:0 16px;gap:8px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3)"></div>
+            <div style="flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,0.1)"></div>
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.2);font-size:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">RP</div>
+          </div>
+          <div style="flex:1;padding:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start;">
+            <div style="background:var(--bg);border-radius:10px;box-shadow:var(--neu-out-sm);padding:12px;grid-column:span 2;height:36px"></div>
+            <div style="background:var(--bg);border-radius:10px;box-shadow:var(--neu-out-sm);height:48px"></div>
+            <div style="background:var(--bg);border-radius:10px;box-shadow:var(--neu-out-sm);height:48px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Dimensiones</div>
+      <table class="token-table">
+        <thead><tr><th>Zona</th><th>TamaÃ±o</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td>Sidebar completo</td><td>272px</td><td>Desktop â‰¥ 1025px</td></tr>
+          <tr><td>Sidebar colapsado</td><td>64px</td><td>Solo Ã­conos, sin labels</td></tr>
+          <tr><td>Top header</td><td>56px altura</td><td>z-index: 200, position fixed</td></tr>
+          <tr><td>Main padding mobile</td><td>0 16px</td><td>max-width ilimitado en mobile</td></tr>
+          <tr><td>Main padding desktop</td><td>24px 28px</td><td>max-width ~960px recomendado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="comp-block" id="bento">
+    <h3>Bento Grid</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:24px;width:100%;">
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">2+1 â€” dos cols + full-width</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="bento-cell" style="background:var(--indigo-soft);color:var(--indigo)">Panel A</div>
+          <div class="bento-cell" style="background:rgba(0,199,129,0.08);color:var(--green-text)">Panel B</div>
+          <div class="bento-cell span-2" style="background:rgba(255,187,56,0.1);color:var(--yellow-text)">Panel C â€” ancho completo</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Dashboard â€” 4 cols asimÃ©trico</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+          <div class="bento-cell span-2" style="background:var(--indigo-soft);color:var(--indigo);min-height:90px">Feature Card</div>
+          <div class="bento-cell" style="font-size:11px">KPI 1</div>
+          <div class="bento-cell" style="font-size:11px">KPI 2</div>
+          <div class="bento-cell" style="font-size:11px">MÃ©trica</div>
+          <div class="bento-cell" style="font-size:11px">GrÃ¡fico</div>
+          <div class="bento-cell span-2" style="font-size:11px">Tabla de datos</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">3 cols fluid</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div class="bento-cell span-2" style="min-height:100px;background:rgba(222,94,45,0.08);color:var(--orange)">Principal (2/3)</div>
+          <div class="bento-cell" style="min-height:100px">Lateral (1/3)</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Clase base: .bento-cell</div>
+      <div class="desc-text">Combinar con <span class="ds-code-inline">.span-2</span> o <span class="ds-code-inline">.span-3</span>. Siempre usar <span class="ds-code-inline">grid-template-columns: repeat(N, 1fr)</span> con gap de 16px. En mobile colapsas a 1 col con <span class="ds-code-inline">grid-template-columns: 1fr</span>.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="grids">
+    <h3>Grids de Datos</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:20px;width:100%;">
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">.field-grid â€” 2 cols (campos)</div>
+        <div class="field-grid">
+          <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 1</div>
+          <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 2</div>
+          <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 3</div>
+          <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 4</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">.score-grid â€” 4 cols (KPIs)</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+          <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 1</div>
+          <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 2</div>
+          <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 3</div>
+          <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 4</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <table class="token-table">
+        <thead><tr><th>Clase</th><th>Columnas</th><th>Gap</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ds-code-inline">.field-grid</span></td><td>2 (1fr 1fr)</td><td>16px</td><td>Campos de detalle en cards</td></tr>
+          <tr><td><span class="ds-code-inline">.cards-grid</span></td><td>2 (1fr 1fr)</td><td>18px</td><td>Cards de contenido en page</td></tr>
+          <tr><td><span class="ds-code-inline">.eval-grid</span></td><td>3 (repeat 3,1fr)</td><td>16px</td><td>Evaluaciones y comparativas</td></tr>
+          <tr><td><span class="ds-code-inline">.score-grid</span></td><td>4 (repeat 4,1fr)</td><td>16px</td><td>MÃ©tricas y scores</td></tr>
+          <tr><td><span class="ds-code-inline">.fin-grid</span></td><td>5 (repeat 5,1fr)</td><td>12px</td><td>Resumen financiero compacto</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</section>
+
+<!-- â•â•â•â•â•â•â• PATTERNS â•â•â•â•â•â•â• -->
+<section id="patterns" class="ds-section">
+  <div class="section-header">
+    <h2>Patrones</h2>
+    <p>Recetas reutilizables, guÃ­as de uso y reglas de decisiÃ³n que garantizan consistencia entre todos los productos.</p>
+  </div>
+
+  <div class="comp-block" id="glass-recipe">
+    <h3>Glass Effect Recipe</h3>
+    <div class="demo-box" style="background:linear-gradient(135deg,var(--navy-2) 0%,var(--indigo) 50%,var(--navy) 100%);padding:32px;">
+      <div style="background:rgba(232,236,244,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),var(--neu-out-sm);border-radius:16px;padding:24px;max-width:320px;width:100%">
+        <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-layer-group" style="color:var(--indigo);margin-right:6px"></i>Superficie Glass</div>
+        <div style="font-size:12px;color:var(--text-sub)">Este panel usa backdrop-filter:blur(12px) sobre el gradiente navy del fondo. Nota cÃ³mo el fondo se desenfoca a travÃ©s del panel.</div>
+      </div>
+    </div>
+    <pre class="ds-code">.glass-surface {
+  background: rgba(232, 236, 244, 0.72);     /* --glass-bg      */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.60); /* --glass-border  */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.95),       /* --glass-shine   */
+    var(--neu-out-sm);                           /* elevaciÃ³n suave */
+  border-radius: 16px;
+}
+
+/* IMPORTANTE: requiere fondo con variaciÃ³n (gradiente o imagen)
+   No visible sobre fondo plano --bg #e8ecf4 */</pre>
+    <div class="comp-desc">
+      <div class="desc-title">CuÃ¡ndo usar Glass</div>
+      <div class="desc-text">Modales sobre contenido con gradiente Â· Overlays sobre dashboards con grÃ¡ficas Â· Panels flotantes en pantallas con background imagen. <strong>No usar</strong> sobre fondo plano --bg â€” el blur no es visible.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="neu-surfaces">
+    <h3>Neumorphic Surface Types</h3>
+    <div class="demo-box" style="gap:24px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <div style="width:140px;height:90px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;">
+          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:20px"></i>
+          <span style="font-size:11px;font-weight:700;color:var(--text-sub)">Raised</span>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:11px;font-weight:800;color:var(--indigo)">--neu-out</div>
+          <div style="font-size:10px;color:var(--text-dim)">Interactivo Â· Clickeable</div>
+          <div style="font-size:10px;color:var(--text-dim)">Botones Â· Cards Â· Tabs default</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <div style="width:140px;height:90px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:20px"></i>
+          <span style="font-size:11px;font-weight:700;color:var(--text-sub)">Sunken</span>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:11px;font-weight:800;color:var(--text-sub)">--neu-in</div>
+          <div style="font-size:10px;color:var(--text-dim)">EstÃ¡tico Â· Solo lectura</div>
+          <div style="font-size:10px;color:var(--text-dim)">Inputs Â· Tabs activos Â· Datos</div>
+        </div>
+      </div>
+    </div>
+    <div class="shadow-rule" style="margin-top:0">
+      <i class="fa-solid fa-lightbulb"></i>
+      <strong>Regla de oro:</strong> Â¿Puedes hacer clic? â†’ Raised &nbsp;Â·&nbsp; Â¿Solo leer? â†’ Sunken &nbsp;Â·&nbsp; Â¿Overlay? â†’ Glass
+    </div>
+  </div>
+
+  <div class="comp-block" id="responsive">
+    <h3>Breakpoints Responsivos</h3>
+    <div class="demo-box demo-box-col" style="padding:24px;">
+      <table class="token-table">
+        <thead><tr><th>Breakpoint</th><th>Rango</th><th>Sidebar</th><th>Grids</th><th>Padding lateral</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip chip-blue" style="font-size:9px">Mobile</span></td><td>â‰¤ 768px</td><td>Drawer overlay</td><td>1 columna</td><td>16px</td></tr>
+          <tr><td><span class="chip chip-yellow" style="font-size:9px">Tablet</span></td><td>769â€“1024px</td><td>64px (Ã­conos)</td><td>2 columnas</td><td>20px</td></tr>
+          <tr><td><span class="chip chip-green" style="font-size:9px">Desktop</span></td><td>â‰¥ 1025px</td><td>272px completo</td><td>Todos habilitados</td><td>28px</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <pre class="ds-code">/* Mobile-first override pattern */
+@media (max-width: 768px) {
+  .sidebar { left: -300px; }          /* off-screen */
+  .sidebar.mobile-open { left: 0; }   /* drawer activo */
+  .main {
+    margin-left: 0 !important;
+    padding: 0 16px 60px !important;
+    overflow: visible !important;
+  }
+  .field-grid,
+  .cards-grid,
+  .eval-grid,
+  .score-grid { grid-template-columns: 1fr; }
+  .btn-neu, .btn-exec { width: 100%; justify-content: center; }
+}</pre>
+  </div>
+
+  <div class="comp-block" id="states">
+    <h3>Estados de InteracciÃ³n</h3>
+    <div class="demo-box" style="gap:20px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="pointer-events:none">Default</button>
+        <span style="font-size:10px;color:var(--text-dim)">box-shadow: --neu-out-sm</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="box-shadow:var(--neu-out);transform:translateY(-1px);pointer-events:none">Hover</button>
+        <span style="font-size:10px;color:var(--text-dim)">--neu-out + translateY(-1px)</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="box-shadow:var(--neu-in-sm);transform:translateY(0);pointer-events:none">Active</button>
+        <span style="font-size:10px;color:var(--text-dim)">--neu-in-sm + translateY(0)</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="box-shadow:var(--neu-out),0 0 0 2px var(--indigo);pointer-events:none">Focus</button>
+        <span style="font-size:10px;color:var(--text-dim)">--neu-out + outline indigo</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <button class="btn-neu" style="opacity:0.45;cursor:not-allowed;pointer-events:none">Disabled</button>
+        <span style="font-size:10px;color:var(--text-dim)">opacity: 0.45</span>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Secuencia obligatoria para todos los elementos interactivos</div>
+      <div class="desc-text">Default â†’ Hover â†’ Active â†’ Focus â†’ Disabled. Nunca omitas el estado Focus (accesibilidad). Disabled: agrega <span class="ds-code-inline">cursor:not-allowed</span> y <span class="ds-code-inline">pointer-events:none</span>.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="color-usage">
+    <h3>Color Usage Guidelines</h3>
+    <div class="demo-box demo-box-col" style="padding:0;gap:0;overflow:hidden;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;">
+        <div style="padding:20px;border-right:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:800;color:var(--green-text);margin-bottom:12px;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-circle-check"></i> SÃ hacer</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--navy para tÃ­tulos principales y valores importantes</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--indigo para elementos interactivos y brand</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--text-sub para texto secundario y labels</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--text-dim para metadatos y timestamps</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>SemÃ¡nticos (green/yellow/red) solo para estados</li>
+          </ul>
+        </div>
+        <div style="padding:20px;">
+          <div style="font-size:11px;font-weight:800;color:var(--red-text);margin-bottom:12px;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-circle-xmark"></i> NO hacer</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>Mezclar mÃ¡s de 2 colores brand en un componente</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>--red para estados no-error</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>--orange como color de acciÃ³n (solo acento visual)</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>Texto --text-dim en tamaÃ±o menor a 11px</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-xmark" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>Usar --navy directo sobre --bg en texto pequeÃ±o (bajo contraste)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+  </main>
+</div>
+
+<footer class="ds-footer">
+  <div style="margin-bottom:8px"><strong style="color:var(--navy)">Actuaria Consultores</strong> Â· Neo Design System v1.0</div>
+  <div style="opacity:0.6">Glass UI + Neumorphism + Bento Boxes Â· Atomic Design Â· 35+ aÃ±os, 6,000+ clientes</div>
+  <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <span class="chip chip-blue" style="font-size:9px">Actuaria Plus</span>
+    <span class="chip chip-blue" style="font-size:9px">Data Wave</span>
+    <span class="chip chip-blue" style="font-size:9px">Data Analytics</span>
+    <span class="chip chip-blue" style="font-size:9px">ActuaFast</span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.ds-nav-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.ds-nav-link').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.ds-nav-link').forEach(l => {
+        if (l.getAttribute('href') === '#' + id) l.classList.add('active');
+        else l.classList.remove('active');
+      });
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-56px 0px 0px 0px' });
+document.querySelectorAll('.ds-section[id], .comp-block[id]').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
