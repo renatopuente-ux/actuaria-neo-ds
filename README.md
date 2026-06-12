@@ -1,6 +1,6 @@
 # Actuaria Neo Design System
 
-Sistema de diseño oficial de Actuaria Consultores. **Glass UI + Neumorphism + Bento Boxes** siguiendo Atomic Design.
+Sistema de diseño Neo de Actuaria Consultores — **54 componentes alineados 1:1 con el inventario del Figma oficial** (fileKey `N1wh3u4sX3UGyUU5oWOaz6`). **Glass UI + Neumorphism + Bento Boxes** siguiendo la estructura de categorías del Design System Actuaria.
 
 ## Vista en vivo
 
@@ -11,11 +11,17 @@ Sistema de diseño oficial de Actuaria Consultores. **Glass UI + Neumorphism + B
 | Capa | Componentes |
 |------|-------------|
 | **Fundamentos** | Colores, Tipografía, Espaciado, Sombras, Radios, Z-Index, Animaciones |
-| **Átomos** | Botones (5 variantes), Chips/Badges, Avatares, Inputs, Toggle, Code Inline |
-| **Moléculas** | Field Display, Form Group, Nav Item, Breadcrumb, Tabs, Timeline Item, Metric Tile, Pipeline Step |
-| **Organismos** | Neu Card, Glass Card, Sidebar, Top Header, Data Table, Tab System, Pipeline Tracker, Modal |
-| **Layouts** | App Shell, Bento Grid, Grids de datos (5 variantes) |
+| **Elements** (13) | Button, Button group, Button icon, Icon container, Text link, Avatar, Avatar labelled, Avatar dropdown, Tag group, Badge, Badge count, Badge dot, Slot |
+| **Forms** (15) | Text input, Text area, Select, Search input, Autocomplete, Combobox, Date picker, File upload, Slider, Loading bar, Progress indicator, Checkbox group, Radio button group, Stepper, Toggle |
+| **Feedback** (3) | Alert, Alert global, Empty state |
+| **Navigation** (7) | Navigation header, Footer, Tabs, Pagination, Segmented control, Breadcrumbs, Navigation side |
+| **Surfaces** (6) | Modal, Drawer, Card, Tooltip, Dropdown menu, Dropdown menu list |
+| **Content display** (6) | Table, Summary list, Accordion, Text, Text block, Divider |
+| **Marketing** (4) | Hero, Testimonial, Rating, Avatar stack |
+| **Layouts** | App Shell, Bento Grid, Grids de datos |
 | **Patrones** | Glass Recipe, Neumorphic Surfaces, Responsive Breakpoints, Interaction States, Color Guidelines |
+
+Cada componente documenta sus **variantes Figma** (Size, State, Type…) y un demo en vivo reinterpretado en estilo Neo, con las dimensiones estructurales del spec original.
 
 ## Uso
 
@@ -41,6 +47,10 @@ El archivo `index.html` es completamente autocontenido — sin build step, sin d
 - **Neumorphism**: Raised = interactivo · Sunken = dato estático
 - **Glass UI**: `backdrop-filter: blur(12px)` + fondo semitransparente
 - **Bento Boxes**: Grids asimétricos para dashboards
+
+## Fuente de verdad
+
+El inventario y las propiedades de los 54 componentes provienen del Figma oficial **Design-System-Actuaria (Actualizado)**, página "↳ Todos los componentes" (node `8703:121838`). Los specs extraídos viven en el workspace Actuagency: `02_Diseno_UX_UI/design_system/specs/`.
 
 ## Productos
 
