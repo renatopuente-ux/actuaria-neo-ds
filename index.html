@@ -2471,10 +2471,19 @@ a{text-decoration:none;}
 
   <div class="comp-block" id="glass-recipe">
     <h3>Glass Effect Recipe</h3>
-    <div class="demo-box" style="background:linear-gradient(135deg,var(--navy-2) 0%,var(--indigo) 50%,var(--navy) 100%);padding:32px;">
-      <div style="background:rgba(232,236,244,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),var(--neu-out-sm);border-radius:16px;padding:24px;max-width:320px;width:100%">
+    <div class="demo-box" style="position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy-2) 0%,var(--indigo) 50%,var(--navy) 100%);padding:44px;min-height:300px;display:flex;align-items:center;justify-content:center;">
+      <!-- Contenido detrás del glass: formas con detalle/contraste para que el blur sea visible -->
+      <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;">
+        <div style="position:absolute;width:170px;height:170px;border-radius:50%;background:#e0592a;top:-34px;left:26px;opacity:.92"></div>
+        <div style="position:absolute;width:140px;height:140px;border-radius:50%;background:#7ec0e5;bottom:-30px;left:36%;opacity:.9"></div>
+        <div style="position:absolute;width:96px;height:96px;border-radius:50%;border:16px solid rgba(255,255,255,0.7);top:26px;right:54px;"></div>
+        <i class="fa-solid fa-chart-line" style="position:absolute;top:30px;left:42%;font-size:60px;color:rgba(255,255,255,0.6)"></i>
+        <div style="position:absolute;right:20px;bottom:14px;font-size:66px;font-weight:900;color:rgba(255,255,255,0.9);letter-spacing:-2px;line-height:1">$12,4M</div>
+        <div style="position:absolute;left:20px;bottom:12px;font-size:12px;font-weight:800;color:rgba(255,255,255,0.78);letter-spacing:3px">RESERVAS · CAPITAL · PRIMAS</div>
+      </div>
+      <div style="position:relative;z-index:1;background:rgba(232,236,244,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),var(--neu-out-sm);border-radius:16px;padding:24px;max-width:320px;width:100%">
         <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-layer-group" style="color:var(--indigo);margin-right:6px"></i>Superficie Glass</div>
-        <div style="font-size:12px;color:var(--text-sub)">Este panel usa backdrop-filter:blur(12px) sobre el gradiente navy del fondo. Nota cómo el fondo se desenfoca a través del panel.</div>
+        <div style="font-size:12px;color:var(--text-sub)">Este panel aplica backdrop-filter:blur(12px) sobre las formas del fondo. Observa cómo se desenfocan al pasar por detrás del panel.</div>
       </div>
     </div>
     <pre class="ds-code">.glass-surface {
