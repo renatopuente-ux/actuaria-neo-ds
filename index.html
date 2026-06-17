@@ -2481,9 +2481,15 @@ a{text-decoration:none;}
         <div style="position:absolute;right:20px;bottom:14px;font-size:66px;font-weight:900;color:rgba(255,255,255,0.9);letter-spacing:-2px;line-height:1">$12,4M</div>
         <div style="position:absolute;left:20px;bottom:12px;font-size:12px;font-weight:800;color:rgba(255,255,255,0.78);letter-spacing:3px">RESERVAS · CAPITAL · PRIMAS</div>
       </div>
-      <div style="position:relative;z-index:1;background:rgba(232,236,244,0.54);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),var(--neu-out-sm);border-radius:16px;padding:24px;max-width:320px;width:100%">
-        <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-layer-group" style="color:var(--indigo);margin-right:6px"></i>Superficie Glass</div>
-        <div style="font-size:12px;color:var(--text-sub)">Este panel aplica backdrop-filter:blur(12px) sobre las formas del fondo. Observa cómo se desenfocan al pasar por detrás del panel.</div>
+      <div style="position:relative;z-index:1;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;max-width:700px;width:100%">
+        <div style="flex:1;min-width:240px;background:rgba(232,236,244,0.54);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),var(--neu-out-sm);border-radius:16px;padding:24px">
+          <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-layer-group" style="color:var(--indigo);margin-right:6px"></i>Con elevación</div>
+          <div style="font-size:12px;color:var(--text-sub)">Borde claro de 1px, brillo interno y sombra neumórfica. Para piezas que “flotan” sobre el contenido.</div>
+        </div>
+        <div style="flex:1;min-width:240px;background:rgba(232,236,244,0.54);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:none;box-shadow:none;border-radius:16px;padding:24px">
+          <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-droplet" style="color:var(--indigo);margin-right:6px"></i>Plano · sin sombra ni borde</div>
+          <div style="font-size:12px;color:var(--text-sub)">Solo blur sobre el fondo, sin borde, brillo ni sombra. Superficie integrada y más limpia.</div>
+        </div>
       </div>
     </div>
     <pre class="ds-code">.glass-surface {
@@ -2495,6 +2501,12 @@ a{text-decoration:none;}
     inset 0 1px 0 rgba(255,255,255,0.95),       /* --glass-shine   */
     var(--neu-out-sm);                           /* elevación suave */
   border-radius: 16px;
+}
+
+/* Variante plana — sin borde, brillo ni sombra (superficie integrada) */
+.glass-surface--flat {
+  border: none;
+  box-shadow: none;
 }
 
 /* IMPORTANTE: requiere fondo con variación (gradiente o imagen)
