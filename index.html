@@ -2481,9 +2481,9 @@ a{text-decoration:none;}
         <div style="position:absolute;right:20px;bottom:14px;font-size:66px;font-weight:900;color:rgba(255,255,255,0.9);letter-spacing:-2px;line-height:1">$12,4M</div>
         <div style="position:absolute;left:20px;bottom:12px;font-size:12px;font-weight:800;color:rgba(255,255,255,0.78);letter-spacing:3px">RESERVAS · CAPITAL · PRIMAS</div>
       </div>
-      <div style="position:relative;z-index:1;background:rgba(232,236,244,0.54);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:none;box-shadow:none;border-radius:16px;padding:24px;max-width:340px;width:100%">
+      <div style="position:relative;z-index:1;background:rgba(232,236,244,0.54);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.5);box-shadow:none;border-radius:16px;padding:24px;max-width:340px;width:100%">
         <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-droplet" style="color:var(--indigo);margin-right:6px"></i>Superficie Glass</div>
-        <div style="font-size:12px;color:var(--text-sub)">Solo backdrop-filter:blur(12px) sobre el fondo, sin borde ni sombra. El desenfoque integra el panel con el contenido de atrás.</div>
+        <div style="font-size:12px;color:var(--text-sub)">backdrop-filter:blur(12px) + borde de 1px blanco al 50%, sin sombra. El contorno define el panel sin elevarlo del fondo.</div>
       </div>
     </div>
     <pre class="ds-code">.glass-surface {
@@ -2499,7 +2499,7 @@ a{text-decoration:none;}
 
 /* Variante plana — sin borde, brillo ni sombra (superficie integrada) */
 .glass-surface--flat {
-  border: none;
+  border: 1px solid rgba(255,255,255,0.5);
   box-shadow: none;
 }
 
