@@ -235,6 +235,135 @@ a{text-decoration:none;}
 [data-overlay-hint].hint-show{display:inline-flex;}
 /* Estado seleccionado para ítems de dropdown list / nav (reutiliza tinte indigo del DS) */
 .dd-item-selected{background:rgba(76,100,217,0.10);}
+
+/* ════════════ NUEVAS SECCIONES (Iconos, Voz, Grid, Marca, Slider, Flip, Chart, Tracking) ════════════ */
+
+/* ── ICONOS ── */
+.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:14px;width:100%;}
+.icon-tile{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out-sm);text-align:center;}
+.icon-tile i{font-size:22px;color:var(--indigo);width:24px;height:24px;line-height:24px;}
+.icon-tile .icon-name{font-size:9px;font-weight:700;color:var(--text-dim);font-family:monospace;word-break:break-word;}
+.icon-sizes{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;}
+.icon-size-item{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.icon-size-item .icon-cap{padding:10px;border-radius:48px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;}
+.icon-size-item .icon-cap i{color:var(--navy);}
+.icon-size-lbl{font-size:9px;font-weight:700;color:var(--text-dim);font-family:monospace;}
+
+/* ── VOZ Y TONO ── */
+.voice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;width:100%;}
+.voice-card{background:var(--bg);box-shadow:var(--neu-out-sm);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;}
+.voice-card .vc-icon{width:40px;height:40px;border-radius:12px;background:var(--indigo-soft);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:4px;}
+.voice-card .vc-title{font-size:15px;font-weight:800;color:var(--navy);}
+.voice-card .vc-text{font-size:12px;color:var(--text-sub);line-height:1.5;}
+.voice-card .vc-eg{font-size:12px;color:var(--indigo);font-weight:700;font-style:italic;padding-top:6px;border-top:1px solid var(--border);}
+.dodont-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;}
+.dodont-col{border-radius:14px;padding:18px 20px;background:rgba(255,255,255,0.45);box-shadow:var(--neu-in-sm);}
+.dodont-head{font-size:11px;font-weight:800;display:flex;align-items:center;gap:6px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.4px;}
+.dodont-head.yes{color:var(--green-text);}
+.dodont-head.no{color:var(--red-text);}
+.dodont-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.dodont-col li{font-size:12px;color:var(--text-sub);display:flex;gap:8px;line-height:1.45;}
+.dodont-col li i{margin-top:2px;flex-shrink:0;}
+.dodont-col li i.yes{color:var(--green);}
+.dodont-col li i.no{color:var(--red);}
+.voice-claim{margin-top:16px;text-align:center;font-size:20px;font-weight:800;color:var(--navy);font-style:italic;}
+.voice-claim span{color:var(--orange);}
+
+/* ── CUADRÍCULAS (GRID) ── */
+.grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;width:100%;}
+.grid12 .gcol{background:var(--indigo-soft);border:1px dashed var(--indigo);border-radius:6px;height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--indigo);font-family:monospace;}
+.grid-layout{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;width:100%;margin-top:14px;}
+.grid-layout .gbox{background:var(--bg);box-shadow:var(--neu-out-sm);border-radius:10px;min-height:56px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-sub);}
+.gspan-3{grid-column:span 3;}.gspan-4{grid-column:span 4;}.gspan-6{grid-column:span 6;}.gspan-8{grid-column:span 8;}.gspan-9{grid-column:span 9;}.gspan-12{grid-column:span 12;}
+@media (max-width:768px){.grid-layout .gbox{grid-column:1 / -1!important;}.grid12{grid-template-columns:repeat(6,1fr);}}
+
+/* ── LOGOTIPOS ── */
+.logo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;width:100%;}
+.logo-tile{border-radius:16px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:130px;background:var(--bg);box-shadow:var(--neu-in-sm);}
+.logo-tile.on-navy{background:linear-gradient(135deg,var(--navy-2),var(--navy));box-shadow:var(--neu-out-sm);}
+.logo-tile svg{height:38px;width:auto;max-width:100%;}
+.logo-tile .logo-cap{font-size:9px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;}
+.logo-tile.on-navy .logo-cap{color:rgba(255,255,255,0.6);}
+.logo-clearspace{position:relative;display:inline-flex;padding:28px;border-radius:14px;background:var(--bg);box-shadow:var(--neu-in-sm);outline:2px dashed rgba(76,100,217,0.4);outline-offset:-28px;}
+.logo-clearspace svg{height:40px;}
+
+/* ── ACTUARÍN (Spline) ── */
+.spline-wrap{width:100%;border-radius:18px;overflow:hidden;background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);box-shadow:var(--glass-shine),var(--neu-out-sm);padding:10px;}
+.spline-wrap iframe{display:block;}
+
+/* ── BANNER SLIDER ── */
+.neo-slider{position:relative;width:100%;border-radius:18px;overflow:hidden;box-shadow:var(--neu-out);}
+.neo-slider-track{display:flex;transition:transform var(--dur-slow) var(--ease-out);}
+.neo-slide{flex:0 0 100%;min-width:100%;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px;min-height:190px;color:#fff;position:relative;overflow:hidden;}
+.neo-slide::after{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.18),transparent);}
+.neo-slide .sl-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;opacity:0.85;}
+.neo-slide .sl-title{font-size:26px;font-weight:900;line-height:1.1;position:relative;z-index:1;}
+.neo-slide .sl-sub{font-size:14px;opacity:0.82;max-width:440px;position:relative;z-index:1;}
+.neo-slide .sl-btn{align-self:flex-start;margin-top:8px;background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.3);color:#fff;font-family:var(--font);font-weight:700;font-size:13px;padding:9px 18px;border-radius:99px;cursor:pointer;backdrop-filter:blur(6px);position:relative;z-index:1;}
+.neo-slide.sl-1{background:linear-gradient(135deg,var(--navy-2),var(--navy));}
+.neo-slide.sl-2{background:linear-gradient(135deg,var(--indigo),var(--indigo-2));}
+.neo-slide.sl-3{background:linear-gradient(135deg,#1d3563,var(--indigo-2));}
+.neo-slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--glass-bg);backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(15,31,61,0.25),var(--glass-shine);color:var(--navy);font-size:14px;cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;transition:transform var(--dur-fast) var(--ease-out);}
+.neo-slider-arrow:hover{transform:translateY(-50%) scale(1.08);}
+.neo-slider-arrow.prev{left:14px;}.neo-slider-arrow.next{right:14px;}
+.neo-slider-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3;}
+.neo-slider-dot{width:9px;height:9px;border-radius:50%;border:none;padding:0;background:rgba(255,255,255,0.4);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);}
+.neo-slider-dot.active{background:#fff;width:22px;border-radius:99px;}
+
+/* ── CARD FLIP ── */
+.flip-card{width:240px;height:170px;perspective:1100px;cursor:pointer;background:transparent;}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform var(--dur-slow) var(--ease-out);transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:22px;display:flex;flex-direction:column;justify-content:center;gap:8px;background:var(--bg);box-shadow:var(--neu-out);}
+.flip-face.back{transform:rotateY(180deg);background:linear-gradient(135deg,var(--navy-2),var(--navy));color:#fff;}
+.flip-face .ff-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;color:var(--indigo);}
+.flip-face.back .ff-tag{color:rgba(255,255,255,0.7);}
+.flip-face .ff-val{font-size:30px;font-weight:900;color:var(--navy);}
+.flip-face .ff-lbl{font-size:13px;font-weight:600;color:var(--text-sub);}
+.flip-face .ff-hint{position:absolute;bottom:12px;right:16px;font-size:9px;color:var(--text-dim);display:flex;align-items:center;gap:4px;}
+.flip-face.back .ff-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.12);}
+.flip-face.back .ff-row b{font-weight:800;}
+
+/* ── CHART (CSS/SVG, sin librerías) ── */
+.chart-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%;}
+@media (max-width:768px){.chart-wrap{grid-template-columns:1fr;}}
+.chart-card{background:var(--bg);box-shadow:var(--neu-in);border-radius:16px;padding:22px;}
+.chart-title{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.bar-chart{display:flex;align-items:flex-end;gap:12px;height:160px;padding-bottom:24px;position:relative;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;}
+.bar{width:60%;max-width:30px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,var(--indigo),var(--navy));box-shadow:var(--neu-out-sm);transition:filter var(--dur-fast) var(--ease-out);cursor:default;}
+.bar-col:hover .bar{filter:brightness(1.12);}
+.bar-x{position:absolute;bottom:-22px;font-size:9px;font-weight:700;color:var(--text-dim);}
+.bar-tip{position:absolute;top:-26px;background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:6px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:all var(--dur-fast) var(--ease-out);pointer-events:none;}
+.bar-col:hover .bar-tip{opacity:1;transform:translateY(0);}
+.donut-chart{display:flex;align-items:center;gap:20px;}
+.donut-legend{display:flex;flex-direction:column;gap:8px;font-size:11px;}
+.donut-legend .dl-item{display:flex;align-items:center;gap:8px;color:var(--text-sub);font-weight:700;}
+.donut-legend .dl-dot{width:10px;height:10px;border-radius:3px;}
+
+/* ── TRACKING (timeline) ── */
+.track-v{display:flex;flex-direction:column;gap:0;width:100%;max-width:460px;}
+.track-step{display:flex;gap:16px;position:relative;padding-bottom:26px;}
+.track-step:last-child{padding-bottom:0;}
+.track-step::before{content:'';position:absolute;left:17px;top:36px;bottom:-4px;width:2px;background:var(--border);}
+.track-step:last-child::before{display:none;}
+.track-step.done::before{background:var(--green);}
+.track-dot{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;z-index:1;}
+.track-step.done .track-dot{background:var(--bg);color:var(--green-text);box-shadow:var(--neu-in);}
+.track-step.current .track-dot{background:var(--indigo);color:#fff;box-shadow:var(--neu-out),0 0 0 4px var(--indigo-soft);}
+.track-step.pending .track-dot{background:var(--bg);color:var(--text-dim);box-shadow:var(--neu-in-sm);opacity:0.7;}
+.track-body{padding-top:6px;}
+.track-step.pending .track-body{opacity:0.55;}
+.track-name{font-size:14px;font-weight:800;color:var(--navy);}
+.track-step.current .track-name{color:var(--indigo);}
+.track-time{font-size:11px;color:var(--text-dim);margin-top:2px;}
+.track-h{display:flex;gap:0;width:100%;justify-content:space-between;}
+.track-h .track-step{flex-direction:column;align-items:center;text-align:center;flex:1;padding-bottom:0;gap:8px;}
+.track-h .track-step::before{left:50%;top:18px;bottom:auto;right:auto;width:100%;height:2px;}
+.track-h .track-step:last-child::before{display:none;}
+.track-h .track-name{font-size:11px;}
+.track-h .track-time{font-size:9px;}
+@media (max-width:768px){.track-h{flex-direction:column;}.track-h .track-step{flex-direction:row;text-align:left;}.track-h .track-step::before{left:17px;top:36px;bottom:-4px;width:2px;height:auto;}}
 </style>
 </head>
 <body>
@@ -261,11 +390,19 @@ a{text-decoration:none;}
       <span class="ds-nav-label">Fundamentos</span>
       <a class="ds-nav-link" href="#colors">Colores</a>
       <a class="ds-nav-link" href="#typography">Tipografía</a>
-      <a class="ds-nav-link" href="#spacing">Espaciado</a>
-      <a class="ds-nav-link" href="#shadows">Sombras</a>
+      <a class="ds-nav-link" href="#icons">Iconos</a>
+      <a class="ds-nav-link" href="#spacing">Espacios</a>
+      <a class="ds-nav-link" href="#shadows">Elevaciones</a>
       <a class="ds-nav-link" href="#radius">Radios</a>
+      <a class="ds-nav-link" href="#grid">Cuadrículas</a>
       <a class="ds-nav-link" href="#z-index">Z-Index</a>
-      <a class="ds-nav-link" href="#animations">Animaciones</a>
+      <a class="ds-nav-link" href="#animations">Motion</a>
+      <a class="ds-nav-link" href="#voice-tone">Voz y Tono</a>
+    </div>
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Marca</span>
+      <a class="ds-nav-link" href="#cmp-logos">Logotipos</a>
+      <a class="ds-nav-link" href="#cmp-actuarin">Actuarín</a>
     </div>
     <div class="ds-nav-group">
       <span class="ds-nav-label">Componentes · Figma</span>
@@ -284,12 +421,22 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#grids">Grids de datos</a>
     </div>
     <div class="ds-nav-group">
+      <span class="ds-nav-label">Componentes · NEO</span>
+      <a class="ds-nav-link" href="#cmp-banner-slider">Banner Slider</a>
+      <a class="ds-nav-link" href="#cmp-card-flip">Card flip</a>
+      <a class="ds-nav-link" href="#cmp-chart">Chart</a>
+    </div>
+    <div class="ds-nav-group">
       <span class="ds-nav-label">Patrones</span>
       <a class="ds-nav-link" href="#glass-recipe">Glass Recipe</a>
       <a class="ds-nav-link" href="#neu-surfaces">Neu Surfaces</a>
       <a class="ds-nav-link" href="#responsive">Responsivo</a>
       <a class="ds-nav-link" href="#states">Estados</a>
       <a class="ds-nav-link" href="#color-usage">Color Usage</a>
+    </div>
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">Seguimiento</span>
+      <a class="ds-nav-link" href="#cmp-tracking">Tracking</a>
     </div>
   </nav>
   <main class="ds-content">
@@ -384,9 +531,66 @@ a{text-decoration:none;}
     </div>
   </div>
 
+  <!-- ICONS -->
+  <div class="comp-block" id="icons">
+    <h3>Iconos</h3>
+    <p class="desc-text" style="margin-bottom:12px;">La librería oficial es <strong>Font Awesome 6.5.0 (Free)</strong> — por Fonticons, Inc. / Dave Gandy. En uso los estilos <span class="ds-code-inline">fa-solid</span> (UI) y <span class="ds-code-inline">fa-brands</span> (marcas).</p>
+    <div class="demo-box demo-box-col" style="gap:24px;padding:24px;">
+      <div style="width:100%;">
+        <div class="swatch-group-label">Set representativo del producto</div>
+        <div class="icon-grid">
+          <div class="icon-tile"><i class="fa-solid fa-shield-halved"></i><span class="icon-name">shield-halved</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-chart-line"></i><span class="icon-name">chart-line</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-chart-pie"></i><span class="icon-name">chart-pie</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-file-lines"></i><span class="icon-name">file-lines</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-filter"></i><span class="icon-name">filter</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-download"></i><span class="icon-name">download</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-lock"></i><span class="icon-name">lock</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-bell"></i><span class="icon-name">bell</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-user"></i><span class="icon-name">user</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-coins"></i><span class="icon-name">coins</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-calculator"></i><span class="icon-name">calculator</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-calendar-day"></i><span class="icon-name">calendar-day</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-magnifying-glass"></i><span class="icon-name">magnifying-glass</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-gear"></i><span class="icon-name">gear</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-circle-check"></i><span class="icon-name">circle-check</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-triangle-exclamation"></i><span class="icon-name">triangle-exclamation</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-arrow-trend-up"></i><span class="icon-name">arrow-trend-up</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-database"></i><span class="icon-name">database</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-file-export"></i><span class="icon-name">file-export</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-building-columns"></i><span class="icon-name">building-columns</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-handshake"></i><span class="icon-name">handshake</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-circle-question"></i><span class="icon-name">circle-question</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-clipboard-list"></i><span class="icon-name">clipboard-list</span></div>
+          <div class="icon-tile"><i class="fa-solid fa-percent"></i><span class="icon-name">percent</span></div>
+        </div>
+      </div>
+      <div style="width:100%;">
+        <div class="swatch-group-label">Tamaños</div>
+        <div class="icon-sizes">
+          <div class="icon-size-item"><span class="icon-cap"><i class="fa-solid fa-shield-halved" style="font-size:16px;width:16px;height:16px;line-height:16px;"></i></span><span class="icon-size-lbl">16px</span></div>
+          <div class="icon-size-item"><span class="icon-cap"><i class="fa-solid fa-shield-halved" style="font-size:20px;width:20px;height:20px;line-height:20px;"></i></span><span class="icon-size-lbl">20px</span></div>
+          <div class="icon-size-item"><span class="icon-cap"><i class="fa-solid fa-shield-halved" style="font-size:24px;width:24px;height:24px;line-height:24px;"></i></span><span class="icon-size-lbl">24px</span></div>
+          <div class="icon-size-item"><span class="icon-cap"><i class="fa-solid fa-shield-halved" style="font-size:32px;width:32px;height:32px;line-height:32px;"></i></span><span class="icon-size-lbl">32px</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Licencia y uso</div>
+      <div class="desc-text">Iconos bajo <strong>CC BY 4.0</strong>, fuentes bajo <strong>SIL OFL 1.1</strong> y código bajo <strong>MIT</strong> (Font Awesome Free). Aloja los iconos en el componente <a href="#el-icon-container" class="ds-code-inline" style="text-decoration:none">Icon container</a> (cápsula SUNKEN) cuando son decorativos. Tamaños base 16/20/24/32px alineados al sistema de espacios.</div>
+      <div class="usage-note" style="margin-top:8px;">Color por defecto <span class="ds-code-inline">--indigo</span> sobre fondo claro; <span class="ds-code-inline">--navy</span> dentro de cápsulas neumórficas. Nunca uses iconos menores a 16px en UI densa.</div>
+    </div>
+    <pre class="ds-code">&lt;!-- CDN en &lt;head&gt; --&gt;
+&lt;link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"&gt;
+
+&lt;i class="fa-solid fa-shield-halved"&gt;&lt;/i&gt;   &lt;!-- estilo solid --&gt;
+&lt;i class="fa-brands fa-linkedin"&gt;&lt;/i&gt;       &lt;!-- estilo brands --&gt;</pre>
+  </div>
+
   <!-- SPACING -->
   <div class="comp-block" id="spacing">
-    <h3>Espaciado</h3>
+    <h3>Espacios</h3>
     <div class="demo-box demo-box-col" style="padding:24px;">
       <div class="spacing-rows">
         <div class="spacing-row"><span class="spacing-token">--spacing-4</span><span class="spacing-val">4px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px"></div></div></div>
@@ -406,7 +610,7 @@ a{text-decoration:none;}
 
   <!-- SHADOWS -->
   <div class="comp-block" id="shadows">
-    <h3>Sombras</h3>
+    <h3>Elevaciones</h3>
     <div class="demo-box" style="background:var(--bg);min-height:120px;">
       <div class="shadow-demos">
         <div class="shadow-tile" style="box-shadow:var(--neu-out)">
@@ -455,6 +659,43 @@ a{text-decoration:none;}
     </div>
   </div>
 
+  <!-- GRID -->
+  <div class="comp-block" id="grid">
+    <h3>Cuadrículas</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Sistema de <strong>grid responsivo de 12 columnas</strong> con gutter tomado de los tokens de espacios (<span class="ds-code-inline">--spacing-12</span>). Alineado con los breakpoints de la sección <a href="#responsive" class="ds-code-inline" style="text-decoration:none">Responsivo</a>.</p>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:8px;">
+      <div class="swatch-group-label">12 columnas · gutter 12px</div>
+      <div class="grid12">
+        <div class="gcol">1</div><div class="gcol">2</div><div class="gcol">3</div><div class="gcol">4</div>
+        <div class="gcol">5</div><div class="gcol">6</div><div class="gcol">7</div><div class="gcol">8</div>
+        <div class="gcol">9</div><div class="gcol">10</div><div class="gcol">11</div><div class="gcol">12</div>
+      </div>
+      <div class="swatch-group-label" style="margin-top:12px;">Ejemplo de layout</div>
+      <div class="grid-layout">
+        <div class="gbox gspan-12">Header · span 12</div>
+        <div class="gbox gspan-3">Sidebar · 3</div>
+        <div class="gbox gspan-6">Contenido · 6</div>
+        <div class="gbox gspan-3">Aside · 3</div>
+        <div class="gbox gspan-4">Card · 4</div>
+        <div class="gbox gspan-4">Card · 4</div>
+        <div class="gbox gspan-4">Card · 4</div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Contenedores y breakpoints</div>
+      <div class="desc-text">Contenedor máx. 1100px (igual que <span class="ds-code-inline">.ds-content</span>). Mobile ≤768px colapsa a 1 columna; Tablet 769–1024px usa 6 columnas; Desktop ≥1025px las 12. Distinto de <a href="#grids" class="ds-code-inline" style="text-decoration:none">Grids de datos</a> (tablas) y del <a href="#bento" class="ds-code-inline" style="text-decoration:none">Bento</a>.</div>
+      <div class="usage-note" style="margin-top:8px;">El gutter siempre es un token de espacio — nunca un valor arbitrario.</div>
+    </div>
+    <pre class="ds-code">.grid12 { display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-12); }            /* gutter = token */
+.col-6 { grid-column: span 6; }        /* media página */
+
+@media (max-width: 768px) {            /* mobile: 1 columna */
+  .grid12 > * { grid-column: 1 / -1; }
+}</pre>
+  </div>
+
   <!-- Z-INDEX -->
   <div class="comp-block" id="z-index">
     <h3>Z-Index</h3>
@@ -474,7 +715,7 @@ a{text-decoration:none;}
 
   <!-- ANIMATIONS -->
   <div class="comp-block" id="animations">
-    <h3>Animaciones</h3>
+    <h3>Motion</h3>
     <div class="demo-box demo-box-col" style="padding:24px;">
       <table class="token-table">
         <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
@@ -492,7 +733,187 @@ a{text-decoration:none;}
       <div class="desc-text">Usa siempre <span class="ds-code-inline">transition: all var(--dur-fast) var(--ease-out)</span> para hover/focus. Reserve --ease-spring para elementos que "aparecen" (modales, tooltips, chips que entran). Nunca animes sin duración explícita.</div>
     </div>
   </div>
+
+  <!-- VOICE & TONE -->
+  <div class="comp-block" id="voice-tone">
+    <h3>Voz y Tono</h3>
+    <p class="desc-text" style="margin-bottom:12px;">La voz de Actuaria es la del <strong>Tutor</strong>: cercano pero riguroso. Acompaña sin abrumar, explica sin jerga innecesaria y respeta el tiempo de quien decide sobre reservas, primas y pólizas.</p>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:20px;">
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="vc-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="vc-title">Confiable</div>
+          <div class="vc-text">Damos certeza. Hablamos con datos, sin promesas vacías ni alarmismo.</div>
+          <div class="vc-eg">"Tus cálculos se guardan automáticamente."</div>
+        </div>
+        <div class="voice-card">
+          <div class="vc-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="vc-title">Conocedor</div>
+          <div class="vc-text">Dominamos el oficio actuarial y lo traducimos a un lenguaje claro.</div>
+          <div class="vc-eg">"Aplicamos NIIF 17 al valuar la reserva."</div>
+        </div>
+        <div class="voice-card">
+          <div class="vc-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="vc-title">Eficiente</div>
+          <div class="vc-text">Vamos al punto. Frases cortas, acciones evidentes, cero relleno.</div>
+          <div class="vc-eg">"Listo. Reporte generado en 3 s."</div>
+        </div>
+      </div>
+      <div class="dodont-grid">
+        <div class="dodont-col">
+          <div class="dodont-head yes"><i class="fa-solid fa-circle-check"></i> Qué SÍ</div>
+          <ul>
+            <li><i class="fa-solid fa-check yes"></i> "Revisa los supuestos antes de calcular la prima."</li>
+            <li><i class="fa-solid fa-check yes"></i> "Guardamos tu avance cada cambio."</li>
+            <li><i class="fa-solid fa-check yes"></i> "No pudimos conectar. Reintenta en unos segundos."</li>
+            <li><i class="fa-solid fa-check yes"></i> Tutear con respeto · verbos en presente · datos concretos.</li>
+          </ul>
+        </div>
+        <div class="dodont-col">
+          <div class="dodont-head no"><i class="fa-solid fa-circle-xmark"></i> Qué NO</div>
+          <ul>
+            <li><i class="fa-solid fa-xmark no"></i> "¡Ups! Algo salió mal :(" (vago y poco serio)</li>
+            <li><i class="fa-solid fa-xmark no"></i> "La parametrización estocástica falló" (jerga sin contexto)</li>
+            <li><i class="fa-solid fa-xmark no"></i> "Quizás se guardó tu información" (genera duda)</li>
+            <li><i class="fa-solid fa-xmark no"></i> Mayúsculas para gritar · signos de exclamación en exceso.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="voice-claim">Trazamos el camino <span>juntos.</span></div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Cómo aplicarla</div>
+      <div class="desc-text">Cada mensaje de UI debe pasar el filtro de los tres pilares: ¿da confianza?, ¿demuestra conocimiento?, ¿respeta el tiempo del usuario? Los errores explican qué pasó y qué hacer; nunca culpan al usuario.</div>
+    </div>
+  </div>
 </section>
+
+<!-- ═══════ MARCA ═══════ -->
+<section id="brand" class="ds-section">
+  <div class="section-header">
+    <h2>Marca</h2>
+    <p>El imagotipo oficial de Actuaria y la mascota Actuarín. Activos de identidad de marca: úsalos sin recrear ni deformar.</p>
+  </div>
+
+  <!-- LOGOTIPOS -->
+  <div class="comp-block" id="cmp-logos">
+    <h3>Logotipos</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Imagotipo oficial: símbolo (velero) + wordmark <strong>ACTUARIA</strong> en Lemon Milk. Colores del vector: navy <span class="ds-code-inline">#111C4E</span>, naranja <span class="ds-code-inline">#E0592A</span>, azul <span class="ds-code-inline">#385CAD</span>.</p>
+    <div class="demo-box demo-box-col" style="padding:24px;gap:20px;">
+      <div class="logo-grid">
+        <div class="logo-tile">
+          <svg viewBox="0 0 157 38" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path d="M44.867 23.4143H35.7976L34.4915 26.3267H31.2329L40.2423 6.77091H40.4223L49.4317 26.3267H46.1732L44.867 23.4143ZM43.6993 20.8343L40.3346 13.3433L36.9607 20.8343H43.6993Z" fill="#111C4E"/>
+          <path d="M49.2887 16.7588C49.2887 11.3633 53.7934 6.83093 59.1796 6.83093C61.6628 6.86785 63.9566 7.9248 65.8351 9.75714L64.0859 12.1249C62.7428 10.7818 60.9935 9.89099 59.115 9.89099C55.6442 9.89099 52.3256 12.9326 52.3256 16.7727C52.3256 20.6127 55.6903 23.622 59.1242 23.622C61.0858 23.622 62.7751 22.6482 64.0951 21.3374L65.8305 23.7605C64.1782 25.3898 62.0735 26.6359 59.2212 26.6359C53.7887 26.6359 49.284 22.1635 49.284 16.7588H49.2887Z" fill="#111C4E"/>
+          <path d="M80.2354 10.1494H75.0984V26.3267H72.0799V10.1494H66.9429V7.16323H80.2354V10.1494Z" fill="#111C4E"/>
+          <path d="M82.4463 19.0665V7.16323H85.4648V19.0527C85.4648 21.702 87.3294 23.6405 89.6741 23.6405C92.0188 23.6405 93.9065 21.702 93.9065 19.0527V7.16323H96.9389V19.0619C96.9389 23.4605 93.7634 26.6821 89.688 26.6821C85.6125 26.6821 82.4463 23.4605 82.4463 19.0619V19.0665Z" fill="#111C4E"/>
+          <path d="M110.73 23.4143H101.661L100.354 26.3267H97.0958L106.105 6.77092H106.285L115.295 26.3267H112.036L110.73 23.4143ZM109.562 20.8343L106.198 13.3434L102.824 20.8343H109.562Z" fill="#111C4E"/>
+          <path d="M127.955 26.3267L122.795 18.9096H120.441V26.3267H117.432L117.418 7.16323H123.372C126.939 7.16323 129.861 9.90944 129.861 13.3203C129.861 15.7942 128.269 17.945 126.067 18.6558L131.643 26.3221H127.946L127.955 26.3267ZM123.45 16.4126C125.259 16.4265 126.769 14.9634 126.769 13.251C126.769 11.5387 125.236 10.1494 123.45 10.1494H120.432V16.4126H123.45Z" fill="#111C4E"/>
+          <path d="M133.673 7.16323H136.683V26.3267H133.673V7.16323Z" fill="#111C4E"/>
+          <path d="M152.435 23.4143H143.366L142.06 26.3267H138.801L147.811 6.77092H147.991L157 26.3267H153.741L152.435 23.4143ZM151.268 20.8343L147.903 13.3434L144.529 20.8343H151.268Z" fill="#111C4E"/>
+          <path d="M0 26.3313H10.2925V7.1817C10.2925 7.1817 8.3217 16.7542 0 26.3313Z" fill="#E0592A"/>
+          <path d="M12.0833 0C20.4512 2.88006 26.4467 10.1817 26.4467 19.3204C26.4467 21.7758 26.0128 24.1343 25.219 26.3267H12.088V0H12.0833Z" fill="#111C4E"/>
+          <path d="M5.14629 37.6992C12.9095 37.6992 20.6635 33.8499 24.2959 28.1267H5.14629V37.6992Z" fill="#385CAD"/>
+          </svg>
+          <span class="logo-cap">Lockup horizontal · color</span>
+        </div>
+        <div class="logo-tile on-navy">
+          <svg viewBox="0 0 157 38" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path d="M44.867 23.4143H35.7976L34.4915 26.3267H31.2329L40.2423 6.77091H40.4223L49.4317 26.3267H46.1732L44.867 23.4143ZM43.6993 20.8343L40.3346 13.3433L36.9607 20.8343H43.6993Z" fill="#fff"/>
+          <path d="M49.2887 16.7588C49.2887 11.3633 53.7934 6.83093 59.1796 6.83093C61.6628 6.86785 63.9566 7.9248 65.8351 9.75714L64.0859 12.1249C62.7428 10.7818 60.9935 9.89099 59.115 9.89099C55.6442 9.89099 52.3256 12.9326 52.3256 16.7727C52.3256 20.6127 55.6903 23.622 59.1242 23.622C61.0858 23.622 62.7751 22.6482 64.0951 21.3374L65.8305 23.7605C64.1782 25.3898 62.0735 26.6359 59.2212 26.6359C53.7887 26.6359 49.284 22.1635 49.284 16.7588H49.2887Z" fill="#fff"/>
+          <path d="M80.2354 10.1494H75.0984V26.3267H72.0799V10.1494H66.9429V7.16323H80.2354V10.1494Z" fill="#fff"/>
+          <path d="M82.4463 19.0665V7.16323H85.4648V19.0527C85.4648 21.702 87.3294 23.6405 89.6741 23.6405C92.0188 23.6405 93.9065 21.702 93.9065 19.0527V7.16323H96.9389V19.0619C96.9389 23.4605 93.7634 26.6821 89.688 26.6821C85.6125 26.6821 82.4463 23.4605 82.4463 19.0619V19.0665Z" fill="#fff"/>
+          <path d="M110.73 23.4143H101.661L100.354 26.3267H97.0958L106.105 6.77092H106.285L115.295 26.3267H112.036L110.73 23.4143ZM109.562 20.8343L106.198 13.3434L102.824 20.8343H109.562Z" fill="#fff"/>
+          <path d="M127.955 26.3267L122.795 18.9096H120.441V26.3267H117.432L117.418 7.16323H123.372C126.939 7.16323 129.861 9.90944 129.861 13.3203C129.861 15.7942 128.269 17.945 126.067 18.6558L131.643 26.3221H127.946L127.955 26.3267ZM123.45 16.4126C125.259 16.4265 126.769 14.9634 126.769 13.251C126.769 11.5387 125.236 10.1494 123.45 10.1494H120.432V16.4126H123.45Z" fill="#fff"/>
+          <path d="M133.673 7.16323H136.683V26.3267H133.673V7.16323Z" fill="#fff"/>
+          <path d="M152.435 23.4143H143.366L142.06 26.3267H138.801L147.811 6.77092H147.991L157 26.3267H153.741L152.435 23.4143ZM151.268 20.8343L147.903 13.3434L144.529 20.8343H151.268Z" fill="#fff"/>
+          <path d="M0 26.3313H10.2925V7.1817C10.2925 7.1817 8.3217 16.7542 0 26.3313Z" fill="#E0592A"/>
+          <path d="M12.0833 0C20.4512 2.88006 26.4467 10.1817 26.4467 19.3204C26.4467 21.7758 26.0128 24.1343 25.219 26.3267H12.088V0H12.0833Z" fill="#fff"/>
+          <path d="M5.14629 37.6992C12.9095 37.6992 20.6635 33.8499 24.2959 28.1267H5.14629V37.6992Z" fill="#385CAD"/>
+          </svg>
+          <span class="logo-cap">Negativo sobre navy</span>
+        </div>
+        <div class="logo-tile">
+          <svg viewBox="0 0 27 38" xmlns="http://www.w3.org/2000/svg" fill="none" style="height:42px">
+          <path d="M0 26.3313H10.2925V7.1817C10.2925 7.1817 8.3217 16.7542 0 26.3313Z" fill="#E0592A"/>
+          <path d="M12.0833 0C20.4512 2.88006 26.4467 10.1817 26.4467 19.3204C26.4467 21.7758 26.0128 24.1343 25.219 26.3267H12.088V0H12.0833Z" fill="#111C4E"/>
+          <path d="M5.14629 37.6992C12.9095 37.6992 20.6635 33.8499 24.2959 28.1267H5.14629V37.6992Z" fill="#385CAD"/>
+          </svg>
+          <span class="logo-cap">Solo símbolo</span>
+        </div>
+        <div class="logo-tile">
+          <svg viewBox="0 0 157 38" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path d="M44.867 23.4143H35.7976L34.4915 26.3267H31.2329L40.2423 6.77091H40.4223L49.4317 26.3267H46.1732L44.867 23.4143ZM43.6993 20.8343L40.3346 13.3433L36.9607 20.8343H43.6993Z" fill="#111C4E"/>
+          <path d="M49.2887 16.7588C49.2887 11.3633 53.7934 6.83093 59.1796 6.83093C61.6628 6.86785 63.9566 7.9248 65.8351 9.75714L64.0859 12.1249C62.7428 10.7818 60.9935 9.89099 59.115 9.89099C55.6442 9.89099 52.3256 12.9326 52.3256 16.7727C52.3256 20.6127 55.6903 23.622 59.1242 23.622C61.0858 23.622 62.7751 22.6482 64.0951 21.3374L65.8305 23.7605C64.1782 25.3898 62.0735 26.6359 59.2212 26.6359C53.7887 26.6359 49.284 22.1635 49.284 16.7588H49.2887Z" fill="#111C4E"/>
+          <path d="M80.2354 10.1494H75.0984V26.3267H72.0799V10.1494H66.9429V7.16323H80.2354V10.1494Z" fill="#111C4E"/>
+          <path d="M82.4463 19.0665V7.16323H85.4648V19.0527C85.4648 21.702 87.3294 23.6405 89.6741 23.6405C92.0188 23.6405 93.9065 21.702 93.9065 19.0527V7.16323H96.9389V19.0619C96.9389 23.4605 93.7634 26.6821 89.688 26.6821C85.6125 26.6821 82.4463 23.4605 82.4463 19.0619V19.0665Z" fill="#111C4E"/>
+          <path d="M110.73 23.4143H101.661L100.354 26.3267H97.0958L106.105 6.77092H106.285L115.295 26.3267H112.036L110.73 23.4143ZM109.562 20.8343L106.198 13.3434L102.824 20.8343H109.562Z" fill="#111C4E"/>
+          <path d="M127.955 26.3267L122.795 18.9096H120.441V26.3267H117.432L117.418 7.16323H123.372C126.939 7.16323 129.861 9.90944 129.861 13.3203C129.861 15.7942 128.269 17.945 126.067 18.6558L131.643 26.3221H127.946L127.955 26.3267ZM123.45 16.4126C125.259 16.4265 126.769 14.9634 126.769 13.251C126.769 11.5387 125.236 10.1494 123.45 10.1494H120.432V16.4126H123.45Z" fill="#111C4E"/>
+          <path d="M133.673 7.16323H136.683V26.3267H133.673V7.16323Z" fill="#111C4E"/>
+          <path d="M152.435 23.4143H143.366L142.06 26.3267H138.801L147.811 6.77092H147.991L157 26.3267H153.741L152.435 23.4143ZM151.268 20.8343L147.903 13.3434L144.529 20.8343H151.268Z" fill="#111C4E"/>
+          <path d="M0 26.3313H10.2925V7.1817C10.2925 7.1817 8.3217 16.7542 0 26.3313Z" fill="#111C4E"/>
+          <path d="M12.0833 0C20.4512 2.88006 26.4467 10.1817 26.4467 19.3204C26.4467 21.7758 26.0128 24.1343 25.219 26.3267H12.088V0H12.0833Z" fill="#111C4E"/>
+          <path d="M5.14629 37.6992C12.9095 37.6992 20.6635 33.8499 24.2959 28.1267H5.14629V37.6992Z" fill="#111C4E"/>
+          </svg>
+          <span class="logo-cap">Monocromo navy</span>
+        </div>
+      </div>
+      <div style="width:100%;">
+        <div class="swatch-group-label">Área de seguridad</div>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px;">
+          <span class="logo-clearspace">
+            <svg viewBox="0 0 157 38" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M44.867 23.4143H35.7976L34.4915 26.3267H31.2329L40.2423 6.77091H40.4223L49.4317 26.3267H46.1732L44.867 23.4143ZM43.6993 20.8343L40.3346 13.3433L36.9607 20.8343H43.6993Z" fill="#111C4E"/>
+            <path d="M49.2887 16.7588C49.2887 11.3633 53.7934 6.83093 59.1796 6.83093C61.6628 6.86785 63.9566 7.9248 65.8351 9.75714L64.0859 12.1249C62.7428 10.7818 60.9935 9.89099 59.115 9.89099C55.6442 9.89099 52.3256 12.9326 52.3256 16.7727C52.3256 20.6127 55.6903 23.622 59.1242 23.622C61.0858 23.622 62.7751 22.6482 64.0951 21.3374L65.8305 23.7605C64.1782 25.3898 62.0735 26.6359 59.2212 26.6359C53.7887 26.6359 49.284 22.1635 49.284 16.7588H49.2887Z" fill="#111C4E"/>
+            <path d="M80.2354 10.1494H75.0984V26.3267H72.0799V10.1494H66.9429V7.16323H80.2354V10.1494Z" fill="#111C4E"/>
+            <path d="M82.4463 19.0665V7.16323H85.4648V19.0527C85.4648 21.702 87.3294 23.6405 89.6741 23.6405C92.0188 23.6405 93.9065 21.702 93.9065 19.0527V7.16323H96.9389V19.0619C96.9389 23.4605 93.7634 26.6821 89.688 26.6821C85.6125 26.6821 82.4463 23.4605 82.4463 19.0619V19.0665Z" fill="#111C4E"/>
+            <path d="M110.73 23.4143H101.661L100.354 26.3267H97.0958L106.105 6.77092H106.285L115.295 26.3267H112.036L110.73 23.4143ZM109.562 20.8343L106.198 13.3434L102.824 20.8343H109.562Z" fill="#111C4E"/>
+            <path d="M127.955 26.3267L122.795 18.9096H120.441V26.3267H117.432L117.418 7.16323H123.372C126.939 7.16323 129.861 9.90944 129.861 13.3203C129.861 15.7942 128.269 17.945 126.067 18.6558L131.643 26.3221H127.946L127.955 26.3267ZM123.45 16.4126C125.259 16.4265 126.769 14.9634 126.769 13.251C126.769 11.5387 125.236 10.1494 123.45 10.1494H120.432V16.4126H123.45Z" fill="#111C4E"/>
+            <path d="M133.673 7.16323H136.683V26.3267H133.673V7.16323Z" fill="#111C4E"/>
+            <path d="M152.435 23.4143H143.366L142.06 26.3267H138.801L147.811 6.77092H147.991L157 26.3267H153.741L152.435 23.4143ZM151.268 20.8343L147.903 13.3434L144.529 20.8343H151.268Z" fill="#111C4E"/>
+            <path d="M0 26.3313H10.2925V7.1817C10.2925 7.1817 8.3217 16.7542 0 26.3313Z" fill="#E0592A"/>
+            <path d="M12.0833 0C20.4512 2.88006 26.4467 10.1817 26.4467 19.3204C26.4467 21.7758 26.0128 24.1343 25.219 26.3267H12.088V0H12.0833Z" fill="#111C4E"/>
+            <path d="M5.14629 37.6992C12.9095 37.6992 20.6635 33.8499 24.2959 28.1267H5.14629V37.6992Z" fill="#385CAD"/>
+            </svg>
+          </span>
+          <div class="desc-text" style="max-width:280px;">El margen mínimo equivale a <strong>x</strong> = alto de la letra "A", con un aire de <strong>½x</strong> alrededor del lockup. El área punteada marca el espacio libre obligatorio.</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Variantes y usos</div>
+      <div class="desc-text">Lockup horizontal a color sobre fondos claros · negativo (blanco) sobre navy o fotografía oscura · solo símbolo para favicons, avatares y espacios reducidos · monocromo navy para documentos de una tinta.</div>
+      <div class="usage-note" style="margin-top:8px;">No recrear, deformar, rotar ni cambiar los colores oficiales. Respeta siempre el área de seguridad.</div>
+    </div>
+    <pre class="ds-code">&lt;!-- SVG inline; una variante por tile cambiando el fill --&gt;
+&lt;svg viewBox="0 0 157 38" aria-label="Actuaria"&gt;
+  &lt;!-- símbolo: naranja #E0592A · navy #111C4E · azul #385CAD --&gt;
+  &lt;!-- wordmark: navy #111C4E (o #fff en negativo) --&gt;
+&lt;/svg&gt;</pre>
+  </div>
+
+  <!-- ACTUARÍN -->
+  <div class="comp-block" id="cmp-actuarin">
+    <h3>Actuarín</h3>
+    <p class="desc-text" style="margin-bottom:12px;">La mascota robot 3D de Actuaria, embebida con Spline. Es interactiva: <strong>arrastra para rotarla</strong>. Da personalidad y calidez a momentos clave del producto.</p>
+    <div class="demo-box" style="padding:14px;display:block;">
+      <div class="spline-wrap">
+        <iframe src="https://my.spline.design/untitled-8MsqqVRmEIvtv7AKC0hGD8iN/" frameborder="0" width="100%" style="height:380px;border:0;border-radius:16px" loading="lazy" title="Actuarín — mascota 3D"></iframe>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Qué es y dónde usarlo</div>
+      <div class="desc-text">Personaje de marca para humanizar la experiencia. Usos recomendados: <strong>empty states</strong>, onboarding, pantallas de éxito, errores/404 y ayuda contextual.</div>
+      <div class="usage-note" style="margin-top:8px;"><strong>Do:</strong> darle aire, mantener proporciones. <strong>Don't:</strong> no deformar, no usar en contextos densos de datos (tablas, dashboards de cálculo) donde compite con la información.</div>
+    </div>
+    <pre class="ds-code">&lt;div class="spline-wrap"&gt;
+  &lt;iframe src="https://my.spline.design/untitled-8MsqqVRmEIvtv7AKC0hGD8iN/"
+    width="100%" style="height:380px;border:0;border-radius:16px"
+    loading="lazy" title="Actuarín — mascota 3D"&gt;&lt;/iframe&gt;
+&lt;/div&gt;</pre>
+  </div>
+</section>
+
 <!-- ═══════ ATOMS ═══════ -->
 <section id="elements" class="ds-section">
   <div class="section-header">
@@ -2488,6 +2909,165 @@ a{text-decoration:none;}
 
 </section>
 
+<!-- ═══════ COMPONENTES · NEO ═══════ -->
+<section id="neo-components" class="ds-section">
+  <div class="section-header">
+    <h2>Componentes · NEO</h2>
+    <p>Componentes ricos exclusivos del sistema NEO: carrusel promocional, tarjeta con volteo 3D y gráficas en estilo neumórfico sin librerías.</p>
+  </div>
+
+  <!-- BANNER SLIDER -->
+  <div class="comp-block" id="cmp-banner-slider">
+    <h3>Banner Slider</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Carrusel de banners promocionales con flechas, dots y autoplay con pausa al pasar el cursor. Transición suave, estilo glass/neumórfico.</p>
+    <div class="demo-box" style="display:block;padding:0;background:transparent;box-shadow:none;">
+      <div class="neo-slider" data-slider data-autoplay="5000">
+        <div class="neo-slider-track" data-slider-track>
+          <div class="neo-slide sl-1">
+            <span class="sl-tag">Actuaria Plus</span>
+            <span class="sl-title">Cálculo actuarial en tiempo real</span>
+            <span class="sl-sub">Reservas, capital y primas en la nube. Resultados auditables en segundos.</span>
+            <button class="sl-btn" type="button">Solicitar demo</button>
+          </div>
+          <div class="neo-slide sl-2">
+            <span class="sl-tag">Data Wave</span>
+            <span class="sl-title">Dashboards que cuentan tu historia</span>
+            <span class="sl-sub">Analytics personalizados sobre tu cartera, listos para la junta directiva.</span>
+            <button class="sl-btn" type="button">Ver ejemplos</button>
+          </div>
+          <div class="neo-slide sl-3">
+            <span class="sl-tag">Data Analytics</span>
+            <span class="sl-title">Modelos ML para anticiparte</span>
+            <span class="sl-sub">Deserción, liquidez y fraude predichos con precisión actuarial.</span>
+            <button class="sl-btn" type="button">Conocer modelos</button>
+          </div>
+        </div>
+        <button class="neo-slider-arrow prev" type="button" data-slider-prev aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="neo-slider-arrow next" type="button" data-slider-next aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="neo-slider-dots" data-slider-dots aria-label="Ir al banner"></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Variantes Figma</div>
+      <div class="desc-text">Slots: 2–3 banners por producto. Controles: flechas prev/next (glass circular) + dots; el dot activo se expande a píldora. Autoplay opcional vía <span class="ds-code-inline">data-autoplay="ms"</span>, en pausa mientras el cursor está encima.</div>
+      <div class="usage-note" style="margin-top:8px;">Cada banner usa un gradiente de marca (navy / indigo). El texto siempre en blanco con suficiente contraste.</div>
+    </div>
+    <pre class="ds-code">&lt;div class="neo-slider" data-slider data-autoplay="5000"&gt;
+  &lt;div class="neo-slider-track" data-slider-track&gt;
+    &lt;div class="neo-slide sl-1"&gt;…&lt;/div&gt;
+    &lt;div class="neo-slide sl-2"&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button data-slider-prev&gt;‹&lt;/button&gt;
+  &lt;button data-slider-next&gt;›&lt;/button&gt;
+  &lt;div class="neo-slider-dots" data-slider-dots&gt;&lt;/div&gt; &lt;!-- dots autogenerados --&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <!-- CARD FLIP -->
+  <div class="comp-block" id="cmp-card-flip">
+    <h3>Card flip</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Tarjeta con volteo 3D. La cara frontal muestra un KPI/producto; al hacer <strong>clic</strong> voltea para revelar el detalle. Ambas caras neumórficas.</p>
+    <div class="demo-box" style="gap:28px;">
+      <div class="flip-card" data-flip tabindex="0" role="button" aria-label="Voltear tarjeta de reservas">
+        <div class="flip-inner">
+          <div class="flip-face front">
+            <span class="ff-tag"><i class="fa-solid fa-shield-halved"></i> Reservas</span>
+            <span class="ff-val">$2.400M</span>
+            <span class="ff-lbl">calculadas este mes</span>
+            <span class="ff-hint"><i class="fa-solid fa-rotate"></i> Clic para detalle</span>
+          </div>
+          <div class="flip-face back">
+            <span class="ff-tag">Desglose</span>
+            <div class="ff-row"><span>Vida</span><b>$1.310M</b></div>
+            <div class="ff-row"><span>Salud</span><b>$760M</b></div>
+            <div class="ff-row"><span>Generales</span><b>$330M</b></div>
+            <span class="ff-hint" style="color:rgba(255,255,255,0.6)"><i class="fa-solid fa-rotate-left"></i> Volver</span>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card" data-flip tabindex="0" role="button" aria-label="Voltear tarjeta de Actuaria Plus">
+        <div class="flip-inner">
+          <div class="flip-face front">
+            <span class="ff-tag"><i class="fa-solid fa-bolt"></i> Producto</span>
+            <span class="ff-val" style="font-size:22px;line-height:1.2">Actuaria Plus</span>
+            <span class="ff-lbl">Cálculo en tiempo real</span>
+            <span class="ff-hint"><i class="fa-solid fa-rotate"></i> Clic para detalle</span>
+          </div>
+          <div class="flip-face back">
+            <span class="ff-tag">Incluye</span>
+            <div class="ff-row"><span>Reservas IBNR</span><b><i class="fa-solid fa-check"></i></b></div>
+            <div class="ff-row"><span>Capital de solvencia</span><b><i class="fa-solid fa-check"></i></b></div>
+            <div class="ff-row"><span>Pricing de primas</span><b><i class="fa-solid fa-check"></i></b></div>
+            <span class="ff-hint" style="color:rgba(255,255,255,0.6)"><i class="fa-solid fa-rotate-left"></i> Volver</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Variantes Figma</div>
+      <div class="desc-text">Frente = resumen (KPI o producto); reverso = detalle. Volteo por <span class="ds-code-inline">clic</span> (también accesible con Enter/Espacio). Implementado con <span class="ds-code-inline">transform:rotateY(180deg)</span> + <span class="ds-code-inline">transform-style:preserve-3d</span> y <span class="ds-code-inline">backface-visibility:hidden</span>.</div>
+      <div class="usage-note" style="margin-top:8px;">Frente RAISED claro; reverso navy con filas de datos. Mantén el mismo tamaño en ambas caras para evitar saltos.</div>
+    </div>
+    <pre class="ds-code">&lt;div class="flip-card" data-flip&gt;
+  &lt;div class="flip-inner"&gt;            &lt;!-- preserve-3d --&gt;
+    &lt;div class="flip-face front"&gt;…&lt;/div&gt;
+    &lt;div class="flip-face back"&gt;…&lt;/div&gt; &lt;!-- rotateY(180deg) --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }</pre>
+  </div>
+
+  <!-- CHART -->
+  <div class="comp-block" id="cmp-chart">
+    <h3>Chart</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Gráficas en estilo neumórfico construidas solo con CSS y SVG (sin librerías). Barras y arco en gradiente navy→indigo, ejes y labels sobrios.</p>
+    <div class="demo-box" style="display:block;padding:24px;">
+      <div class="chart-wrap">
+        <div class="chart-card">
+          <div class="chart-title"><i class="fa-solid fa-chart-column" style="color:var(--indigo)"></i> Reservas por mes (MM USD)</div>
+          <div class="bar-chart">
+            <div class="bar-col"><span class="bar-tip">$180M</span><div class="bar" style="height:48%"></div><span class="bar-x">Ene</span></div>
+            <div class="bar-col"><span class="bar-tip">$205M</span><div class="bar" style="height:56%"></div><span class="bar-x">Feb</span></div>
+            <div class="bar-col"><span class="bar-tip">$240M</span><div class="bar" style="height:66%"></div><span class="bar-x">Mar</span></div>
+            <div class="bar-col"><span class="bar-tip">$225M</span><div class="bar" style="height:62%"></div><span class="bar-x">Abr</span></div>
+            <div class="bar-col"><span class="bar-tip">$290M</span><div class="bar" style="height:80%"></div><span class="bar-x">May</span></div>
+            <div class="bar-col"><span class="bar-tip">$330M</span><div class="bar" style="height:92%"></div><span class="bar-x">Jun</span></div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><i class="fa-solid fa-chart-pie" style="color:var(--indigo)"></i> Distribución de cartera</div>
+          <div class="donut-chart">
+            <svg width="124" height="124" viewBox="0 0 42 42" style="flex-shrink:0">
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="rgba(163,177,198,0.3)" stroke-width="6"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#0f1f3d" stroke-width="6" stroke-dasharray="52 48" stroke-dashoffset="25" stroke-linecap="round"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#4c64d9" stroke-width="6" stroke-dasharray="32 68" stroke-dashoffset="-27" stroke-linecap="round"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#de5e2d" stroke-width="6" stroke-dasharray="16 84" stroke-dashoffset="-59" stroke-linecap="round"></circle>
+              <text x="21" y="20.5" text-anchor="middle" style="font:800 7px Nunito;fill:var(--navy)">6.000+</text>
+              <text x="21" y="26" text-anchor="middle" style="font:700 3.4px Nunito;fill:var(--text-dim)">clientes</text>
+            </svg>
+            <div class="donut-legend">
+              <div class="dl-item"><span class="dl-dot" style="background:#0f1f3d"></span> Vida · 52%</div>
+              <div class="dl-item"><span class="dl-dot" style="background:#4c64d9"></span> Salud · 32%</div>
+              <div class="dl-item"><span class="dl-dot" style="background:#de5e2d"></span> Generales · 16%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Variantes Figma</div>
+      <div class="desc-text">Bar chart (categorías) y donut chart (proporciones). Contenedor SUNKEN (<span class="ds-code-inline">--neu-in</span>) que enmarca el dato; barras RAISED en gradiente navy→indigo. Tooltip al pasar el cursor sobre cada barra.</div>
+      <div class="usage-note" style="margin-top:8px;">Sin dependencias JS de terceros: las barras son <span class="ds-code-inline">height</span> en % y el donut usa <span class="ds-code-inline">stroke-dasharray</span> sobre un círculo de circunferencia 100.</div>
+    </div>
+    <pre class="ds-code">&lt;!-- Bar: altura en % · tooltip CSS --&gt;
+&lt;div class="bar-col"&gt;&lt;span class="bar-tip"&gt;$330M&lt;/span&gt;
+  &lt;div class="bar" style="height:92%"&gt;&lt;/div&gt;&lt;span class="bar-x"&gt;Jun&lt;/span&gt;&lt;/div&gt;
+
+&lt;!-- Donut: r=15.915 ⇒ circunferencia ≈ 100 --&gt;
+&lt;circle r="15.915" stroke-dasharray="52 48" stroke-dashoffset="25"/&gt;</pre>
+  </div>
+</section>
+
 <!-- ═══════ PATTERNS ═══════ -->
 <section id="patterns" class="ds-section">
   <div class="section-header">
@@ -2656,6 +3236,78 @@ a{text-decoration:none;}
     </div>
   </div>
 
+</section>
+
+<!-- ═══════ SEGUIMIENTO ═══════ -->
+<section id="tracking" class="ds-section">
+  <div class="section-header">
+    <h2>Seguimiento</h2>
+    <p>Componente de línea de tiempo para visualizar el avance de un proceso de principio a fin. Distinto del Stepper numérico: aquí cada paso tiene estado y marca temporal.</p>
+  </div>
+
+  <!-- TRACKING -->
+  <div class="comp-block" id="cmp-tracking">
+    <h3>Tracking</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Timeline de estados de un trámite (ej. emisión de una póliza). Pasos <strong>completados</strong> (sunken + check), el <strong>actual</strong> (raised indigo, resaltado) y los <strong>pendientes</strong> (atenuados).</p>
+    <div class="demo-box demo-box-col" style="gap:32px;padding:28px;align-items:flex-start;">
+      <div style="width:100%;">
+        <div class="swatch-group-label">Vertical</div>
+        <div class="track-v" style="margin-top:12px;">
+          <div class="track-step done">
+            <div class="track-dot"><i class="fa-solid fa-check"></i></div>
+            <div class="track-body"><div class="track-name">Solicitud recibida</div><div class="track-time">12 jun · 09:14</div></div>
+          </div>
+          <div class="track-step done">
+            <div class="track-dot"><i class="fa-solid fa-check"></i></div>
+            <div class="track-body"><div class="track-name">En cálculo</div><div class="track-time">13 jun · 16:40</div></div>
+          </div>
+          <div class="track-step current">
+            <div class="track-dot"><i class="fa-solid fa-gear"></i></div>
+            <div class="track-body"><div class="track-name">En revisión actuarial</div><div class="track-time">En curso · hoy</div></div>
+          </div>
+          <div class="track-step pending">
+            <div class="track-dot">4</div>
+            <div class="track-body"><div class="track-name">Póliza emitida</div><div class="track-time">Pendiente</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="width:100%;">
+        <div class="swatch-group-label">Horizontal</div>
+        <div class="track-h" style="margin-top:16px;">
+          <div class="track-step done">
+            <div class="track-dot"><i class="fa-solid fa-check"></i></div>
+            <div class="track-body"><div class="track-name">Solicitud</div><div class="track-time">12 jun</div></div>
+          </div>
+          <div class="track-step done">
+            <div class="track-dot"><i class="fa-solid fa-check"></i></div>
+            <div class="track-body"><div class="track-name">Cálculo</div><div class="track-time">13 jun</div></div>
+          </div>
+          <div class="track-step current">
+            <div class="track-dot"><i class="fa-solid fa-gear"></i></div>
+            <div class="track-body"><div class="track-name">Revisión</div><div class="track-time">Hoy</div></div>
+          </div>
+          <div class="track-step pending">
+            <div class="track-dot">4</div>
+            <div class="track-body"><div class="track-name">Emitida</div><div class="track-time">—</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Variantes Figma</div>
+      <div class="desc-text">Orientación: vertical (lista de hitos con timestamps) u horizontal (proceso compacto). Estados: <span class="ds-code-inline">done</span> (sunken + check, conector verde), <span class="ds-code-inline">current</span> (raised indigo con halo), <span class="ds-code-inline">pending</span> (atenuado). El conector marca el progreso entre pasos.</div>
+      <div class="usage-note" style="margin-top:8px;">A diferencia del Stepper, el Tracking es de solo lectura: comunica dónde va un proceso, no captura input. En mobile el horizontal colapsa a vertical.</div>
+    </div>
+    <pre class="ds-code">&lt;div class="track-v"&gt;
+  &lt;div class="track-step done"&gt;   &lt;!-- completado --&gt;
+    &lt;div class="track-dot"&gt;&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;&lt;/div&gt;
+    &lt;div class="track-body"&gt;&lt;div class="track-name"&gt;Solicitud recibida&lt;/div&gt;
+      &lt;div class="track-time"&gt;12 jun · 09:14&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="track-step current"&gt;…&lt;/div&gt; &lt;!-- actual --&gt;
+  &lt;div class="track-step pending"&gt;…&lt;/div&gt; &lt;!-- pendiente --&gt;
+&lt;/div&gt;</pre>
+  </div>
 </section>
 
   </main>
@@ -3046,6 +3698,110 @@ document.querySelectorAll('.ds-section[id], .comp-block[id]').forEach(s => obser
       });
     });
     document.querySelectorAll('.pag-pages').forEach(function (p) { updatePagNav(p); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+<script>
+/* ════════════════════════════════════════════════════════════════
+   Interactividad de componentes NEO — Banner Slider y Card flip.
+   JS vanilla · programación defensiva · sin dependencias.
+   No toca el código dentro de bloques <pre>.
+   ════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  function inCodeSample(el) {
+    return !!(el && el.closest && el.closest('pre, .ds-code'));
+  }
+
+  /* ── BANNER SLIDER ──────────────────────────────────────────── */
+  function initSliders() {
+    var sliders = document.querySelectorAll('[data-slider]');
+    Array.prototype.forEach.call(sliders, function (slider) {
+      var track = slider.querySelector('[data-slider-track]');
+      if (!track) return;
+      var slides = Array.prototype.slice.call(track.children);
+      if (!slides.length) return;
+      var dotsWrap = slider.querySelector('[data-slider-dots]');
+      var idx = 0;
+      var timer = null;
+      var delay = parseInt(slider.getAttribute('data-autoplay'), 10);
+
+      // Crear dots (uno por slide)
+      var dots = [];
+      if (dotsWrap) {
+        dotsWrap.innerHTML = '';
+        slides.forEach(function (_, i) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'neo-slider-dot' + (i === 0 ? ' active' : '');
+          b.setAttribute('aria-label', 'Banner ' + (i + 1));
+          b.addEventListener('click', function () { go(i); restart(); });
+          dotsWrap.appendChild(b);
+          dots.push(b);
+        });
+      }
+
+      function go(n) {
+        idx = (n + slides.length) % slides.length;
+        track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+      }
+      function next() { go(idx + 1); }
+      function prev() { go(idx - 1); }
+
+      var prevBtn = slider.querySelector('[data-slider-prev]');
+      var nextBtn = slider.querySelector('[data-slider-next]');
+      if (prevBtn) prevBtn.addEventListener('click', function () { prev(); restart(); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { next(); restart(); });
+
+      function start() {
+        if (!isNaN(delay) && delay > 0 && slides.length > 1) {
+          stop();
+          timer = setInterval(next, delay);
+        }
+      }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function restart() { stop(); start(); }
+
+      // Pausa al pasar el cursor / foco
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+      slider.addEventListener('focusin', stop);
+      slider.addEventListener('focusout', start);
+
+      go(0);
+      start();
+    });
+  }
+
+  /* ── CARD FLIP ──────────────────────────────────────────────── */
+  function toggleFlip(card) {
+    if (!card) return;
+    card.classList.toggle('flipped');
+    card.setAttribute('aria-pressed', card.classList.contains('flipped') ? 'true' : 'false');
+  }
+  document.addEventListener('click', function (e) {
+    if (inCodeSample(e.target)) return;
+    var card = e.target.closest('[data-flip]');
+    if (card) toggleFlip(card);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var el = e.target;
+    if (el && el.matches && el.matches('[data-flip]') && !inCodeSample(el)) {
+      e.preventDefault();
+      toggleFlip(el);
+    }
+  });
+
+  function init() {
+    initSliders();
+    document.querySelectorAll('[data-flip]').forEach(function (c) {
+      c.setAttribute('aria-pressed', 'false');
+    });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
