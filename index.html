@@ -214,6 +214,27 @@ a{text-decoration:none;}
 .span-2{grid-column:span 2;}
 .span-3{grid-column:span 3;}
 .ds-footer{text-align:center;padding:32px;color:var(--text-dim);font-size:12px;border-top:1px solid var(--border);margin-top:48px;}
+
+/* ── INTERACTIVIDAD (demos) ── */
+/* Soporte foco visible y cursor para controles activables que no son <button> nativos */
+.tab-neo,.seg-item,.navh-item,.navside-item,.pag-cell{outline:none;}
+.tab-neo:focus-visible,.seg-item:focus-visible,.navh-item:focus-visible,.navside-item:focus-visible,.pag-cell:focus-visible,[data-acc-header]:focus-visible,[data-dropdown-trigger]:focus-visible{box-shadow:var(--neu-out-sm),0 0 0 2px var(--indigo);}
+/* Accordion: panel colapsable (animación de altura simple) */
+[data-acc-panel]{overflow:hidden;transition:max-height var(--dur-normal) var(--ease-out),opacity var(--dur-fast) var(--ease-out),margin var(--dur-normal) var(--ease-out),padding var(--dur-normal) var(--ease-out);}
+[data-acc-panel].acc-collapsed{max-height:0!important;opacity:0;margin-top:0!important;margin-bottom:0!important;padding-top:0!important;padding-bottom:0!important;}
+[data-acc-header] i{transition:transform var(--dur-normal) var(--ease-out);}
+/* Dropdown / menú flotante: oculto cuando no está abierto */
+[data-dropdown-menu]{transition:opacity var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out);transform-origin:top;}
+[data-dropdown-menu].dd-hidden{display:none;}
+[data-dropdown-trigger]{cursor:pointer;}
+/* Overlay (modal/drawer) reabre el panel al hacer clic en el fondo */
+[data-overlay]{cursor:pointer;}
+[data-overlay-panel]{transition:opacity var(--dur-normal) var(--ease-out),transform var(--dur-normal) var(--ease-spring);}
+[data-overlay-panel].panel-dismissed{opacity:0;pointer-events:none;}
+[data-overlay-hint]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;background:rgba(255,255,255,0.92);color:var(--navy);border:none;border-radius:99px;padding:10px 18px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(15,31,61,0.25);display:none;align-items:center;gap:8px;}
+[data-overlay-hint].hint-show{display:inline-flex;}
+/* Estado seleccionado para ítems de dropdown list / nav (reutiliza tinte indigo del DS) */
+.dd-item-selected{background:rgba(76,100,217,0.10);}
 </style>
 </head>
 <body>
@@ -668,13 +689,13 @@ a{text-decoration:none;}
     <h3>Avatar dropdown</h3>
     <p class="desc-text" style="margin-bottom:12px;">Avatar labelled con chevron que abre un menú de cuenta. El trigger es raised; el menú desplegado es una superficie glass flotante.</p>
     <div class="demo-box demo-box-col" style="align-items:flex-start;gap:12px;background:linear-gradient(135deg,#dfe5f0 0%,#eef1f8 55%,#dce3f2 100%);border-radius:16px;padding:32px;">
-      <button style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:none;border-radius:8px;background:var(--bg);cursor:pointer;box-shadow:var(--neu-out);">
+      <button style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:none;border-radius:8px;background:var(--bg);cursor:pointer;box-shadow:var(--neu-out);" data-dropdown-trigger aria-expanded="true" aria-haspopup="true">
         <span class="t-avatar navy">MS</span>
         <span style="font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;color:var(--navy);">María Salgado</span>
         <i class="fa-solid fa-chevron-down" style="font-size:12px;color:var(--indigo);"></i>
       </button>
       <!-- Menú abierto: glass overlay -->
-      <div style="background:rgba(232,236,244,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.95), 6px 6px 16px rgba(163,177,198,0.35);padding:8px;min-width:220px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--navy);">
+      <div data-dropdown-menu style="background:rgba(232,236,244,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.95), 6px 6px 16px rgba(163,177,198,0.35);padding:8px;min-width:220px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--navy);">
         <div style="padding:8px 12px;border-radius:8px;cursor:pointer;"><i class="fa-solid fa-user" style="color:var(--indigo);width:18px;"></i> Mi perfil</div>
         <div style="padding:8px 12px;border-radius:8px;cursor:pointer;"><i class="fa-solid fa-file-signature" style="color:var(--indigo);width:18px;"></i> Mis valuaciones firmadas</div>
         <div style="padding:8px 12px;border-radius:8px;cursor:pointer;color:#c73a3a;"><i class="fa-solid fa-right-from-bracket" style="width:18px;"></i> Cerrar sesión</div>
@@ -1076,15 +1097,16 @@ a{text-decoration:none;}
           <div class="up-circle"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
           <div style="font:600 16px/24px 'Nunito',sans-serif;color:rgba(0,6,38,.9)">Arrastra y suelta archivos aquí</div>
           <div class="neo-hint" style="margin:0">El tamaño máximo del archivo es 5 MB</div>
-          <button class="neo-btn-sec" type="button"><i class="fa-solid fa-folder-open"></i> Explorar archivos</button>
+          <button class="neo-btn-sec" type="button" data-file-browse><i class="fa-solid fa-folder-open"></i> Explorar archivos</button>
+          <input type="file" data-file-input hidden />
         </div>
-        <div class="neo-file-row">
+        <div class="neo-file-row" data-file-row>
           <div class="f-circle"><i class="fa-solid fa-file-lines"></i></div>
           <div style="flex:1;min-width:0">
-            <div style="font:600 14px/20px 'Nunito',sans-serif;color:var(--navy);text-decoration:underline">nomina_2026.xlsx</div>
-            <div class="neo-hint" style="margin:0">250 KB</div>
+            <div style="font:600 14px/20px 'Nunito',sans-serif;color:var(--navy);text-decoration:underline" data-file-name>nomina_2026.xlsx</div>
+            <div class="neo-hint" style="margin:0" data-file-size>250 KB</div>
           </div>
-          <button class="neo-btn-sec" type="button" style="height:32px;padding:0 10px" aria-label="Eliminar archivo"><i class="fa-solid fa-xmark"></i></button>
+          <button class="neo-btn-sec" type="button" style="height:32px;padding:0 10px" aria-label="Eliminar archivo" data-file-remove><i class="fa-solid fa-xmark"></i></button>
         </div>
       </div>
     </div>
@@ -1107,9 +1129,9 @@ a{text-decoration:none;}
       <div class="neo-form-demo">
         <div style="display:flex;justify-content:space-between;margin-bottom:8px">
           <span class="neo-label" style="margin:0">Porcentaje de siniestralidad</span>
-          <span class="neo-hint" style="margin:0">50%</span>
+          <span class="neo-hint" style="margin:0" data-range-output>50%</span>
         </div>
-        <input class="neo-range" type="range" min="0" max="100" value="50" />
+        <input class="neo-range" type="range" min="0" max="100" value="50" data-range-input />
       </div>
     </div>
     <pre class="ds-code">&lt;div style="display:flex;justify-content:space-between"&gt;
@@ -1794,10 +1816,11 @@ a{text-decoration:none;}
       <div class="usage-note" style="margin-top:8px"><strong>Variantes Figma:</strong> sin props de variante expuestas — composición por zonas Content (Icon &amp; text) + Button group · node 8708:141122.</div>
     </div>
     <div class="demo-box" style="padding:0;">
-      <div style="position:relative;width:100%;min-height:420px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#0f1f3d 0%,#27407e 45%,#4c64d9 100%);display:flex;align-items:center;justify-content:center;padding:32px;">
+      <div data-overlay style="position:relative;width:100%;min-height:420px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#0f1f3d 0%,#27407e 45%,#4c64d9 100%);display:flex;align-items:center;justify-content:center;padding:32px;">
         <div style="position:absolute;inset:0;background:radial-gradient(circle at 18% 28%,rgba(255,255,255,0.20),transparent 42%),radial-gradient(circle at 82% 72%,rgba(143,163,232,0.45),transparent 52%);"></div>
         <div style="position:absolute;inset:0;background:rgba(0,13,77,0.45);backdrop-filter:blur(2px);"></div>
-        <div style="position:relative;width:500px;max-width:100%;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:24px;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);box-shadow:0 8px 4px rgba(0,0,0,0.04),0 20px 12px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.95);">
+        <button type="button" data-overlay-hint><i class="fa-solid fa-eye"></i> Ver modal de nuevo</button>
+        <div data-overlay-panel style="position:relative;width:500px;max-width:100%;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:24px;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);box-shadow:0 8px 4px rgba(0,0,0,0.04),0 20px 12px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.95);">
           <div style="display:flex;flex-direction:column;gap:16px;">
             <div style="width:48px;height:48px;border-radius:48px;background:rgba(15,31,61,0.10);display:flex;align-items:center;justify-content:center;">
               <i class="fa-solid fa-calculator" style="font-size:24px;color:var(--navy);"></i>
@@ -1806,8 +1829,8 @@ a{text-decoration:none;}
             <div style="font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);">Se ejecutará el método Chain-Ladder sobre los triángulos de siniestros del ramo Vida Grupo al cierre de mayo 2026. El cálculo anterior quedará archivado con trazabilidad ISO 9001.</div>
           </div>
           <div style="display:flex;gap:16px;justify-content:flex-end;">
-            <button class="btn-neu">Cancelar</button>
-            <button class="btn-neu primary"><i class="fa-solid fa-play"></i> Recalcular</button>
+            <button class="btn-neu" data-overlay-close>Cancelar</button>
+            <button class="btn-neu primary" data-overlay-close><i class="fa-solid fa-play"></i> Recalcular</button>
           </div>
         </div>
       </div>
@@ -1837,13 +1860,14 @@ a{text-decoration:none;}
       <div class="usage-note" style="margin-top:8px"><strong>Variantes Figma:</strong> sin props expuestas — anclado a la derecha (overlay items-end) · zonas Header / Body (Slot) / Footer.</div>
     </div>
     <div class="demo-box" style="padding:0;">
-      <div style="position:relative;width:100%;min-height:440px;border-radius:16px;overflow:hidden;background:linear-gradient(120deg,#0f1f3d 0%,#33498f 55%,#4c64d9 100%);">
+      <div data-overlay style="position:relative;width:100%;min-height:440px;border-radius:16px;overflow:hidden;background:linear-gradient(120deg,#0f1f3d 0%,#33498f 55%,#4c64d9 100%);">
         <div style="position:absolute;inset:0;background:radial-gradient(circle at 25% 60%,rgba(255,255,255,0.16),transparent 45%);"></div>
         <div style="position:absolute;inset:0;background:rgba(0,13,77,0.45);backdrop-filter:blur(2px);"></div>
-        <div style="position:absolute;top:0;right:0;bottom:0;width:400px;max-width:85%;display:flex;flex-direction:column;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-left:1px solid rgba(255,255,255,0.60);box-shadow:-8px 0 24px rgba(0,0,0,0.12),inset 0 1px 0 rgba(255,255,255,0.95);">
+        <button type="button" data-overlay-hint><i class="fa-solid fa-eye"></i> Ver drawer de nuevo</button>
+        <div data-overlay-panel style="position:absolute;top:0;right:0;bottom:0;width:400px;max-width:85%;display:flex;flex-direction:column;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-left:1px solid rgba(255,255,255,0.60);box-shadow:-8px 0 24px rgba(0,0,0,0.12),inset 0 1px 0 rgba(255,255,255,0.95);">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 32px;border-bottom:1px solid rgba(0,17,102,0.10);">
             <div style="font-family:'Nunito',sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#0f1f3d;">Póliza VG-2026-0417</div>
-            <i class="fa-solid fa-xmark" style="font-size:24px;color:rgba(15,31,61,0.65);cursor:pointer;"></i>
+            <i class="fa-solid fa-xmark" data-overlay-close style="font-size:24px;color:rgba(15,31,61,0.65);cursor:pointer;"></i>
           </div>
           <div style="flex:1;padding:32px;display:flex;flex-direction:column;gap:16px;">
             <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Tomador</span><strong style="color:#0f1f3d;">Banco del Austro</strong></div>
@@ -1852,7 +1876,7 @@ a{text-decoration:none;}
             <div style="border:1px dashed rgba(0,13,77,0.45);background:rgba(0,21,128,0.02);border-radius:8px;padding:24px 32px;text-align:center;font-size:14px;color:rgba(15,31,61,0.55);">Slot — contenido libre</div>
           </div>
           <div style="display:flex;gap:16px;justify-content:flex-end;padding:24px 32px;border-top:1px solid rgba(0,17,102,0.10);">
-            <button class="btn-neu">Cerrar</button>
+            <button class="btn-neu" data-overlay-close>Cerrar</button>
             <button class="btn-neu primary">Editar póliza</button>
           </div>
         </div>
@@ -1933,11 +1957,11 @@ a{text-decoration:none;}
     </div>
     <div class="demo-box" style="align-items:flex-start;padding-bottom:200px;">
       <div style="position:relative;display:inline-block;">
-        <button style="height:48px;display:inline-flex;align-items:center;gap:4px;padding:0 16px;border:none;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in);font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#0f1f3d;cursor:pointer;">Ramo: Vida Grupo <i class="fa-solid fa-chevron-up" style="font-size:14px;color:rgba(15,31,61,0.65);"></i></button>
-        <div style="position:absolute;top:calc(100% + 10px);left:0;width:280px;background:var(--bg);box-shadow:var(--neu-out);border:1px solid rgba(255,255,255,0.6);border-radius:8px;padding:8px 0;z-index:5;">
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;background:rgba(76,100,217,0.10);"><i class="fa-solid fa-check" style="font-size:14px;color:var(--indigo);"></i> Vida Grupo</div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;cursor:pointer;">Vida Individual</div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;cursor:pointer;">Salud</div>
+        <button data-dropdown-trigger data-open-shadow="var(--neu-in)" data-closed-shadow="var(--neu-out)" aria-expanded="true" aria-haspopup="listbox" style="height:48px;display:inline-flex;align-items:center;gap:4px;padding:0 16px;border:none;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in);font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#0f1f3d;cursor:pointer;">Ramo: Vida Grupo <i class="fa-solid fa-chevron-up" style="font-size:14px;color:rgba(15,31,61,0.65);"></i></button>
+        <div data-dropdown-menu data-dropdown-select style="position:absolute;top:calc(100% + 10px);left:0;width:280px;background:var(--bg);box-shadow:var(--neu-out);border:1px solid rgba(255,255,255,0.6);border-radius:8px;padding:8px 0;z-index:5;" role="listbox">
+          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;background:rgba(76,100,217,0.10);cursor:pointer;"><i class="fa-solid fa-check" style="font-size:14px;color:var(--indigo);"></i> Vida Grupo</div>
+          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;cursor:pointer;">Vida Individual</div>
+          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;cursor:pointer;">Salud</div>
         </div>
       </div>
     </div>
@@ -2074,25 +2098,27 @@ a{text-decoration:none;}
       <div class="usage-note" style="margin-top:8px"><strong>Variantes Figma:</strong> ítems en estado colapsado y expandido (estado por ítem, sin props expuestas en la instancia).</div>
     </div>
     <div class="demo-box" style="display:block;">
-      <div style="width:100%;max-width:720px;font-family:'Nunito',sans-serif;border-bottom:1px solid rgba(0,17,102,0.10);">
+      <div style="width:100%;max-width:720px;font-family:'Nunito',sans-serif;border-bottom:1px solid rgba(0,17,102,0.10);" data-accordion>
         <div style="border-top:1px solid rgba(0,17,102,0.10);">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 4px;cursor:pointer;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 4px;cursor:pointer;" data-acc-header role="button" tabindex="0" aria-expanded="true">
             <span style="font-size:16px;line-height:24px;font-weight:600;color:#0f1f3d;">¿Cómo se calcula la reserva IBNR?</span>
             <i class="fa-solid fa-chevron-up" style="font-size:16px;color:rgba(15,31,61,0.65);"></i>
           </div>
-          <div style="margin:0 4px 16px;padding:16px 24px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);">Aplicamos triángulos de desarrollo de siniestros con Chain-Ladder y, cuando la historia es corta, Bornhuetter-Ferguson. El resultado se contrasta contra el mínimo regulatorio antes de contabilizarse.</div>
+          <div style="margin:0 4px 16px;padding:16px 24px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);" data-acc-panel>Aplicamos triángulos de desarrollo de siniestros con Chain-Ladder y, cuando la historia es corta, Bornhuetter-Ferguson. El resultado se contrasta contra el mínimo regulatorio antes de contabilizarse.</div>
         </div>
         <div style="border-top:1px solid rgba(0,17,102,0.10);">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 4px;cursor:pointer;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 4px;cursor:pointer;" data-acc-header role="button" tabindex="0" aria-expanded="false">
             <span style="font-size:16px;line-height:24px;font-weight:600;color:#0f1f3d;">¿Qué tablas de mortalidad usa Actuaria Plus?</span>
             <i class="fa-solid fa-chevron-down" style="font-size:16px;color:rgba(15,31,61,0.65);"></i>
           </div>
+          <div style="margin:0 4px 16px;padding:16px 24px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);" data-acc-panel class="acc-collapsed">Actuaria Plus incorpora las tablas CSO 2017 ajustadas y las tablas de experiencia EMSSA-09 y RV-2009. La selección depende del ramo y se documenta en cada nota técnica con trazabilidad ISO 9001.</div>
         </div>
         <div style="border-top:1px solid rgba(0,17,102,0.10);">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 4px;cursor:pointer;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 4px;cursor:pointer;" data-acc-header role="button" tabindex="0" aria-expanded="false">
             <span style="font-size:16px;line-height:24px;font-weight:600;color:#0f1f3d;">¿Con qué frecuencia se recalibran los modelos ML?</span>
             <i class="fa-solid fa-chevron-down" style="font-size:16px;color:rgba(15,31,61,0.65);"></i>
           </div>
+          <div style="margin:0 4px 16px;padding:16px 24px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);" data-acc-panel class="acc-collapsed">Los modelos de deserción, liquidez y fraude de Data Analytics se recalibran trimestralmente, o antes si el monitoreo de deriva (drift) supera el umbral definido en el plan de gobierno de datos.</div>
         </div>
       </div>
     </div>
@@ -2669,6 +2695,361 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.3, rootMargin: '-56px 0px 0px 0px' });
 document.querySelectorAll('.ds-section[id], .comp-block[id]').forEach(s => observer.observe(s));
+</script>
+<script>
+/* ════════════════════════════════════════════════════════════════
+   Interactividad de demos — Actuaria Neo Design System
+   JS vanilla · delegación de eventos · programación defensiva.
+   Solo afecta a los ejemplos visuales (nunca al código dentro de <pre>).
+   ════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  /* Helpers ------------------------------------------------------- */
+  // ¿El nodo está dentro de un bloque de código de ejemplo? -> ignorar
+  function inCodeSample(el) {
+    return !!(el && el.closest && el.closest('pre, .ds-code'));
+  }
+  function setExpanded(el, val) { if (el && el.setAttribute) el.setAttribute('aria-expanded', String(val)); }
+
+  /* 1 · GRUPOS "uno activo" por contenedor ------------------------
+     Tabs, Segmented control, Navigation header, Navigation side.
+     Cada uno conmuta su clase de estado existente dentro de su grupo. */
+  var SINGLE_SELECT = [
+    { container: '.tabs-neo',    item: '.tab-neo',      state: 'active' },
+    { container: '.seg-neo',     item: '.seg-item',     state: 'selected' },
+    { container: '.navh-menu',   item: '.navh-item',    state: 'active' },
+    { container: '.navside-neo', item: '.navside-item', state: 'active' }
+  ];
+  function activateInGroup(cfg, item) {
+    var group = item.closest(cfg.container);
+    if (!group) return;
+    group.querySelectorAll(cfg.item).forEach(function (n) { n.classList.remove(cfg.state); });
+    item.classList.add(cfg.state);
+    // aria-selected para tabs/segmentos
+    group.querySelectorAll(cfg.item).forEach(function (n) {
+      if (n.hasAttribute('aria-selected')) n.setAttribute('aria-selected', n === item ? 'true' : 'false');
+    });
+  }
+
+  /* 2 · PAGINATION ------------------------------------------------- */
+  function pagGoTo(pagPages, cell) {
+    if (!cell || cell.classList.contains('ellipsis')) return;
+    pagPages.querySelectorAll('.pag-cell').forEach(function (c) { c.classList.remove('current'); });
+    cell.classList.add('current');
+    updatePagNav(pagPages);
+  }
+  function numericCells(pagPages) {
+    return Array.prototype.filter.call(
+      pagPages.querySelectorAll('.pag-cell'),
+      function (c) { return !c.classList.contains('ellipsis'); }
+    );
+  }
+  function updatePagNav(pagPages) {
+    var cells = numericCells(pagPages);
+    var navs = pagPages.querySelectorAll('.pag-nav');
+    var curIdx = cells.findIndex(function (c) { return c.classList.contains('current'); });
+    if (navs[0]) navs[0].disabled = curIdx <= 0;
+    if (navs[1]) navs[1].disabled = curIdx === -1 || curIdx >= cells.length - 1;
+  }
+  function pagStep(pagPages, dir) {
+    var cells = numericCells(pagPages);
+    var curIdx = cells.findIndex(function (c) { return c.classList.contains('current'); });
+    var next = curIdx + dir;
+    if (next < 0 || next >= cells.length) return;
+    pagGoTo(pagPages, cells[next]);
+  }
+
+  /* 3 · ACCORDION -------------------------------------------------- */
+  function toggleAccordion(header) {
+    var panel = header.nextElementSibling;
+    var icon = header.querySelector('i');
+    var open = header.getAttribute('aria-expanded') === 'true';
+    if (open) {
+      setExpanded(header, false);
+      if (panel && panel.hasAttribute('data-acc-panel')) panel.classList.add('acc-collapsed');
+      if (icon) { icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down'); }
+    } else {
+      setExpanded(header, true);
+      if (panel && panel.hasAttribute('data-acc-panel')) panel.classList.remove('acc-collapsed');
+      if (icon) { icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up'); }
+    }
+  }
+
+  /* 4 · DROPDOWNS / MENÚS FLOTANTES -------------------------------- */
+  function findDropdownMenu(trigger) {
+    var p = trigger.parentElement;
+    return p ? p.querySelector('[data-dropdown-menu]') : null;
+  }
+  function closeDropdown(trigger, menu) {
+    if (!menu) return;
+    menu.classList.add('dd-hidden');
+    setExpanded(trigger, false);
+    if (trigger.hasAttribute('data-closed-shadow')) trigger.style.boxShadow = trigger.getAttribute('data-closed-shadow');
+    var icon = trigger.querySelector('i.fa-chevron-up, i.fa-chevron-down');
+    if (icon) { icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down'); }
+  }
+  function openDropdown(trigger, menu) {
+    if (!menu) return;
+    // cerrar otros menús abiertos primero
+    document.querySelectorAll('[data-dropdown-menu]:not(.dd-hidden)').forEach(function (m) {
+      if (m !== menu) {
+        var t = m.parentElement && m.parentElement.querySelector('[data-dropdown-trigger]');
+        if (t) closeDropdown(t, m);
+      }
+    });
+    menu.classList.remove('dd-hidden');
+    setExpanded(trigger, true);
+    if (trigger.hasAttribute('data-open-shadow')) trigger.style.boxShadow = trigger.getAttribute('data-open-shadow');
+    var icon = trigger.querySelector('i.fa-chevron-up, i.fa-chevron-down');
+    if (icon) { icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up'); }
+  }
+  function toggleDropdown(trigger) {
+    var menu = findDropdownMenu(trigger);
+    if (!menu) return;
+    if (menu.classList.contains('dd-hidden')) openDropdown(trigger, menu);
+    else closeDropdown(trigger, menu);
+  }
+
+  /* 5 · OVERLAYS (Modal / Drawer) ---------------------------------- */
+  function dismissPanel(overlay) {
+    var panel = overlay.querySelector('[data-overlay-panel]');
+    var hint = overlay.querySelector('[data-overlay-hint]');
+    if (panel) panel.classList.add('panel-dismissed');
+    if (hint) hint.classList.add('hint-show');
+  }
+  function restorePanel(overlay) {
+    var panel = overlay.querySelector('[data-overlay-panel]');
+    var hint = overlay.querySelector('[data-overlay-hint]');
+    if (panel) panel.classList.remove('panel-dismissed');
+    if (hint) hint.classList.remove('hint-show');
+  }
+
+  /* 6 · STEPPER ---------------------------------------------------- */
+  function stepperChange(stepper, dir) {
+    var numEl = stepper.querySelector('.num');
+    if (!numEl) return;
+    var val = parseInt(numEl.textContent, 10);
+    if (isNaN(val)) val = 0;
+    var min = parseInt(stepper.getAttribute('aria-valuemin'), 10);
+    var max = parseInt(stepper.getAttribute('aria-valuemax'), 10);
+    val += dir;
+    if (!isNaN(min) && val < min) val = min;
+    if (!isNaN(max) && val > max) val = max;
+    numEl.textContent = val;
+    stepper.setAttribute('aria-valuenow', String(val));
+  }
+
+  /* ════════════ DELEGACIÓN GLOBAL DE CLICK ════════════ */
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || inCodeSample(t)) return;
+
+    // -- Grupos single-select
+    for (var i = 0; i < SINGLE_SELECT.length; i++) {
+      var cfg = SINGLE_SELECT[i];
+      var item = t.closest(cfg.item);
+      if (item && item.closest(cfg.container)) { activateInGroup(cfg, item); return; }
+    }
+
+    // -- Pagination
+    var pagCell = t.closest('.pag-cell');
+    if (pagCell) {
+      var pagPagesC = pagCell.closest('.pag-pages');
+      if (pagPagesC) { pagGoTo(pagPagesC, pagCell); return; }
+    }
+    var pagNav = t.closest('.pag-nav');
+    if (pagNav) {
+      var pagPagesN = pagNav.closest('.pag-pages');
+      if (pagPagesN) {
+        var cells = numericCells(pagPagesN);
+        var navs = pagPagesN.querySelectorAll('.pag-nav');
+        pagStep(pagPagesN, pagNav === navs[0] ? -1 : 1);
+      }
+      return;
+    }
+
+    // -- Accordion
+    var accHeader = t.closest('[data-acc-header]');
+    if (accHeader) { toggleAccordion(accHeader); return; }
+
+    // -- Opción dentro de un dropdown tipo select (marca check + actualiza label)
+    var ddOption = t.closest('[data-dd-option]');
+    if (ddOption) {
+      var selMenu = ddOption.closest('[data-dropdown-select]');
+      if (selMenu) {
+        selMenu.querySelectorAll('[data-dd-option]').forEach(function (o) {
+          o.style.background = '';
+          var ic = o.querySelector('i.fa-check'); if (ic) ic.remove();
+        });
+        ddOption.style.background = 'rgba(76,100,217,0.10)';
+        if (!ddOption.querySelector('i.fa-check')) {
+          var chk = document.createElement('i');
+          chk.className = 'fa-solid fa-check';
+          chk.style.cssText = 'font-size:14px;color:var(--indigo);';
+          ddOption.insertBefore(chk, ddOption.firstChild);
+        }
+        var trg = selMenu.parentElement && selMenu.parentElement.querySelector('[data-dropdown-trigger]');
+        if (trg) {
+          var label = (ddOption.textContent || '').trim();
+          var icoT = trg.querySelector('i');
+          trg.textContent = 'Ramo: ' + label + ' ';
+          if (icoT) trg.appendChild(icoT);
+          closeDropdown(trg, selMenu);
+        }
+      }
+      return;
+    }
+
+    // -- Trigger de dropdown / avatar dropdown
+    var ddTrigger = t.closest('[data-dropdown-trigger]');
+    if (ddTrigger) { e.stopPropagation(); toggleDropdown(ddTrigger); return; }
+
+    // -- Overlays: reabrir (hint), cerrar (botón/X) o cerrar al hacer clic en backdrop
+    var hintBtn = t.closest('[data-overlay-hint]');
+    if (hintBtn) { var ovH = hintBtn.closest('[data-overlay]'); if (ovH) restorePanel(ovH); return; }
+    var closeBtn = t.closest('[data-overlay-close]');
+    if (closeBtn) { var ovC = closeBtn.closest('[data-overlay]'); if (ovC) dismissPanel(ovC); return; }
+    var overlayRoot = t.closest('[data-overlay]');
+    if (overlayRoot && !t.closest('[data-overlay-panel]')) { dismissPanel(overlayRoot); return; }
+
+    // -- Stepper +/- (botones nativos)
+    var stepBtn = t.closest('.neo-stepper button');
+    if (stepBtn) {
+      var stepper = stepBtn.closest('.neo-stepper');
+      var btns = stepper.querySelectorAll('button');
+      stepperChange(stepper, stepBtn === btns[0] ? -1 : 1);
+      return;
+    }
+
+    // -- Limpiar input (X) en search / autocomplete / combobox
+    var clearBtn = t.closest('.neo-icon-wrap .ico-r');
+    if (clearBtn && /limpiar/i.test(clearBtn.getAttribute('aria-label') || '')) {
+      var wrap = clearBtn.closest('.neo-icon-wrap');
+      var input = wrap && wrap.querySelector('input');
+      if (input) { input.value = ''; input.focus(); }
+      return;
+    }
+
+    // -- File upload: abrir selector real
+    var browseBtn = t.closest('[data-file-browse]');
+    if (browseBtn) {
+      var drop = browseBtn.closest('.neo-drop');
+      var fInput = drop && drop.querySelector('[data-file-input]');
+      if (fInput) fInput.click();
+      return;
+    }
+    // -- File upload: quitar archivo de la fila
+    var fileRemove = t.closest('[data-file-remove]');
+    if (fileRemove) {
+      var row = fileRemove.closest('[data-file-row]');
+      if (row) row.style.display = 'none';
+      return;
+    }
+
+    // -- Alert / Alert global: cerrar
+    var alertClose = t.closest('.alert-close, .ag-close');
+    if (alertClose) {
+      var box = alertClose.closest('.alert-neo, .alert-global-neo');
+      if (box) { box.style.transition = 'opacity .2s, transform .2s'; box.style.opacity = '0'; box.style.transform = 'translateY(-6px)'; setTimeout(function () { box.style.display = 'none'; }, 200); }
+      return;
+    }
+
+    // -- Ítems de dropdown-list / menú de cuenta: marcar selección (feedback visual barato)
+    var listItem = t.closest('[data-dropdown-menu] > div');
+    if (listItem && !listItem.hasAttribute('data-dd-option')) {
+      var menuP = listItem.parentElement;
+      menuP.querySelectorAll(':scope > div').forEach(function (d) { d.classList.remove('dd-item-selected'); });
+      listItem.classList.add('dd-item-selected');
+      return;
+    }
+  });
+
+  /* Cerrar dropdowns al hacer clic fuera */
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-dropdown-trigger]') || e.target.closest('[data-dropdown-menu]')) return;
+    document.querySelectorAll('[data-dropdown-menu]:not(.dd-hidden)').forEach(function (m) {
+      var t = m.parentElement && m.parentElement.querySelector('[data-dropdown-trigger]');
+      if (t) closeDropdown(t, m);
+    });
+  });
+
+  /* Esc: cerrar dropdowns abiertos y descartar paneles overlay */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('[data-dropdown-menu]:not(.dd-hidden)').forEach(function (m) {
+        var t = m.parentElement && m.parentElement.querySelector('[data-dropdown-trigger]');
+        if (t) closeDropdown(t, m);
+      });
+      document.querySelectorAll('[data-overlay]').forEach(function (ov) {
+        var panel = ov.querySelector('[data-overlay-panel]');
+        if (panel && !panel.classList.contains('panel-dismissed')) dismissPanel(ov);
+      });
+      return;
+    }
+    // Teclado Enter/Espacio para controles tipo botón (no nativos)
+    if (e.key === 'Enter' || e.key === ' ') {
+      var el = e.target;
+      if (el.closest('[data-acc-header], .tab-neo, .seg-item, .navh-item, .navside-item, [data-dropdown-trigger]')) {
+        if (!inCodeSample(el)) { e.preventDefault(); el.click(); }
+      }
+    }
+  });
+
+  /* Slider con valor mostrado (input nativo) */
+  document.addEventListener('input', function (e) {
+    var input = e.target.closest('[data-range-input]');
+    if (!input || inCodeSample(input)) return;
+    var wrap = input.closest('.neo-form-demo') || input.parentElement;
+    var out = wrap && wrap.querySelector('[data-range-output]');
+    if (out) out.textContent = input.value + '%';
+  });
+
+  /* File upload: mostrar nombre/peso al elegir archivo */
+  document.addEventListener('change', function (e) {
+    var fInput = e.target.closest('[data-file-input]');
+    if (!fInput || !fInput.files || !fInput.files.length) return;
+    var file = fInput.files[0];
+    var demo = fInput.closest('.neo-form-demo');
+    if (!demo) return;
+    var row = demo.querySelector('[data-file-row]');
+    var nameEl = demo.querySelector('[data-file-name]');
+    var sizeEl = demo.querySelector('[data-file-size]');
+    if (row) row.style.display = '';
+    if (nameEl) nameEl.textContent = file.name;
+    if (sizeEl) {
+      var kb = file.size / 1024;
+      sizeEl.textContent = kb >= 1024 ? (kb / 1024).toFixed(1) + ' MB' : Math.max(1, Math.round(kb)) + ' KB';
+    }
+  });
+
+  /* Inicialización: ocultar menús de dropdown que arrancan "abiertos" en el markup,
+     marcar aria-selected en grupos y dejar nav de paginación coherente. */
+  function init() {
+    document.querySelectorAll('[data-dropdown-menu]').forEach(function (m) {
+      m.classList.add('dd-hidden');
+      var t = m.parentElement && m.parentElement.querySelector('[data-dropdown-trigger]');
+      if (t) {
+        setExpanded(t, false);
+        if (t.hasAttribute('data-closed-shadow')) t.style.boxShadow = t.getAttribute('data-closed-shadow');
+        var icon = t.querySelector('i.fa-chevron-up');
+        if (icon) { icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down'); }
+      }
+    });
+    SINGLE_SELECT.forEach(function (cfg) {
+      document.querySelectorAll(cfg.container).forEach(function (group) {
+        group.querySelectorAll(cfg.item).forEach(function (n) {
+          if (n.getAttribute('role') !== 'tab') n.setAttribute('role', 'button');
+          if (!n.hasAttribute('tabindex')) n.setAttribute('tabindex', '0');
+          n.setAttribute('aria-selected', n.classList.contains(cfg.state) ? 'true' : 'false');
+        });
+      });
+    });
+    document.querySelectorAll('.pag-pages').forEach(function (p) { updatePagNav(p); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
 </script>
 </body>
 </html>
