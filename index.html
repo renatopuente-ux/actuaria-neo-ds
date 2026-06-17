@@ -534,12 +534,12 @@ a{text-decoration:none;}
     <div class="demo-box" style="gap:16px;flex-wrap:wrap;justify-content:flex-start;">
       <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Emitir póliza</button>
       <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:var(--bg);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Guardar borrador</button>
-      <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:transparent;color:var(--indigo);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;text-decoration:underline;cursor:pointer;">Cancelar</button>
+      <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:transparent;color:var(--orange);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;text-decoration:underline;cursor:pointer;">Cancelar</button>
     </div>
     <div class="comp-desc">
       <div class="desc-title">Variantes Figma</div>
       <div class="desc-text">Contenedor horizontal de 3 botones: Type=Primary · Type=Secondary (outline) · Type=Ghost/Link · gap 16px · alineación start.</div>
-      <div class="usage-note" style="margin-top:8px;">El Secondary cambia <span class="ds-code-inline">border: 1px solid</span> del spec por fondo <span class="ds-code-inline">--bg</span> + <span class="ds-code-inline">--neu-out</span>. El Ghost mantiene subrayado pero migra del naranja Figma a <span class="ds-code-inline">--indigo</span>.</div>
+      <div class="usage-note" style="margin-top:8px;">El Secondary cambia <span class="ds-code-inline">border: 1px solid</span> del spec por fondo <span class="ds-code-inline">--bg</span> + <span class="ds-code-inline">--neu-out</span>. El Ghost mantiene el subrayado en <span class="ds-code-inline">--orange</span> (acción terciaria), igual que el spec Figma.</div>
     </div>
     <pre class="ds-code">&lt;div class="neo-btn-group"&gt;  &lt;!-- display:flex; gap:16px --&gt;
   &lt;button class="neo-btn-primary"&gt;Emitir póliza&lt;/button&gt;
@@ -549,7 +549,7 @@ a{text-decoration:none;}
 
 .neo-btn-secondary { background: var(--bg); color: var(--navy);
   box-shadow: var(--neu-out); }       /* elevación reemplaza al borde */
-.neo-btn-ghost { background: none; color: var(--indigo);
+.neo-btn-ghost { background: none; color: var(--orange);
   text-decoration: underline; }</pre>
   </div>
 
