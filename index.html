@@ -209,8 +209,8 @@
   /* ── LEGACY NEO/GLASS · remapeado a los valores REALES de actuaria.com ── */
   --navy:#151f47; --navy-2:#1b2757; --navy-3:#10183a;      /* antes #0f1f3d/#1e3a6e/#253d6e */
   --indigo:#3258a2; --indigo-2:#0050bd; --indigo-soft:rgba(50,88,162,0.10);  /* antes #4c64d9 */
-  --orange:#e0592a; --green:#4caf50; --green-text:#2e7d32;  /* antes #de5e2d/#00c781 */
-  --yellow:#ff9800; --yellow-text:#b07d00; --red:#c73a3a; --red-text:#c73a3a;
+  --orange:#e0592a; --green:#4caf50; --green-text:#1b5e20;  /* antes #de5e2d/#00c781 */
+  --yellow:#ff9800; --yellow-text:#8a5200; --red:#c73a3a; --red-text:#c73a3a;
   --bg:#f3f3f3; --surface:rgba(255,255,255,0.92); --border:rgba(0,17,102,0.10);
   --text:#000626e6; --text-sub:#000933a6; --text-dim:#000d4d73;
   --glass-bg:rgba(255,255,255,0.54); --glass-border:rgba(255,255,255,0.60);
@@ -250,19 +250,19 @@ a{text-decoration:none;}
 /* ── SECTIONS ── */
 .ds-section{margin-bottom:64px;scroll-margin-top:80px;}
 .section-header{margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid var(--border);}
-.section-header h2{font-family:var(--ff-display);font-size:32px;line-height:36px;font-weight:700;color:var(--text-strong);margin-bottom:8px;letter-spacing:-.3px;}
+.section-header h2{font-family:var(--ff-display);font-size:32px;line-height:38px;font-weight:700;color:var(--text-strong);margin-bottom:8px;text-transform:uppercase;letter-spacing:.3px;}
 .section-header p{font-family:var(--ff-heading);font-size:18px;line-height:22px;font-weight:400;color:var(--text-weak);max-width:72ch;}
 
 /* ── HERO ── */
 .ds-hero{background:linear-gradient(135deg,var(--navy-2),var(--navy));border-radius:20px;padding:48px;margin-bottom:48px;color:#fff;position:relative;overflow:hidden;}
 .ds-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(76,100,217,0.3),transparent);border-radius:50%;}
-.ds-hero h1{font-size:36px;font-weight:900;margin-bottom:8px;}
+.ds-hero h1{font-family:var(--ff-display);font-size:40px;line-height:46px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;}
 .ds-hero .hero-sub{font-size:14px;opacity:0.75;margin-bottom:24px;}
 .ds-hero-badges{display:flex;gap:8px;flex-wrap:wrap;}
 .ds-hero-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:6px 14px;border-radius:99px;font-size:12px;font-weight:700;}
 .hero-stats{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;}
-.hero-stat-val{font-size:24px;font-weight:900;}
-.hero-stat-lbl{font-size:11px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px;}
+.hero-stat-val{font-family:var(--ff-display);font-size:28px;line-height:1;font-weight:700;}
+.hero-stat-lbl{font-family:var(--ff-body);font-size:11px;color:rgba(255,255,255,.78);text-transform:uppercase;letter-spacing:0.8px;}
 
 /* ── COMPONENT BLOCKS ── */
 .comp-block{margin-bottom:40px;}
@@ -279,7 +279,7 @@ a{text-decoration:none;}
 
 /* ── TOKEN TABLES ── */
 .token-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px;}
-.token-table th{text-align:left;padding:6px 10px;font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);}
+.token-table th{text-align:left;padding:6px 10px;font-size:10px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);}
 .token-table td{padding:6px 10px;border-bottom:1px solid rgba(163,177,198,0.15);}
 .token-table tr:last-child td{border-bottom:none;}
 
@@ -293,8 +293,8 @@ a{text-decoration:none;}
 .swatch-group-label{font-family:var(--ff-body);font-size:11px;font-weight:600;color:var(--text-weak);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;}
 .swatch-item{display:flex;flex-direction:column;align-items:center;gap:6px;}
 .swatch{width:56px;height:56px;border-radius:10px;box-shadow:var(--neu-out-sm);}
-.swatch-name{font-size:9px;font-weight:700;color:var(--text-dim);text-align:center;max-width:64px;font-family:monospace;}
-.swatch-hex{font-size:8px;color:var(--text-dim);font-family:monospace;}
+.swatch-name{font-size:11px;font-weight:700;color:var(--text-weak);text-align:center;max-width:92px;font-family:ui-monospace,monospace;word-break:break-all;}
+.swatch-hex{font-size:11px;color:var(--text-weak);font-family:ui-monospace,monospace;}
 
 /* ── SHADOW DEMOS ── */
 .shadow-demos{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
@@ -305,7 +305,7 @@ a{text-decoration:none;}
 .spacing-rows{display:flex;flex-direction:column;gap:10px;}
 .spacing-row{display:flex;align-items:center;gap:12px;}
 .spacing-token{font-size:11px;font-weight:700;color:var(--text-sub);width:90px;font-family:monospace;}
-.spacing-val{font-size:11px;color:var(--text-dim);width:36px;}
+.spacing-val{font-size:11px;color:var(--text-weak);width:40px;}
 .spacing-bar-wrap{flex:1;}
 .spacing-bar{height:8px;background:var(--indigo);border-radius:4px;opacity:0.7;}
 
@@ -313,7 +313,7 @@ a{text-decoration:none;}
 .radius-row{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;}
 .radius-item{display:flex;flex-direction:column;align-items:center;gap:8px;}
 .radius-box{width:52px;height:52px;background:var(--indigo-soft);border:2px solid var(--indigo);}
-.radius-label{font-size:9px;font-weight:700;color:var(--text-dim);text-align:center;font-family:monospace;}
+.radius-label{font-size:11px;font-weight:700;color:var(--text-weak);text-align:center;font-family:ui-monospace,monospace;}
 
 /* ── Z-INDEX ── */
 .z-layers{display:flex;flex-direction:column;gap:4px;}
@@ -327,7 +327,7 @@ a{text-decoration:none;}
 .type-row{display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid var(--border);}
 .type-meta{width:140px;flex-shrink:0;}
 .type-token{font-size:11px;font-weight:700;color:var(--text-orange);font-family:ui-monospace,monospace;display:block;}
-.type-size{font-size:10px;color:var(--text-dim);display:block;}
+.type-size{font-size:11px;color:var(--text-weak);display:block;}
 .type-sample{flex:1;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 /* ── COMPONENT STYLES ── */
@@ -360,21 +360,21 @@ a{text-decoration:none;}
 .neu-toggle input:checked + .neu-toggle-track{background:var(--green);}
 .neu-toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:var(--neu-out-sm);transition:transform var(--dur-normal) var(--ease-spring);}
 .neu-toggle input:checked ~ .neu-toggle-track .neu-toggle-thumb{transform:translateX(20px);}
-.item-code{font-family:monospace;font-size:11px;background:var(--bg);padding:3px 8px;border-radius:6px;color:var(--text-dim);box-shadow:var(--neu-in-sm);}
+.item-code{font-family:monospace;font-size:11px;background:var(--bg);padding:3px 8px;border-radius:6px;color:var(--text-weak);box-shadow:var(--neu-in-sm);}
 .ds-divider{height:1px;background:var(--border);margin:8px 0;}
 .field{display:flex;flex-direction:column;gap:4px;}
-.fl{font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:5px;}
+.fl{font-size:10px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:5px;}
 .fv{font-size:13px;font-weight:700;color:var(--text);}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .form-group{display:flex;flex-direction:column;gap:6px;}
 .form-label{font-size:11px;font-weight:800;color:var(--text-sub);text-transform:uppercase;letter-spacing:0.4px;}
-.form-hint{font-size:11px;color:var(--text-dim);}
+.form-hint{font-size:11px;color:var(--text-weak);}
 .nav-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;color:var(--text-sub);cursor:pointer;text-decoration:none;position:relative;transition:all var(--dur-fast) var(--ease-out);}
 .nav-item:hover{box-shadow:var(--neu-out-sm);}
 .nav-item.active{color:var(--indigo);box-shadow:var(--neu-in-sm);}
 .nav-icon{width:20px;text-align:center;flex-shrink:0;}
-.nav-section-label{font-size:9px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.8px;padding:8px 14px 4px;}
-.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text-dim);}
+.nav-section-label{font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.8px;padding:8px 14px 4px;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text-weak);}
 .breadcrumb a{color:var(--text-sub);}
 .breadcrumb span{color:var(--navy);}
 .tabs-bar{display:flex;gap:4px;padding:12px 16px;background:rgba(255,255,255,0.3);border-radius:12px;box-shadow:var(--neu-in-sm);}
@@ -384,17 +384,17 @@ a{text-decoration:none;}
 .timeline-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
 .timeline-item:last-child{border-bottom:none;}
 .t-user{font-size:13px;font-weight:700;color:var(--navy);}
-.t-date{font-size:11px;color:var(--text-dim);}
+.t-date{font-size:11px;color:var(--text-weak);}
 .metric-tile{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 20px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out-sm);text-align:center;}
 .mt-icon{color:var(--indigo);font-size:18px;margin-bottom:4px;}
 .mt-val{font-size:22px;font-weight:900;color:var(--navy);}
-.mt-lbl{font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;}
+.mt-lbl{font-size:10px;font-weight:700;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;}
 .pipe-step{display:flex;flex-direction:column;align-items:center;gap:6px;}
 .pipe-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
 .pipe-step.completed .pipe-dot{background:var(--green);color:#fff;box-shadow:0 0 0 3px rgba(0,199,129,0.2);}
 .pipe-step.active .pipe-dot{background:var(--indigo);color:#fff;box-shadow:0 0 0 4px var(--indigo-soft);}
-.pipe-step.pending .pipe-dot{background:var(--bg);color:var(--text-dim);box-shadow:var(--neu-in-sm);}
-.pipe-lbl{font-size:10px;font-weight:700;color:var(--text-dim);}
+.pipe-step.pending .pipe-dot{background:var(--bg);color:var(--text-weak);box-shadow:var(--neu-in-sm);}
+.pipe-lbl{font-size:10px;font-weight:700;color:var(--text-weak);}
 .pipe-step.active .pipe-lbl{color:var(--indigo);}
 .neu-card{background:var(--bg);border-radius:16px;box-shadow:var(--neu-out);overflow:hidden;}
 .nc-header{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.35);}
@@ -403,14 +403,14 @@ a{text-decoration:none;}
 .nc-body{padding:18px 20px;}
 .glass-card{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);border-radius:16px;box-shadow:var(--glass-shine),var(--neu-out-sm);}
 .items-table{width:100%;border-collapse:collapse;}
-.items-table th{padding:10px 14px;font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.4px;background:rgba(163,177,198,0.06);border-bottom:1px solid var(--border);text-align:left;}
+.items-table th{padding:10px 14px;font-size:10px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.4px;background:rgba(163,177,198,0.06);border-bottom:1px solid var(--border);text-align:left;}
 .items-table td{padding:12px 14px;font-size:13px;border-bottom:1px solid var(--border);color:var(--text-sub);font-weight:600;}
 .items-table tr:hover td{background:rgba(163,177,198,0.06);}
 .items-table tr:last-child td{border-bottom:none;}
 .bento-cell{background:var(--bg);border-radius:12px;box-shadow:var(--neu-out-sm);padding:16px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-sub);min-height:80px;}
 .span-2{grid-column:span 2;}
 .span-3{grid-column:span 3;}
-.ds-footer{text-align:center;padding:32px;color:var(--text-dim);font-size:12px;border-top:1px solid var(--border);margin-top:48px;}
+.ds-footer{text-align:center;padding:32px;color:var(--text-weak);font-size:12px;border-top:1px solid var(--border);margin-top:48px;}
 
 /* ── INTERACTIVIDAD (demos) ── */
 /* Soporte foco visible y cursor para controles activables que no son <button> nativos */
@@ -439,12 +439,12 @@ a{text-decoration:none;}
 .icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:14px;width:100%;}
 .icon-tile{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out-sm);text-align:center;}
 .icon-tile i{font-size:22px;color:var(--indigo);width:24px;height:24px;line-height:24px;}
-.icon-tile .icon-name{font-size:9px;font-weight:700;color:var(--text-dim);font-family:monospace;word-break:break-word;}
+.icon-tile .icon-name{font-size:11px;font-weight:700;color:var(--text-weak);font-family:monospace;word-break:break-word;}
 .icon-sizes{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;}
 .icon-size-item{display:flex;flex-direction:column;align-items:center;gap:8px;}
 .icon-size-item .icon-cap{padding:10px;border-radius:48px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;}
 .icon-size-item .icon-cap i{color:var(--navy);}
-.icon-size-lbl{font-size:9px;font-weight:700;color:var(--text-dim);font-family:monospace;}
+.icon-size-lbl{font-size:11px;font-weight:700;color:var(--text-weak);font-family:monospace;}
 
 /* ── VOZ Y TONO ── */
 .voice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;width:100%;}
@@ -464,7 +464,7 @@ a{text-decoration:none;}
 .dodont-col li i.yes{color:var(--green);}
 .dodont-col li i.no{color:var(--red);}
 .voice-claim{margin-top:16px;text-align:center;font-size:20px;font-weight:800;color:var(--navy);font-style:italic;}
-.voice-claim span{color:var(--orange);}
+.voice-claim span{color:var(--text-orange);}
 
 /* ── CUADRÍCULAS (GRID) ── */
 .grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;width:100%;}
@@ -479,7 +479,7 @@ a{text-decoration:none;}
 .logo-tile{border-radius:16px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:130px;background:var(--bg);box-shadow:var(--neu-in-sm);}
 .logo-tile.on-navy{background:linear-gradient(135deg,var(--navy-2),var(--navy));box-shadow:var(--neu-out-sm);}
 .logo-tile svg{height:38px;width:auto;max-width:100%;}
-.logo-tile .logo-cap{font-size:9px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;}
+.logo-tile .logo-cap{font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;}
 .logo-tile.on-navy .logo-cap{color:rgba(255,255,255,0.6);}
 .logo-clearspace{position:relative;display:inline-flex;padding:28px;border-radius:14px;background:var(--bg);box-shadow:var(--neu-in-sm);outline:2px dashed rgba(76,100,217,0.4);outline-offset:-28px;}
 .logo-clearspace svg{height:40px;}
@@ -517,7 +517,7 @@ a{text-decoration:none;}
 .flip-face.back .ff-tag{color:rgba(255,255,255,0.7);}
 .flip-face .ff-val{font-size:30px;font-weight:900;color:var(--navy);}
 .flip-face .ff-lbl{font-size:13px;font-weight:600;color:var(--text-sub);}
-.flip-face .ff-hint{position:absolute;bottom:12px;right:16px;font-size:9px;color:var(--text-dim);display:flex;align-items:center;gap:4px;}
+.flip-face .ff-hint{position:absolute;bottom:12px;right:16px;font-size:11px;color:var(--text-weak);display:flex;align-items:center;gap:4px;}
 .flip-face.back .ff-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.12);}
 .flip-face.back .ff-row b{font-weight:800;}
 
@@ -530,7 +530,7 @@ a{text-decoration:none;}
 .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;}
 .bar{width:60%;max-width:30px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,var(--indigo),var(--navy));box-shadow:var(--neu-out-sm);transition:filter var(--dur-fast) var(--ease-out);cursor:default;}
 .bar-col:hover .bar{filter:brightness(1.12);}
-.bar-x{position:absolute;bottom:-22px;font-size:9px;font-weight:700;color:var(--text-dim);}
+.bar-x{position:absolute;bottom:-22px;font-size:11px;font-weight:700;color:var(--text-weak);}
 .bar-tip{position:absolute;top:-26px;background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:6px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:all var(--dur-fast) var(--ease-out);pointer-events:none;}
 .bar-col:hover .bar-tip{opacity:1;transform:translateY(0);}
 .donut-chart{display:flex;align-items:center;gap:20px;}
@@ -548,18 +548,18 @@ a{text-decoration:none;}
 .track-dot{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;z-index:1;}
 .track-step.done .track-dot{background:var(--bg);color:var(--green-text);box-shadow:var(--neu-in);}
 .track-step.current .track-dot{background:var(--indigo);color:#fff;box-shadow:var(--neu-out),0 0 0 4px var(--indigo-soft);}
-.track-step.pending .track-dot{background:var(--bg);color:var(--text-dim);box-shadow:var(--neu-in-sm);opacity:0.7;}
+.track-step.pending .track-dot{background:var(--bg);color:var(--text-weak);box-shadow:var(--neu-in-sm);opacity:0.7;}
 .track-body{padding-top:6px;}
 .track-step.pending .track-body{opacity:0.55;}
 .track-name{font-size:14px;font-weight:800;color:var(--navy);}
 .track-step.current .track-name{color:var(--indigo);}
-.track-time{font-size:11px;color:var(--text-dim);margin-top:2px;}
+.track-time{font-size:11px;color:var(--text-weak);margin-top:2px;}
 .track-h{display:flex;gap:0;width:100%;justify-content:space-between;}
 .track-h .track-step{flex-direction:column;align-items:center;text-align:center;flex:1;padding-bottom:0;gap:8px;}
 .track-h .track-step::before{left:50%;top:18px;bottom:auto;right:auto;width:100%;height:2px;}
 .track-h .track-step:last-child::before{display:none;}
 .track-h .track-name{font-size:11px;}
-.track-h .track-time{font-size:9px;}
+.track-h .track-time{font-size:11px;}
 @media (max-width:768px){.track-h{flex-direction:column;}.track-h .track-step{flex-direction:row;text-align:left;}.track-h .track-step::before{left:17px;top:36px;bottom:-4px;width:2px;height:auto;}}
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -681,7 +681,7 @@ a{text-decoration:none;}
 .act-testi{position:relative;background:#fff;border-radius:var(--cr-40);padding:var(--sp-24);display:flex;flex-direction:column;gap:var(--sp-16);box-shadow:var(--sh-soft);overflow:hidden;}
 .act-testi::after{content:"\201D";position:absolute;right:var(--sp-16);bottom:-34px;font-family:Georgia,serif;font-size:170px;color:var(--prim-blue-50);line-height:1;}
 .act-testi > *{position:relative;z-index:1;}
-.act-stars{color:var(--prim-orange-1000);letter-spacing:8px;font-size:14px;}
+.act-stars{color:var(--text-orange);letter-spacing:8px;font-size:14px;}
 .act-testi-quote{font-family:var(--ff-body);font-size:var(--fs-small);line-height:20px;color:var(--text-weak);flex:1;}
 .act-testi-bottom{display:flex;align-items:center;gap:var(--sp-12);}
 .act-testi-logo{width:120px;height:44px;flex-shrink:0;background:#fff;border:1px solid rgba(21,31,71,.08);border-radius:var(--cr-12);
@@ -717,7 +717,7 @@ a{text-decoration:none;}
 .act-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-16);}
 .act-field{display:flex;flex-direction:column;gap:6px;}
 .act-field label{font-family:var(--ff-body);font-size:13px;font-weight:500;color:var(--text-weak);}
-.act-field label .req{color:var(--prim-orange-1000);}
+.act-field label .req{color:var(--text-orange);}
 .act-field input,.act-field textarea,.act-field select{height:46px;padding:0 var(--sp-16);border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-12);
   background:#fff;font-family:var(--ff-body);font-size:var(--fs-small);color:var(--text-strong);outline:none;transition:border-color var(--dur-normal) var(--ease-out),box-shadow var(--dur-normal) var(--ease-out);}
 .act-field textarea{height:auto;min-height:92px;padding:var(--sp-12) var(--sp-16);resize:vertical;}
@@ -734,13 +734,13 @@ a{text-decoration:none;}
 .act-footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--sp-32);}
 .act-footer-title{font-family:var(--ff-heading);font-size:15px;line-height:22px;font-weight:700;color:#fff;margin-bottom:var(--sp-16);letter-spacing:.5px;}
 .act-footer-line{display:flex;align-items:center;gap:9px;margin-bottom:var(--sp-12);font-family:var(--ff-heading);font-size:var(--fs-tiny);line-height:24px;}
-.act-footer-icon{width:20px;text-align:center;color:var(--prim-orange-1000);flex-shrink:0;}
+.act-footer-icon{width:20px;text-align:center;color:var(--text-orange);flex-shrink:0;}
 .act-footer-link{display:block;font-family:var(--ff-heading);font-size:var(--fs-tiny);line-height:21px;color:var(--footer-text);margin-bottom:var(--sp-8);}
 .act-footer-link:hover{color:#fff;}
 .act-social{display:flex;gap:var(--sp-12);margin-top:var(--sp-16);}
 .act-social-link{width:38px;height:38px;border-radius:999px;background:var(--footer-social-bg);border:none;
   display:grid;place-items:center;color:#fff;transition:background var(--dur-normal) var(--ease-out);}
-.act-social-link:hover{background:var(--prim-orange-1000);border-color:var(--prim-orange-1000);}
+.act-social-link:hover{background:var(--prim-orange-1000);border-color:var(--text-orange);}
 .act-footer-bottom{margin-top:var(--sp-32);padding-top:var(--sp-20);border-top:1px solid var(--footer-divider);
   display:flex;justify-content:space-between;gap:var(--sp-16);flex-wrap:wrap;font-family:var(--ff-body);font-size:12px;}
 
@@ -791,8 +791,8 @@ a{text-decoration:none;}
     <path d="M133.673 7.16323H136.683V26.3267H133.673V7.16323Z" fill="#fff"/>
     <path d="M152.435 23.4143H143.366L142.06 26.3267H138.801L147.811 6.77092H147.991L157 26.3267H153.741L152.435 23.4143ZM151.268 20.8343L147.903 13.3434L144.529 20.8343H151.268Z" fill="#fff"/>
   </svg>
-  <span class="ds-topbar-title">Design System · Neumorphism + Sitio actuaria.com</span>
-  <span class="ds-version">v2.0</span>
+  <span class="ds-topbar-title">Design System · Brandbook + Sitio actuaria.com</span>
+  <span class="ds-version">v2.2</span>
 </header>
 
 <div class="ds-layout">
@@ -885,7 +885,8 @@ a{text-decoration:none;}
       <span class="ds-hero-badge"><i class="fa-solid fa-table-cells-large"></i> Bento Boxes</span>
       <span class="ds-hero-badge"><i class="fa-solid fa-atom"></i> Atomic Design</span>
     </div>
-    <h1>Actuaria Neumorphism<br>Design System</h1>
+    <h1>Actuaria<br>Design System</h1>
+    <p style="font-family:var(--ff-heading);font-size:15px;font-weight:600;color:var(--bb-naranja-soft);margin-bottom:10px;letter-spacing:.3px;">Trazamos el camino juntos.</p>
     <p class="hero-sub">Sistema de diseño oficial de Actuaria Consultores.<br>Tokens y componentes verificados contra <strong>actuaria.com</strong> en producción (Webflow · 31 páginas).</p>
     <div class="hero-stats">
       <div><div class="hero-stat-val">70+</div><div class="hero-stat-lbl">Componentes</div></div>
@@ -997,7 +998,7 @@ a{text-decoration:none;}
         <div class="type-row"><div class="type-meta"><span class="type-token">heading-4</span><span class="type-size">20px / 28px</span></div><div class="type-sample" style="font-family:var(--ff-display);font-size:20px;font-weight:500;line-height:22px">Beneficios Laborales</div></div>
         <div class="type-row"><div class="type-meta"><span class="type-token">small</span><span class="type-size">16px / 24px</span></div><div class="type-sample" style="font-family:var(--ff-body);font-size:16px;font-weight:400">Cumple con tus obligaciones patronales sin sorpresas financieras.</div></div>
         <div class="type-row"><div class="type-meta"><span class="type-token">tiny</span><span class="type-size">14px / 20px</span></div><div class="type-sample" style="font-family:var(--ff-heading);font-size:14px;font-weight:400">Teléfono: (+593-2) 392-3400</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">uppercase</span><span class="type-size">14px / 20px</span></div><div class="type-sample" style="font-family:var(--ff-body);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--prim-orange-1000)">Nuestra Trayectoria</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">uppercase</span><span class="type-size">14px / 20px</span></div><div class="type-sample" style="font-family:var(--ff-body);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-orange)">Nuestra Trayectoria</div></div>
       </div>
     </div>
 
@@ -1130,27 +1131,27 @@ a{text-decoration:none;}
         <div class="shadow-tile" style="box-shadow:var(--neu-out)">
           <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:16px"></i>
           <span>--neu-out</span>
-          <span style="font-size:9px;color:var(--text-dim)">Raised / Interactivo</span>
+          <span style="font-size:11px;color:var(--text-weak)">Raised / Interactivo</span>
         </div>
         <div class="shadow-tile" style="box-shadow:var(--neu-out-sm)">
           <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:14px"></i>
           <span>--neu-out-sm</span>
-          <span style="font-size:9px;color:var(--text-dim)">Raised SM</span>
+          <span style="font-size:11px;color:var(--text-weak)">Raised SM</span>
         </div>
         <div class="shadow-tile" style="box-shadow:var(--neu-in)">
-          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:16px"></i>
+          <i class="fa-solid fa-eye" style="color:var(--text-weak);font-size:16px"></i>
           <span>--neu-in</span>
-          <span style="font-size:9px;color:var(--text-dim)">Sunken / Estático</span>
+          <span style="font-size:11px;color:var(--text-weak)">Sunken / Estático</span>
         </div>
         <div class="shadow-tile" style="box-shadow:var(--neu-in-sm)">
-          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:14px"></i>
+          <i class="fa-solid fa-eye" style="color:var(--text-weak);font-size:14px"></i>
           <span>--neu-in-sm</span>
-          <span style="font-size:9px;color:var(--text-dim)">Sunken SM</span>
+          <span style="font-size:11px;color:var(--text-weak)">Sunken SM</span>
         </div>
         <div class="shadow-tile" style="background:var(--glass-bg);backdrop-filter:blur(12px);border:1px solid var(--glass-border);box-shadow:var(--glass-shine)">
           <i class="fa-solid fa-layer-group" style="color:var(--indigo);font-size:16px"></i>
           <span>Glass</span>
-          <span style="font-size:9px;color:var(--text-dim)">Overlay/Modal</span>
+          <span style="font-size:11px;color:var(--text-weak)">Overlay/Modal</span>
         </div>
       </div>
     </div>
@@ -1166,7 +1167,7 @@ a{text-decoration:none;}
     <div class="comp-desc">
       <div class="desc-title">Mapeo en producción</div>
       <div class="desc-text"><span class="ds-code-inline">8</span> enlaces del navbar · <span class="ds-code-inline">12</span> inputs y chip de logo · <span class="ds-code-inline">24</span> cards de solución y blog cover · <span class="ds-code-inline">32</span> marco de certificación, CTA y formulario · <span class="ds-code-inline">40</span> contenedor del navbar y card de testimonio · <span class="ds-code-inline">50</span> chipsets · <span class="ds-code-inline">64</span> botón actuaria+.</div>
-      <div class="usage-note" style="margin-top:8px;">Los marcados en <span style="color:var(--prim-orange-1000)">naranja punteado</span> no existen como token en Webflow — pendiente registrarlos como <span class="ds-code-inline">corner-radius--40/50/64</span>.</div>
+      <div class="usage-note" style="margin-top:8px;">Los marcados en <span style="color:var(--text-orange)">naranja punteado</span> no existen como token en Webflow — pendiente registrarlos como <span class="ds-code-inline">corner-radius--40/50/64</span>.</div>
     </div>
   </div>
 
@@ -1465,7 +1466,7 @@ a{text-decoration:none;}
     <div class="demo-box" style="gap:16px;flex-wrap:wrap;justify-content:flex-start;">
       <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Emitir póliza</button>
       <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:var(--bg);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Guardar borrador</button>
-      <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:transparent;color:var(--orange);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;text-decoration:underline;cursor:pointer;">Cancelar</button>
+      <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:transparent;color:var(--text-orange);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;text-decoration:underline;cursor:pointer;">Cancelar</button>
     </div>
     <div class="comp-desc">
       <div class="desc-title">Variantes Figma</div>
@@ -1535,8 +1536,8 @@ a{text-decoration:none;}
     <h3>Text link</h3>
     <p class="desc-text" style="margin-bottom:12px;">Enlace de texto inline. Sin sombras: la tipografía subrayada en naranja es suficiente señal de interactividad.</p>
     <div class="demo-box" style="gap:24px;flex-wrap:wrap;">
-      <a href="#" style="color:var(--orange);text-decoration:underline;font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;display:inline-flex;align-items:center;gap:8px;">Ver tabla de mortalidad EMSSA-09</a>
-      <a href="#" style="color:var(--orange);text-decoration:underline;font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;display:inline-flex;align-items:center;gap:8px;">Descargar nota técnica <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
+      <a href="#" style="color:var(--text-orange);text-decoration:underline;font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;display:inline-flex;align-items:center;gap:8px;">Ver tabla de mortalidad EMSSA-09</a>
+      <a href="#" style="color:var(--text-orange);text-decoration:underline;font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;display:inline-flex;align-items:center;gap:8px;">Descargar nota técnica <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
     </div>
     <div class="comp-desc">
       <div class="desc-title">Variantes Figma</div>
@@ -1734,7 +1735,7 @@ a{text-decoration:none;}
     <h3>Badge dot</h3>
     <p class="desc-text" style="margin-bottom:12px;">Punto de presencia/estado de 16px. El anillo Figma se reinterpreta como cavidad sunken que aloja el dot.</p>
     <div class="demo-box" style="gap:24px;">
-      <span style="width:24px;height:24px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><span style="width:16px;height:16px;border-radius:8px;background:#2e9e5b;display:inline-flex;align-items:center;justify-content:center;"><i class="fa-solid fa-check" style="font-size:9px;color:#fff;"></i></span></span>
+      <span style="width:24px;height:24px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><span style="width:16px;height:16px;border-radius:8px;background:#2e9e5b;display:inline-flex;align-items:center;justify-content:center;"><i class="fa-solid fa-check" style="font-size:11px;color:#fff;"></i></span></span>
       <span style="width:24px;height:24px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><span style="width:16px;height:16px;border-radius:8px;background:#e0a93e;display:inline-block;"></span></span>
       <span style="width:24px;height:24px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><span style="width:16px;height:16px;border-radius:8px;background:#9aa3b8;display:inline-block;"></span></span>
     </div>
@@ -1790,7 +1791,7 @@ a{text-decoration:none;}
     #forms .neo-form-demo{width:100%;max-width:364px}
     #forms .neo-label{display:block;font:600 14px/20px 'Nunito',sans-serif;color:var(--navy);margin-bottom:4px}
     #forms .neo-label .req{color:var(--indigo);font-weight:700}
-    #forms .neo-label .opt{font:400 14px/20px 'Nunito',sans-serif;color:rgba(0,9,51,.55)}
+    #forms .neo-label .opt{font:400 14px/20px 'Nunito',sans-serif;color:var(--text-weak)}
     #forms .neo-hint{font:400 13px/18px 'Nunito',sans-serif;color:rgba(0,9,51,.6);margin:0 0 6px}
     #forms .neo-field{width:100%;height:48px;border:none;outline:none;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);padding:0 16px;font:400 16px/24px 'Nunito',sans-serif;color:rgba(0,6,38,.9)}
     #forms .neo-field::placeholder{color:rgba(0,9,51,.5)}
@@ -2222,7 +2223,7 @@ a{text-decoration:none;}
     .alert-neo .alert-icon{width:24px;flex-shrink:0;font-size:16px;padding-top:2px;color:var(--indigo);}
     .alert-neo .alert-heading{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:2px;}
     .alert-neo .alert-body{font-size:12px;color:var(--text-sub);line-height:1.5;}
-    .alert-neo .alert-close{position:absolute;top:12px;right:12px;width:24px;height:24px;border:none;border-radius:8px;background:transparent;color:var(--text-dim);cursor:pointer;font-size:12px;transition:all var(--dur-fast) var(--ease-out);}
+    .alert-neo .alert-close{position:absolute;top:12px;right:12px;width:24px;height:24px;border:none;border-radius:8px;background:transparent;color:var(--text-weak);cursor:pointer;font-size:12px;transition:all var(--dur-fast) var(--ease-out);}
     .alert-neo .alert-close:hover{box-shadow:var(--neu-in-sm);color:var(--navy);}
     .alert-neo.success::before{background:var(--green);} .alert-neo.success .alert-icon{color:var(--green-text);} .alert-neo.success{background:linear-gradient(0deg,rgba(0,199,129,0.06),rgba(0,199,129,0.06)),var(--glass-bg);}
     .alert-neo.warning::before{background:var(--yellow);} .alert-neo.warning .alert-icon{color:var(--yellow-text);} .alert-neo.warning{background:linear-gradient(0deg,rgba(255,187,56,0.07),rgba(255,187,56,0.07)),var(--glass-bg);}
@@ -2232,7 +2233,7 @@ a{text-decoration:none;}
     .alert-global-neo .ag-content{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
     .alert-global-neo .ag-icon{font-size:14px;flex-shrink:0;}
     .alert-global-neo .ag-text{font-size:12px;font-weight:600;color:var(--navy);}
-    .alert-global-neo .ag-close{width:24px;height:24px;border:none;border-radius:8px;background:transparent;color:var(--text-dim);cursor:pointer;font-size:12px;flex-shrink:0;}
+    .alert-global-neo .ag-close{width:24px;height:24px;border:none;border-radius:8px;background:transparent;color:var(--text-weak);cursor:pointer;font-size:12px;flex-shrink:0;}
     .alert-global-neo .ag-close:hover{box-shadow:var(--neu-in-sm);color:var(--navy);}
     .alert-global-neo.error{background:linear-gradient(0deg,rgba(255,64,64,0.07),rgba(255,64,64,0.07)),var(--glass-bg);} .alert-global-neo.error .ag-icon{color:var(--red-text);}
     .alert-global-neo.info .ag-icon{color:var(--indigo);}
@@ -2243,7 +2244,7 @@ a{text-decoration:none;}
     .empty-neo .en-heading{font-size:18px;font-weight:800;color:var(--navy);}
     .empty-neo .en-desc{font-size:13px;color:var(--text-sub);line-height:1.5;margin-top:-12px;}
     .empty-neo .en-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
-    .empty-neo .en-link{background:none;border:none;font-family:var(--font);font-size:12px;font-weight:700;color:var(--orange);text-decoration:underline;cursor:pointer;}
+    .empty-neo .en-link{background:none;border:none;font-family:var(--font);font-size:12px;font-weight:700;color:var(--text-orange);text-decoration:underline;cursor:pointer;}
   </style>
 
   <div class="section-header">
@@ -2397,7 +2398,7 @@ a{text-decoration:none;}
     .navh-avatar{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border-radius:99px;cursor:pointer;box-shadow:var(--neu-out-sm);background:var(--bg);}
     .navh-avatar:hover{box-shadow:var(--neu-out);}
     .navh-avatar span{font-size:10px;font-weight:700;color:var(--navy);}
-    .navh-avatar i{font-size:9px;color:var(--text-dim);}
+    .navh-avatar i{font-size:11px;color:var(--text-weak);}
 
     /* Footer */
     .foot-neo{padding:24px 28px 16px;background:var(--glass-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--glass-border);}
@@ -2408,7 +2409,7 @@ a{text-decoration:none;}
     .foot-links{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:10px;}
     .foot-links a{font-size:11px;font-weight:600;color:var(--text-sub);text-decoration:none;}
     .foot-links a:hover{color:var(--indigo);}
-    .foot-copy{font-size:10px;color:var(--text-dim);}
+    .foot-copy{font-size:10px;color:var(--text-weak);}
 
     /* Tabs */
     .tabs-neo{display:inline-flex;gap:6px;padding:6px;border-radius:99px;background:var(--bg);box-shadow:var(--neu-in-sm);}
@@ -2424,11 +2425,11 @@ a{text-decoration:none;}
     .pag-cell{min-width:34px;height:34px;padding:0 6px;border:none;border-radius:10px;background:transparent;font-family:var(--font);font-size:12px;font-weight:700;color:var(--text-sub);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all var(--dur-fast) var(--ease-out);}
     .pag-cell:hover{box-shadow:var(--neu-out-sm);}
     .pag-cell.current{color:var(--indigo);background:var(--bg);box-shadow:var(--neu-in-sm);cursor:default;}
-    .pag-cell.ellipsis{cursor:default;box-shadow:none;color:var(--text-dim);}
+    .pag-cell.ellipsis{cursor:default;box-shadow:none;color:var(--text-weak);}
     .pag-nav{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:none;border-radius:99px;background:var(--bg);box-shadow:var(--neu-out-sm);font-family:var(--font);font-size:11px;font-weight:700;color:var(--text-sub);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);}
     .pag-nav:hover{box-shadow:var(--neu-out);transform:translateY(-1px);}
     .pag-nav:disabled{opacity:0.45;cursor:not-allowed;box-shadow:var(--neu-in-sm);transform:none;}
-    .pag-count{font-size:11px;color:var(--text-dim);font-weight:600;}
+    .pag-count{font-size:11px;color:var(--text-weak);font-weight:600;}
 
     /* Segmented control */
     .seg-neo{display:inline-flex;gap:4px;padding:5px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);}
@@ -2440,15 +2441,15 @@ a{text-decoration:none;}
     .crumbs-neo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:600;}
     .crumbs-neo a{color:var(--text-sub);text-decoration:none;padding:3px 8px;border-radius:8px;transition:all var(--dur-fast) var(--ease-out);}
     .crumbs-neo a:hover{color:var(--indigo);box-shadow:var(--neu-out-sm);}
-    .crumbs-neo .crumb-sep{color:var(--text-dim);font-size:10px;}
+    .crumbs-neo .crumb-sep{color:var(--text-weak);font-size:10px;}
     .crumbs-neo .crumb-current{color:var(--navy);font-weight:800;padding:3px 8px;}
 
     /* Navigation side */
     .navside-wrap{display:flex;width:100%;min-height:300px;background:var(--bg);}
     .navside-neo{width:208px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;padding:14px 12px;background:var(--glass-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-right:1px solid var(--glass-border);}
     .navside-top{display:flex;align-items:center;justify-content:space-between;padding:2px 6px 10px;}
-    .navside-top i{font-size:12px;color:var(--text-dim);cursor:pointer;}
-    .navside-search{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:var(--bg);box-shadow:var(--neu-in-sm);font-size:11px;color:var(--text-dim);margin-bottom:8px;}
+    .navside-top i{font-size:12px;color:var(--text-weak);cursor:pointer;}
+    .navside-search{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:var(--bg);box-shadow:var(--neu-in-sm);font-size:11px;color:var(--text-weak);margin-bottom:8px;}
     .navside-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:99px;font-size:11px;font-weight:700;color:var(--text-sub);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);}
     .navside-item i{width:16px;text-align:center;font-size:11px;}
     .navside-item:hover{box-shadow:var(--neu-out-sm);}
@@ -2460,8 +2461,8 @@ a{text-decoration:none;}
     .navside-user{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;cursor:pointer;}
     .navside-user:hover{box-shadow:var(--neu-out-sm);}
     .navside-user .nu-name{font-size:10px;font-weight:800;color:var(--navy);line-height:1.2;}
-    .navside-user .nu-mail{font-size:8.5px;color:var(--text-dim);}
-    .navside-canvas{flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-dim);}
+    .navside-user .nu-mail{font-size:8.5px;color:var(--text-weak);}
+    .navside-canvas{flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-weak);}
   </style>
 
   <div class="section-header">
@@ -2484,9 +2485,9 @@ a{text-decoration:none;}
             <div class="navh-item">Supuestos</div>
           </div>
           <button class="btn-neu sm"><i class="fa-solid fa-file-export"></i> Exportar</button>
-          <div class="navh-avatar"><span class="t-avatar indigo" style="width:24px;height:24px;font-size:9px;">MV</span><span>María V.</span><i class="fa-solid fa-chevron-down"></i></div>
+          <div class="navh-avatar"><span class="t-avatar indigo" style="width:24px;height:24px;font-size:11px;">MV</span><span>María V.</span><i class="fa-solid fa-chevron-down"></i></div>
         </div>
-        <div style="height:64px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-dim);font-weight:700;">— contenido de la página —</div>
+        <div style="height:64px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-weak);font-weight:700;">— contenido de la página —</div>
       </div>
     </div>
     <div class="comp-desc">
@@ -2513,7 +2514,7 @@ a{text-decoration:none;}
     <h3>Footer</h3>
     <div class="demo-box" style="padding:24px;">
       <div class="mini-preview">
-        <div style="height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-dim);font-weight:700;">— contenido de la página —</div>
+        <div style="height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-weak);font-weight:700;">— contenido de la página —</div>
         <div class="foot-neo">
           <div class="foot-top">
             <div class="mini-logo"><i class="fa-solid fa-shield-halved"></i> ACTUARIA</div>
@@ -2702,7 +2703,7 @@ a{text-decoration:none;}
                   <div class="nu-name">María Velasco</div>
                   <div class="nu-mail">mvelasco@actuaria.com</div>
                 </div>
-                <i class="fa-solid fa-ellipsis" style="font-size:11px;color:var(--text-dim);"></i>
+                <i class="fa-solid fa-ellipsis" style="font-size:11px;color:var(--text-weak);"></i>
               </div>
             </div>
           </aside>
@@ -2804,7 +2805,7 @@ a{text-decoration:none;}
             <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Tomador</span><strong style="color:#151f47;">Banco del Austro</strong></div>
             <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Prima anual</span><strong style="color:#151f47;">$148.250</strong></div>
             <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Reserva matemática</span><strong style="color:#151f47;">$1.024.300</strong></div>
-            <div style="border:1px dashed rgba(0,13,77,0.45);background:rgba(0,21,128,0.02);border-radius:8px;padding:24px 32px;text-align:center;font-size:14px;color:rgba(15,31,61,0.55);">Slot — contenido libre</div>
+            <div style="border:1px dashed rgba(0,13,77,0.45);background:rgba(0,21,128,0.02);border-radius:8px;padding:24px 32px;text-align:center;font-size:14px;color:var(--text-weak);">Slot — contenido libre</div>
           </div>
           <div style="display:flex;gap:16px;justify-content:flex-end;padding:24px 32px;border-top:1px solid rgba(0,17,102,0.10);">
             <button class="btn-neu" data-overlay-close>Cerrar</button>
@@ -3121,11 +3122,11 @@ a{text-decoration:none;}
       <div class="usage-note" style="margin-top:8px"><strong>Variantes Figma:</strong> type=Strong | Weak.</div>
     </div>
     <div class="demo-box" style="display:block;">
-      <div style="font-size:13px;font-weight:600;color:rgba(15,31,61,0.55);margin-bottom:6px;">Weak</div>
+      <div style="font-size:13px;font-weight:600;color:var(--text-weak);margin-bottom:6px;">Weak</div>
       <div style="height:1px;background:rgba(0,17,102,0.10);margin-bottom:20px;"></div>
-      <div style="font-size:13px;font-weight:600;color:rgba(15,31,61,0.55);margin-bottom:6px;">Strong</div>
+      <div style="font-size:13px;font-weight:600;color:var(--text-weak);margin-bottom:6px;">Strong</div>
       <div style="height:1px;background:rgba(0,13,77,0.45);margin-bottom:20px;"></div>
-      <div style="font-size:13px;font-weight:600;color:rgba(15,31,61,0.55);margin-bottom:6px;">Groove (NEO)</div>
+      <div style="font-size:13px;font-weight:600;color:var(--text-weak);margin-bottom:6px;">Groove (NEO)</div>
       <div style="height:0;border-top:1px solid rgba(163,177,198,0.55);border-bottom:1px solid rgba(255,255,255,0.95);"></div>
     </div>
     <pre class="ds-code">&lt;hr class="divider weak"&gt;   &lt;!-- background: rgba(0,17,102,0.10) --&gt;
@@ -3268,7 +3269,7 @@ a{text-decoration:none;}
     </div>
     <div class="demo-box" style="flex-direction:column;align-items:flex-start;gap:24px;font-family:'Nunito',sans-serif;">
       <div style="display:flex;flex-direction:column;gap:8px;">
-        <span style="font-size:13px;font-weight:600;color:rgba(15,31,61,0.55);">Small — 32px · solape −8px</span>
+        <span style="font-size:13px;font-weight:600;color:var(--text-weak);">Small — 32px · solape −8px</span>
         <div style="display:flex;align-items:center;">
           <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3258a2,#6f8fc9);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:12px;">MV</div>
           <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#151f47,#33498f);border:2px solid var(--bg);margin-left:-8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:12px;">JC</div>
@@ -3277,7 +3278,7 @@ a{text-decoration:none;}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;">
-        <span style="font-size:13px;font-weight:600;color:rgba(15,31,61,0.55);">Medium — 48px · solape −12px</span>
+        <span style="font-size:13px;font-weight:600;color:var(--text-weak);">Medium — 48px · solape −12px</span>
         <div style="display:flex;align-items:center;">
           <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3258a2,#6f8fc9);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">MV</div>
           <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#151f47,#33498f);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">JC</div>
@@ -3312,8 +3313,8 @@ a{text-decoration:none;}
           <div style="width:28px;height:28px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff">A</div>
           <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
             <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in-sm);display:flex;align-items:center;justify-content:center;color:var(--indigo);font-size:12px"><i class="fa-solid fa-house"></i></div>
-            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px"><i class="fa-solid fa-briefcase"></i></div>
-            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:12px"><i class="fa-solid fa-chart-bar"></i></div>
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-weak);font-size:12px"><i class="fa-solid fa-briefcase"></i></div>
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-weak);font-size:12px"><i class="fa-solid fa-chart-bar"></i></div>
           </div>
         </div>
         <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
@@ -3349,7 +3350,7 @@ a{text-decoration:none;}
     <h3>Bento Grid</h3>
     <div class="demo-box demo-box-col" style="padding:24px;gap:24px;width:100%;">
       <div>
-        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">2+1 — dos cols + full-width</div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">2+1 — dos cols + full-width</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
           <div class="bento-cell" style="background:var(--indigo-soft);color:var(--indigo)">Panel A</div>
           <div class="bento-cell" style="background:rgba(0,199,129,0.08);color:var(--green-text)">Panel B</div>
@@ -3357,7 +3358,7 @@ a{text-decoration:none;}
         </div>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Dashboard — 4 cols asimétrico</div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Dashboard — 4 cols asimétrico</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
           <div class="bento-cell span-2" style="background:var(--indigo-soft);color:var(--indigo);min-height:90px">Feature Card</div>
           <div class="bento-cell" style="font-size:11px">KPI 1</div>
@@ -3368,9 +3369,9 @@ a{text-decoration:none;}
         </div>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">3 cols fluid</div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">3 cols fluid</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
-          <div class="bento-cell span-2" style="min-height:100px;background:rgba(222,94,45,0.08);color:var(--orange)">Principal (2/3)</div>
+          <div class="bento-cell span-2" style="min-height:100px;background:rgba(222,94,45,0.08);color:var(--text-orange)">Principal (2/3)</div>
           <div class="bento-cell" style="min-height:100px">Lateral (1/3)</div>
         </div>
       </div>
@@ -3385,7 +3386,7 @@ a{text-decoration:none;}
     <h3>Grids de Datos</h3>
     <div class="demo-box demo-box-col" style="padding:24px;gap:20px;width:100%;">
       <div>
-        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">.field-grid — 2 cols (campos)</div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">.field-grid — 2 cols (campos)</div>
         <div class="field-grid">
           <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 1</div>
           <div class="bento-cell" style="min-height:40px;font-size:11px">Campo 2</div>
@@ -3394,7 +3395,7 @@ a{text-decoration:none;}
         </div>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">.score-grid — 4 cols (KPIs)</div>
+        <div style="font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">.score-grid — 4 cols (KPIs)</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
           <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 1</div>
           <div class="bento-cell" style="min-height:50px;font-size:11px">KPI 2</div>
@@ -3553,7 +3554,7 @@ a{text-decoration:none;}
               <circle cx="21" cy="21" r="15.915" fill="none" stroke="#3258a2" stroke-width="6" stroke-dasharray="32 68" stroke-dashoffset="-27" stroke-linecap="round"></circle>
               <circle cx="21" cy="21" r="15.915" fill="none" stroke="#e0592a" stroke-width="6" stroke-dasharray="16 84" stroke-dashoffset="-59" stroke-linecap="round"></circle>
               <text x="21" y="20.5" text-anchor="middle" style="font:800 7px Nunito;fill:var(--navy)">6.000+</text>
-              <text x="21" y="26" text-anchor="middle" style="font:700 3.4px Nunito;fill:var(--text-dim)">clientes</text>
+              <text x="21" y="26" text-anchor="middle" style="font:700 3.4px Nunito;fill:var(--text-weak)">clientes</text>
             </svg>
             <div class="donut-legend">
               <div class="dl-item"><span class="dl-dot" style="background:#151f47"></span> Vida · 52%</div>
@@ -3637,19 +3638,19 @@ a{text-decoration:none;}
         </div>
         <div style="text-align:center">
           <div style="font-size:11px;font-weight:800;color:var(--indigo)">--neu-out</div>
-          <div style="font-size:10px;color:var(--text-dim)">Interactivo · Clickeable</div>
-          <div style="font-size:10px;color:var(--text-dim)">Botones · Cards · Tabs default</div>
+          <div style="font-size:10px;color:var(--text-weak)">Interactivo · Clickeable</div>
+          <div style="font-size:10px;color:var(--text-weak)">Botones · Cards · Tabs default</div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
         <div style="width:140px;height:90px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
-          <i class="fa-solid fa-eye" style="color:var(--text-dim);font-size:20px"></i>
+          <i class="fa-solid fa-eye" style="color:var(--text-weak);font-size:20px"></i>
           <span style="font-size:11px;font-weight:700;color:var(--text-sub)">Sunken</span>
         </div>
         <div style="text-align:center">
           <div style="font-size:11px;font-weight:800;color:var(--text-sub)">--neu-in</div>
-          <div style="font-size:10px;color:var(--text-dim)">Estático · Solo lectura</div>
-          <div style="font-size:10px;color:var(--text-dim)">Inputs · Tabs activos · Datos</div>
+          <div style="font-size:10px;color:var(--text-weak)">Estático · Solo lectura</div>
+          <div style="font-size:10px;color:var(--text-weak)">Inputs · Tabs activos · Datos</div>
         </div>
       </div>
     </div>
@@ -3665,9 +3666,9 @@ a{text-decoration:none;}
       <table class="token-table">
         <thead><tr><th>Breakpoint</th><th>Rango</th><th>Sidebar</th><th>Grids</th><th>Padding lateral</th></tr></thead>
         <tbody>
-          <tr><td><span class="chip chip-blue" style="font-size:9px">Mobile</span></td><td>≤ 768px</td><td>Drawer overlay</td><td>1 columna</td><td>16px</td></tr>
-          <tr><td><span class="chip chip-yellow" style="font-size:9px">Tablet</span></td><td>769–1024px</td><td>64px (íconos)</td><td>2 columnas</td><td>20px</td></tr>
-          <tr><td><span class="chip chip-green" style="font-size:9px">Desktop</span></td><td>≥ 1025px</td><td>272px completo</td><td>Todos habilitados</td><td>28px</td></tr>
+          <tr><td><span class="chip chip-blue" style="font-size:11px">Mobile</span></td><td>≤ 768px</td><td>Drawer overlay</td><td>1 columna</td><td>16px</td></tr>
+          <tr><td><span class="chip chip-yellow" style="font-size:11px">Tablet</span></td><td>769–1024px</td><td>64px (íconos)</td><td>2 columnas</td><td>20px</td></tr>
+          <tr><td><span class="chip chip-green" style="font-size:11px">Desktop</span></td><td>≥ 1025px</td><td>272px completo</td><td>Todos habilitados</td><td>28px</td></tr>
         </tbody>
       </table>
     </div>
@@ -3693,23 +3694,23 @@ a{text-decoration:none;}
     <div class="demo-box" style="gap:20px;flex-wrap:wrap;">
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
         <button class="btn-neu" style="pointer-events:none">Default</button>
-        <span style="font-size:10px;color:var(--text-dim)">box-shadow: --neu-out-sm</span>
+        <span style="font-size:10px;color:var(--text-weak)">box-shadow: --neu-out-sm</span>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
         <button class="btn-neu" style="box-shadow:var(--neu-out);transform:translateY(-1px);pointer-events:none">Hover</button>
-        <span style="font-size:10px;color:var(--text-dim)">--neu-out + translateY(-1px)</span>
+        <span style="font-size:10px;color:var(--text-weak)">--neu-out + translateY(-1px)</span>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
         <button class="btn-neu" style="box-shadow:var(--neu-in-sm);transform:translateY(0);pointer-events:none">Active</button>
-        <span style="font-size:10px;color:var(--text-dim)">--neu-in-sm + translateY(0)</span>
+        <span style="font-size:10px;color:var(--text-weak)">--neu-in-sm + translateY(0)</span>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
         <button class="btn-neu" style="box-shadow:var(--neu-out),0 0 0 2px var(--indigo);pointer-events:none">Focus</button>
-        <span style="font-size:10px;color:var(--text-dim)">--neu-out + outline indigo</span>
+        <span style="font-size:10px;color:var(--text-weak)">--neu-out + outline indigo</span>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
         <button class="btn-neu" style="opacity:0.45;cursor:not-allowed;pointer-events:none">Disabled</button>
-        <span style="font-size:10px;color:var(--text-dim)">opacity: 0.45</span>
+        <span style="font-size:10px;color:var(--text-weak)">opacity: 0.45</span>
       </div>
     </div>
     <div class="comp-desc">
@@ -3948,7 +3949,7 @@ a{text-decoration:none;}
           <tr><td>heading-4</td><td>20px</td><td>28px</td><td><span style="font-family:var(--ff-heading);font-size:17px;font-weight:700;color:var(--text-strong);">Aa</span></td></tr>
           <tr><td>small</td><td>16px</td><td>24px</td><td><span style="font-family:var(--ff-body);font-size:16px;color:var(--text-weak);">Aa</span></td></tr>
           <tr><td>tiny</td><td>14px</td><td>20px</td><td><span style="font-family:var(--ff-body);font-size:14px;color:var(--text-weak);">Aa</span></td></tr>
-          <tr><td>uppercase</td><td>14px</td><td>20px</td><td><span style="font-family:var(--ff-body);font-size:13px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;color:var(--prim-orange-1000);">Aa</span></td></tr>
+          <tr><td>uppercase</td><td>14px</td><td>20px</td><td><span style="font-family:var(--ff-body);font-size:13px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;color:var(--text-orange);">Aa</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -3990,13 +3991,13 @@ a{text-decoration:none;}
         <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:20px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">20</span></div>
         <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:24px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">24 <em>card</em></span></div>
         <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:32px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">32 <em>cert</em></span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:40px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--prim-orange-1000)">40 <em>testi</em></span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:50px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--prim-orange-1000)">50 <em>chip</em></span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:64px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--prim-orange-1000)">64 <em>btn+</em></span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:40px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-orange)">40 <em>testi</em></span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:50px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-orange)">50 <em>chip</em></span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:64px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-orange)">64 <em>btn+</em></span></div>
       </div>
     </div>
     <div class="comp-desc">
-      <div class="usage-note">Los valores en <span style="color:var(--prim-orange-1000)">naranja punteado</span> NO están en la colección Webflow. Pendiente: subirlos como <span class="ds-code-inline">corner-radius--40/50/64</span> para cerrar la brecha token↔producción.</div>
+      <div class="usage-note">Los valores en <span style="color:var(--text-orange)">naranja punteado</span> NO están en la colección Webflow. Pendiente: subirlos como <span class="ds-code-inline">corner-radius--40/50/64</span> para cerrar la brecha token↔producción.</div>
     </div>
   </div>
 </section>
@@ -4113,7 +4114,7 @@ a{text-decoration:none;}
             <a class="act-nav-drop"><i class="fa-solid fa-percent act-icon-chip-nav"></i> Prima de riesgo</a>
             <a class="act-nav-drop"><i class="fa-solid fa-coins act-icon-chip-nav"></i> Fondos de reserva</a>
             <a class="act-nav-drop"><i class="fa-solid fa-dice act-icon-chip-nav"></i> Probabilidad de ruina</a>
-            <a class="act-nav-drop" style="color:var(--prim-orange-1000)"><i class="fa-solid fa-grip act-icon-chip-nav" style="color:var(--prim-orange-1000)"></i> Todas las calculadoras</a>
+            <a class="act-nav-drop" style="color:var(--text-orange)"><i class="fa-solid fa-grip act-icon-chip-nav" style="color:var(--text-orange)"></i> Todas las calculadoras</a>
           </div>
         </div>
         <div>
@@ -4170,7 +4171,7 @@ a{text-decoration:none;}
       <div class="act-grid-2">
         <div class="act-card-base">
           <div class="act-odo">
-            <span style="color:var(--prim-orange-1000)">+</span>
+            <span style="color:var(--text-orange)">+</span>
             <span class="act-odo-d"><span class="act-odo-roll" style="--n:6"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></span></span>
             <span class="act-odo-d"><span class="act-odo-roll" style="--n:5"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></span>
             <span class="act-odo-d"><span class="act-odo-roll" style="--n:0"><span>0</span></span></span>
@@ -5062,12 +5063,14 @@ contratos.find(c =&gt; c.component === 'tracking').spec.do_not;</pre>
           <tr><td>Error</td><td><span class="act-sw" style="background:#FF4040;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#FF4040</code></td><td><span class="act-sw" style="background:#c73a3a;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#c73a3a</code></td><td style="text-align:right">56.3</td><td><span class="act-chipset is-orange">divergente</span></td></tr>
           <tr><td>Info</td><td><span class="act-sw" style="background:#3C76F1;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#3C76F1</code></td><td><span class="act-sw" style="background:#1a74a8;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#1a74a8</code></td><td style="text-align:right">76.3</td><td><span class="act-chipset is-orange">divergente</span></td></tr>
           <tr><td>Fallback de títulos</td><td><code class="ds-code-inline">Nunito Black</code></td><td><code class="ds-code-inline">Tahoma</code></td><td style="text-align:right">—</td><td><span class="act-chipset is-brand">✓ corregido</span></td></tr>
+          <tr><td>Caja de títulos</td><td><code class="ds-code-inline">MAYÚSCULAS</code> (obligatorio, pág. 29)</td><td>Mixta: «Soluciones especializadas»</td><td style="text-align:right">—</td><td><span class="act-chipset is-orange">brecha</span></td></tr>
         </tbody>
       </table>
     </div>
     <div class="comp-desc">
       <div class="desc-title">Lectura</div>
       <div class="desc-text">Los cuatro colores semánticos de UI <strong>divergen por completo</strong>: producción usa la paleta Material (<code class="ds-code-inline">#4caf50</code>, <code class="ds-code-inline">#ff9800</code>…) mientras el brandbook define una propia. No es un error de redondeo: son decisiones distintas que hay que conciliar antes de que el producto crezca.</div>
+      <div class="usage-note" style="margin-top:8px;">Sobre la caja de títulos: el brandbook la exige en mayúsculas pero <strong>producción no la aplica</strong> (<span class="ds-code-inline">heading-section</span> renderiza en caja mixta). Este documento sí la aplica en sus propios titulares para honrar la norma; la decisión sobre el sitio queda abierta.</div>
       <div class="usage-note" style="margin-top:8px;">La superficie base es la brecha de mayor impacto visual: el neumorfismo del brandbook está calculado sobre <span class="ds-code-inline">#E8ECF4</span> (azulado), no sobre el <span class="ds-code-inline">#f3f3f3</span> (neutro) que usa el sitio. Las sombras cambian de carácter.</div>
     </div>
   </div>
@@ -5089,7 +5092,7 @@ contratos.find(c =&gt; c.component === 'tracking').spec.do_not;</pre>
           <div class="act-eyebrow" style="margin-bottom:8px;">Naranja sobre navy · regla dura</div>
           <div class="act-row">
             <div style="background:var(--bb-navy);padding:var(--sp-16) var(--sp-20);border-radius:var(--cr-12);">
-              <span style="color:#DF5E2D;font-family:var(--ff-heading);font-weight:700;font-size:15px;">Naranja puro · 4.38:1</span>
+              <span data-qa-ignore="demo-de-fallo-intencional" style="color:#DF5E2D;font-family:var(--ff-heading);font-weight:700;font-size:15px;">Naranja puro · 4.38:1</span>
               <div style="font-family:var(--ff-body);font-size:11px;color:#ff9c9c;margin-top:4px;">✕ PROHIBIDO como texto</div>
             </div>
             <div style="background:var(--bb-navy);padding:var(--sp-16) var(--sp-20);border-radius:var(--cr-12);">
@@ -5174,10 +5177,10 @@ contratos.find(c =&gt; c.component === 'tracking').spec.do_not;</pre>
   <div style="margin-bottom:8px"><strong style="color:var(--navy)">Actuaria Consultores</strong> · Neumorphism Design System v1.0</div>
   <div style="opacity:0.6">Glass UI + Neumorphism + Bento Boxes · Atomic Design · 35+ años, 6,000+ clientes</div>
   <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <span class="chip chip-blue" style="font-size:9px">Actuaria Plus</span>
-    <span class="chip chip-blue" style="font-size:9px">Data Wave</span>
-    <span class="chip chip-blue" style="font-size:9px">Data Analytics</span>
-    <span class="chip chip-blue" style="font-size:9px">ActuaFast</span>
+    <span class="chip chip-blue" style="font-size:11px">Actuaria Plus</span>
+    <span class="chip chip-blue" style="font-size:11px">Data Wave</span>
+    <span class="chip chip-blue" style="font-size:11px">Data Analytics</span>
+    <span class="chip chip-blue" style="font-size:11px">ActuaFast</span>
   </div>
 </footer>
 
