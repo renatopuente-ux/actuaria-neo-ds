@@ -20,6 +20,57 @@
 @font-face{font-family:'Lemon Milk Pro';src:url(https://webflow-files-prod.global.ssl.fastly.net/6967c96e0fba2ea4f94d3c69/fonts/6aeba20a563b6dd8d197f85f-lemon-milk-pro-700.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap;}
 /* Lemon Milk Pro solo trae 400/500/700 — 800 del odómetro se sintetiza desde 700 */
 @font-face{font-family:'Lemon Milk Pro';src:url(https://webflow-files-prod.global.ssl.fastly.net/6967c96e0fba2ea4f94d3c69/fonts/6aeba20a563b6dd8d197f85f-lemon-milk-pro-700.woff2) format('woff2');font-weight:800;font-style:normal;font-display:swap;}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PLAYGROUND INTERACTIVO  ·  .pg-*
+   Permite a un dev manipular todos los estados de un componente en vivo.
+   ═══════════════════════════════════════════════════════════════════════ */
+.pg{border:1px solid var(--stroke-weak);border-radius:var(--cr-20);overflow:hidden;background:var(--bg-base);margin-bottom:var(--sp-16);}
+.pg-bar{display:flex;flex-wrap:wrap;gap:var(--sp-16);align-items:flex-end;padding:var(--sp-16) var(--sp-20);
+  background:var(--bg-sunken);border-bottom:1px solid var(--stroke-weak);}
+.pg-ctl{display:flex;flex-direction:column;gap:5px;min-width:0;}
+.pg-ctl > label{font-family:var(--ff-body);font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:1px;color:var(--text-weak);}
+.pg-ctl select,.pg-ctl input[type=number]{height:34px;padding:0 var(--sp-8);border:1px solid var(--sitio-borde-d8d8dc);
+  border-radius:var(--cr-8);background:#fff;font-family:var(--ff-heading);font-size:13px;color:var(--text-strong);}
+.pg-seg{display:inline-flex;background:#fff;border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-8);overflow:hidden;}
+.pg-seg button{border:none;background:transparent;padding:0 var(--sp-12);height:34px;cursor:pointer;
+  font-family:var(--ff-heading);font-size:13px;font-weight:600;color:var(--text-weak);}
+.pg-seg button[aria-pressed=true]{background:var(--fill-brand-strong);color:#fff;}
+.pg-switch{display:inline-flex;align-items:center;gap:var(--sp-8);font-family:var(--ff-heading);font-size:13px;
+  font-weight:600;color:var(--text-strong);cursor:pointer;height:34px;}
+.pg-switch input{width:16px;height:16px;accent-color:var(--fill-brand-strong);}
+.pg-stage{padding:var(--sp-32) var(--sp-24);display:flex;justify-content:center;background:var(--sitio-fondo-f3f3f3);}
+.pg-stage.is-dark{background:var(--bg-inverse);}
+.pg-stage > *{width:100%;max-width:720px;}
+.pg-out{border-top:1px solid var(--stroke-weak);}
+.pg-out summary{cursor:pointer;padding:var(--sp-12) var(--sp-20);font-family:var(--ff-body);font-size:12px;
+  font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--theme-grey-500);user-select:none;}
+.pg-out summary:hover{color:var(--text-brand);}
+.pg-out pre{margin:0;padding:var(--sp-16) var(--sp-20);background:#0e1533;color:#e8ecf4;
+  font-family:ui-monospace,'Cascadia Code','Courier New',monospace;font-size:12px;line-height:1.65;
+  overflow-x:auto;white-space:pre;}
+
+/* ── Bloque de contrato legible por IA ── */
+.ai-spec{margin-top:var(--sp-12);border:1px dashed var(--stroke-brand-weak);border-radius:var(--cr-12);
+  background:var(--theme-brand-50);overflow:hidden;}
+.ai-spec > summary{cursor:pointer;padding:var(--sp-12) var(--sp-16);font-family:var(--ff-body);font-size:12px;
+  font-weight:600;color:var(--text-brand);user-select:none;display:flex;align-items:center;gap:var(--sp-8);}
+.ai-spec > summary::marker{content:'';}
+.ai-spec > summary::before{content:'\f544';font-family:'Font Awesome 6 Free';font-weight:900;font-size:13px;}
+.ai-spec pre{margin:0;padding:var(--sp-16);background:#0e1533;color:#cfe3ff;
+  font-family:ui-monospace,'Cascadia Code','Courier New',monospace;font-size:11.5px;line-height:1.6;
+  overflow-x:auto;white-space:pre-wrap;word-break:break-word;}
+
+/* estados ampliados del tracking (error / warning) */
+.track-step.error .track-dot{background:var(--fill-error-strong);color:#fff;box-shadow:0 0 0 4px var(--fill-error-weak);}
+.track-step.warning .track-dot{background:var(--fill-warning-strong);color:#fff;box-shadow:0 0 0 4px var(--fill-warning-weak);}
+.track-step.error .track-name,.track-step.warning .track-name{font-weight:700;}
+.track-step.error .track-name{color:var(--fill-error-strong);}
+.track-step.warning .track-name{color:#8a5200;}
+.pg-stage.is-dark .track-name{color:#fff;}
+.pg-stage.is-dark .track-time{color:rgba(255,255,255,.7);}
+.pg-stage.is-dark .track-step::before{background:rgba(255,255,255,.22);}
 </style>
 
 <style>
@@ -108,6 +159,18 @@
   --fs-uppercase:14px; --lh-uppercase:20px;
   --fw-strong:600;     --fw-weak:400;
 
+  /* ── TEXTO ACCESIBLE SOBRE FONDO CLARO (ratios medidos, WCAG AA) ── */
+  /* los *-1000 son colores de FILL; como TEXTO sobre blanco no llegan a 4.5:1 */
+  --text-orange:#a8431c;  /* 6.03:1 · ya existe en el sitio como sitio--texto--a8431c */
+  --text-green:#2e7d32;   /* 5.13:1 */
+  --text-amber:#8a5200;   /* 6.39:1 */
+  --text-teal:#1a74a8;    /* 5.11:1 */
+  --text-red:#c73a3a;     /* 5.13:1 */
+
+  /* ── FOOTER (medido en produccion: .footer_card) ── */
+  --footer-bg:#0e1533; --footer-text:rgba(255,255,255,.75);
+  --footer-divider:rgba(255,255,255,.15); --footer-social-bg:rgba(255,255,255,.12);
+
   /* ── LOGOTIPO OFICIAL (colores exactos del vector) ── */
   --logo-navy:#111C4E; --logo-orange:#E0592A; --logo-blue:#385CAD;
 
@@ -144,24 +207,24 @@ a{text-decoration:none;}
 
 /* ── TOPBAR ── */
 .ds-topbar{position:fixed;top:0;left:0;right:0;height:56px;background:linear-gradient(90deg,var(--navy-2),var(--navy));z-index:1000;display:flex;align-items:center;padding:0 24px;gap:16px;box-shadow:0 2px 12px rgba(15,31,61,0.4);}
-.ds-topbar-title{color:rgba(255,255,255,0.7);font-size:13px;font-weight:600;}
-.ds-version{background:rgba(255,255,255,0.15);color:#fff;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;margin-left:auto;}
+.ds-topbar-title{font-family:var(--ff-body);color:rgba(255,255,255,0.72);font-size:13px;font-weight:400;letter-spacing:.2px;}
+.ds-version{font-family:var(--ff-heading);background:rgba(255,255,255,0.15);color:#fff;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;margin-left:auto;}
 
 /* ── LAYOUT ── */
 .ds-layout{display:flex;margin-top:56px;min-height:calc(100vh - 56px);}
 .ds-nav{width:220px;flex-shrink:0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;padding:16px 12px;border-right:1px solid var(--border);background:rgba(232,236,244,0.8);backdrop-filter:blur(8px);}
-.ds-content{flex:1;padding:32px 40px;max-width:1100px;overflow-x:hidden;}
+.ds-content{flex:1;padding:32px 40px;max-width:1340px;min-width:0;overflow-x:hidden;}
 .ds-nav-group{margin-bottom:8px;}
-.ds-nav-label{font-size:9px;font-weight:900;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;padding:12px 12px 4px;display:block;}
-.ds-nav-link{display:block;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--text-sub);cursor:pointer;}
+.ds-nav-label{font-family:var(--ff-body);font-size:10px;font-weight:600;color:var(--text-orange);text-transform:uppercase;letter-spacing:1.4px;padding:14px 12px 4px;display:block;}
+.ds-nav-link{font-family:var(--ff-heading);display:block;padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;color:var(--text-sub);cursor:pointer;}
 .ds-nav-link:hover{color:var(--navy);background:rgba(255,255,255,0.6);}
 .ds-nav-link.active{color:var(--indigo);box-shadow:var(--neu-in-sm);}
 
 /* ── SECTIONS ── */
 .ds-section{margin-bottom:64px;scroll-margin-top:80px;}
 .section-header{margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid var(--border);}
-.section-header h2{font-size:28px;font-weight:900;color:var(--navy);margin-bottom:6px;}
-.section-header p{font-size:14px;color:var(--text-sub);max-width:600px;}
+.section-header h2{font-family:var(--ff-display);font-size:32px;line-height:36px;font-weight:700;color:var(--text-strong);margin-bottom:8px;letter-spacing:-.3px;}
+.section-header p{font-family:var(--ff-heading);font-size:18px;line-height:22px;font-weight:400;color:var(--text-weak);max-width:72ch;}
 
 /* ── HERO ── */
 .ds-hero{background:linear-gradient(135deg,var(--navy-2),var(--navy));border-radius:20px;padding:48px;margin-bottom:48px;color:#fff;position:relative;overflow:hidden;}
@@ -176,16 +239,16 @@ a{text-decoration:none;}
 
 /* ── COMPONENT BLOCKS ── */
 .comp-block{margin-bottom:40px;}
-.comp-block h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.comp-block h3::before{content:'';width:4px;height:20px;background:var(--indigo);border-radius:4px;display:inline-block;}
+.comp-block h3{font-family:var(--ff-display);font-size:20px;line-height:22px;font-weight:500;color:var(--text-strong);margin-bottom:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.comp-block h3::before{content:'';width:4px;height:22px;background:var(--prim-orange-1000);border-radius:4px;display:inline-block;flex-shrink:0;}
 .demo-box{background:var(--bg);border-radius:16px;box-shadow:var(--neu-out-sm);padding:32px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;min-height:80px;}
 .demo-box-start{justify-content:flex-start;}
 .demo-box-col{flex-direction:column;align-items:flex-start;}
 .demo-box-dark{background:linear-gradient(135deg,var(--navy-2),var(--navy));}
 .comp-desc{background:rgba(255,255,255,0.5);border-radius:12px;padding:16px 20px;border:1px solid var(--border);}
-.desc-title{font-size:10px;font-weight:800;color:var(--indigo);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
-.desc-text{font-size:13px;color:var(--text-sub);margin-bottom:8px;line-height:1.5;}
-.usage-note{font-size:12px;color:var(--text-dim);font-style:italic;}
+.desc-title{font-family:var(--ff-body);font-size:11px;font-weight:600;color:var(--text-orange);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:5px;}
+.desc-text{font-family:var(--ff-body);font-size:14px;color:var(--text-weak);margin-bottom:8px;line-height:20px;}
+.usage-note{font-family:var(--ff-body);font-size:13px;line-height:19px;color:var(--text-weak);}
 
 /* ── TOKEN TABLES ── */
 .token-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px;}
@@ -195,12 +258,12 @@ a{text-decoration:none;}
 
 /* ── CODE BLOCKS ── */
 .ds-code{background:#1a2332;color:#f3f3f3;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;overflow-x:auto;margin-top:8px;white-space:pre;}
-.ds-code-inline{font-family:'Courier New',monospace;background:rgba(76,100,217,0.1);color:var(--indigo);padding:2px 6px;border-radius:4px;font-size:11px;}
+.ds-code-inline{font-family:ui-monospace,'Cascadia Code','Courier New',monospace;background:var(--theme-brand-50);color:var(--text-brand);padding:2px 6px;border-radius:4px;font-size:12px;}
 
 /* ── SWATCH GRID ── */
 .swatch-grid{display:flex;flex-wrap:wrap;gap:12px;}
 .swatch-group{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
-.swatch-group-label{font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
+.swatch-group-label{font-family:var(--ff-body);font-size:11px;font-weight:600;color:var(--text-weak);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;}
 .swatch-item{display:flex;flex-direction:column;align-items:center;gap:6px;}
 .swatch{width:56px;height:56px;border-radius:10px;box-shadow:var(--neu-out-sm);}
 .swatch-name{font-size:9px;font-weight:700;color:var(--text-dim);text-align:center;max-width:64px;font-family:monospace;}
@@ -236,7 +299,7 @@ a{text-decoration:none;}
 .type-scale{display:flex;flex-direction:column;gap:4px;}
 .type-row{display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid var(--border);}
 .type-meta{width:140px;flex-shrink:0;}
-.type-token{font-size:10px;font-weight:800;color:var(--indigo);font-family:monospace;display:block;}
+.type-token{font-size:11px;font-weight:700;color:var(--text-orange);font-family:ui-monospace,monospace;display:block;}
 .type-size{font-size:10px;color:var(--text-dim);display:block;}
 .type-sample{flex:1;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
@@ -495,23 +558,24 @@ a{text-decoration:none;}
 .act-heading-section.is-cta{color:#fff;}
 .act-subheading-section{font-family:var(--ff-heading);font-size:18px;line-height:22px;font-weight:400;color:var(--text-weak);}
 .act-subheading-section.is-cta{color:var(--text-inverse-weak);}
-.act-eyebrow{font-family:var(--ff-body);font-size:var(--fs-uppercase);line-height:var(--lh-uppercase);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--prim-orange-1000);}
+.act-eyebrow{font-family:var(--ff-body);font-size:var(--fs-uppercase);line-height:var(--lh-uppercase);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-orange);}
 
 /* ── NAVBAR flotante (navbar-logo-left) ── */
-.act-navbar{display:flex;align-items:center;gap:var(--sp-8);background:#f5f6fa;border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-40);padding:10px 10px 10px var(--sp-20);box-shadow:var(--sh-navbar);}
+.act-navbar{display:flex;align-items:center;gap:var(--sp-8);background:#f5f6fa;border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-40);padding:10px 10px 10px var(--sp-20);box-shadow:var(--sh-navbar);flex-wrap:wrap;row-gap:var(--sp-8);max-width:100%;min-width:0;}
 .act-logo{display:flex;align-items:center;gap:var(--sp-8);}
 .act-logo-svg{height:30px;width:auto;display:block;flex-shrink:0;}
-.act-nav-links{display:flex;align-items:center;gap:2px;margin-left:auto;}
-.act-nav-link{display:flex;align-items:center;gap:6px;height:44px;padding:0 var(--sp-16);border-radius:var(--cr-8);
+.act-plus-logo{height:16px;width:auto;display:block;}
+.act-nav-links{display:flex;align-items:center;gap:2px;margin-left:auto;flex-wrap:wrap;row-gap:var(--sp-8);min-width:0;}
+.act-nav-link{display:flex;align-items:center;gap:6px;height:44px;padding:0 var(--sp-16);white-space:nowrap;flex-shrink:0;border-radius:var(--cr-8);
   font-family:var(--ff-heading);font-size:var(--fs-small);line-height:20px;font-weight:600;color:var(--text-strong);cursor:pointer;transition:background var(--dur-normal) var(--ease-out);}
 .act-nav-link:hover{background:var(--fill-hover);}
 .act-nav-link i{font-size:11px;opacity:.6;}
 .act-nav-pill{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-pill);padding:5px 10px;font-size:var(--fs-tiny);}
 .act-nav-pill .act-flag{font-size:15px;line-height:1;opacity:.45;cursor:pointer;}
 .act-nav-pill .act-flag.is-on{opacity:1;}
-.act-btn-contacto{display:inline-flex;align-items:center;gap:var(--sp-8);height:44px;padding:0 var(--sp-20);border-radius:var(--cr-pill);
+.act-btn-contacto{display:inline-flex;align-items:center;gap:var(--sp-8);height:44px;padding:0 var(--sp-20);white-space:nowrap;flex-shrink:0;border-radius:var(--cr-pill);
   background:#fff;border:1px solid var(--sitio-borde-d8d8dc);font-family:var(--ff-heading);font-weight:700;font-size:15px;color:var(--text-strong);cursor:pointer;}
-.act-btn-plus{display:inline-flex;align-items:center;gap:var(--sp-8);height:44px;padding:0 var(--sp-20);border-radius:var(--cr-64);
+.act-btn-plus{display:inline-flex;align-items:center;gap:var(--sp-8);height:44px;padding:0 var(--sp-20);white-space:nowrap;flex-shrink:0;border-radius:var(--cr-64);
   background:var(--prim-blue-1000);color:#fff;font-family:var(--ff-heading);font-weight:700;font-size:15.2px;cursor:pointer;border:none;}
 .act-btn-plus:hover{background:var(--sitio-fondo-1b2757);}
 
@@ -575,11 +639,13 @@ a{text-decoration:none;}
 
 /* ── CARD SOLUCIONES (card_solutions) ── */
 .act-card-sol{display:flex;flex-direction:column;background:#fff;border-radius:var(--cr-24);box-shadow:var(--sh-card);overflow:hidden;}
-.act-card-sol-media{height:140px;background:linear-gradient(135deg,var(--prim-blue-1000),var(--prim-blue-dark-1000));display:grid;place-items:center;color:rgba(255,255,255,.35);font-size:34px;}
+.act-card-sol-media{position:relative;aspect-ratio:16/9;background:var(--prim-blue-1000);overflow:hidden;}
+.act-card-sol-media img{width:100%;height:100%;object-fit:cover;display:block;}
+.act-card-sol-play{position:absolute;inset:auto auto 10px 10px;width:30px;height:30px;border-radius:999px;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);display:grid;place-items:center;color:#fff;font-size:11px;}
 .act-card-sol-body{padding:var(--sp-20);display:flex;flex-direction:column;gap:var(--sp-12);flex:1;}
-.act-card-sol h4{font-family:var(--ff-display);font-size:var(--fs-h4);line-height:22px;font-weight:500;color:var(--text-strong);}
+.act-card-sol h4{font-family:var(--ff-display);font-size:var(--fs-h4);line-height:24px;font-weight:500;color:var(--text-strong);text-wrap:balance;}
 .act-card-sol p{font-family:var(--ff-body);font-size:var(--fs-small);line-height:20px;color:var(--text-weak);flex:1;}
-.act-card-sol-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-heading);font-size:var(--fs-tiny);font-weight:700;color:var(--prim-orange-1000);}
+.act-card-sol-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-heading);font-size:var(--fs-tiny);font-weight:700;color:var(--text-orange);}
 
 /* ── CARD BASE (card_base) ── */
 .act-card-base{background:#fff;border-radius:var(--cr-24);padding:var(--sp-32);display:flex;flex-direction:column;gap:var(--sp-12);box-shadow:var(--sh-soft);}
@@ -592,7 +658,8 @@ a{text-decoration:none;}
 .act-testi-quote{font-family:var(--ff-body);font-size:var(--fs-small);line-height:20px;color:var(--text-weak);flex:1;}
 .act-testi-bottom{display:flex;align-items:center;gap:var(--sp-12);}
 .act-testi-logo{width:120px;height:44px;flex-shrink:0;background:#fff;border:1px solid rgba(21,31,71,.08);border-radius:var(--cr-12);
-  display:grid;place-items:center;font-family:var(--ff-display);font-size:13px;font-weight:700;color:var(--prim-blue-1000);}
+  display:grid;place-items:center;padding:6px 10px;}
+.act-testi-logo img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
 .act-testi-name{font-family:var(--ff-heading);font-size:var(--fs-small);line-height:20px;font-weight:800;color:var(--text-strong);}
 .act-testi-role{font-family:var(--ff-heading);font-size:13px;line-height:16px;font-weight:600;color:var(--text-weak);}
 
@@ -602,16 +669,17 @@ a{text-decoration:none;}
 .act-marquee-track{display:flex;gap:var(--sp-48);width:max-content;animation:act-marq 26s linear infinite;}
 .act-marquee:hover .act-marquee-track{animation-play-state:paused;}
 @keyframes act-marq{to{transform:translateX(-50%);}}
-.act-logo-stone{height:34px;min-width:116px;display:grid;place-items:center;font-family:var(--ff-display);font-size:13px;font-weight:700;
-  color:var(--theme-grey-500);filter:grayscale(1);opacity:.75;white-space:nowrap;}
+.act-logo-stone{height:38px;width:auto;object-fit:contain;flex-shrink:0;opacity:.8;transition:opacity var(--dur-normal) var(--ease-out);}
+.act-logo-stone:hover{opacity:1;}
 
 /* ── CERTIFICACIONES (cert_frame / cert_logo) ── */
 .act-cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--sp-16);}
 .act-cert-frame{border-radius:var(--cr-32);padding:var(--sp-12);background:rgba(255,255,255,.6);border:1px solid var(--stroke-weak);
   display:flex;flex-direction:column;align-items:center;gap:var(--sp-8);text-align:center;}
-.act-cert-cell{width:100%;aspect-ratio:1;background:#fff;border-radius:var(--cr-24);display:grid;place-items:center;font-size:28px;color:var(--prim-blue-1000);}
+.act-cert-cell{width:100%;aspect-ratio:1;background:#fff;border-radius:var(--cr-24);display:grid;place-items:center;padding:var(--sp-12);}
+.act-cert-cell img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
 .act-cert-name{font-family:var(--ff-body);font-size:11px;line-height:15px;color:var(--text-weak);}
-.act-cert-link{font-family:var(--ff-heading);font-size:11px;font-weight:700;color:var(--prim-orange-1000);}
+.act-cert-link{font-family:var(--ff-heading);font-size:11px;font-weight:700;color:var(--text-orange);}
 
 /* ── CTA SECTION (cta_section) ── */
 .act-cta{border-radius:var(--cr-32);padding:var(--sp-48);text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--sp-20);
@@ -635,19 +703,18 @@ a{text-decoration:none;}
 .act-check:has(input:checked){background:var(--fill-brand-weak);border-color:var(--stroke-brand-weak);color:var(--text-brand);}
 
 /* ── FOOTER (footer_section) ── */
-.act-footer{border-radius:var(--cr-32);padding:var(--sp-40);color:var(--text-inverse-weak);
-  background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--sitio-fondo-10183a));}
+.act-footer{border-radius:var(--cr-32);padding:var(--sp-40);color:var(--footer-text);background:var(--footer-bg);}
 .act-footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--sp-32);}
 .act-footer-title{font-family:var(--ff-heading);font-size:15px;line-height:22px;font-weight:700;color:#fff;margin-bottom:var(--sp-16);letter-spacing:.5px;}
 .act-footer-line{display:flex;align-items:center;gap:9px;margin-bottom:var(--sp-12);font-family:var(--ff-heading);font-size:var(--fs-tiny);line-height:24px;}
 .act-footer-icon{width:20px;text-align:center;color:var(--prim-orange-1000);flex-shrink:0;}
-.act-footer-link{display:block;font-family:var(--ff-heading);font-size:var(--fs-tiny);line-height:21px;color:var(--text-inverse-weak);margin-bottom:var(--sp-8);}
+.act-footer-link{display:block;font-family:var(--ff-heading);font-size:var(--fs-tiny);line-height:21px;color:var(--footer-text);margin-bottom:var(--sp-8);}
 .act-footer-link:hover{color:#fff;}
 .act-social{display:flex;gap:var(--sp-12);margin-top:var(--sp-16);}
-.act-social-link{width:38px;height:38px;border-radius:var(--cr-pill);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+.act-social-link{width:38px;height:38px;border-radius:999px;background:var(--footer-social-bg);border:none;
   display:grid;place-items:center;color:#fff;transition:background var(--dur-normal) var(--ease-out);}
 .act-social-link:hover{background:var(--prim-orange-1000);border-color:var(--prim-orange-1000);}
-.act-footer-bottom{margin-top:var(--sp-32);padding-top:var(--sp-20);border-top:1px solid rgba(255,255,255,.14);
+.act-footer-bottom{margin-top:var(--sp-32);padding-top:var(--sp-20);border-top:1px solid var(--footer-divider);
   display:flex;justify-content:space-between;gap:var(--sp-16);flex-wrap:wrap;font-family:var(--ff-body);font-size:12px;}
 
 /* ── WHATSAPP FLOTANTE (wa_float) ── */
@@ -666,7 +733,9 @@ a{text-decoration:none;}
 /* ── Utilidades de demo ── */
 .act-demo{background:var(--sitio-fondo-f3f3f3);border-radius:var(--cr-20);padding:var(--sp-24);margin-bottom:var(--sp-16);border:1px solid var(--stroke-weak);}
 .act-demo.is-dark{background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--sitio-fondo-10183a));border-color:transparent;}
-.act-grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--sp-16);}
+.act-grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--sp-20);}
+.act-grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:var(--sp-20);}
+@media (min-width:900px){.act-grid-cards{grid-template-columns:repeat(2,1fr);}}
 .act-grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--sp-16);}
 .act-row{display:flex;flex-wrap:wrap;gap:var(--sp-12);align-items:center;}
 .act-tokentable{width:100%;border-collapse:collapse;font-family:var(--ff-body);font-size:13px;}
@@ -700,10 +769,11 @@ a{text-decoration:none;}
 </header>
 
 <div class="ds-layout">
-  <nav class="ds-nav">
+  <nav class="ds-nav" aria-label="Navegación del design system">
     <div class="ds-nav-group"><a class="ds-nav-link active" href="#intro">Introducción</a></div>
+
     <div class="ds-nav-group">
-      <span class="ds-nav-label">Fundamentos</span>
+      <span class="ds-nav-label">⚛ Átomos</span>
       <a class="ds-nav-link" href="#colors">Colores</a>
       <a class="ds-nav-link" href="#typography">Tipografía</a>
       <a class="ds-nav-link" href="#icons">Iconos</a>
@@ -713,52 +783,63 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#grid">Cuadrículas</a>
       <a class="ds-nav-link" href="#z-index">Z-Index</a>
       <a class="ds-nav-link" href="#animations">Motion</a>
+      <a class="ds-nav-link" href="#cmp-logos">Logotipos</a>
       <a class="ds-nav-link" href="#voice-tone">Voz y Tono</a>
     </div>
+
     <div class="ds-nav-group">
-      <span class="ds-nav-label">Marca</span>
-      <a class="ds-nav-link" href="#cmp-logos">Logotipos</a>
-      <a class="ds-nav-link" href="#cmp-actuarin">Actuarín</a>
-    </div>
-    <div class="ds-nav-group">
-      <span class="ds-nav-label">Componentes · Figma</span>
+      <span class="ds-nav-label">🧬 Moléculas</span>
       <a class="ds-nav-link" href="#elements">Elements</a>
       <a class="ds-nav-link" href="#forms">Forms</a>
+      <a class="ds-nav-link" href="#act-chips">Chipsets</a>
+      <a class="ds-nav-link" href="#act-buttons">Botones del sitio</a>
+    </div>
+
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">🦠 Organismos</span>
       <a class="ds-nav-link" href="#feedback">Feedback</a>
       <a class="ds-nav-link" href="#navigation">Navigation</a>
       <a class="ds-nav-link" href="#surfaces">Surfaces</a>
       <a class="ds-nav-link" href="#content-display">Content display</a>
       <a class="ds-nav-link" href="#marketing">Marketing</a>
+      <a class="ds-nav-link" href="#cmp-tracking">Tracking · interactivo</a>
+      <a class="ds-nav-link" href="#cmp-banner-slider">Banner Slider</a>
+      <a class="ds-nav-link" href="#cmp-card-flip">Card flip</a>
+      <a class="ds-nav-link" href="#cmp-chart">Chart</a>
+      <a class="ds-nav-link" href="#cmp-actuarin">Actuarín</a>
     </div>
+
     <div class="ds-nav-group">
-      <span class="ds-nav-label">Layouts</span>
+      <span class="ds-nav-label">🧩 Plantillas</span>
       <a class="ds-nav-link" href="#app-shell">App Shell</a>
       <a class="ds-nav-link" href="#bento">Bento Grid</a>
       <a class="ds-nav-link" href="#grids">Grids de datos</a>
     </div>
+
     <div class="ds-nav-group">
-      <span class="ds-nav-label">Componentes · NEO</span>
-      <a class="ds-nav-link" href="#cmp-banner-slider">Banner Slider</a>
-      <a class="ds-nav-link" href="#cmp-card-flip">Card flip</a>
-      <a class="ds-nav-link" href="#cmp-chart">Chart</a>
-    </div>
-    <div class="ds-nav-group">
-      <span class="ds-nav-label">Patrones</span>
-      <a class="ds-nav-link" href="#glass-recipe">Glass Recipe</a>
-      <a class="ds-nav-link" href="#neu-surfaces">Neu Surfaces</a>
-      <a class="ds-nav-link" href="#responsive">Responsivo</a>
-      <a class="ds-nav-link" href="#states">Estados</a>
-      <a class="ds-nav-link" href="#color-usage">Color Usage</a>
-    </div>
-    <div class="ds-nav-group">
-      <span class="ds-nav-label">Sitio actuaria.com</span>
+      <span class="ds-nav-label">🏛 Sitio actuaria.com</span>
       <a class="ds-nav-link" href="#act-tokens">Tokens oficiales</a>
       <a class="ds-nav-link" href="#act-components">Componentes del sitio</a>
       <a class="ds-nav-link" href="#act-gaps">Brechas DS ↔ sitio</a>
     </div>
+
     <div class="ds-nav-group">
-      <span class="ds-nav-label">Seguimiento</span>
-      <a class="ds-nav-link" href="#cmp-tracking">Tracking</a>
+      <span class="ds-nav-label">✅ Calidad</span>
+      <a class="ds-nav-link" href="#act-quality">Contraste y jerarquía</a>
+      <a class="ds-nav-link" href="#states">Estados</a>
+      <a class="ds-nav-link" href="#color-usage">Color Usage</a>
+      <a class="ds-nav-link" href="#responsive">Responsivo</a>
+    </div>
+
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">🎨 Recetas</span>
+      <a class="ds-nav-link" href="#glass-recipe">Glass Recipe</a>
+      <a class="ds-nav-link" href="#neu-surfaces">Neu Surfaces</a>
+    </div>
+
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">🤖 Para la IA</span>
+      <a class="ds-nav-link" href="#act-ai">Contratos de implementación</a>
     </div>
   </nav>
   <main class="ds-content">
@@ -3643,67 +3724,104 @@ a{text-decoration:none;}
 
   <!-- TRACKING -->
   <div class="comp-block" id="cmp-tracking">
-    <h3>Tracking</h3>
-    <p class="desc-text" style="margin-bottom:12px;">Timeline de estados de un trámite (ej. emisión de una póliza). Pasos <strong>completados</strong> (sunken + check), el <strong>actual</strong> (raised indigo, resaltado) y los <strong>pendientes</strong> (atenuados).</p>
-    <div class="demo-box demo-box-col" style="gap:32px;padding:28px;align-items:flex-start;">
-      <div style="width:100%;">
-        <div class="swatch-group-label">Vertical</div>
-        <div class="track-v" style="margin-top:12px;">
-          <div class="track-step done">
-            <div class="track-dot"><i class="fa-solid fa-check"></i></div>
-            <div class="track-body"><div class="track-name">Solicitud recibida</div><div class="track-time">12 jun · 09:14</div></div>
-          </div>
-          <div class="track-step done">
-            <div class="track-dot"><i class="fa-solid fa-check"></i></div>
-            <div class="track-body"><div class="track-name">En cálculo</div><div class="track-time">13 jun · 16:40</div></div>
-          </div>
-          <div class="track-step current">
-            <div class="track-dot"><i class="fa-solid fa-gear"></i></div>
-            <div class="track-body"><div class="track-name">En revisión actuarial</div><div class="track-time">En curso · hoy</div></div>
-          </div>
-          <div class="track-step pending">
-            <div class="track-dot">4</div>
-            <div class="track-body"><div class="track-name">Póliza emitida</div><div class="track-time">Pendiente</div></div>
+    <h3>Tracking <span class="act-chipset is-brand"><i class="fa-solid fa-sliders"></i> interactivo</span></h3>
+    <p class="desc-text" style="margin-bottom:12px;">Línea de tiempo del estado de un trámite actuarial (emisión de póliza, valuación, cierre de reserva). Manipula los controles para recorrer <strong>todos los estados y variantes</strong> sin tocar código; el HTML resultante se actualiza abajo en vivo.</p>
+
+    <div class="pg" id="pg-track">
+      <div class="pg-bar">
+        <div class="pg-ctl">
+          <label>Orientación</label>
+          <div class="pg-seg" data-pg="orient">
+            <button data-v="v" aria-pressed="true">Vertical</button>
+            <button data-v="h" aria-pressed="false">Horizontal</button>
           </div>
         </div>
-      </div>
-      <div style="width:100%;">
-        <div class="swatch-group-label">Horizontal</div>
-        <div class="track-h" style="margin-top:16px;">
-          <div class="track-step done">
-            <div class="track-dot"><i class="fa-solid fa-check"></i></div>
-            <div class="track-body"><div class="track-name">Solicitud</div><div class="track-time">12 jun</div></div>
-          </div>
-          <div class="track-step done">
-            <div class="track-dot"><i class="fa-solid fa-check"></i></div>
-            <div class="track-body"><div class="track-name">Cálculo</div><div class="track-time">13 jun</div></div>
-          </div>
-          <div class="track-step current">
-            <div class="track-dot"><i class="fa-solid fa-gear"></i></div>
-            <div class="track-body"><div class="track-name">Revisión</div><div class="track-time">Hoy</div></div>
-          </div>
-          <div class="track-step pending">
-            <div class="track-dot">4</div>
-            <div class="track-body"><div class="track-name">Emitida</div><div class="track-time">—</div></div>
+        <div class="pg-ctl">
+          <label>Paso actual</label>
+          <select data-pg="step">
+            <option value="0">1 · Solicitud recibida</option>
+            <option value="1">2 · Validación de datos</option>
+            <option value="2" selected>3 · Cálculo actuarial</option>
+            <option value="3">4 · Revisión técnica</option>
+            <option value="4">5 · Informe emitido</option>
+          </select>
+        </div>
+        <div class="pg-ctl">
+          <label>Estado del paso actual</label>
+          <div class="pg-seg" data-pg="state">
+            <button data-v="current" aria-pressed="true">En curso</button>
+            <button data-v="error" aria-pressed="false">Error</button>
+            <button data-v="warning" aria-pressed="false">Atención</button>
           </div>
         </div>
+        <div class="pg-ctl">
+          <label>Marca de tiempo</label>
+          <label class="pg-switch"><input type="checkbox" data-pg="time" checked> Mostrar</label>
+        </div>
+        <div class="pg-ctl">
+          <label>Fondo</label>
+          <label class="pg-switch"><input type="checkbox" data-pg="dark"> Oscuro</label>
+        </div>
       </div>
+      <div class="pg-stage" data-pg-stage>
+        <div class="track-v" data-pg-render></div>
+      </div>
+      <details class="pg-out">
+        <summary>HTML generado por esta configuración</summary>
+        <pre data-pg-code></pre>
+      </details>
     </div>
+
     <div class="comp-desc">
-      <div class="desc-title">Variantes Figma</div>
-      <div class="desc-text">Orientación: vertical (lista de hitos con timestamps) u horizontal (proceso compacto). Estados: <span class="ds-code-inline">done</span> (sunken + check, conector verde), <span class="ds-code-inline">current</span> (raised indigo con halo), <span class="ds-code-inline">pending</span> (atenuado). El conector marca el progreso entre pasos.</div>
-      <div class="usage-note" style="margin-top:8px;">A diferencia del Stepper, el Tracking es de solo lectura: comunica dónde va un proceso, no captura input. En mobile el horizontal colapsa a vertical.</div>
+      <div class="desc-title">Estados y su semántica</div>
+      <div class="desc-text"><strong>done</strong> — superficie hundida (<span class="ds-code-inline">--neu-in-sm</span>), punto verde con check. <strong>current</strong> — superficie elevada (<span class="ds-code-inline">--neu-out-sm</span>) + anillo de marca, es el único paso elevado. <strong>pending</strong> — plano, punto hueco con borde <span class="ds-code-inline">--stroke-weak</span>. <strong>error</strong> / <strong>warning</strong> — heredan de current pero cambian el color del punto y del anillo a <span class="ds-code-inline">--fill-error-strong</span> / <span class="ds-code-inline">--fill-warning-strong</span>.</div>
+      <div class="usage-note" style="margin-top:8px;">Regla de jerarquía neumórfica: <strong>solo un elemento elevado por grupo</strong>. Si dos pasos estuvieran elevados el usuario no sabría cuál es el actual. Los pasos completados van hundidos porque son dato histórico, no acción.</div>
     </div>
-    <pre class="ds-code">&lt;div class="track-v"&gt;
-  &lt;div class="track-step done"&gt;   &lt;!-- completado --&gt;
-    &lt;div class="track-dot"&gt;&lt;i class="fa-solid fa-check"&gt;&lt;/i&gt;&lt;/div&gt;
-    &lt;div class="track-body"&gt;&lt;div class="track-name"&gt;Solicitud recibida&lt;/div&gt;
-      &lt;div class="track-time"&gt;12 jun · 09:14&lt;/div&gt;&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class="track-step current"&gt;…&lt;/div&gt; &lt;!-- actual --&gt;
-  &lt;div class="track-step pending"&gt;…&lt;/div&gt; &lt;!-- pendiente --&gt;
-&lt;/div&gt;</pre>
+
+    <details class="ai-spec" data-ai-component="tracking">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "tracking",
+  "version": "2.1.0",
+  "intent": "Comunicar el avance de un proceso actuarial multi-paso y señalar el paso accionable.",
+  "anatomy": {
+    "root": { "class": "track-v | track-h", "role": "list", "aria-label": "requerido: nombre del proceso" },
+    "step": { "class": "track-step", "modifiers": ["done","current","pending","error","warning"], "role": "listitem" },
+    "dot":  { "class": "track-dot", "content": "icono o vacío", "aria-hidden": true },
+    "body": { "class": "track-body", "children": ["track-name", "track-time"] }
+  },
+  "rules": [
+    "Exactamente UN paso lleva 'current' (o 'error'/'warning', que lo sustituyen).",
+    "Todos los pasos antes del actual son 'done'; todos los posteriores 'pending'.",
+    "El estado se comunica además por texto en track-name, nunca solo por color (WCAG 1.4.1).",
+    "aria-current='step' en el paso actual.",
+    "track-time es opcional; si se omite, no dejar el nodo vacío."
+  ],
+  "tokens": {
+    "done.dot":     "--fill-success-strong",
+    "current.dot":  "--fill-brand-strong",
+    "error.dot":    "--fill-error-strong",
+    "warning.dot":  "--fill-warning-strong",
+    "pending.dot":  "transparent + 2px --stroke-weak",
+    "done.surface":    "--neu-in-sm",
+    "current.surface": "--neu-out-sm",
+    "connector":    "--stroke-weak, 2px"
+  },
+  "typography": { "track-name": "Nunito 600 14/20", "track-time": "Prompt 400 12/18 --text-weak" },
+  "responsive": { "&lt;768px": "track-h degrada a vertical; el conector pasa de horizontal a vertical" },
+  "a11y": {
+    "contrast": "track-name sobre --bg-base = 14.8:1 (AAA); track-time = 5.1:1 (AA)",
+    "reduced-motion": "sin transiciones de entrada si prefers-reduced-motion: reduce"
+  },
+  "do_not": [
+    "No elevar más de un paso a la vez.",
+    "No usar el color del punto como único indicador de estado.",
+    "No aplicar --neu-out (sombra grande) a un paso: es demasiado peso visual para un item de lista."
+  ]
+}</pre>
+    </details>
   </div>
+
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════
@@ -3867,14 +3985,14 @@ a{text-decoration:none;}
       <div class="act-navbar">
         <a class="act-logo"><svg class="act-logo-svg" viewBox="0 5.25219 164.918 39.6005" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Actuaria"><g fill="var(--logo-navy)"><path d="M47.1299 29.8474H37.603L36.231 32.9067H32.8081L42.2719 12.3646H42.461L51.9248 32.9067H48.5019L47.1299 29.8474ZM45.9033 27.1372L42.3689 19.2685L38.8248 27.1372H45.9033Z"/><path d="M51.7744 22.8562C51.7744 17.1886 56.5063 12.4276 62.1642 12.4276C64.7726 12.4664 67.1821 13.5767 69.1554 15.5014L67.3179 17.9886C65.9071 16.5777 64.0696 15.642 62.0963 15.642C58.4504 15.642 54.9645 18.837 54.9645 22.8708C54.9645 26.9045 58.4989 30.0656 62.106 30.0656C64.1665 30.0656 65.941 29.0426 67.3276 27.6657L69.1505 30.211C67.4149 31.9225 65.2041 33.2315 62.2078 33.2315C56.5014 33.2315 51.7695 28.5335 51.7695 22.8562H51.7744Z"/><path d="M84.2821 15.9135H78.886V32.9067H75.7152V15.9135H70.3191V12.7767H84.2821V15.9135Z"/><path d="M86.6045 25.2804V12.7767H89.7752V25.2658C89.7752 28.0487 91.7339 30.085 94.1969 30.085C96.6598 30.085 98.6427 28.0487 98.6427 25.2658V12.7767H101.828V25.2755C101.828 29.8959 98.4924 33.28 94.2114 33.28C89.9304 33.28 86.6045 29.8959 86.6045 25.2755V25.2804Z"/><path d="M116.315 29.8474H106.788L105.416 32.9067H101.993L111.457 12.3646H111.646L121.11 32.9067H117.687L116.315 29.8474ZM115.088 27.1372L111.554 19.2685L108.01 27.1372H115.088Z"/><path d="M134.408 32.9067L128.988 25.1155H126.515V32.9067H123.354L123.34 12.7767H129.594C133.342 12.7767 136.41 15.6614 136.41 19.2443C136.41 21.8429 134.738 24.1022 132.425 24.8489L138.282 32.9018H134.398L134.408 32.9067ZM129.676 22.4926C131.577 22.5072 133.162 20.9703 133.162 19.1716C133.162 17.3729 131.553 15.9135 129.676 15.9135H126.506V22.4926H129.676Z"/><path d="M140.415 12.7767H143.576V32.9067H140.415V12.7767Z"/><path d="M160.123 29.8474H150.596L149.224 32.9067H145.802L155.265 12.3646H155.454L164.918 32.9067H161.495L160.123 29.8474ZM158.897 27.1372L155.362 19.2685L151.818 27.1372H158.897Z"/></g><g><path d="M0 32.9115H10.8116V12.7961C10.8116 12.7961 8.74141 22.8514 0 32.9115Z" fill="var(--logo-orange)"/><path d="M12.6929 5.25219C21.4828 8.2775 27.7807 15.9474 27.7807 25.547C27.7807 28.1263 27.3249 30.6037 26.491 32.9067H12.6977V5.25219H12.6929Z" fill="var(--logo-navy)"/><path d="M5.40576 44.8527C13.5605 44.8527 21.7056 40.8093 25.5212 34.7974H5.40576V44.8527Z" fill="var(--logo-blue)"/></g></svg></a>
         <div class="act-nav-links">
-          <a class="act-nav-link">Soluciones <i class="fa-solid fa-chevron-down"></i></a>
+          <a class="act-nav-link">Valuaciones <i class="fa-solid fa-chevron-down"></i></a>
           <a class="act-nav-link">Calculadoras <i class="fa-solid fa-chevron-down"></i></a>
-          <a class="act-nav-link">Nosotros <i class="fa-solid fa-chevron-down"></i></a>
-          <a class="act-nav-link">Blog</a>
+          <a class="act-nav-link">Normativa <i class="fa-solid fa-chevron-down"></i></a>
+          <a class="act-nav-link">Informes</a>
           <span class="act-nav-pill"><span class="act-flag is-on">🇪🇸</span><span class="act-flag">🇬🇧</span></span>
           <span class="act-nav-pill"><i class="fa-solid fa-sun" style="color:var(--prim-amber-1000);font-size:13px"></i><i class="fa-solid fa-moon" style="opacity:.35;font-size:13px"></i></span>
           <a class="act-btn-contacto">Contacto <i class="fa-solid fa-phone"></i></a>
-          <a class="act-btn-plus"><i class="fa-solid fa-circle-dot" style="font-size:12px"></i> actuaria+</a>
+          <a class="act-btn-plus" href="https://plus.actuaria.com/auth/login" target="_blank" rel="noopener"><img class="act-plus-logo" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbeccb6a40ca56c13c67_logo-actuaria-plus.svg" alt="actuaria+" width="84" height="16" loading="lazy"></a>
         </div>
       </div>
     </div>
@@ -3889,6 +4007,50 @@ a{text-decoration:none;}
     &lt;a class="act-btn-plus"&gt;actuaria+&lt;/a&gt;
   &lt;/div&gt;
 &lt;/nav&gt;</pre>
+    <details class="ai-spec" data-ai-component="navbar">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "navbar",
+  "level": "organism",
+  "instances_in_production": 27,
+  "anatomy": {
+    "root": {
+      "class": "act-navbar",
+      "element": "nav",
+      "aria-label": "requerido"
+    },
+    "logo": {
+      "class": "act-logo",
+      "content": "SVG inline del imagotipo oficial",
+      "href": "/"
+    },
+    "links": {
+      "class": "act-nav-links",
+      "children": "act-nav-link[]"
+    },
+    "cta": {
+      "class": "act-btn-contacto (outline) + act-btn-plus (solido)"
+    }
+  },
+  "tokens": {
+    "surface": "#f5f6fa",
+    "border": "--sitio-borde-d8d8dc",
+    "radius": "40px (pildora, sin token)",
+    "shadow": "--sh-navbar",
+    "link": "Nunito 600 16/20, altura 44, radius 8"
+  },
+  "rules": [
+    "flex-wrap:wrap obligatorio: sin el, desborda por debajo de 1200px.",
+    "Los enlaces llevan white-space:nowrap y flex-shrink:0.",
+    "El boton actuaria+ usa su propio SVG (assets.json → logo_plus), nunca un icono generico.",
+    "aria-current='page' en el enlace activo."
+  ],
+  "do_not": [
+    "No fijar ancho al contenedor.",
+    "No sustituir el logotipo por texto ni por una forma dibujada."
+  ]
+}</pre>
+    </details>
   </div>
 
   <!-- MEGA MENU -->
@@ -3900,30 +4062,33 @@ a{text-decoration:none;}
         <div>
           <div class="act-nav-link" style="background:var(--fill-hover);width:max-content;margin-bottom:0;">Soluciones <i class="fa-solid fa-chevron-up"></i></div>
           <div class="act-megamenu">
-            <a class="act-nav-drop"><i class="fa-solid fa-user-group act-icon-chip-nav"></i> Beneficios Laborales</a>
-            <a class="act-nav-drop"><i class="fa-solid fa-heart-pulse act-icon-chip-nav"></i> Seguros y Salud</a>
-            <a class="act-nav-drop"><i class="fa-solid fa-chart-line act-icon-chip-nav"></i> Análisis de Datos</a>
-            <a class="act-nav-drop"><i class="fa-solid fa-shield-halved act-icon-chip-nav"></i> Riesgos y Finanzas</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-chart-pie act-icon-chip-nav"></i> Valuación actuarial</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-vault act-icon-chip-nav"></i> Reservas técnicas</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-table-list act-icon-chip-nav"></i> Tablas de mortalidad</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-chart-line act-icon-chip-nav"></i> Modelos de siniestralidad</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-scale-balanced act-icon-chip-nav"></i> Test de suficiencia</a>
           </div>
         </div>
         <div>
           <div class="act-nav-link" style="background:var(--fill-hover);width:max-content;">Calculadoras <i class="fa-solid fa-chevron-up"></i></div>
           <div class="act-megamenu">
             <span class="act-nav-group-label">Beneficios post empleo</span>
-            <a class="act-nav-drop"><i class="fa-solid fa-calculator act-icon-chip-nav"></i> Jubilación patronal</a>
-            <a class="act-nav-drop"><i class="fa-solid fa-file-invoice-dollar act-icon-chip-nav"></i> Desahucio</a>
-            <span class="act-nav-group-label">Ahorros e impuestos</span>
-            <a class="act-nav-drop"><i class="fa-solid fa-piggy-bank act-icon-chip-nav"></i> Fondos de reserva</a>
-            <a class="act-nav-drop"><i class="fa-solid fa-receipt act-icon-chip-nav"></i> Impuesto a la renta</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-user-clock act-icon-chip-nav"></i> Jubilación patronal</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-file-contract act-icon-chip-nav"></i> Bonificación por desahucio</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-hand-holding-dollar act-icon-chip-nav"></i> Valor presente actuarial</a>
+            <span class="act-nav-group-label">Riesgo y prima</span>
+            <a class="act-nav-drop"><i class="fa-solid fa-percent act-icon-chip-nav"></i> Prima de riesgo</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-coins act-icon-chip-nav"></i> Fondos de reserva</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-dice act-icon-chip-nav"></i> Probabilidad de ruina</a>
             <a class="act-nav-drop" style="color:var(--prim-orange-1000)"><i class="fa-solid fa-grip act-icon-chip-nav" style="color:var(--prim-orange-1000)"></i> Todas las calculadoras</a>
           </div>
         </div>
         <div>
-          <div class="act-nav-link" style="background:var(--fill-hover);width:max-content;">Nosotros <i class="fa-solid fa-chevron-up"></i></div>
+          <div class="act-nav-link" style="background:var(--fill-hover);width:max-content;">Normativa <i class="fa-solid fa-chevron-up"></i></div>
           <div class="act-megamenu">
-            <a class="act-nav-drop"><i class="fa-solid fa-people-group act-icon-chip-nav"></i> Nuestro equipo</a>
-            <a class="act-nav-drop"><i class="fa-solid fa-briefcase act-icon-chip-nav"></i> Trabaja con nosotros</a>
-            <a class="act-nav-drop"><i class="fa-solid fa-table-list act-icon-chip-nav"></i> Coeficientes JP-AM99</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-table-cells act-icon-chip-nav"></i> Coeficientes JP · AM-99</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-book act-icon-chip-nav"></i> Normativa NIC 19</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-sitemap act-icon-chip-nav"></i> Metodología de cálculo</a>
             <a class="act-nav-drop"><i class="fa-solid fa-lock act-icon-chip-nav"></i> Seguridad de la información</a>
           </div>
         </div>
@@ -3998,6 +4163,42 @@ a{text-decoration:none;}
     <div class="comp-desc">
       <div class="usage-note">Dispara con <span class="ds-code-inline">IntersectionObserver</span> al 40% de visibilidad; se ejecuta una sola vez. Respetar <span class="ds-code-inline">prefers-reduced-motion</span>: mostrar el valor final sin animación.</div>
     </div>
+    <details class="ai-spec" data-ai-component="counters-odometer">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "counters-odometer",
+  "level": "organism",
+  "anatomy": {
+    "root": {
+      "class": "act-odo"
+    },
+    "digit": {
+      "class": "act-odo-d",
+      "child": "act-odo-roll"
+    },
+    "label": {
+      "class": "act-odo-label"
+    },
+    "desc": {
+      "class": "act-odo-desc"
+    }
+  },
+  "tokens": {
+    "digits": "Lemon Milk Pro 800 38/38",
+    "label": "Nunito 700 16",
+    "desc": "Prompt 400 14/20"
+  },
+  "rules": [
+    "Dispara con IntersectionObserver al 40% y se ejecuta UNA sola vez.",
+    "Con prefers-reduced-motion: reduce, mostrar el valor final sin animar.",
+    "El valor final debe estar en el DOM aunque el JS falle (progressive enhancement)."
+  ],
+  "do_not": [
+    "No animar en bucle.",
+    "No dejar el valor solo en JS: debe ser legible sin scripts."
+  ]
+}</pre>
+    </details>
   </div>
 
   <!-- CARDS DE SOLUCIONES -->
@@ -4005,9 +4206,9 @@ a{text-decoration:none;}
     <h3>Card de Soluciones</h3>
     <p class="desc-text" style="margin-bottom:12px;">Cuatro cards en la sección <code class="ds-code-inline">#soluciones</code>. Estructura: media (video en loop) → chipset en inglés → titular display → párrafo → CTA naranja. Radius 24px y la sombra de card del sitio.</p>
     <div class="act-canvas">
-      <div class="act-grid-2">
+      <div class="act-grid-cards">
         <div class="act-card-sol">
-          <div class="act-card-sol-media"><i class="fa-solid fa-user-group"></i></div>
+          <div class="act-card-sol-media"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a84bc5117aca1d7b6cd2ab4_v_estudios_poster.0000000.jpg" alt="" loading="lazy" decoding="async"><span class="act-card-sol-play"><i class="fa-solid fa-play"></i></span></div>
           <div class="act-card-sol-body">
             <span class="act-chipset">Employment Benefits</span>
             <h4>Beneficios Laborales y Estudios Actuariales</h4>
@@ -4016,7 +4217,7 @@ a{text-decoration:none;}
           </div>
         </div>
         <div class="act-card-sol">
-          <div class="act-card-sol-media"><i class="fa-solid fa-heart-pulse"></i></div>
+          <div class="act-card-sol-media"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a84bf37233763ed62760e7b_v_Seguros_poster.0000000.jpg" alt="" loading="lazy" decoding="async"><span class="act-card-sol-play"><i class="fa-solid fa-play"></i></span></div>
           <div class="act-card-sol-body">
             <span class="act-chipset">Insurance &amp; Healthcare</span>
             <h4>Seguros y Medicina Prepagada</h4>
@@ -4025,7 +4226,7 @@ a{text-decoration:none;}
           </div>
         </div>
         <div class="act-card-sol">
-          <div class="act-card-sol-media"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="act-card-sol-media"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a84bf69ac0dc88506cf6d61_v_Datos_poster.0000000.jpg" alt="" loading="lazy" decoding="async"><span class="act-card-sol-play"><i class="fa-solid fa-play"></i></span></div>
           <div class="act-card-sol-body">
             <span class="act-chipset">Data Wave</span>
             <h4>Análisis de Datos para Negocios</h4>
@@ -4034,7 +4235,7 @@ a{text-decoration:none;}
           </div>
         </div>
         <div class="act-card-sol">
-          <div class="act-card-sol-media"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="act-card-sol-media"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a84bf9850ed70e57cee2a32_v_Riesgos_poster.0000000.jpg" alt="" loading="lazy" decoding="async"><span class="act-card-sol-play"><i class="fa-solid fa-play"></i></span></div>
           <div class="act-card-sol-body">
             <span class="act-chipset">Risk &amp; Finance</span>
             <h4>Riesgo, SS y Finanzas Corporativas</h4>
@@ -4049,6 +4250,50 @@ a{text-decoration:none;}
       <div class="desc-text">radius 24px · <span class="ds-code-inline">box-shadow: 6px 6px 16px rgba(15,23,42,.12), -6px -6px 14px rgba(255,255,255,.9)</span> · display grid · chipset radius 50px con borde <span class="ds-code-inline">rgba(0,17,102,.1)</span> y fondo <span class="ds-code-inline">rgba(21,31,71,.07)</span>.</div>
       <div class="usage-note" style="margin-top:8px;">El media carga vídeo bajo demanda vía <span class="ds-code-inline">videosbajodemanda-1.0.0.js</span> — nunca autoplay en móvil.</div>
     </div>
+    <details class="ai-spec" data-ai-component="card-solution">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "card-solution",
+  "level": "organism",
+  "instances_in_production": 4,
+  "anatomy": {
+    "root": {
+      "class": "act-card-sol"
+    },
+    "media": {
+      "class": "act-card-sol-media",
+      "content": "img poster 16/9 + badge de play",
+      "lazy": true
+    },
+    "body": {
+      "class": "act-card-sol-body",
+      "children": [
+        "act-chipset",
+        "h4",
+        "p",
+        "act-card-sol-cta"
+      ]
+    }
+  },
+  "tokens": {
+    "radius": "--cr-24",
+    "shadow": "--sh-card",
+    "chip": "Nunito 700 12/18, radius 50px",
+    "h4": "Lemon Milk Pro 500 20/24",
+    "p": "Prompt 400 16/20",
+    "cta": "--text-orange (NO orange--1000)"
+  },
+  "rules": [
+    "El poster viene de assets.json → cards.*; el video real se carga bajo demanda.",
+    "Minimo 340px de ancho: por debajo el titular parte en 4 lineas.",
+    "alt='' en el poster (decorativo); el titular ya describe la tarjeta."
+  ],
+  "do_not": [
+    "No usar orange--1000 en el CTA: 3.73:1 falla WCAG AA a 14px.",
+    "No autoplay de video en movil."
+  ]
+}</pre>
+    </details>
   </div>
 
   <!-- MARQUEE LOGOS -->
@@ -4060,22 +4305,43 @@ a{text-decoration:none;}
       <p class="act-subheading-section" style="text-align:center;margin-bottom:28px;">Una trayectoria construida junto a grandes empresas.</p>
       <div class="act-marquee">
         <div class="act-marquee-track">
-          <span class="act-logo-stone">BANCO PICHINCHA</span><span class="act-logo-stone">Diners Club</span>
-          <span class="act-logo-stone">Banco Bolivariano</span><span class="act-logo-stone">EL ROSADO</span>
-          <span class="act-logo-stone">adelca</span><span class="act-logo-stone">Sumana</span>
-          <span class="act-logo-stone">BMI</span><span class="act-logo-stone">AIG</span>
-          <span class="act-logo-stone">PlanVital</span><span class="act-logo-stone">Salud S.A.</span>
-          <span class="act-logo-stone">BANCO PICHINCHA</span><span class="act-logo-stone">Diners Club</span>
-          <span class="act-logo-stone">Banco Bolivariano</span><span class="act-logo-stone">EL ROSADO</span>
-          <span class="act-logo-stone">adelca</span><span class="act-logo-stone">Sumana</span>
-          <span class="act-logo-stone">BMI</span><span class="act-logo-stone">AIG</span>
-          <span class="act-logo-stone">PlanVital</span><span class="act-logo-stone">Salud S.A.</span>
+          <img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e64001c8aedb99035f24_BancoPichincha_Gris%201.png" alt="Banco Pichincha" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e640af7049ae1ac41f9f_DinersClub_Gris%201.png" alt="Diners Club" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6413e256ae9ff4dd068_BancoBolivariano_Gris%201.png" alt="Banco Bolivariano" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e893dc4aa6bc47eb2f_GrupoElRosado_Gris%201.png" alt="Grupo El Rosado" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e89905f06b2aeecd4b_Adelca_Gris%201.png" alt="Adelca" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e83ece46905ebb7c9c_Unilever_Gris%201.png" alt="Unilever" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e970b146669156b878_McDonalds_Gris%201.png" alt="McDonald's" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6404990369a7d74bea0_Saludsa_Gris%201.png" alt="Salud S.A." loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6426e467a1d3793524b_Humana_Gris%201.png" alt="Humana" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e6f27e9994666133ca_Tia_Gris%201.png" alt="TIA" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e64001c8aedb99035f24_BancoPichincha_Gris%201.png" alt="Banco Pichincha" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e640af7049ae1ac41f9f_DinersClub_Gris%201.png" alt="Diners Club" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6413e256ae9ff4dd068_BancoBolivariano_Gris%201.png" alt="Banco Bolivariano" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e893dc4aa6bc47eb2f_GrupoElRosado_Gris%201.png" alt="Grupo El Rosado" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e89905f06b2aeecd4b_Adelca_Gris%201.png" alt="Adelca" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e83ece46905ebb7c9c_Unilever_Gris%201.png" alt="Unilever" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e970b146669156b878_McDonalds_Gris%201.png" alt="McDonald's" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6404990369a7d74bea0_Saludsa_Gris%201.png" alt="Salud S.A." loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6426e467a1d3793524b_Humana_Gris%201.png" alt="Humana" loading="lazy" decoding="async"><img class="act-logo-stone" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e6f27e9994666133ca_Tia_Gris%201.png" alt="TIA" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
     <div class="comp-desc">
       <div class="usage-note">La pista se duplica al 100% y se traslada a <span class="ds-code-inline">-50%</span> para un bucle sin costura. Máscara: <span class="ds-code-inline">linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)</span>.</div>
     </div>
+    <details class="ai-spec" data-ai-component="marquee">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "marquee",
+  "level": "organism",
+  "logos_in_production": 20,
+  "anatomy": {
+    "root": {
+      "class": "act-marquee"
+    },
+    "track": {
+      "class": "act-marquee-track",
+      "content": "logos duplicados x2"
+    }
+  },
+  "tokens": {
+    "logo": "altura 38, object-fit contain, opacity .8",
+    "mask": "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)"
+  },
+  "rules": [
+    "La pista se duplica al 100% y se traslada a -50% para bucle sin costura.",
+    "Pausa en hover y con prefers-reduced-motion.",
+    "Cada logo lleva alt con el nombre del cliente (assets.json → clientes)."
+  ],
+  "do_not": [
+    "No usar texto en vez de los logos reales.",
+    "No dejar el marquee sin pausa accesible."
+  ]
+}</pre>
+    </details>
   </div>
 
   <!-- TESTIMONIOS -->
@@ -4090,7 +4356,7 @@ a{text-decoration:none;}
           <div class="act-stars">★★★★★</div>
           <p class="act-testi-quote">"Trabajar con Actuaria nos genera confianza. Su equipo ha demostrado un alto nivel de profesionalismo y conocimiento. Hemos obtenido soluciones personalizadas que se adaptan a nuestras necesidades."</p>
           <div class="act-testi-bottom">
-            <div class="act-testi-logo">BMI</div>
+            <div class="act-testi-logo"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ace4234c40304591a030590_testimonio-logo-bmi.png" alt="BMI" loading="lazy"></div>
             <div><div class="act-testi-name">Paúl Villagomez</div><div class="act-testi-role">Gerente Técnico y de Riesgos, BMI Ecuador</div></div>
           </div>
         </div>
@@ -4098,7 +4364,7 @@ a{text-decoration:none;}
           <div class="act-stars">★★★★★</div>
           <p class="act-testi-quote">"El Equipo de Actuaria Consultores ofrece un servicio actuarial excepcional. Su precisión, profesionalismo y atención al detalle han superado nuestras expectativas."</p>
           <div class="act-testi-bottom">
-            <div class="act-testi-logo">AIG</div>
+            <div class="act-testi-logo"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ace4234d7fe7095f8b80564_testimonio-logo-aig.png" alt="AIG" loading="lazy"></div>
             <div><div class="act-testi-name">David Vega</div><div class="act-testi-role">Actuary I, AIG Ecuador</div></div>
           </div>
         </div>
@@ -4106,7 +4372,7 @@ a{text-decoration:none;}
           <div class="act-stars">★★★★★</div>
           <p class="act-testi-quote">"Conozco a Actuaria hace muchos años. Su profesionalismo y empatía son incomparables. No solo realizan cálculos, sino que son verdaderos asesores."</p>
           <div class="act-testi-bottom">
-            <div class="act-testi-logo">planvital</div>
+            <div class="act-testi-logo"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ace4234c40304591a0305d6_testimonio-logo-plan-vital.png" alt="Plan Vital" loading="lazy"></div>
             <div><div class="act-testi-name">Julio Tarré</div><div class="act-testi-role">Gerente General, Plan Vital</div></div>
           </div>
         </div>
@@ -4117,6 +4383,52 @@ a{text-decoration:none;}
       <div class="desc-text">"Sección de testimonios del Home con marquee continuo (glass cards). Una sola fuente para Home y páginas de soluciones. CSS y clon de pista viven en el custom code del SITIO."</div>
       <div class="usage-note" style="margin-top:8px;">Card medida: 440×414 · radius 40px · padding 16px. Chip de logo: 120×44 · radius 12px · borde <span class="ds-code-inline">rgba(21,31,71,.08)</span>.</div>
     </div>
+    <details class="ai-spec" data-ai-component="card-testimonial">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "card-testimonial",
+  "level": "organism",
+  "instances_in_production": 5,
+  "anatomy": {
+    "root": {
+      "class": "act-testi"
+    },
+    "stars": {
+      "class": "act-stars",
+      "aria-label": "requerido: 'N de 5'"
+    },
+    "quote": {
+      "class": "act-testi-quote",
+      "element": "blockquote recomendado"
+    },
+    "bottom": {
+      "class": "act-testi-bottom",
+      "children": [
+        "act-testi-logo",
+        "act-testi-name",
+        "act-testi-role"
+      ]
+    }
+  },
+  "tokens": {
+    "radius": "40px (pildora, sin token)",
+    "shadow": "--sh-soft",
+    "quote": "Prompt 400 16/20 --text-weak",
+    "name": "Nunito 800 16/20",
+    "role": "Nunito 600 13/16",
+    "stars": "--fill-brand-alternate, letter-spacing 8px",
+    "logo": "120x44, radius --cr-12"
+  },
+  "rules": [
+    "Las estrellas necesitan aria-label textual: el color no basta (WCAG 1.4.1).",
+    "El logo del cliente viene de assets.json → testimonios.*, con alt = nombre."
+  ],
+  "do_not": [
+    "No bajar el radius a 24: rompe la identidad del componente.",
+    "No poner la cita en Nunito: es Prompt."
+  ]
+}</pre>
+    </details>
   </div>
 
   <!-- CERTIFICACIONES -->
@@ -4127,18 +4439,53 @@ a{text-decoration:none;}
       <h2 class="act-heading-section" style="text-align:center;margin-bottom:8px;">Respaldados por certificaciones</h2>
       <p class="act-subheading-section" style="text-align:center;margin-bottom:28px;">Operamos bajo las más estrictas normativas nacionales e internacionales.</p>
       <div class="act-cert-grid">
-        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-building-columns"></i></div><div class="act-cert-name">Superintendencia de Compañías, Valores y Seguros</div></div>
-        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-landmark"></i></div><div class="act-cert-name">Superintendencia de Bancos del Ecuador</div></div>
-        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-certificate"></i></div><div class="act-cert-name">IMQ ISO 9001:2015</div><a class="act-cert-link">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
-        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-shield-halved"></i></div><div class="act-cert-name">IMQ ISO/IEC 27001:2022</div><a class="act-cert-link">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
-        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-globe"></i></div><div class="act-cert-name">International Actuarial Association</div></div>
-        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-users-gear"></i></div><div class="act-cert-name">Pensions, Benefits and Social Security Section</div></div>
-        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-award"></i></div><div class="act-cert-name">Instituto de Actuarios Españoles</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d488c10f86bbf0592a5_cert-supercias.png" alt="Superintendencia de Compañías" loading="lazy" decoding="async"></div><div class="act-cert-name">Superintendencia de Compañías, Valores y Seguros</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d481f7f731ec4e22d19_cert-superbancos.png" alt="Superintendencia de Bancos" loading="lazy" decoding="async"></div><div class="act-cert-name">Superintendencia de Bancos del Ecuador</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d484378fbb4caf1022a_cert-iso-9001-imq.png" alt="ISO 9001:2015" loading="lazy" decoding="async"></div><div class="act-cert-name">IMQ ISO 9001:2015</div><a class="act-cert-link">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d48bdf88084c6799bc6_cert-iso-27001-imq.svg" alt="ISO/IEC 27001:2022" loading="lazy" decoding="async"></div><div class="act-cert-name">IMQ ISO/IEC 27001:2022</div><a class="act-cert-link">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d481f7f731ec4e22cca_cert-iaa.png" alt="International Actuarial Association" loading="lazy" decoding="async"></div><div class="act-cert-name">International Actuarial Association</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d48517c214a11c6f978_cert-pbss.png" alt="PBSS Section" loading="lazy" decoding="async"></div><div class="act-cert-name">Pensions, Benefits and Social Security Section</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><img src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d481f11beeb8c078e46_cert-sello-actuarial.png" alt="Sello Actuarial" loading="lazy" decoding="async"></div><div class="act-cert-name">Instituto de Actuarios Españoles</div></div>
       </div>
     </div>
     <div class="comp-desc">
       <div class="usage-note">Los logos reales son imágenes con <span class="ds-code-inline">alt</span> descriptivo (requisito de accesibilidad y SEO). Aquí se sustituyen por iconos para mantener el DS libre de assets.</div>
     </div>
+    <details class="ai-spec" data-ai-component="cert-grid">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "cert-grid",
+  "level": "organism",
+  "items_in_production": 7,
+  "anatomy": {
+    "root": {
+      "class": "act-cert-grid"
+    },
+    "item": {
+      "class": "act-cert-frame",
+      "children": [
+        "act-cert-cell > img",
+        "act-cert-name",
+        "act-cert-link?"
+      ]
+    }
+  },
+  "tokens": {
+    "frame": "radius --cr-32",
+    "cell": "aspect 1/1, radius --cr-24, padding --sp-12",
+    "name": "Prompt 11/15 --text-weak",
+    "link": "--text-orange"
+  },
+  "rules": [
+    "Los logos vienen de assets.json → certs.*, con alt = nombre de la entidad (SEO + a11y).",
+    "Solo ISO 9001 e ISO 27001 llevan enlace 'Ver credencial'."
+  ],
+  "do_not": [
+    "No sustituir los logos por iconos genericos.",
+    "No omitir el alt: son entidades acreditadoras."
+  ]
+}</pre>
+    </details>
   </div>
 
   <!-- CTA -->
@@ -4196,6 +4543,58 @@ a{text-decoration:none;}
       <div class="desc-text"><span class="ds-code-inline">RUC</span> · <span class="ds-code-inline">Razon-Social</span> · <span class="ds-code-inline">Nombre</span> · <span class="ds-code-inline">Apellido</span> · <span class="ds-code-inline">Email</span> · <span class="ds-code-inline">Estudio-Actuarial</span> · <span class="ds-code-inline">Riesgos-y-Finanzas</span> · <span class="ds-code-inline">Seguros-y-Salud</span> · <span class="ds-code-inline">Data-Analytics</span> · <span class="ds-code-inline">Message</span> · <span class="ds-code-inline">Legal</span></div>
       <div class="usage-note" style="margin-top:8px;">Focus: borde <span class="ds-code-inline">stroke--focus</span> + halo de 3px en <span class="ds-code-inline">fill--brand-weak</span>. Los placeholders se inyectan con <span class="ds-code-inline">formplaceholders-1.0.1.js</span>. Éxito → <span class="ds-code-inline">/gracias</span>.</div>
     </div>
+    <details class="ai-spec" data-ai-component="form-section">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "form-section",
+  "level": "organism",
+  "instances_in_production": 9,
+  "anatomy": {
+    "root": {
+      "class": "act-form",
+      "element": "form"
+    },
+    "field": {
+      "class": "act-field",
+      "children": [
+        "label",
+        "input|select|textarea"
+      ]
+    },
+    "checks": {
+      "class": "act-check-row",
+      "children": "act-check[]"
+    }
+  },
+  "fields": [
+    "RUC(13)",
+    "Razon-Social",
+    "Nombre",
+    "Apellido",
+    "Email",
+    "Estudio-Actuarial",
+    "Riesgos-y-Finanzas",
+    "Seguros-y-Salud",
+    "Data-Analytics",
+    "Message",
+    "Legal"
+  ],
+  "tokens": {
+    "input": "altura 46, radius --cr-12, borde --sitio-borde-d8d8dc",
+    "focus": "borde --stroke-focus + halo 3px --fill-brand-weak",
+    "label": "Prompt 500 13"
+  },
+  "rules": [
+    "Todo campo obligatorio lleva marca textual, no solo color.",
+    "El foco NUNCA se elimina sin reemplazo visible.",
+    "Protegido con Cloudflare Turnstile en produccion. Exito → /gracias."
+  ],
+  "do_not": [
+    "No usar outline:none sin halo de reemplazo.",
+    "No validar el RUC solo en cliente."
+  ]
+}</pre>
+    </details>
   </div>
 
   <!-- FOOTER -->
@@ -4244,6 +4643,44 @@ a{text-decoration:none;}
     <div class="comp-desc">
       <div class="usage-note">Redes reales: facebook.com/actuariaconsultores · instagram.com/actuaria_ec · linkedin.com/company/2412258 · YouTube UCqtNWXgoRPgo3gmYfyi6B-A.</div>
     </div>
+    <details class="ai-spec" data-ai-component="footer">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "component": "footer",
+  "level": "organism",
+  "instances_in_production": 26,
+  "anatomy": {
+    "root": {
+      "class": "act-footer",
+      "element": "footer"
+    },
+    "grid": {
+      "class": "act-footer-grid",
+      "columns": "Contacto · Direcciones · Gobierno Corporativo · Transparencia"
+    },
+    "social": {
+      "class": "act-social",
+      "children": "act-social-link[]"
+    }
+  },
+  "tokens": {
+    "background": "#0e1533 PLANO (no degradado)",
+    "text": "rgba(255,255,255,.75)",
+    "divider": "rgba(255,255,255,.15)",
+    "social-bg": "rgba(255,255,255,.12) sin borde",
+    "typography": "Nunito en TODO el footer (title 700 15/22, link 400 14/21)",
+    "icon": "--fill-brand-alternate"
+  },
+  "rules": [
+    "El fondo es un color plano medido en .footer_card. No inventar un degradado.",
+    "Contraste del texto sobre el fondo: 10.31:1 (AAA)."
+  ],
+  "do_not": [
+    "No usar Prompt en el footer: es Nunito.",
+    "No aplicar degradado al fondo."
+  ]
+}</pre>
+    </details>
   </div>
 
   <!-- FLOTANTES -->
@@ -4279,7 +4716,7 @@ a{text-decoration:none;}
     <div class="act-canvas">
       <div class="act-row" style="gap:20px;">
         <div style="text-align:center"><span class="act-button-ring"><a class="act-btn-primary">Descubre cómo lo hacemos <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:15px"></i></a></span><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">button-ring + primary</div></div>
-        <div style="text-align:center"><a class="act-btn-plus"><i class="fa-solid fa-circle-dot" style="font-size:12px"></i> actuaria+</a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">actuariaplus-button</div></div>
+        <div style="text-align:center"><a class="act-btn-plus"><img class="act-plus-logo" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbeccb6a40ca56c13c67_logo-actuaria-plus.svg" alt="actuaria+" width="84" height="16" loading="lazy"></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">actuariaplus-button</div></div>
         <div style="text-align:center"><a class="act-btn-contacto">Contacto <i class="fa-solid fa-phone"></i></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">outline</div></div>
         <div style="text-align:center"><a class="act-btn-orange">Solicita cotización <i class="fa-solid fa-arrow-right"></i></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">acento naranja</div></div>
       </div>
@@ -4357,6 +4794,183 @@ a{text-decoration:none;}
       <div class="desc-title">Pendientes</div>
       <div class="desc-text">1 · Registrar <span class="ds-code-inline">corner-radius--40/50/64</span> en la colección 📐 Spacing de Webflow (hoy hardcodeados en navbar, botones y cards). 2 · Documentar el <strong>modo Dark</strong> de 🏷️ Colours semantic (ya existe en Webflow, aún sin demo aquí). 3 · Fijar <span class="ds-code-inline">font-family--body</span> en el <span class="ds-code-inline">body</span> del sitio: hoy resuelve a Arial y Prompt se aplica solo por clase.</div>
       <div class="usage-note" style="margin-top:8px;">Fuente de verdad: Webflow site <span class="ds-code-inline">6967c96e0fba2ea4f94d3c69</span>, 31 páginas, publicado el 2026-11-24. Auditoría hecha sobre el DOM en vivo + Webflow Data API.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     CALIDAD · CONTRASTE Y JERARQUIA
+     ═══════════════════════════════════════════════════════════════════ -->
+<section id="act-quality" class="ds-section">
+  <div class="section-header">
+    <h2>Calidad: contraste y jerarquía neumórfica</h2>
+    <p>Auditoría WCAG 2.1 calculada sobre los tokens reales, no estimada. El neumorfismo comunica jerarquía mediante luz, pero la luz no tiene contraste medible: por eso cada estado necesita además color, icono o texto.</p>
+  </div>
+
+  <div class="comp-block" id="act-contrast">
+    <h3>Auditoría de contraste</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Ratios calculados con la fórmula de luminancia relativa de WCAG 2.1, componiendo los colores con alpha sobre su fondo opaco. Umbrales: <strong>4.5:1</strong> texto normal · <strong>3:1</strong> texto grande (≥24px o ≥19px bold).</p>
+    <div class="act-demo" style="background:#fff;overflow-x:auto;">
+      <table class="act-tokentable">
+        <thead><tr><th>Muestra</th><th>Texto</th><th>Sobre</th><th style="text-align:right">Ratio</th><th>Veredicto</th></tr></thead>
+        <tbody>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#000626e6">Aa</code></td><td>text--strong</td><td>background--base</td><td style="text-align:right"><strong>16.22:1</strong></td><td><span class="act-chipset is-brand">✓ AAA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#000933a6">Aa</code></td><td>text--weak</td><td>background--base</td><td style="text-align:right"><strong>6.29:1</strong></td><td><span class="act-chipset is-brand">✓ AA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#f5f6fa;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#f5f6fa;color:#000933a6">Aa</code></td><td>text--weak</td><td>background--sunken</td><td style="text-align:right"><strong>6.1:1</strong></td><td><span class="act-chipset is-brand">✓ AA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#f3f3f3;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#f3f3f3;color:#000626e6">Aa</code></td><td>text--strong</td><td>lienzo #f3f3f3</td><td style="text-align:right"><strong>14.81:1</strong></td><td><span class="act-chipset is-brand">✓ AAA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#151f47">Aa</code></td><td>text--brand</td><td>background--base</td><td style="text-align:right"><strong>15.92:1</strong></td><td><span class="act-chipset is-brand">✓ AAA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#e0592a">Aa</code></td><td>fill--brand-alternate</td><td>background--base</td><td style="text-align:right"><strong>3.73:1</strong></td><td><span class="act-chipset is-orange">✕ AA-large</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#e0592a">Aa</code></td><td>fill--brand-alternate</td><td>background--base (grande)</td><td style="text-align:right"><strong>3.73:1</strong></td><td><span class="act-chipset is-brand">✓ AA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#0e1533;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#0e1533;color:#ffffffbf">Aa</code></td><td>text--inverse-weak</td><td>footer #0e1533</td><td style="text-align:right"><strong>10.31:1</strong></td><td><span class="act-chipset is-brand">✓ AAA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#151f47;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#151f47;color:#ffffff">Aa</code></td><td>blanco</td><td>fill--brand-strong</td><td style="text-align:right"><strong>15.92:1</strong></td><td><span class="act-chipset is-brand">✓ AAA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#e0592a;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#e0592a;color:#ffffff">Aa</code></td><td>blanco</td><td>orange--1000</td><td style="text-align:right"><strong>3.73:1</strong></td><td><span class="act-chipset is-orange">✕ AA-large</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#4caf50">Aa</code></td><td>fill--success-strong</td><td>background--base</td><td style="text-align:right"><strong>2.78:1</strong></td><td><span class="act-chipset is-orange">✕ FALLA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#c73a3a">Aa</code></td><td>fill--error-strong</td><td>background--base</td><td style="text-align:right"><strong>5.13:1</strong></td><td><span class="act-chipset is-brand">✓ AA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#ff9800">Aa</code></td><td>fill--warning-strong</td><td>background--base</td><td style="text-align:right"><strong>2.16:1</strong></td><td><span class="act-chipset is-orange">✕ FALLA</span></td></tr>
+          <tr><td><span class="act-sw" style="background:#ffffff;border:1px solid var(--stroke-weak)"></span><span style="display:inline-block;width:8px"></span><code class="ds-code-inline" style="background:#ffffff;color:#000d4d73">Aa</code></td><td>grey--light--500</td><td>background--base</td><td style="text-align:right"><strong>3.07:1</strong></td><td><span class="act-chipset is-orange">✕ AA-large</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Hallazgo · los colores *-1000 son de relleno, no de texto</div>
+      <div class="desc-text">Cuatro tokens de la paleta <strong>no alcanzan 4.5:1 como texto</strong> sobre blanco: naranja (3.73), verde (2.78), ámbar (2.16) y grey-500 (3.07). Son correctos como <em>fill</em> —fondo de chip, punto de estado, barra— pero no como color de letra pequeña.</div>
+      <div class="usage-note" style="margin-top:8px;">Corregido en esta versión: el CTA de las cards, los eyebrow, los enlaces de certificación y las etiquetas del sidebar pasaron de <span class="ds-code-inline">orange--1000</span> a <span class="ds-code-inline">--text-orange #a8431c</span> (6.03:1). Las notas de uso pasaron de grey-500 a <span class="ds-code-inline">--text-weak</span> (6.29:1).</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="act-text-tokens">
+    <h3>Tokens de texto accesible</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Pareja obligatoria para cada color semántico: uno para <em>fill</em> y otro para <em>texto</em>. El naranja de texto ya existía en el sitio como <code class="ds-code-inline">sitio--texto--a8431c</code>; los demás son nuevos.</p>
+    <div class="act-demo" style="background:#fff;">
+      <table class="act-tokentable">
+        <thead><tr><th>Rol</th><th>Fill (no usar como texto)</th><th>Texto accesible</th><th style="text-align:right">Ratio</th></tr></thead>
+        <tbody>
+          <tr><td>Marca alterna</td><td><span class="act-sw" style="background:#e0592a"></span> <code class="ds-code-inline">#e0592a</code> · 3.73</td><td><span class="act-sw" style="background:#a8431c"></span> <code class="ds-code-inline">--text-orange #a8431c</code></td><td style="text-align:right"><strong>6.03:1</strong></td></tr>
+          <tr><td>Éxito</td><td><span class="act-sw" style="background:#4caf50"></span> <code class="ds-code-inline">#4caf50</code> · 2.78</td><td><span class="act-sw" style="background:#2e7d32"></span> <code class="ds-code-inline">--text-green #2e7d32</code></td><td style="text-align:right"><strong>5.13:1</strong></td></tr>
+          <tr><td>Advertencia</td><td><span class="act-sw" style="background:#ff9800"></span> <code class="ds-code-inline">#ff9800</code> · 2.16</td><td><span class="act-sw" style="background:#8a5200"></span> <code class="ds-code-inline">--text-amber #8a5200</code></td><td style="text-align:right"><strong>6.39:1</strong></td></tr>
+          <tr><td>Error</td><td><span class="act-sw" style="background:#c73a3a"></span> <code class="ds-code-inline">#c73a3a</code> · 5.13</td><td><span class="act-sw" style="background:#c73a3a"></span> <code class="ds-code-inline">--text-red</code> (mismo)</td><td style="text-align:right"><strong>5.13:1</strong></td></tr>
+          <tr><td>Información</td><td><span class="act-sw" style="background:#1a74a8"></span> <code class="ds-code-inline">#1a74a8</code> · 5.11</td><td><span class="act-sw" style="background:#1a74a8"></span> <code class="ds-code-inline">--text-teal</code> (mismo)</td><td style="text-align:right"><strong>5.11:1</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="comp-block" id="act-neu-hierarchy">
+    <h3>Jerarquía neumórfica · reglas duras</h3>
+    <p class="desc-text" style="margin-bottom:12px;">El neumorfismo sugiere profundidad con luz simulada. Como la luz no aporta contraste medible, <strong>nunca</strong> puede ser el único portador de significado.</p>
+    <div class="act-demo">
+      <div class="act-grid-2">
+        <div class="act-card-base" style="box-shadow:var(--neu-out);">
+          <span class="act-chipset is-brand"><i class="fa-solid fa-arrow-up"></i> raised</span>
+          <p style="font-family:var(--ff-body);font-size:14px;color:var(--text-weak);margin:0;">Interactivo y accionable. <strong>Máximo uno por grupo.</strong> Si hay dos, el usuario no sabe cuál es la acción principal.</p>
+        </div>
+        <div class="act-card-base" style="box-shadow:var(--neu-in);">
+          <span class="act-chipset"><i class="fa-solid fa-arrow-down"></i> sunken</span>
+          <p style="font-family:var(--ff-body);font-size:14px;color:var(--text-weak);margin:0;">Dato estático, histórico o ya resuelto. No invita a hacer clic.</p>
+        </div>
+        <div class="act-card-base" style="box-shadow:none;border:1px solid var(--stroke-weak);">
+          <span class="act-chipset"><i class="fa-solid fa-minus"></i> flat</span>
+          <p style="font-family:var(--ff-body);font-size:14px;color:var(--text-weak);margin:0;">Contenido sin jerarquía propia dentro de una superficie ya elevada. Evita el anidamiento raised&gt;raised.</p>
+        </div>
+        <div class="act-card-base is-dark" style="background:var(--bg-inverse);border:1px solid rgba(255,255,255,.14);box-shadow:none;">
+          <span class="act-chipset" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff;"><i class="fa-solid fa-moon"></i> sobre oscuro</span>
+          <p style="font-family:var(--ff-body);font-size:14px;color:rgba(255,255,255,.78);margin:0;">En fondo oscuro el neumorfismo pierde la luz superior y se ensucia. <strong>Sustituir por borde de 1px.</strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Checklist</div>
+      <div class="desc-text">1 · Un solo elemento elevado por grupo. 2 · Nunca raised dentro de raised. 3 · La sombra siempre acompañada de color, icono o texto (WCAG 1.4.1). 4 · Foco visible: borde <span class="ds-code-inline">--stroke-focus</span> + halo 3px, nunca <span class="ds-code-inline">outline:none</span> sin reemplazo. 5 · Toda animación respeta <span class="ds-code-inline">prefers-reduced-motion</span>.</div>
+    </div>
+    <details class="ai-spec" data-ai-component="neumorphism">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "system": "neumorphism-hierarchy",
+  "states": {
+    "raised": { "shadow": "--neu-out | --neu-out-sm", "means": "interactivo/accionable", "max_per_group": 1 },
+    "sunken": { "shadow": "--neu-in | --neu-in-sm",  "means": "dato estatico/historico/resuelto" },
+    "flat":   { "shadow": "none", "means": "sin jerarquia propia dentro de superficie elevada" }
+  },
+  "do_not": [
+    "No anidar raised dentro de raised: el hijo va flat o sunken.",
+    "No usar la sombra como unico indicador de estado (WCAG 1.4.1).",
+    "No aplicar neumorfismo sobre fondo oscuro: usar borde 1px.",
+    "No usar los tokens *-1000 como color de texto pequeno: son de fill."
+  ],
+  "text_color_contract": {
+    "fill_vs_text": "Cada color semantico tiene par: *-1000 para fill, --text-* para texto.",
+    "--text-orange": { "hex": "#a8431c", "on_white": 6.03 },
+    "--text-green":  { "hex": "#2e7d32", "on_white": 5.13 },
+    "--text-amber":  { "hex": "#8a5200", "on_white": 6.39 },
+    "minimum": { "normal_text": 4.5, "large_text": 3.0 }
+  }
+}</pre>
+    </details>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     CONTRATOS PARA LA IA DE PRODUCCION
+     ═══════════════════════════════════════════════════════════════════ -->
+<section id="act-ai" class="ds-section">
+  <div class="section-header">
+    <h2>Contratos de implementación para IA</h2>
+    <p>Este design system está pensado para entregarse a un agente de IA que genera código de producción. Además de la documentación visual, cada componente expone un contrato en JSON legible por máquina.</p>
+  </div>
+
+  <div class="comp-block" id="act-ai-files">
+    <h3>Artefactos legibles por máquina</h3>
+    <div class="act-demo" style="background:#fff;">
+      <table class="act-tokentable">
+        <thead><tr><th>Archivo</th><th>Qué contiene</th><th>Cuándo leerlo</th></tr></thead>
+        <tbody>
+          <tr><td><a href="AI-INSTRUCTIONS.md"><code class="ds-code-inline">AI-INSTRUCTIONS.md</code></a></td><td>Contrato narrativo: reglas MUST/NEVER, trampas tipográficas, límites del neumorfismo, checklist de cierre.</td><td><strong>Primero, completo</strong>, antes de escribir código.</td></tr>
+          <tr><td><a href="ds-spec.json"><code class="ds-code-inline">ds-spec.json</code></a></td><td>Tokens en formato máquina (3 capas), escalas, tipografía medida en producción, reglas de neumorfismo, mapa atómico.</td><td>Como referencia canónica de cualquier valor.</td></tr>
+          <tr><td><a href="assets.json"><code class="ds-code-inline">assets.json</code></a></td><td>39 assets reales del CDN: logos, posters de card, certificaciones, logos de cliente, iconos de footer.</td><td>Al necesitar una imagen; nunca inventar URLs.</td></tr>
+          <tr><td><code class="ds-code-inline">[data-ai-component]</code></td><td>Contrato por componente embebido en este documento: anatomía, roles ARIA, invariantes, tokens, a11y y <em>do_not</em>.</td><td>Al implementar ese componente concreto.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Extracción programática</div>
+      <div class="desc-text">Todos los contratos embebidos se obtienen en una línea desde la consola o desde un agente con acceso al DOM.</div>
+    </div>
+    <pre class="ds-code">// Extraer todos los contratos de este documento
+const contratos = [...document.querySelectorAll('[data-ai-component]')].map(el =&gt; ({
+  component: el.dataset.aiComponent,
+  spec: JSON.parse(el.querySelector('pre').textContent)
+}));
+
+// Ejemplo: obtener las prohibiciones de un componente
+contratos.find(c =&gt; c.component === 'tracking').spec.do_not;</pre>
+  </div>
+
+  <div class="comp-block" id="act-ai-rules">
+    <h3>Las cinco reglas que más se rompen</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Extraídas de errores reales cometidos al construir este propio documento. Están en <code class="ds-code-inline">do_not</code> de cada contrato por eso.</p>
+    <div class="act-demo">
+      <div style="display:flex;flex-direction:column;gap:var(--sp-12);">
+        <div class="act-card-base" style="padding:var(--sp-16);gap:var(--sp-4);">
+          <span class="act-chipset is-orange">1 · Tipografía</span>
+          <p style="font-family:var(--ff-body);font-size:14px;line-height:20px;color:var(--text-weak);margin:0;">No deduzcas la familia desde el rol del elemento. Los chips y el footer parecen cuerpo pero son <strong>Nunito</strong>; las citas de testimonio parecen interfaz pero son <strong>Prompt</strong>. Consulta <code class="ds-code-inline">measured_in_production</code>.</p>
+        </div>
+        <div class="act-card-base" style="padding:var(--sp-16);gap:var(--sp-4);">
+          <span class="act-chipset is-orange">2 · Color de texto</span>
+          <p style="font-family:var(--ff-body);font-size:14px;line-height:20px;color:var(--text-weak);margin:0;">Los tokens <code class="ds-code-inline">*-1000</code> son de <em>fill</em>. Como texto pequeño sobre blanco, naranja da 3.73:1 y ámbar 2.16:1 — ambos fallan. Usa el par <code class="ds-code-inline">--text-*</code>.</p>
+        </div>
+        <div class="act-card-base" style="padding:var(--sp-16);gap:var(--sp-4);">
+          <span class="act-chipset is-orange">3 · Jerarquía</span>
+          <p style="font-family:var(--ff-body);font-size:14px;line-height:20px;color:var(--text-weak);margin:0;">Un solo elemento elevado por grupo. Dos superficies <em>raised</em> compiten y el usuario pierde la acción principal.</p>
+        </div>
+        <div class="act-card-base" style="padding:var(--sp-16);gap:var(--sp-4);">
+          <span class="act-chipset is-orange">4 · Assets</span>
+          <p style="font-family:var(--ff-body);font-size:14px;line-height:20px;color:var(--text-weak);margin:0;">Nunca inventes una URL de imagen ni dibujes un logo. El imagotipo, el logo de actuaria+ y los 39 assets están en <code class="ds-code-inline">assets.json</code>.</p>
+        </div>
+        <div class="act-card-base" style="padding:var(--sp-16);gap:var(--sp-4);">
+          <span class="act-chipset is-orange">5 · Radios</span>
+          <p style="font-family:var(--ff-body);font-size:14px;line-height:20px;color:var(--text-weak);margin:0;">Las píldoras 40/50/64 existen en producción pero no como token. Usa el literal y deja el <code class="ds-code-inline">TODO</code>; no las sustituyas por el radio oficial más cercano.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -4929,6 +5543,64 @@ document.querySelectorAll('.ds-section[id], .comp-block[id]').forEach(s => obser
       if (mm) mm.style.display = (mm.style.display === 'none' ? 'grid' : 'none');
     });
   });
+})();
+</script>
+
+<script>
+/* ── Playground interactivo del componente Tracking ── */
+(function () {
+  var pg = document.getElementById('pg-track');
+  if (!pg) return;
+  var PASOS = [
+    { n: 'Solicitud recibida',  t: '12 jun · 09:14' },
+    { n: 'Validación de datos', t: '12 jun · 09:42' },
+    { n: 'Cálculo actuarial',   t: '12 jun · 11:05' },
+    { n: 'Revisión técnica',    t: '13 jun · 08:30' },
+    { n: 'Informe emitido',     t: '13 jun · 16:20' }
+  ];
+  var ICO = { done: 'fa-check', current: 'fa-spinner', error: 'fa-xmark', warning: 'fa-exclamation', pending: '' };
+  var cfg = { orient: 'v', step: 2, state: 'current', time: true, dark: false };
+
+  var stage  = pg.querySelector('[data-pg-stage]');
+  var render = pg.querySelector('[data-pg-render]');
+  var code   = pg.querySelector('[data-pg-code]');
+
+  function build() {
+    var html = '';
+    PASOS.forEach(function (p, i) {
+      var st = i < cfg.step ? 'done' : (i === cfg.step ? cfg.state : 'pending');
+      var ico = ICO[st] ? '<i class="fa-solid ' + ICO[st] + '"></i>' : '';
+      html += '\n  <div class="track-step ' + st + '"' + (i === cfg.step ? ' aria-current="step"' : '') + '>'
+           +  '\n    <div class="track-dot" aria-hidden="true">' + ico + '</div>'
+           +  '\n    <div class="track-body">'
+           +  '\n      <div class="track-name">' + p.n + '</div>'
+           +  (cfg.time ? '\n      <div class="track-time">' + p.t + '</div>' : '')
+           +  '\n    </div>'
+           +  '\n  </div>';
+    });
+    var cls = cfg.orient === 'v' ? 'track-v' : 'track-h';
+    render.className = cls;
+    render.innerHTML = html;
+    stage.classList.toggle('is-dark', cfg.dark);
+    code.textContent = '<div class="' + cls + '" role="list" aria-label="Estado del trámite">'
+                     + html.replace(/</g, '<') + '\n</div>';
+  }
+
+  pg.querySelectorAll('.pg-seg').forEach(function (seg) {
+    seg.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      seg.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      cfg[seg.dataset.pg] = b.dataset.v;
+      build();
+    });
+  });
+  pg.querySelector('[data-pg=step]').addEventListener('change', function (e) {
+    cfg.step = parseInt(e.target.value, 10); build();
+  });
+  pg.querySelector('[data-pg=time]').addEventListener('change', function (e) { cfg.time = e.target.checked; build(); });
+  pg.querySelector('[data-pg=dark]').addEventListener('change', function (e) { cfg.dark = e.target.checked; build(); });
+
+  build();
 })();
 </script>
 </body>

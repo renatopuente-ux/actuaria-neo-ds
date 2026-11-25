@@ -1,0 +1,380 @@
+{
+  "$schema": "https://actuaria.com/ds-spec/v2",
+  "name": "Actuaria Design System",
+  "version": "2.1.0",
+  "generated_from": {
+    "webflow_site_id": "6967c96e0fba2ea4f94d3c69",
+    "domains": [
+      "actuaria.com",
+      "www.actuaria.com"
+    ],
+    "method": "Webflow Data API + getComputedStyle sobre el DOM en produccion",
+    "variable_collections": 6,
+    "css_variables": 357
+  },
+  "token_architecture": {
+    "layers": [
+      "primitive",
+      "theme",
+      "semantic"
+    ],
+    "rule": "Los componentes consumen SOLO la capa semantic. Nunca hardcodear hex ni usar primitive directamente.",
+    "modes": {
+      "semantic": [
+        "base",
+        "dark"
+      ],
+      "typography": [
+        "base",
+        "mobile"
+      ]
+    }
+  },
+  "tokens": {
+    "color": {
+      "primitive": {
+        "blue": {
+          "1000": "#151f47",
+          "800": "#151f47cc",
+          "200": "#151f4733",
+          "50": "#151f470d",
+          "dark-1000": "#3258a2"
+        },
+        "orange": {
+          "1000": "#e0592a",
+          "800": "#e0592acc",
+          "500": "#e0592a80",
+          "300": "#e0592a4d",
+          "50": "#e0592a0d"
+        },
+        "amber": {
+          "1000": "#ff9800"
+        },
+        "green": {
+          "1000": "#4caf50"
+        },
+        "red": {
+          "1000": "#c73a3a"
+        },
+        "teal": {
+          "1000": "#1a74a8"
+        },
+        "purple": {
+          "1000": "#763ec4"
+        },
+        "yellow": {
+          "1000": "#fec62e"
+        },
+        "grey-slate": {
+          "1000": "#000626e6",
+          "700": "#000933a6",
+          "500": "#000d4d73",
+          "100": "#0011661a",
+          "50": "#151f4730",
+          "solid-0": "#ffffff",
+          "solid-50": "#f5f6fa",
+          "solid-900": "#12131a"
+        }
+      },
+      "semantic": {
+        "background--base": "#ffffff",
+        "background--sunken": "#f5f6fa",
+        "background--inverse": "#12131a",
+        "text--strong": "#000626e6",
+        "text--weak": "#000933a6",
+        "text--brand": "#151f47",
+        "text--inverse-strong": "#ffffff",
+        "text--inverse-weak": "rgba(255,255,255,.75)",
+        "fill--brand-strong": "#151f47",
+        "fill--brand-weak": "#151f470d",
+        "fill--brand-alternate": "#e0592a",
+        "fill--success-strong": "#4caf50",
+        "fill--warning-strong": "#ff9800",
+        "fill--error-strong": "#c73a3a",
+        "fill--information-strong": "#1a74a8",
+        "stroke--weak": "#0011661a",
+        "stroke--strong": "#000d4d73",
+        "stroke--focus": "#151f47"
+      },
+      "logo": {
+        "navy": "#111C4E",
+        "orange": "#E0592A",
+        "blue": "#385CAD",
+        "note": "El navy del logotipo NO es el navy de interfaz (#151f47). Son valores distintos a proposito."
+      },
+      "footer": {
+        "background": "#0e1533",
+        "text": "rgba(255,255,255,.75)",
+        "divider": "rgba(255,255,255,.15)",
+        "social-bg": "rgba(255,255,255,.12)",
+        "note": "Color PLANO, no degradado."
+      }
+    },
+    "typography": {
+      "families": {
+        "display": {
+          "stack": "'Lemon Milk Pro', Tahoma, sans-serif",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "licensed": true,
+          "source": "https://webflow-files-prod.global.ssl.fastly.net/6967c96e0fba2ea4f94d3c69/fonts/",
+          "use": "h1, heading-section, titulos de card, wordmark, cifras de odometro"
+        },
+        "heading": {
+          "stack": "'Nunito', sans-serif",
+          "weights": [
+            400,
+            600,
+            700,
+            800
+          ],
+          "use": "subheading-section, navbar, botones, chips, autor de testimonio, footer"
+        },
+        "body": {
+          "stack": "'Prompt', sans-serif",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "use": "bajada del hero, parrafos de card, citas de testimonio, labels"
+        }
+      },
+      "scale": {
+        "display": {
+          "size": 56,
+          "line": 64
+        },
+        "heading-1": {
+          "size": 40,
+          "line": 48
+        },
+        "heading-2": {
+          "size": 32,
+          "line": 40
+        },
+        "heading-3": {
+          "size": 24,
+          "line": 32
+        },
+        "heading-4": {
+          "size": 20,
+          "line": 28
+        },
+        "small": {
+          "size": 16,
+          "line": 24
+        },
+        "tiny": {
+          "size": 14,
+          "line": 20
+        },
+        "uppercase": {
+          "size": 14,
+          "line": 20
+        }
+      },
+      "measured_in_production": {
+        "h1.hero": [
+          "display",
+          48,
+          50,
+          500
+        ],
+        "heading-section": [
+          "display",
+          32,
+          36,
+          700
+        ],
+        "heading_cards_solutions": [
+          "display",
+          20,
+          22,
+          500
+        ],
+        "odo-d": [
+          "display",
+          38,
+          38,
+          800
+        ],
+        "subheading-section": [
+          "heading",
+          18,
+          22,
+          400
+        ],
+        "link_navbar": [
+          "heading",
+          16,
+          20,
+          600
+        ],
+        "nav_link_drop": [
+          "heading",
+          16,
+          20,
+          400
+        ],
+        "text_chip_cards": [
+          "heading",
+          12,
+          18,
+          700
+        ],
+        "testimonial_author": [
+          "heading",
+          16,
+          20,
+          800
+        ],
+        "footer_title": [
+          "heading",
+          15,
+          22,
+          700
+        ],
+        "footer_link": [
+          "heading",
+          14,
+          21,
+          400
+        ],
+        "p.hero": [
+          "body",
+          20,
+          21.6,
+          400
+        ],
+        "p_cards_solutions": [
+          "body",
+          16,
+          20,
+          400
+        ],
+        "p_cards-testimonial": [
+          "body",
+          16,
+          20,
+          400
+        ]
+      },
+      "warning": "El body del sitio resuelve a Arial 14/20. font-family--body se aplica por clase, no globalmente."
+    },
+    "spacing": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      56,
+      64,
+      80,
+      96,
+      128,
+      192,
+      256
+    ],
+    "corner_radius": {
+      "official": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32
+      ],
+      "pills_in_production_without_token": [
+        40,
+        50,
+        64
+      ],
+      "mapping": {
+        "8": "enlaces de navbar",
+        "12": "inputs, chip de logo",
+        "24": "cards de solucion, blog cover",
+        "32": "cert frame, CTA, formulario",
+        "40": "contenedor de navbar, card de testimonio",
+        "50": "chipsets",
+        "64": "boton actuaria+"
+      }
+    },
+    "elevation": {
+      "card": "6px 6px 16px rgba(15,23,42,.12), -6px -6px 14px rgba(255,255,255,.90)",
+      "navbar": "0 10px 30px rgba(15,23,42,.10)",
+      "soft": "0 4px 16px rgba(15,23,42,.08)"
+    }
+  },
+  "neumorphism_rules": {
+    "raised": "Elemento interactivo o accionable. Sombra --neu-out / --neu-out-sm.",
+    "sunken": "Dato estatico, historico o ya resuelto. Sombra --neu-in / --neu-in-sm.",
+    "flat": "Contenido sin jerarquia propia dentro de una superficie ya elevada.",
+    "hard_limits": [
+      "Maximo UN elemento elevado por grupo: dos compiten y destruyen la jerarquia.",
+      "No anidar raised dentro de raised: usar flat o sunken en el hijo.",
+      "La sombra NUNCA es el unico portador de significado: acompanar con color, icono o texto (WCAG 1.4.1).",
+      "Sobre fondo oscuro el neumorfismo pierde la luz superior: usar borde 1px en su lugar."
+    ]
+  },
+  "atomic_design": {
+    "atoms": [
+      "color",
+      "typography",
+      "spacing",
+      "radius",
+      "elevation",
+      "icon",
+      "logo"
+    ],
+    "molecules": [
+      "button",
+      "chipset",
+      "field",
+      "avatar",
+      "badge",
+      "text-link",
+      "icon-chip",
+      "stars"
+    ],
+    "organisms": [
+      "navbar",
+      "megamenu",
+      "card-solution",
+      "card-testimonial",
+      "cert-grid",
+      "form-section",
+      "footer",
+      "tracking",
+      "marquee",
+      "counters"
+    ],
+    "templates": [
+      "app-shell",
+      "bento-grid",
+      "landing-section"
+    ],
+    "pages": [
+      "home",
+      "solucion",
+      "calculadora",
+      "informe"
+    ]
+  },
+  "assets": {
+    "cdn_base": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/",
+    "manifest": "assets.json"
+  },
+  "components": {}
+}

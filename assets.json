@@ -1,0 +1,53 @@
+{
+  "logo": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbec17f7fc765c2ea5d9_logo-actuaria.svg",
+  "logo_plus": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbeccb6a40ca56c13c67_logo-actuaria-plus.svg",
+  "logo_footer": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750c02cd66c8ed1ef1b7_footer-logo-actuaria-blanco.svg",
+  "cards": {
+    "estudios": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a84bc5117aca1d7b6cd2ab4_v_estudios_poster.0000000.jpg",
+    "seguros": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a84bf37233763ed62760e7b_v_Seguros_poster.0000000.jpg",
+    "datos": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a84bf69ac0dc88506cf6d61_v_Datos_poster.0000000.jpg",
+    "riesgos": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a84bf9850ed70e57cee2a32_v_Riesgos_poster.0000000.jpg"
+  },
+  "clientes": {
+    "Banco Pichincha": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e64001c8aedb99035f24_BancoPichincha_Gris%201.png",
+    "Diners Club": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e640af7049ae1ac41f9f_DinersClub_Gris%201.png",
+    "Banco Bolivariano": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6413e256ae9ff4dd068_BancoBolivariano_Gris%201.png",
+    "Grupo El Rosado": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e893dc4aa6bc47eb2f_GrupoElRosado_Gris%201.png",
+    "Adelca": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e89905f06b2aeecd4b_Adelca_Gris%201.png",
+    "Unilever": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e83ece46905ebb7c9c_Unilever_Gris%201.png",
+    "McDonald's": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e970b146669156b878_McDonalds_Gris%201.png",
+    "Salud S.A.": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6404990369a7d74bea0_Saludsa_Gris%201.png",
+    "Humana": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e6426e467a1d3793524b_Humana_Gris%201.png",
+    "TIA": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a85e5e6f27e9994666133ca_Tia_Gris%201.png"
+  },
+  "certs": {
+    "Superintendencia de Compañías": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d488c10f86bbf0592a5_cert-supercias.png",
+    "Superintendencia de Bancos": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d481f7f731ec4e22d19_cert-superbancos.png",
+    "ISO 9001:2015": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d484378fbb4caf1022a_cert-iso-9001-imq.png",
+    "ISO/IEC 27001:2022": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d48bdf88084c6799bc6_cert-iso-27001-imq.svg",
+    "International Actuarial Association": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d481f7f731ec4e22cca_cert-iaa.png",
+    "PBSS Section": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d48517c214a11c6f978_cert-pbss.png",
+    "Sello Actuarial": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a876d481f11beeb8c078e46_cert-sello-actuarial.png"
+  },
+  "testimonios": {
+    "BMI": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ace4234c40304591a030590_testimonio-logo-bmi.png",
+    "AIG": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ace4234d7fe7095f8b80564_testimonio-logo-aig.png",
+    "Plan Vital": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ace4234c40304591a0305d6_testimonio-logo-plan-vital.png",
+    "PALIG": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6ace42343ed6e1306ad177f0_testimonio-logo-palig.png"
+  },
+  "footer_icons": {
+    "phone": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750c282395610261b975_footer-ico-phone.svg",
+    "whatsapp": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750d282395610261b9ab_footer-ico-whatsapp.svg",
+    "envelope": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750dddcb76f0fb7b5fea_footer-ico-envelope.svg",
+    "location": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750e1427a1f9ebfa9143_footer-ico-location.svg",
+    "linkedin": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750e02cd66c8ed1ef28c_footer-ico-linkedin.svg",
+    "facebook": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750e1427a1f9ebfa919c_footer-ico-facebook.svg",
+    "instagram": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750e282395610261bb1f_footer-ico-instagram.svg",
+    "youtube": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a88750f3c2f1ca03320bd92_footer-ico-youtube.svg"
+  },
+  "cta": {
+    "velero": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a886cd00fc0feaddf482c90_cta-velero-sunset.jpg",
+    "formulas": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a886cd0a1704fda908ed9da_cta-formulas.png"
+  },
+  "equipo": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a8485876a35a646dfda5709_Equipo-Actuarianew.jpg.webp"
+}
