@@ -1,7 +1,7 @@
 {
   "$schema": "https://actuaria.com/ds-spec/v2",
   "name": "Actuaria Design System",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "generated_from": {
     "webflow_site_id": "6967c96e0fba2ea4f94d3c69",
     "domains": [
@@ -506,6 +506,107 @@
     "pill_radii": {
       "status": "sin token",
       "detail": "40/50/64 en produccion, ausentes en Webflow y en el brandbook (que define sm 5.333 / md 16 / lg 48)."
+    },
+    "brandbook_ui_colors_unusable_as_text": {
+      "status": "confirmado en la práctica",
+      "detail": "Al construir las pastillas de estado con los niveles 'text' del brandbook, el QA midió warn 1.90:1, ok 2.41:1, info 4.20:1 y bad 4.34:1 sobre su propio tinte. Ninguno alcanza 4.5:1.",
+      "workaround": "El DS usa versiones oscurecidas (#14532d, #6b3e00, #8f1d1d, #1d3f8f) que dan 7.4–8.1:1, y una variante .on-dark para superficies navy. Los tokens del brandbook se conservan como relleno, no como color de texto.",
+      "action": "Decisión del equipo de marca: oscurecer los niveles 'text' del brandbook o declararlos solo-relleno."
     }
+  },
+  "architecture": {
+    "method": "Diseño atómico",
+    "layers": {
+      "atomos": "Fundamentos: color, tipografía, iconos, espacios, elevaciones, radios, cuadrículas, z-index, motion",
+      "moleculas": "Elements, Forms, Chipsets, botones del sitio",
+      "organismos": "Feedback, Navegación, Surfaces, Content display, Marketing, Plataforma, Dominio actuarial",
+      "plantillas": "App shell, Bento, Grids de datos, Layouts"
+    },
+    "unification": {
+      "before": 107,
+      "after": 103,
+      "note": "107 bloques tenían 18 duplicados funcionales. Se fusionaron en 13 canónicos; después se añadieron 21 componentes de plataforma. Un concepto = un bloque, las antiguas duplicaciones son ahora filas de variante.",
+      "merged": {
+        "el-avatar": [
+          "Avatar labelled",
+          "Avatar dropdown",
+          "Avatar stack"
+        ],
+        "el-badge": [
+          "Badge count",
+          "Badge dot"
+        ],
+        "el-button": [
+          "Button group",
+          "Button icon"
+        ],
+        "text": [
+          "Text block"
+        ],
+        "dropdown-menu": [
+          "Dropdown menu list"
+        ],
+        "alert": [
+          "Alert global"
+        ],
+        "form-loading": [
+          "Progress indicator"
+        ],
+        "act-navbar-main": [
+          "Navigation header (genérico)"
+        ],
+        "act-footer-section": [
+          "Footer (genérico)"
+        ],
+        "act-hero-section": [
+          "Hero (genérico)"
+        ],
+        "act-testimonials": [
+          "Testimonial (genérico)",
+          "Rating"
+        ],
+        "act-card-solutions": [
+          "Card (genérico)"
+        ],
+        "act-chips": [
+          "Tag group"
+        ]
+      }
+    }
+  },
+  "interactivity": {
+    "engine": "Delegación de eventos única en document; un componente nuevo no necesita JS propio.",
+    "attributes": {
+      "data-group / data-val / data-target / data-multi": "Grupos de selección: pestañas, segmentados, facetas",
+      "data-table / data-tbldata / data-sort / data-tblsearch / data-faceta / data-bulk": "Tabla con orden, filtro, selección, paginación y acciones masivas",
+      "data-wizard / data-step / data-stepdot / data-stepnav": "Asistente multi-paso",
+      "data-reactive / data-in / data-out / data-echo / data-sens": "Recálculo reactivo entrada→salida",
+      "data-toggle / data-close": "Capas: popovers, drawers, paleta",
+      "data-toast / data-toast-type": "Avisos efímeros",
+      "data-qa-ignore": "Excluye un demo de fallo intencional del QA"
+    },
+    "keyboard": [
+      "⌘K / Ctrl+K abre la paleta",
+      "Esc cierra toda capa abierta",
+      "← → navegan entre pestañas con role=tab",
+      "Flechas + Enter en tablas"
+    ],
+    "reduced_motion": "Shimmer, toasts, odómetro, typing y marquee respetan prefers-reduced-motion"
+  },
+  "qa": {
+    "script": "qa.js",
+    "checks": 8,
+    "list": [
+      "titulares en familia display",
+      "las 3 fuentes cargan de verdad",
+      "desbordamiento por contenedor",
+      "imágenes rotas y pendientes",
+      "contratos data-ai-component parseables",
+      "anclas de navegación",
+      "chips estirados",
+      "contraste WCAG 2.1 con composición de alpha"
+    ],
+    "run": "Cargar la Pages URL con cache-buster, forzar loading=eager en las imágenes, esperar 6s y evaluar qa.js",
+    "status": "0 fallos"
   }
 }

@@ -189,3 +189,49 @@ Para extraerlos todos programáticamente:
 ---
 
 Actuaria Consultores · DS v2.2.0 · reconciliado con el brandbook
+
+
+---
+
+## Capa de plataforma (actuaria+)
+
+El DS ya no es solo el sitio de marketing: incluye los organismos de una plataforma SaaS actuarial.
+Sus 21 especificaciones completas están en `platform-spec.json`; cada componente embebe su contrato
+en el documento.
+
+### MUST
+
+- **Un concepto = un bloque.** Antes de crear un componente, comprobar si ya existe un canónico que
+  deba absorberlo como variante. El DS pasó de 18 duplicados funcionales a 13 canónicos.
+- **Marcar, no programar.** La interactividad se obtiene con atributos `data-*` sobre el motor de
+  delegación. Un componente nuevo no debe traer su propio `addEventListener`.
+- **Datos de ejemplo coherentes.** Si un demo muestra una tabla de mortalidad, `qx` debe crecer, `lx`
+  decrecer y cumplirse `lx(x+1) = lx(x) - dx(x)`. Si muestra una conciliación, debe cuadrar.
+- **Declarar fecha de valuación, moneda y tabla** en cualquier cifra actuarial. Una DBO sin esos tres
+  datos no es auditable.
+- **Identificar la tabla de mortalidad completa**: nombre, sexo, año y versión. «AM-99» a secas es
+  insuficiente para reproducir el cálculo.
+- **Registrar en auditoría la clave de API Y la persona** en cuyo nombre actuó. Solo la clave pierde
+  al responsable.
+- **Ocultar** los módulos sin permiso, no deshabilitarlos: deshabilitar filtra información.
+
+### NEVER
+
+- **No interpolar `qx` linealmente.** La mortalidad crece de forma aproximadamente exponencial. Si
+  falta una edad, celda vacía marcada «sin dato», nunca un valor calculado.
+- **No extrapolar** más allá de la edad terminal (omega) ni por debajo de la edad mínima publicada.
+- **No sumar flujos sin descontar** y presentarlos como la DBO.
+- **No publicar una conciliación que no cuadre**: significa que hay una partida sin clasificar.
+- **No promediar escenarios.** No existe probabilidad asociada a cada uno; su media carece de
+  significado actuarial.
+- **No comparar escenarios** con distinta fecha de valuación, colectivo o versión del motor: bloquear
+  la comparación en lugar de mostrar números que no son comparables.
+- **No portar a producción el recálculo reactivo del DS.** Es un modelo didáctico para enseñar la
+  dirección del efecto, no una valuación.
+- **No usar los niveles `text` del brandbook como color de texto** sobre su propio tinte: miden
+  1.90–4.34:1. Usar las versiones oscurecidas del DS (7.4–8.1:1).
+
+### Verificar antes de entregar
+
+Ejecutar `qa.js` **sobre la URL publicada**, no solo en local. Debe dar 0 fallos. Muestrear
+selectores sueltos no es auditar: así se coló un `h1` en Nunito durante dos publicaciones.

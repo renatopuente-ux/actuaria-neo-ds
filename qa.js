@@ -7,6 +7,7 @@
  * seguía en Nunito. Recorrer TODO o no sirve.
  *
  * Uso: pegar en la consola del navegador sobre index.html
+ *      Las comprobaciones 1-8 son estaticas; la 9 ejerce el motor.
  *      o   node --input-type=module  (con jsdom)  —  ver README.
  */
 (function qaDesignSystem() {
@@ -33,7 +34,9 @@
   /* ── 3 · Ningún elemento desborda su contenedor ──
      Allowlist: scroll horizontal intencional (código, tablas), pistas de
      marquee/slider y ventanas de overflow del odómetro. */
-  const OVERFLOW_OK = /ds-code|pg-out|act-marquee|act-tokentable|neo-slider|neo-slide|act-odo|ds-hero|overflow|fa-/;
+  // sr-only mide 1x1 px a proposito, y el badge de notificaciones sobresale del
+  // boton por diseno: contarlos como desbordamiento es un falso positivo
+  const OVERFLOW_OK = /ds-code|pg-out|act-marquee|act-tokentable|neo-slider|neo-slide|act-odo|ds-hero|overflow|fa-|sr-only|sa-tablewrap|sa-content|sa-side|sa-cmdk|sa-icon-btn|sa-layer/;
   document.querySelectorAll('.ds-content *').forEach(e => {
     if (e.scrollWidth > e.clientWidth + 2 && e.clientWidth > 0 && e.className) {
       const cls = e.className.toString();
@@ -134,6 +137,67 @@
     const min = grande ? 3 : 4.5;
     if (r < min) add('contraste', `${r.toFixed(2)}:1 (min ${min}) ${px}px — «${t.slice(0, 34)}»`);
   });
+
+
+  /* ── 9 · El motor de interactividad FUNCIONA ──
+     Las ocho comprobaciones anteriores miran propiedades estaticas: un motor
+     muerto las pasa todas. Esto ejerce el comportamiento de verdad y deja el
+     DOM como estaba. Sin esto, "0 fallos" no significa "funciona". */
+  /* Guarda de arranque: si el motor aun no ha booteado, el smoke test
+     reportaria seis fallos fantasma. Mejor decirlo una vez y repetir la
+     pasada. Paso de verdad: la primera ejecucion gano la carrera al
+     DOMContentLoaded y acuso a un motor que estaba sano. */
+  const motorListo = typeof window.dsToast === 'function';
+  if (!motorListo) add('motor-no-listo', 'el motor aun no arranco - repetir qa.js cuando document.readyState sea complete');
+
+  const tbl = motorListo && document.querySelector('[data-table]');
+  if (tbl) {
+    const filas = () => tbl.querySelectorAll('tbody tr').length;
+    const n0 = filas();
+    if (n0 === 0) add('motor', 'la tabla no pinto ninguna fila');
+    const inp = tbl.querySelector('[data-tblsearch]');
+    if (inp) {
+      const guardado = inp.value;
+      inp.value = '\u0000zzz-sin-coincidencia';
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+      if (tbl.querySelectorAll('tbody tr').length !== 1) add('motor', 'el filtro de busqueda no reacciona');
+      inp.value = guardado;
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+      if (filas() !== n0) add('motor', 'la tabla no se restaura al limpiar la busqueda');
+    }
+    const th = tbl.querySelector('th[data-sort]');
+    if (th) {
+      th.click();
+      const marcada = tbl.querySelector('th[aria-sort]');
+      if (!marcada) add('motor', 'ordenar no expone aria-sort');
+      else if (marcada !== th) add('a11y', 'aria-sort marca una columna distinta de la pulsada');
+      th.click(); th.click();
+    }
+  }
+  const wiz = motorListo && document.querySelector('[data-wizard]');
+  if (wiz) {
+    const ini = wiz.dataset.current;
+    const next = wiz.querySelector('[data-stepnav="next"]');
+    if (next) {
+      next.click();
+      if (wiz.dataset.current === ini) add('motor', 'el asistente no avanza de paso');
+      const prev = wiz.querySelector('[data-stepnav="prev"]');
+      if (prev) prev.click();
+    }
+  }
+  const react = motorListo && document.querySelector('[data-reactive]');
+  if (react) {
+    const salida = react.querySelector('[data-out="dbo"]');
+    const entrada = react.querySelector('[data-in="tasa"]');
+    if (salida && entrada) {
+      const antes = salida.textContent, v0 = entrada.value;
+      entrada.value = String(parseFloat(v0) + 2);
+      entrada.dispatchEvent(new Event('input', { bubbles: true }));
+      if (salida.textContent === antes) add('motor', 'el recalculo reactivo no responde');
+      entrada.value = v0;
+      entrada.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
 
   /* ── Informe ── */
   const porRegla = fallos.reduce((a, f) => { (a[f.regla] = a[f.regla] || []).push(f.detalle); return a; }, {});

@@ -1,0 +1,3462 @@
+{
+ "assumptions-panel": {
+  "id": "assumptions-panel",
+  "nombre": "Panel de hipótesis actuariales",
+  "purpose": "Permite al actuario revisar, editar, justificar y bloquear el juego completo de hipótesis financieras, demográficas y de plan que alimenta una valuación NIC 19 o un cálculo de reservas, dejando constancia de la fecha de valuación, la fuente de cada hipótesis y el historial de cambios.",
+  "anatomy": [
+   "Cabecera de identificación: cliente, plan o beneficio valuado, fecha de valuación, moneda y estado del juego de hipótesis (borrador / bloqueado / aprobado)",
+   "Grupos colapsables: (a) Hipótesis financieras, (b) Hipótesis demográficas, (c) Parámetros del plan y marco legal, (d) Datos agregados del colectivo",
+   "Fila de hipótesis: etiqueta, control de edición, valor, unidad explícita, rango admitido, columna 'valor de la valuación anterior' y variación",
+   "Indicador de hipótesis modificada respecto de la valuación anterior (punto de color + texto 'modificada')",
+   "Selector de tabla de mortalidad con nombre, sexo, año y versión, y enlace directo al visor de tabla",
+   "Bloque de sustento por hipótesis: campo de justificación técnica, fuente, fecha de observación y adjunto",
+   "Banner de validación cruzada (por ejemplo, diferencial implícito entre tasa de descuento e incremento salarial)",
+   "Barra de acciones: guardar borrador, bloquear juego de hipótesis, duplicar como escenario, exportar anexo de hipótesis, ver historial"
+  ],
+  "data": {
+   "campos": [
+    {
+     "campo": "fecha_valuacion",
+     "tipo": "fecha",
+     "unidad": "AAAA-MM-DD",
+     "descripcion": "Fecha de corte de la valuación; obligatoria y no editable una vez bloqueado el juego"
+    },
+    {
+     "campo": "moneda",
+     "tipo": "texto",
+     "unidad": "ISO 4217",
+     "descripcion": "Moneda de presentación de todos los importes"
+    },
+    {
+     "campo": "metodo_valuacion",
+     "tipo": "enum",
+     "unidad": "-",
+     "descripcion": "Método actuarial; para NIC 19 el método requerido es Unidad de Crédito Proyectada (PUC)"
+    },
+    {
+     "campo": "tasa_descuento_anual",
+     "tipo": "decimal",
+     "unidad": "% anual nominal",
+     "descripcion": "Tasa de descuento con su referencia de mercado, plazo y fecha de observación"
+    },
+    {
+     "campo": "tasa_incremento_salarial_anual",
+     "tipo": "decimal",
+     "unidad": "% anual nominal",
+     "descripcion": "Crecimiento salarial esperado a largo plazo"
+    },
+    {
+     "campo": "tasa_inflacion_anual",
+     "tipo": "decimal",
+     "unidad": "% anual",
+     "descripcion": "Inflación de largo plazo usada para indexar parámetros monetarios"
+    },
+    {
+     "campo": "tasa_rotacion_media_anual",
+     "tipo": "decimal",
+     "unidad": "% anual",
+     "descripcion": "Rotación; puede ser escalar o tabla por edad o por antigüedad"
+    },
+    {
+     "campo": "tabla_mortalidad_id",
+     "tipo": "referencia",
+     "unidad": "-",
+     "descripcion": "Identificador de tabla con nombre, sexo, año y versión"
+    },
+    {
+     "campo": "tabla_invalidez_id",
+     "tipo": "referencia",
+     "unidad": "-",
+     "descripcion": "Tabla de invalidez; admite el valor 'no aplicada' de forma explícita"
+    },
+    {
+     "campo": "edad_jubilacion_supuesta",
+     "tipo": "entero",
+     "unidad": "años",
+     "descripcion": "Edad de salida supuesta; puede diferenciarse por sexo si el plan lo justifica"
+    },
+    {
+     "campo": "anios_servicio_jubilacion_completa",
+     "tipo": "entero",
+     "unidad": "años",
+     "descripcion": "Umbral legal de servicio para jubilación patronal completa"
+    },
+    {
+     "campo": "anios_servicio_jubilacion_proporcional",
+     "tipo": "entero",
+     "unidad": "años",
+     "descripcion": "Umbral de servicio para la jubilación proporcional"
+    },
+    {
+     "campo": "porcentaje_bonificacion_desahucio",
+     "tipo": "decimal",
+     "unidad": "% de la última remuneración mensual por año de servicio",
+     "descripcion": "Parámetro legal de la bonificación por desahucio"
+    },
+    {
+     "campo": "sbu_vigente",
+     "tipo": "decimal",
+     "unidad": "USD/mes",
+     "descripcion": "Salario Básico Unificado del año de valuación; parámetro versionado por año"
+    },
+    {
+     "campo": "pension_minima_mensual",
+     "tipo": "decimal",
+     "unidad": "USD/mes",
+     "descripcion": "Piso monetario de la renta de jubilación patronal según el Código del Trabajo"
+    },
+    {
+     "campo": "n_participantes",
+     "tipo": "entero",
+     "unidad": "personas",
+     "descripcion": "Colectivo activo incluido en la valuación"
+    },
+    {
+     "campo": "masa_salarial_anual",
+     "tipo": "decimal",
+     "unidad": "USD/año",
+     "descripcion": "Masa salarial anualizada a la fecha de valuación"
+    }
+   ],
+   "ejemplo_valores": {
+    "fecha_valuacion": "2026-12-31",
+    "moneda": "USD",
+    "metodo_valuacion": "Unidad de Crédito Proyectada (PUC)",
+    "tasa_descuento_anual": 5.85,
+    "tasa_descuento_fuente": "Rendimiento de referencia observado al 2026-12-31, plazo acorde a la duración del pasivo (12,8 años)",
+    "tasa_incremento_salarial_anual": 3.2,
+    "tasa_inflacion_anual": 2.1,
+    "tasa_rotacion_media_anual": 8.5,
+    "tabla_mortalidad_id": "EMSSA-09 / hombres y mujeres / sin recargo / v1",
+    "tabla_invalidez_id": "No aplicada",
+    "edad_jubilacion_supuesta": 60,
+    "anios_servicio_jubilacion_completa": 25,
+    "anios_servicio_jubilacion_proporcional": 20,
+    "porcentaje_bonificacion_desahucio": 25.0,
+    "sbu_vigente": 470.0,
+    "pension_minima_mensual": 30.0,
+    "n_participantes": 148,
+    "masa_salarial_anual": 2964000.0,
+    "diferencial_implicito_descuento_menos_salarial_pb": 265
+   },
+   "notas_formato": "Locale es-EC: separador de miles punto y decimal coma en la vista; los valores se almacenan como número, nunca como texto formateado. Todo porcentaje se guarda con al menos 4 decimales internos aunque se muestre con 2."
+  },
+  "interactions": [
+   "Editar el valor de una hipótesis dentro de su rango admitido: marca la fila como 'modificada', recalcula el diferencial implícito y activa el aviso 'resultados pendientes de recálculo'",
+   "Alternar la unidad de una tasa entre porcentaje y puntos básicos: cambia solo la presentación, nunca el valor almacenado",
+   "Pulsar 'restaurar valor de la valuación anterior' en una fila: devuelve el valor previo y limpia la marca de modificación",
+   "Abrir el selector de tabla de mortalidad: despliega catálogo con nombre, sexo, año y versión y enlaza al visor de la tabla seleccionada",
+   "Bloquear el juego de hipótesis: pasa todo a solo lectura, genera versión y sello de tiempo, y habilita el lanzamiento de la valuación",
+   "Duplicar como escenario: crea una copia editable con nombre propio y la añade al comparador de escenarios",
+   "Adjuntar sustento a una hipótesis: habilita el indicador 'con sustento' y lo incluye en el anexo exportable",
+   "Exportar anexo de hipótesis: genera el listado completo con fuentes y fecha de observación",
+   "Abrir historial: muestra quién cambió qué valor, cuándo y con qué justificación"
+  ],
+  "states": [
+   "Vacío: no hay valuación ni plantilla seleccionada",
+   "Cargando hipótesis desde la valuación anterior o desde plantilla",
+   "Borrador editable",
+   "Parcial: hipótesis heredadas de plantilla pendientes de confirmar, resaltadas una a una",
+   "Error de validación por campo (fuera de rango, formato inválido, campo obligatorio vacío)",
+   "Advertencia de coherencia cruzada no bloqueante (por ejemplo diferencial descuento-salarial atípico)",
+   "Bloqueado / aprobado: solo lectura con sello de versión",
+   "Conflicto de edición concurrente: otro usuario modificó el juego",
+   "Recálculo pendiente: hipótesis cambiadas después del último cálculo"
+  ],
+  "a11y": [
+   "Cada grupo de hipótesis es un fieldset con legend, o un role='group' con aria-labelledby apuntando al título del grupo",
+   "Cada control numérico expone la unidad y el rango admitido mediante aria-describedby, no solo con un sufijo visual",
+   "Los errores de validación usan aria-invalid='true' y un mensaje asociado con role='alert' que se anuncia al perder el foco",
+   "Orden de tabulación lógico por grupo y fila; todas las acciones de fila alcanzables por teclado sin menús solo-hover",
+   "La marca de 'hipótesis modificada' se comunica con texto además del color",
+   "El cambio de estado a 'bloqueado' se anuncia en una región aria-live='polite' y el foco se mueve al banner de estado",
+   "Contraste mínimo 4.5:1 en todo texto, usando tokens de texto y no tokens de relleno",
+   "Los adjuntos y enlaces de sustento tienen nombre accesible descriptivo, nunca 'ver más'"
+  ],
+  "actuarial_notes": [
+   "Nunca persistir ni mostrar un juego de hipótesis sin fecha de valuación y moneda: una tasa sin fecha de observación no es auditable",
+   "No permitir exportar ni publicar resultados mientras el juego de hipótesis esté en borrador",
+   "La tasa de descuento debe guardar su referencia (instrumento, plazo, fecha de observación). NIC 19 la ancla a bonos corporativos de alta calidad y, a falta de mercado profundo, a bonos del Estado; la aplicación de ese criterio al mercado ecuatoriano es un juicio del actuario responsable y debe quedar documentado en el campo de sustento, no fijado por la interfaz",
+   "No mezclar hipótesis nominales y reales: si la tasa de descuento es nominal, el incremento salarial debe serlo también. Mostrar siempre el diferencial implícito, porque es ese spread y no cada tasa aislada lo que gobierna la DBO",
+   "El SBU y los pisos monetarios del Código del Trabajo cambian por norma: deben ser parámetros versionados por año, nunca constantes compiladas. La interfaz debe exigir confirmar el valor vigente del año de valuación contra la fuente oficial",
+   "Los umbrales de 20 y 25 años de servicio y el 25% de la bonificación por desahucio provienen del Código del Trabajo (art. 216 para jubilación patronal, art. 185 para desahucio). Si la UI los deja editar, debe advertir que un valor distinto ya no representa el beneficio legal ecuatoriano sino un plan hipotético",
+   "La jubilación proporcional para quien tiene entre 20 y menos de 25 años de servicio se asocia al supuesto de despido intempestivo; no debe parametrizarse como derecho general sin verificar el texto vigente del Código del Trabajo y dejar constancia de la versión del articulado usada",
+   "Una tabla de mortalidad se identifica por nombre, sexo, año y, si aplica, recargo o mejoramiento. Mostrar 'AM-99' a secas, sin sexo ni versión, es información insuficiente para reproducir el cálculo",
+   "AM-99, BM-99, EMSSA-09 y CSO-2017 son tablas de origen extranjero utilizadas en el mercado ecuatoriano por práctica profesional. La interfaz no debe rotular ninguna como 'tabla oficial del Ecuador' salvo que exista norma expresa del regulador que la imponga; la idoneidad para el colectivo es responsabilidad del actuario y debe justificarse en el sustento",
+   "La tasa de rotación escalar es una simplificación: si el colectivo tiene rotación fuertemente dependiente de la antigüedad, la UI debe permitir tabla y advertir que el escalar puede subestimar o sobreestimar la DBO de forma material"
+  ]
+ },
+ "mortality-table-viewer": {
+  "id": "mortality-table-viewer",
+  "nombre": "Visor de tabla de mortalidad",
+  "purpose": "Permite consultar, comparar y auditar las funciones biométricas de una tabla de mortalidad (qx, lx, dx, ex) identificada por nombre, sexo, año y versión, antes de usarla en una valuación.",
+  "anatomy": [
+   "Selector de tabla: nombre, sexo y año, con badge de versión y de origen",
+   "Panel de metadatos: fuente, radix, edad mínima y máxima, edad terminal (omega), tipo de esperanza de vida publicada, recargos aplicados",
+   "Buscador o salto directo a edad",
+   "Tabla principal de funciones biométricas con cabeceras fijas y columnas ordenables",
+   "Gráfico de qx en escala logarítmica con eje de edad",
+   "Modo comparación: segunda tabla superpuesta y columna de diferencia relativa de qx",
+   "Banner de modo simulación cuando se aplica un recargo o factor de mejoramiento",
+   "Acciones: exportar CSV con cabecera de metadatos, copiar celda, abrir en la valuación"
+  ],
+  "data": {
+   "campos": [
+    {
+     "campo": "edad_x",
+     "tipo": "entero",
+     "unidad": "años cumplidos",
+     "descripcion": "Edad exacta x al inicio del año de edad"
+    },
+    {
+     "campo": "qx",
+     "tipo": "decimal",
+     "unidad": "probabilidad (5 decimales)",
+     "descripcion": "Probabilidad de fallecer entre la edad x y x+1"
+    },
+    {
+     "campo": "px",
+     "tipo": "decimal",
+     "unidad": "probabilidad (5 decimales)",
+     "descripcion": "Probabilidad de supervivencia, igual a 1 - qx"
+    },
+    {
+     "campo": "lx",
+     "tipo": "entero",
+     "unidad": "supervivientes (radix 100.000)",
+     "descripcion": "Supervivientes a la edad exacta x"
+    },
+    {
+     "campo": "dx",
+     "tipo": "entero",
+     "unidad": "fallecimientos",
+     "descripcion": "Fallecimientos entre x y x+1, igual a lx por qx"
+    },
+    {
+     "campo": "ex",
+     "tipo": "decimal",
+     "unidad": "años",
+     "descripcion": "Esperanza de vida a la edad x; debe declararse si es completa o abreviada"
+    }
+   ],
+   "metadatos_ejemplo": {
+    "tabla": "EMSSA-09",
+    "sexo": "Hombres",
+    "anio": 2009,
+    "version": "v1 sin recargo",
+    "radix": 100000,
+    "edad_minima": 0,
+    "edad_maxima_omega": 115,
+    "tipo_esperanza": "Esperanza de vida completa",
+    "origen": "Tabla de origen extranjero de uso frecuente en valuaciones del mercado ecuatoriano"
+   },
+   "ejemplo_filas": [
+    {
+     "edad_x": 60,
+     "qx": 0.00857,
+     "px": 0.99143,
+     "lx": 89412,
+     "dx": 766,
+     "ex": 21.43
+    },
+    {
+     "edad_x": 61,
+     "qx": 0.00944,
+     "px": 0.99056,
+     "lx": 88646,
+     "dx": 837,
+     "ex": 20.61
+    },
+    {
+     "edad_x": 62,
+     "qx": 0.01041,
+     "px": 0.98959,
+     "lx": 87809,
+     "dx": 914,
+     "ex": 19.81
+    },
+    {
+     "edad_x": 63,
+     "qx": 0.01149,
+     "px": 0.98851,
+     "lx": 86895,
+     "dx": 998,
+     "ex": 19.01
+    },
+    {
+     "edad_x": 64,
+     "qx": 0.0127,
+     "px": 0.9873,
+     "lx": 85897,
+     "dx": 1091,
+     "ex": 18.22
+    },
+    {
+     "edad_x": 65,
+     "qx": 0.01403,
+     "px": 0.98597,
+     "lx": 84806,
+     "dx": 1190,
+     "ex": 17.45
+    }
+   ],
+   "invariantes_de_los_datos": [
+    "qx estrictamente creciente en este tramo de edades",
+    "lx estrictamente decreciente",
+    "lx(x+1) = lx(x) - dx(x) se cumple fila a fila con los valores redondeados mostrados",
+    "ex decreciente con la edad y siempre positiva hasta omega"
+   ]
+  },
+  "interactions": [
+   "Cambiar el sexo de la tabla: recarga la serie completa; nunca se reutilizan valores de la serie anterior",
+   "Saltar a una edad concreta: desplaza la tabla y pone el foco en la fila, que queda resaltada y anunciada",
+   "Alternar la escala del gráfico entre logarítmica y lineal: cambia solo la representación",
+   "Activar modo comparación y elegir una segunda tabla: añade columnas qx_comparada y diferencia relativa en porcentaje",
+   "Aplicar un recargo o factor de mejoramiento: entra en modo simulación con banner persistente y obliga a nombrar la tabla derivada antes de poder usarla",
+   "Ordenar por columna: reordena la vista sin alterar la relación lx-dx, que se recalcula solo en orden de edad",
+   "Exportar CSV: incluye como cabecera los metadatos completos de la tabla y la fecha de exportación",
+   "Copiar una celda: copia el valor sin formato de presentación"
+  ],
+  "states": [
+   "Vacío: ninguna tabla seleccionada",
+   "Cargando serie",
+   "Cargada completa",
+   "Parcial: la tabla solo cubre un rango de edades y el resto se muestra como no disponible",
+   "Error de carga o tabla no encontrada",
+   "Modo comparación activo",
+   "Modo simulación con recargo activo (tabla derivada no guardada)",
+   "Solo lectura: tabla bloqueada por estar en uso en una valuación firmada"
+  ],
+  "a11y": [
+   "Tabla semántica real con caption que incluya nombre, sexo, año y versión de la tabla",
+   "Cabeceras de columna con scope='col' y la columna de edad con scope='row'",
+   "aria-sort en las cabeceras ordenables, actualizado al reordenar",
+   "Navegación por teclado celda a celda con roving tabindex; la fila enfocada se anuncia como 'edad 63, qx 0,01149, lx 86.895'",
+   "El gráfico de qx expone role='img' con aria-label resumen y ofrece un conmutador a vista de tabla equivalente",
+   "La diferencia en modo comparación se comunica con signo y texto, no solo con color",
+   "Los decimales se leen con el separador del locale es-EC y las abreviaturas qx, lx, dx y ex llevan su nombre completo en el encabezado o en abbr"
+  ],
+  "actuarial_notes": [
+   "No interpolar qx linealmente entre edades: la mortalidad crece de forma aproximadamente exponencial y la interpolación lineal introduce un sesgo sistemático. Si falta una edad, mostrar celda vacía marcada como 'sin dato', no un valor calculado",
+   "No extrapolar más allá de la edad terminal (omega) ni por debajo de la edad mínima publicada de la tabla",
+   "lx y dx carecen de sentido sin el radix: mostrarlo siempre en los metadatos y en la exportación",
+   "Si dx se presenta redondeado, la columna debe cuadrar: lx(x+1) = lx(x) - dx(x). Redondear cada columna por separado rompe el cuadre y hace que el usuario desconfíe con razón",
+   "Etiquetar explícitamente si ex es esperanza de vida completa o abreviada (curtate): la diferencia es de aproximadamente medio año y cambia conclusiones de longevidad",
+   "No mezclar en una misma serie valores de tablas de distinto sexo ni de distinta versión",
+   "Un recargo o factor de mejoramiento genera una tabla derivada: debe renombrarse y versionarse, nunca sobrescribir la tabla base ni usarse sin dejar traza",
+   "No presentar una tabla de origen extranjero como representativa del colectivo ecuatoriano sin nota: la idoneidad de AM-99, BM-99, EMSSA-09 o CSO-2017 para un colectivo concreto es un juicio actuarial que debe constar",
+   "La comparación de dos tablas solo es válida si ambas tienen la misma definición de qx y el mismo criterio de edad (edad alcanzada vs. edad al último cumpleaños); si difieren, advertirlo antes de mostrar la diferencia",
+   "Una tabla de mortalidad no basta para una valuación de jubilación patronal: la salida del colectivo también depende de rotación e invalidez, y la UI no debe sugerir que qx explica toda la decrementación"
+  ]
+ },
+ "valuation-wizard": {
+  "id": "valuation-wizard",
+  "nombre": "Asistente de valuación actuarial",
+  "purpose": "Guía al usuario paso a paso desde la definición del alcance y la carga del colectivo hasta el lanzamiento de una valuación reproducible, impidiendo el cálculo mientras existan errores bloqueantes o hipótesis sin bloquear.",
+  "anatomy": [
+   "Barra de pasos numerada con estado por paso: 1 Alcance, 2 Carga del colectivo, 3 Validación de datos, 4 Hipótesis, 5 Método y criterios de cierre, 6 Revisión y lanzamiento",
+   "Área de contenido del paso activo",
+   "Paso 2: zona de carga con arrastrar y soltar más botón de examinar, descarga de plantilla y mapeo de columnas del archivo a campos del modelo",
+   "Paso 3: tarjeta de resumen de calidad de datos (registros cargados, válidos, con advertencia, rechazados) y tabla de incidencias con enlace a la fila afectada",
+   "Paso 4: panel de hipótesis embebido en modo compacto, con atajo al panel completo",
+   "Paso 6: resumen de alcance, datos, hipótesis, método y versión del motor, más casilla de declaración del actuario responsable",
+   "Pie persistente: anterior, guardar borrador, siguiente y lanzar valuación",
+   "Indicador de progreso del cálculo y posición en la cola"
+  ],
+  "data": {
+   "campos_plantilla_colectivo": [
+    {
+     "campo": "id_participante",
+     "tipo": "texto",
+     "unidad": "seudónimo",
+     "descripcion": "Identificador seudonimizado; no se carga la cédula en claro"
+    },
+    {
+     "campo": "sexo",
+     "tipo": "enum",
+     "unidad": "M/F",
+     "descripcion": "Determina la tabla de mortalidad aplicada"
+    },
+    {
+     "campo": "fecha_nacimiento",
+     "tipo": "fecha",
+     "unidad": "AAAA-MM-DD",
+     "descripcion": "Base del cálculo de edad a la fecha de valuación"
+    },
+    {
+     "campo": "fecha_ingreso",
+     "tipo": "fecha",
+     "unidad": "AAAA-MM-DD",
+     "descripcion": "Base del cálculo de antigüedad y de la elegibilidad por años de servicio"
+    },
+    {
+     "campo": "remuneracion_mensual",
+     "tipo": "decimal",
+     "unidad": "USD/mes",
+     "descripcion": "Remuneración mensual a la fecha de valuación"
+    },
+    {
+     "campo": "tipo_contrato",
+     "tipo": "enum",
+     "unidad": "-",
+     "descripcion": "Indefinido, ocasional, eventual u otro"
+    },
+    {
+     "campo": "centro_costo",
+     "tipo": "texto",
+     "unidad": "-",
+     "descripcion": "Permite desglosar resultados por unidad"
+    },
+    {
+     "campo": "estado",
+     "tipo": "enum",
+     "unidad": "-",
+     "descripcion": "Activo, cesado o jubilado patronal en curso de pago"
+    },
+    {
+     "campo": "edad_calculada",
+     "tipo": "decimal",
+     "unidad": "años",
+     "descripcion": "Derivada a la fecha de valuación con convenio de días declarado"
+    },
+    {
+     "campo": "antiguedad_calculada",
+     "tipo": "decimal",
+     "unidad": "años",
+     "descripcion": "Derivada a la fecha de valuación"
+    }
+   ],
+   "ejemplo_filas_colectivo": [
+    {
+     "id_participante": "P-0001",
+     "sexo": "M",
+     "fecha_nacimiento": "1981-03-14",
+     "fecha_ingreso": "2009-06-01",
+     "remuneracion_mensual": 1480.0,
+     "tipo_contrato": "Indefinido",
+     "centro_costo": "Planta Guayaquil",
+     "estado": "Activo",
+     "edad_calculada": 45.8,
+     "antiguedad_calculada": 17.6
+    },
+    {
+     "id_participante": "P-0002",
+     "sexo": "F",
+     "fecha_nacimiento": "1990-11-02",
+     "fecha_ingreso": "2016-02-15",
+     "remuneracion_mensual": 980.0,
+     "tipo_contrato": "Indefinido",
+     "centro_costo": "Administración Quito",
+     "estado": "Activo",
+     "edad_calculada": 36.2,
+     "antiguedad_calculada": 10.9
+    },
+    {
+     "id_participante": "P-0003",
+     "sexo": "M",
+     "fecha_nacimiento": "1975-07-20",
+     "fecha_ingreso": "2001-09-03",
+     "remuneracion_mensual": 2350.0,
+     "tipo_contrato": "Indefinido",
+     "centro_costo": "Planta Guayaquil",
+     "estado": "Activo",
+     "edad_calculada": 51.5,
+     "antiguedad_calculada": 25.3
+    },
+    {
+     "id_participante": "P-0004",
+     "sexo": "F",
+     "fecha_nacimiento": "1998-05-09",
+     "fecha_ingreso": "2021-08-16",
+     "remuneracion_mensual": 760.0,
+     "tipo_contrato": "Indefinido",
+     "centro_costo": "Comercial Cuenca",
+     "estado": "Activo",
+     "edad_calculada": 28.6,
+     "antiguedad_calculada": 5.4
+    },
+    {
+     "id_participante": "P-0005",
+     "sexo": "M",
+     "fecha_nacimiento": "1968-01-30",
+     "fecha_ingreso": "1999-04-12",
+     "remuneracion_mensual": 3120.0,
+     "tipo_contrato": "Indefinido",
+     "centro_costo": "Dirección",
+     "estado": "Activo",
+     "edad_calculada": 58.9,
+     "antiguedad_calculada": 27.7
+    }
+   ],
+   "ejemplo_resumen_validacion": {
+    "fecha_valuacion": "2026-12-31",
+    "registros_cargados": 152,
+    "registros_validos": 148,
+    "registros_con_advertencia": 7,
+    "registros_rechazados": 4,
+    "incidencias": [
+     {
+      "codigo": "E-01",
+      "severidad": "bloqueante",
+      "detalle": "Fecha de ingreso anterior a la fecha de nacimiento",
+      "n": 1
+     },
+     {
+      "codigo": "E-02",
+      "severidad": "bloqueante",
+      "detalle": "Remuneración mensual ausente o igual a cero",
+      "n": 3
+     },
+     {
+      "codigo": "A-11",
+      "severidad": "advertencia",
+      "detalle": "Remuneración inferior al SBU vigente",
+      "n": 4
+     },
+     {
+      "codigo": "A-12",
+      "severidad": "advertencia",
+      "detalle": "Antigüedad superior a 25 años: verificar si ya percibe jubilación patronal",
+      "n": 3
+     }
+    ],
+    "elegibles_jubilacion_completa": 11,
+    "elegibles_jubilacion_proporcional": 9
+   }
+  },
+  "interactions": [
+   "Descargar la plantilla del colectivo: entrega el archivo con cabeceras y diccionario de campos",
+   "Cargar archivo por arrastre o por botón: muestra vista previa de las primeras filas antes de confirmar",
+   "Mapear columnas del archivo a campos del modelo: cada asignación actualiza la vista previa en vivo",
+   "Ejecutar validación: produce el resumen de calidad y la lista de incidencias clasificadas por severidad",
+   "Hacer clic en una incidencia: lleva a la fila y campo afectados y permite corregir en línea o marcar la exclusión con motivo",
+   "Avanzar de paso: bloqueado mientras existan incidencias de severidad bloqueante",
+   "Volver a un paso anterior: conserva lo cargado y lo mapeado sin reiniciar el asistente",
+   "Guardar borrador y salir: el asistente se retoma en el mismo paso",
+   "Lanzar valuación: solo se habilita con cero errores bloqueantes, hipótesis bloqueadas y declaración del actuario marcada; al finalizar redirige al resumen de resultados"
+  ],
+  "states": [
+   "Paso vacío a la espera de entrada",
+   "Cargando y parseando archivo",
+   "Mapeo incompleto: faltan campos obligatorios por asignar",
+   "Validando",
+   "Validación con errores bloqueantes",
+   "Validación con advertencias no bloqueantes, que exigen confirmación explícita para continuar",
+   "Listo para lanzar",
+   "Lanzando / en cola / calculando con progreso",
+   "Fallo de cálculo con detalle técnico y posibilidad de reintento",
+   "Completado"
+  ],
+  "a11y": [
+   "El indicador de pasos es una lista ordenada con aria-current='step' en el paso activo y estado textual por paso",
+   "Al cambiar de paso el foco se mueve al encabezado del paso y se anuncia el número y el título",
+   "La zona de arrastrar y soltar siempre ofrece un botón de examinar equivalente, operable por teclado",
+   "El resumen de errores se presenta como lista de enlaces al campo problemático, con role='alert' al aparecer",
+   "El progreso de carga, validación y cálculo se anuncia en una región aria-live='polite' con porcentaje y estado",
+   "Los controles de navegación deshabilitados explican el motivo mediante aria-describedby, no se limitan a estar grises",
+   "Tablas de vista previa e incidencias con cabeceras asociadas y navegación por teclado"
+  ],
+  "actuarial_notes": [
+   "No permitir lanzar si la fecha de valuación del alcance difiere de la del juego de hipótesis, ni si la fecha de valuación es futura respecto de la fecha de los datos",
+   "No imputar silenciosamente fechas de nacimiento, fechas de ingreso ni remuneraciones faltantes. Todo dato imputado debe marcarse, contabilizarse y aparecer en el informe de calidad de datos",
+   "No descartar registros sin traza: cada exclusión necesita motivo registrado, y el conteo excluido debe aparecer junto al resultado",
+   "Edad y antigüedad se calculan a la fecha de valuación con un convenio de días explícito (por ejemplo actual/365); el convenio debe mostrarse, porque cambia la elegibilidad de quienes están justo en el umbral de 20 o 25 años de servicio",
+   "La remuneración relevante para los beneficios del Código del Trabajo puede no coincidir con el sueldo nominal cargado; la plantilla debe aclarar qué conceptos se incluyen y el motor no debe suponerlo",
+   "Una valuación lanzada debe quedar inmutable: archivo de datos, juego de hipótesis y versión del motor sellados, para que el resultado sea reproducible y auditable",
+   "NIC 19 y NIIF 17 no son intercambiables ni comparables: el selector de norma debe condicionar el modelo y nunca presentarse como una simple etiqueta de informe",
+   "Los participantes con jubilación patronal ya en curso de pago se valúan como rentistas, no como activos: tratarlos con el mismo modelo que a los activos sobreestima o subestima la obligación",
+   "Los datos del colectivo son datos personales: la plantilla debe trabajar con identificadores seudonimizados y la interfaz no debe exponer cédulas completas en pantallas compartibles",
+   "El asistente no debe ofrecer 'valores por defecto razonables' para datos del colectivo: una hipótesis puede tener defecto, un dato de una persona no"
+  ]
+ },
+ "valuation-results": {
+  "id": "valuation-results",
+  "nombre": "Resumen de resultados de la valuación",
+  "purpose": "Presenta en una sola vista los resultados de la valuación a la fecha de corte (DBO, costos del período y remediciones) junto con la identificación completa de las bases que los sustentan.",
+  "anatomy": [
+   "Cabecera de identificación: cliente, plan, fecha de valuación, moneda, norma de reporte, método, tabla de mortalidad, tasa de descuento, versión del cálculo y actuario responsable",
+   "Fila de indicadores principales: DBO, costo del servicio corriente, costo financiero, gasto reconocido en resultados, remediciones reconocidas en ORI, duración y número de participantes",
+   "Desglose por tipo de beneficio: jubilación patronal y bonificación por desahucio",
+   "Tabla de conciliación resumida del movimiento de la obligación, con enlace al waterfall completo",
+   "Mini visualizaciones enlazadas: flujos proyectados y sensibilidades",
+   "Bloque de notas, limitaciones y alcance del trabajo",
+   "Barra de acciones: exportar informe, enviar a revisión, comparar con la valuación anterior, abrir escenarios"
+  ],
+  "data": {
+   "campos": [
+    {
+     "campo": "dbo_total",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Obligación por Beneficios Definidos a la fecha de valuación"
+    },
+    {
+     "campo": "costo_servicio_corriente",
+     "tipo": "decimal",
+     "unidad": "USD/período",
+     "descripcion": "Costo del servicio del período corriente"
+    },
+    {
+     "campo": "costo_financiero",
+     "tipo": "decimal",
+     "unidad": "USD/período",
+     "descripcion": "Interés sobre la obligación"
+    },
+    {
+     "campo": "costo_servicio_pasado",
+     "tipo": "decimal",
+     "unidad": "USD/período",
+     "descripcion": "Efecto de modificaciones del plan"
+    },
+    {
+     "campo": "gasto_en_resultados",
+     "tipo": "decimal",
+     "unidad": "USD/período",
+     "descripcion": "Suma de servicio corriente, costo financiero y servicio pasado"
+    },
+    {
+     "campo": "remediciones_ori",
+     "tipo": "decimal",
+     "unidad": "USD/período",
+     "descripcion": "Ganancias y pérdidas actuariales reconocidas en otro resultado integral"
+    },
+    {
+     "campo": "duracion_macaulay",
+     "tipo": "decimal",
+     "unidad": "años",
+     "descripcion": "Duración del pasivo, usada para elegir el plazo de la tasa de descuento"
+    },
+    {
+     "campo": "n_participantes",
+     "tipo": "entero",
+     "unidad": "personas",
+     "descripcion": "Colectivo valuado"
+    },
+    {
+     "campo": "activos_del_plan",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Valor razonable de activos afectos; cero debe mostrarse como cero declarado, no omitirse"
+    }
+   ],
+   "ejemplo_valores": {
+    "cliente": "Empresa demostrativa S.A.",
+    "fecha_valuacion": "2026-12-31",
+    "moneda": "USD",
+    "norma": "NIC 19",
+    "metodo": "Unidad de Crédito Proyectada",
+    "tabla_mortalidad": "EMSSA-09 (hombres y mujeres)",
+    "tasa_descuento_anual_pct": 5.85,
+    "dbo_total": 1284500,
+    "dbo_jubilacion_patronal": 912000,
+    "dbo_bonificacion_desahucio": 372500,
+    "costo_servicio_corriente": 98450,
+    "costo_financiero": 66485,
+    "costo_servicio_pasado": 12400,
+    "gasto_en_resultados": 177335,
+    "remediciones_ori": 2465,
+    "duracion_macaulay": 12.8,
+    "n_participantes": 148,
+    "activos_del_plan": 0,
+    "dbo_sobre_masa_salarial_pct": 43.3
+   },
+   "invariantes_de_los_datos": [
+    "gasto_en_resultados = 98.450 + 66.485 + 12.400 = 177.335",
+    "remediciones_ori = 31.200 - 8.900 - 19.835 = 2.465 (pérdida neta del período)",
+    "dbo_jubilacion_patronal + dbo_bonificacion_desahucio = 912.000 + 372.500 = 1.284.500",
+    "costo_financiero / DBO inicial = 66.485 / 1.146.300 = 5,80%, coherente con la tasa de descuento de apertura"
+   ]
+  },
+  "interactions": [
+   "Conmutar la vista entre total, jubilación patronal y bonificación por desahucio: todos los indicadores y gráficos se recalculan para el subconjunto elegido",
+   "Alternar la escala de presentación entre unidades y miles: deja constancia visible de la escala activa en cada cifra exportada",
+   "Enfocar o pasar el cursor sobre un indicador: muestra definición, fórmula y bases usadas",
+   "Hacer clic en la conciliación resumida: abre el waterfall completo del movimiento de la obligación",
+   "Hacer clic en la miniatura de sensibilidad: abre el análisis tornado con la misma base",
+   "Comparar con la valuación anterior: añade columna de variación absoluta y relativa por indicador",
+   "Exportar informe: genera el documento con sello de versión, fecha de cálculo y bases; deshabilitado si el cálculo está obsoleto",
+   "Enviar a revisión: pasa la valuación a solo lectura y notifica al revisor"
+  ],
+  "states": [
+   "Cargando resultados",
+   "Completo",
+   "Parcial: algún beneficio o desglose aún en cálculo, con los indicadores afectados marcados como no disponibles",
+   "Obsoleto: las hipótesis o los datos cambiaron después del cálculo; se bloquea la exportación",
+   "En revisión: solo lectura",
+   "Aprobado y firmado",
+   "Error de cálculo con detalle y acceso al registro de ejecución",
+   "Sin comparativo: no existe valuación anterior cargada"
+  ],
+  "a11y": [
+   "Jerarquía de encabezados correcta: un solo h1 de la vista y encabezados de sección descendentes",
+   "Los indicadores se marcan como lista de descripción (término y valor) para que el lector de pantalla asocie etiqueta y cifra",
+   "Las siglas DBO, CSC y ORI aparecen con su forma completa en el primer uso o mediante abbr con title accesible",
+   "Las ayudas emergentes se abren con teclado y permanecen hasta cerrarse, no dependen solo del hover",
+   "Al recargar la vista tras cambiar de beneficio se anuncia el cambio en una región aria-live='polite'",
+   "Las tablas tienen caption y cabeceras con scope; las cifras negativas se anuncian con la palabra 'menos', no solo con paréntesis",
+   "Los estados obsoleto y en revisión se comunican con texto y con icono, nunca con color únicamente"
+  ],
+  "actuarial_notes": [
+   "Nunca mostrar una DBO sin fecha de valuación, moneda, método, tabla de mortalidad y tasa de descuento visibles en la misma vista: una cifra sola no es un resultado actuarial",
+   "El gasto reconocido en resultados y las remediciones en ORI no deben sumarse en un total único: su tratamiento contable es distinto y mezclarlos induce a error",
+   "La DBO no es el pasivo neto si existen activos del plan. Cuando no hay activos afectos, mostrar 'activos del plan: 0' de forma explícita en lugar de omitir la línea",
+   "La DBO no es el importe necesario para liquidar hoy los beneficios: no etiquetarla como costo de liquidación, fondo requerido ni provisión exigible",
+   "No redondear a miles en las cifras que se exportan al cliente sin indicar la escala junto a cada cifra",
+   "El indicador de duración debe declararse como Macaulay o modificada; se usa para justificar el plazo de la tasa de descuento, no para extrapolar sensibilidades grandes",
+   "Si el cálculo quedó obsoleto por cambio de hipótesis o de datos, bloquear la exportación en lugar de advertir en letra pequeña",
+   "La atribución del beneficio al período de servicio debe declararse, porque en jubilación patronal el beneficio se devenga sujeto a umbrales de años de servicio y distintas atribuciones producen DBO distintas",
+   "Los 12 calculadores públicos de la plataforma (jubilación patronal, despido intempestivo, desahucio, jubilación por vejez IESS, fondo de pensiones IESS, aportes IESS, décimo tercer sueldo, décimo cuarto sueldo, vacaciones, fondos de reserva, ahorro programado e impuesto a la renta) son estimaciones individuales y referenciales: no comparten método ni bases con una valuación colectiva NIC 19 y la interfaz no debe presentarlos con el mismo lenguaje de resultado",
+   "No mostrar porcentajes de variación contra la valuación anterior si cambiaron simultáneamente el colectivo y las hipótesis, sin separar ambos efectos: la variación agregada no es interpretable"
+  ]
+ },
+ "sensitivity-tornado": {
+  "id": "sensitivity-tornado",
+  "nombre": "Análisis de sensibilidad tipo tornado",
+  "purpose": "Muestra, ordenado por magnitud de impacto, cuánto varía la DBO (u otra métrica objetivo) ante choques razonablemente posibles en cada hipótesis tomada de una en una.",
+  "anatomy": [
+   "Título con métrica objetivo, valor base, fecha de valuación y moneda",
+   "Eje central con el valor base y barras horizontales bidireccionales por hipótesis, ordenadas de mayor a menor amplitud",
+   "Etiqueta del choque en cada extremo de barra (por ejemplo más 100 puntos básicos)",
+   "Valor resultante y variación relativa en el extremo de cada barra",
+   "Selector de métrica objetivo y selector de magnitud del choque",
+   "Leyenda de dirección del efecto y nota de método",
+   "Conmutador gráfico / tabla equivalente y acción de exportar"
+  ],
+  "data": {
+   "campos": [
+    {
+     "campo": "hipotesis",
+     "tipo": "texto",
+     "unidad": "-",
+     "descripcion": "Hipótesis sometida al choque"
+    },
+    {
+     "campo": "choque",
+     "tipo": "texto",
+     "unidad": "pb o % relativo",
+     "descripcion": "Magnitud y signo del choque aplicado"
+    },
+    {
+     "campo": "valor_base",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Métrica objetivo con las hipótesis centrales"
+    },
+    {
+     "campo": "valor_sensibilizado",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Métrica objetivo recalculada con el choque"
+    },
+    {
+     "campo": "variacion_absoluta",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Diferencia respecto del valor base"
+    },
+    {
+     "campo": "variacion_relativa",
+     "tipo": "decimal",
+     "unidad": "%",
+     "descripcion": "Variación porcentual respecto del valor base"
+    },
+    {
+     "campo": "metodo_calculo",
+     "tipo": "enum",
+     "unidad": "-",
+     "descripcion": "Recálculo completo o aproximación"
+    }
+   ],
+   "ejemplo_filas": [
+    {
+     "hipotesis": "Tasa de descuento",
+     "choque": "-100 pb",
+     "valor_base": 1284500,
+     "valor_sensibilizado": 1460700,
+     "variacion_absoluta": 176200,
+     "variacion_relativa": 13.72,
+     "metodo_calculo": "Recálculo completo"
+    },
+    {
+     "hipotesis": "Tasa de descuento",
+     "choque": "+100 pb",
+     "valor_base": 1284500,
+     "valor_sensibilizado": 1131600,
+     "variacion_absoluta": -152900,
+     "variacion_relativa": -11.9,
+     "metodo_calculo": "Recálculo completo"
+    },
+    {
+     "hipotesis": "Incremento salarial",
+     "choque": "+100 pb",
+     "valor_base": 1284500,
+     "valor_sensibilizado": 1444400,
+     "variacion_absoluta": 159900,
+     "variacion_relativa": 12.45,
+     "metodo_calculo": "Recálculo completo"
+    },
+    {
+     "hipotesis": "Incremento salarial",
+     "choque": "-100 pb",
+     "valor_base": 1284500,
+     "valor_sensibilizado": 1143500,
+     "variacion_absoluta": -141000,
+     "variacion_relativa": -10.98,
+     "metodo_calculo": "Recálculo completo"
+    },
+    {
+     "hipotesis": "Tasa de rotación",
+     "choque": "-25% relativo",
+     "valor_base": 1284500,
+     "valor_sensibilizado": 1359800,
+     "variacion_absoluta": 75300,
+     "variacion_relativa": 5.86,
+     "metodo_calculo": "Recálculo completo"
+    },
+    {
+     "hipotesis": "Mortalidad (qx)",
+     "choque": "-10% relativo",
+     "valor_base": 1284500,
+     "valor_sensibilizado": 1312500,
+     "variacion_absoluta": 28000,
+     "variacion_relativa": 2.18,
+     "metodo_calculo": "Recálculo completo"
+    }
+   ],
+   "invariantes_de_los_datos": [
+    "El efecto de la tasa de descuento es asimétrico: -100 pb aporta +13,72% y +100 pb aporta -11,90%, consistente con convexidad positiva",
+    "Tasa de descuento e incremento salarial tienen signos opuestos ante el mismo signo de choque",
+    "Menor rotación y menor mortalidad aumentan la DBO, porque más participantes alcanzan el beneficio",
+    "El orden de las barras por amplitud es: tasa de descuento, incremento salarial, rotación, mortalidad"
+   ]
+  },
+  "interactions": [
+   "Cambiar la métrica objetivo entre DBO, costo del servicio corriente y duración: recalcula todas las barras y actualiza el valor base del eje",
+   "Cambiar la magnitud del choque entre los presets disponibles: las barras se recalculan y se etiqueta el nuevo choque",
+   "Ordenar por impacto o alfabéticamente por hipótesis",
+   "Ocultar o mostrar una hipótesis: la quita del gráfico y de la tabla, sin alterar el resto de valores",
+   "Enfocar o pasar el cursor sobre una barra: muestra el valor sensibilizado, el supuesto exacto y el método de cálculo",
+   "Hacer clic en una barra: crea o abre el escenario equivalente en el comparador de escenarios",
+   "Exportar la tabla de sensibilidades para el anexo de revelaciones"
+  ],
+  "states": [
+   "Vacío: no se han calculado sensibilidades para esta valuación",
+   "Cargando",
+   "Parcial: solo algunas hipótesis calculadas, con las pendientes marcadas como no disponibles en lugar de ausentes",
+   "Completo",
+   "Error en el recálculo de una hipótesis concreta, que se muestra como barra en error sin invalidar las demás",
+   "Modo comparación con el período anterior",
+   "Obsoleto: el valor base ya no coincide con el resultado vigente"
+  ],
+  "a11y": [
+   "El gráfico expone role='img' con aria-label que resume la hipótesis de mayor impacto y su magnitud",
+   "Conmutador siempre disponible a una tabla equivalente con los mismos datos, navegable por teclado",
+   "Cada barra es enfocable y anuncia hipótesis, choque, valor resultante y variación con signo",
+   "La dirección del efecto se comunica con signo y texto además del color y la posición",
+   "Animación de entrada respetuosa con prefers-reduced-motion",
+   "Contraste suficiente entre barras positivas, negativas y fondo, y etiquetas numéricas de al menos 11 px",
+   "Los cambios de métrica o de magnitud se anuncian en región aria-live='polite'"
+  ],
+  "actuarial_notes": [
+   "Las sensibilidades son univariantes y se calculan manteniendo el resto de hipótesis constantes: no deben sumarse entre sí ni presentarse como un intervalo de confianza o un rango de probabilidad",
+   "El efecto de la tasa de descuento es asimétrico por convexidad: nunca espejar la barra negativa a partir de la positiva ni dibujar barras simétricas por comodidad visual",
+   "Declarar el método: recálculo completo o aproximación por duración. Usar duración para choques grandes sin advertirlo produce errores materiales",
+   "NIC 19 pide revelar sensibilidades ante cambios razonablemente posibles en las hipótesis significativas: ofrecer presets desmesurados sugiere falsamente que son escenarios razonables",
+   "La sensibilidad de mortalidad debe expresarse como variación de qx o de longevidad y declarar cuál, no como 'más años de vida' sin definición",
+   "Una sensibilidad sin la fecha de valuación y la base de cálculo no es publicable: el valor base debe ser el mismo que figura en el resumen de resultados",
+   "La rotación y la mortalidad no son independientes del umbral de años de servicio: un choque de rotación puede mover a participantes dentro o fuera de la elegibilidad y producir efectos no lineales; no linealizar el resultado",
+   "Si una hipótesis no se somete a choque por decisión del actuario, debe aparecer como excluida con motivo, no desaparecer del gráfico"
+  ]
+ },
+ "cashflow-projection": {
+  "id": "cashflow-projection",
+  "nombre": "Proyección de flujos de beneficios",
+  "purpose": "Muestra año a año los pagos de beneficios esperados del plan y su valor presente, permitiendo verificar la cola de la obligación y su reconciliación con la DBO.",
+  "anatomy": [
+   "Cabecera con fecha de valuación, moneda, tasa de descuento y convenio de momento de pago",
+   "Gráfico de barras apiladas por año y tipo de beneficio, con línea secundaria de valor presente acumulado",
+   "Tabla sincronizada con el gráfico, con totales de columna",
+   "Selector de horizonte de proyección y conmutador nominal / descontado",
+   "Marcador visual de la duración del pasivo sobre el eje temporal",
+   "Aviso de residuo cuando el horizonte mostrado no agota la proyección",
+   "Acciones: exportar, superponer escenario, mostrar u ocultar el número esperado de pagos"
+  ],
+  "data": {
+   "campos": [
+    {
+     "campo": "anio",
+     "tipo": "entero",
+     "unidad": "año calendario",
+     "descripcion": "Año de pago proyectado"
+    },
+    {
+     "campo": "t",
+     "tipo": "entero",
+     "unidad": "años desde la valuación",
+     "descripcion": "Período de descuento"
+    },
+    {
+     "campo": "flujo_jubilacion_patronal",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Pagos esperados de renta de jubilación patronal"
+    },
+    {
+     "campo": "flujo_desahucio",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Pagos esperados de bonificación por desahucio"
+    },
+    {
+     "campo": "flujo_total",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Suma de los flujos esperados del año"
+    },
+    {
+     "campo": "pagos_esperados",
+     "tipo": "decimal",
+     "unidad": "nº de beneficiarios",
+     "descripcion": "Número esperado de beneficiarios con pago en el año"
+    },
+    {
+     "campo": "factor_descuento",
+     "tipo": "decimal",
+     "unidad": "factor",
+     "descripcion": "Factor de descuento al 5,85% anual, pago a fin de año"
+    },
+    {
+     "campo": "valor_presente",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Flujo total multiplicado por el factor de descuento"
+    }
+   ],
+   "parametros_ejemplo": {
+    "fecha_valuacion": "2026-12-31",
+    "tasa_descuento_anual_pct": 5.85,
+    "convenio_pago": "Fin de año",
+    "horizonte_mostrado": "6 años de 48 proyectados"
+   },
+   "ejemplo_filas": [
+    {
+     "anio": 2027,
+     "t": 1,
+     "flujo_jubilacion_patronal": 18400,
+     "flujo_desahucio": 29800,
+     "flujo_total": 48200,
+     "pagos_esperados": 3,
+     "factor_descuento": 0.944733,
+     "valor_presente": 45536.14
+    },
+    {
+     "anio": 2028,
+     "t": 2,
+     "flujo_jubilacion_patronal": 20150,
+     "flujo_desahucio": 31260,
+     "flujo_total": 51410,
+     "pagos_esperados": 4,
+     "factor_descuento": 0.892521,
+     "valor_presente": 45884.49
+    },
+    {
+     "anio": 2029,
+     "t": 3,
+     "flujo_jubilacion_patronal": 22480,
+     "flujo_desahucio": 33900,
+     "flujo_total": 56380,
+     "pagos_esperados": 4,
+     "factor_descuento": 0.843194,
+     "valor_presente": 47539.27
+    },
+    {
+     "anio": 2030,
+     "t": 4,
+     "flujo_jubilacion_patronal": 25900,
+     "flujo_desahucio": 35120,
+     "flujo_total": 61020,
+     "pagos_esperados": 5,
+     "factor_descuento": 0.796593,
+     "valor_presente": 48608.11
+    },
+    {
+     "anio": 2031,
+     "t": 5,
+     "flujo_jubilacion_patronal": 28640,
+     "flujo_desahucio": 38470,
+     "flujo_total": 67110,
+     "pagos_esperados": 5,
+     "factor_descuento": 0.752568,
+     "valor_presente": 50504.83
+    },
+    {
+     "anio": 2032,
+     "t": 6,
+     "flujo_jubilacion_patronal": 32100,
+     "flujo_desahucio": 41050,
+     "flujo_total": 73150,
+     "pagos_esperados": 6,
+     "factor_descuento": 0.710976,
+     "valor_presente": 52007.88
+    }
+   ],
+   "ejemplo_totales": {
+    "valor_presente_primeros_6_anios": 290080.72,
+    "porcentaje_de_la_dbo_en_6_anios": 22.6,
+    "residuo_no_mostrado": 994419.28,
+    "dbo_total_reconciliada": 1284500.0
+   },
+   "invariantes_de_los_datos": [
+    "valor_presente = flujo_total x factor_descuento en cada fila",
+    "factor_descuento = 1 / 1,0585 elevado a t, estrictamente decreciente",
+    "El valor presente de los 6 años mostrados más el residuo iguala exactamente la DBO total"
+   ]
+  },
+  "interactions": [
+   "Cambiar el horizonte entre 10, 20, 40 años o hasta extinción: redibuja gráfico y tabla y recalcula el residuo mostrado",
+   "Alternar entre flujo nominal y valor presente: cambia la magnitud del eje y la etiqueta de las series",
+   "Cambiar el criterio de apilado entre tipo de beneficio y cohorte de edad: reagrupa las series conservando los totales anuales",
+   "Seleccionar un rango de años con el cursor o el teclado: filtra la tabla y muestra el subtotal del rango",
+   "Enfocar una barra o una fila: resalta simultáneamente el otro elemento equivalente",
+   "Superponer un escenario: añade una serie de contraste con su propia leyenda y su propia tasa de descuento declarada",
+   "Mostrar u ocultar la columna de pagos esperados",
+   "Exportar la proyección completa, no solo el horizonte visible"
+  ],
+  "states": [
+   "Vacío: la valuación no generó proyección de flujos",
+   "Cargando",
+   "Completo hasta extinción",
+   "Truncado: el horizonte mostrado no agota la proyección y se muestra el residuo de forma explícita",
+   "Con escenario superpuesto",
+   "Error de generación",
+   "Obsoleto respecto del resultado vigente"
+  ],
+  "a11y": [
+   "El gráfico ofrece conmutador a tabla equivalente y expone role='img' con un resumen del perfil de pagos",
+   "Cada barra apilada es enfocable y anuncia año, tipo de beneficio, importe y valor presente",
+   "La tabla tiene caption con fecha de valuación, moneda, tasa de descuento y convenio de pago",
+   "El resaltado cruzado entre gráfico y tabla se refleja con aria-activedescendant o con anuncio de la fila activa, no solo con color",
+   "El aviso de horizonte truncado se expone como texto asociado a la tabla y no solo como nota visual al pie del gráfico",
+   "Las series se distinguen por patrón o etiqueta directa además de por color",
+   "Zoom y selección de rango disponibles por teclado con incrementos anunciados"
+  ],
+  "actuarial_notes": [
+   "Los flujos son esperados, es decir probabilizados por supervivencia, rotación y elegibilidad: no son pagos contractuales ciertos y la interfaz no debe presentarlos como un calendario de pagos comprometido",
+   "Declarar el convenio de momento de pago (fin de año, mitad de año o fraccionado): cambia el factor de descuento y, con una duración de doce años, el efecto sobre la DBO es material",
+   "La suma de los valores presentes de todos los años debe reconciliar con la DBO. Si se trunca el horizonte, mostrar el residuo explícitamente para que nadie interprete que la DBO es la suma visible",
+   "No descontar con una tasa distinta de la del juego de hipótesis de la valuación, ni aplicar curva por plazos sin declarar que se abandonó la tasa única",
+   "No mezclar en una misma serie la renta vitalicia de jubilación patronal y el pago único de la bonificación por desahucio: tienen naturaleza, duración y riesgo distintos",
+   "El gráfico no debe sugerir financiación: si no existen activos afectos, no dibujar una serie de activos ni hablar de déficit de fondeo",
+   "La proyección depende de la edad de jubilación supuesta; un cambio de esa hipótesis desplaza la curva entera y la vista debe indicar qué edad se usó",
+   "No suavizar ni interpolar los flujos anuales para que el gráfico quede más estético: los escalones del perfil de pagos suelen reflejar cohortes reales que alcanzan el umbral de años de servicio"
+  ]
+ },
+ "runoff-triangle": {
+  "id": "runoff-triangle",
+  "nombre": "Triángulo de siniestros y run-off",
+  "purpose": "Visualiza el desarrollo de los siniestros por año de ocurrencia y período de desarrollo y permite estimar el siniestro último y la reserva por siniestros ocurridos y no reportados o no suficientemente reservados.",
+  "anatomy": [
+   "Cabecera con base del triángulo (pagados, incurridos o número de siniestros), moneda, si es bruto o neto de reaseguro y fecha de corte",
+   "Matriz triangular: filas por año de ocurrencia, columnas por período de desarrollo, con mapa de calor opcional",
+   "Diagonal más reciente resaltada como período de calendario",
+   "Fila de factores de desarrollo seleccionados, editables, con indicador de intervención manual",
+   "Fila de factores acumulados hasta el último",
+   "Columnas derivadas: último importe observado, factor acumulado, siniestro último estimado y reserva estimada",
+   "Panel de método: chain-ladder volumen-ponderado, promedio simple, promedio de N años o Bornhuetter-Ferguson",
+   "Fila de totales y leyenda del mapa de calor"
+  ],
+  "data": {
+   "campos": [
+    {
+     "campo": "anio_ocurrencia",
+     "tipo": "entero",
+     "unidad": "año",
+     "descripcion": "Año en que ocurrió el siniestro"
+    },
+    {
+     "campo": "periodo_desarrollo",
+     "tipo": "entero",
+     "unidad": "años desde la ocurrencia",
+     "descripcion": "Columna de desarrollo, con 0 como primer año"
+    },
+    {
+     "campo": "pagado_acumulado",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Siniestros pagados acumulados en la celda"
+    },
+    {
+     "campo": "factor_desarrollo",
+     "tipo": "decimal",
+     "unidad": "factor",
+     "descripcion": "Razón entre columnas consecutivas, volumen-ponderada"
+    },
+    {
+     "campo": "factor_acumulado",
+     "tipo": "decimal",
+     "unidad": "factor",
+     "descripcion": "Producto de los factores pendientes hasta el último"
+    },
+    {
+     "campo": "siniestro_ultimo",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Estimación del costo último del año de ocurrencia"
+    },
+    {
+     "campo": "reserva_ibnr",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Siniestro último menos pagado acumulado"
+    }
+   ],
+   "parametros_ejemplo": {
+    "base": "Siniestros pagados acumulados",
+    "moneda": "USD",
+    "alcance": "Bruto de reaseguro, incluye gastos de liquidación asignados",
+    "fecha_corte": "2026-12-31",
+    "metodo": "Chain-ladder volumen-ponderado"
+   },
+   "ejemplo_triangulo_acumulado": [
+    {
+     "anio_ocurrencia": 2021,
+     "d0": 2118400,
+     "d1": 3246900,
+     "d2": 3742100,
+     "d3": 3968500,
+     "d4": 4081200,
+     "d5": 4119800
+    },
+    {
+     "anio_ocurrencia": 2022,
+     "d0": 2356700,
+     "d1": 3498300,
+     "d2": 4015600,
+     "d3": 4289900,
+     "d4": 4441300,
+     "d5": null
+    },
+    {
+     "anio_ocurrencia": 2023,
+     "d0": 2512900,
+     "d1": 3861400,
+     "d2": 4452800,
+     "d3": 4702100,
+     "d4": null,
+     "d5": null
+    },
+    {
+     "anio_ocurrencia": 2024,
+     "d0": 2784600,
+     "d1": 4069500,
+     "d2": 4776300,
+     "d3": null,
+     "d4": null,
+     "d5": null
+    },
+    {
+     "anio_ocurrencia": 2025,
+     "d0": 2918300,
+     "d1": 4472800,
+     "d2": null,
+     "d3": null,
+     "d4": null,
+     "d5": null
+    },
+    {
+     "anio_ocurrencia": 2026,
+     "d0": 3164500,
+     "d1": null,
+     "d2": null,
+     "d3": null,
+     "d4": null,
+     "d5": null
+    }
+   ],
+   "ejemplo_factores": {
+    "d0_d1": 1.5089,
+    "d1_d2": 1.1574,
+    "d2_d3": 1.0614,
+    "d3_d4": 1.032,
+    "d4_d5": 1.0095
+   },
+   "ejemplo_factores_acumulados": {
+    "desde_d0": 1.9311,
+    "desde_d1": 1.2798,
+    "desde_d2": 1.1058,
+    "desde_d3": 1.0418,
+    "desde_d4": 1.0095
+   },
+   "ejemplo_estimacion": [
+    {
+     "anio_ocurrencia": 2021,
+     "pagado_acumulado": 4119800,
+     "factor_acumulado": 1.0,
+     "siniestro_ultimo": 4119800,
+     "reserva_ibnr": 0
+    },
+    {
+     "anio_ocurrencia": 2022,
+     "pagado_acumulado": 4441300,
+     "factor_acumulado": 1.0095,
+     "siniestro_ultimo": 4483500,
+     "reserva_ibnr": 42200
+    },
+    {
+     "anio_ocurrencia": 2023,
+     "pagado_acumulado": 4702100,
+     "factor_acumulado": 1.0418,
+     "siniestro_ultimo": 4898700,
+     "reserva_ibnr": 196600
+    },
+    {
+     "anio_ocurrencia": 2024,
+     "pagado_acumulado": 4776300,
+     "factor_acumulado": 1.1058,
+     "siniestro_ultimo": 5281500,
+     "reserva_ibnr": 505200
+    },
+    {
+     "anio_ocurrencia": 2025,
+     "pagado_acumulado": 4472800,
+     "factor_acumulado": 1.2798,
+     "siniestro_ultimo": 5724400,
+     "reserva_ibnr": 1251600
+    },
+    {
+     "anio_ocurrencia": 2026,
+     "pagado_acumulado": 3164500,
+     "factor_acumulado": 1.9311,
+     "siniestro_ultimo": 6111000,
+     "reserva_ibnr": 2946500
+    }
+   ],
+   "ejemplo_totales": {
+    "pagado_acumulado_total": 25676800,
+    "siniestro_ultimo_total": 30618900,
+    "reserva_ibnr_total": 4942100
+   },
+   "invariantes_de_los_datos": [
+    "Cada fila es acumulada y por tanto no decreciente a lo largo del desarrollo",
+    "Las celdas por debajo de la diagonal son null, es decir aún no observadas, y nunca cero",
+    "reserva_ibnr = siniestro_ultimo - pagado_acumulado en cada año",
+    "Los factores de desarrollo decrecen hacia 1 conforme madura el año de ocurrencia",
+    "La reserva total de 4.942.100 coincide con el saldo final del componente de conciliación de reservas"
+   ]
+  },
+  "interactions": [
+   "Cambiar la base entre pagados, incurridos y número de siniestros: recarga todo el triángulo y limpia cualquier factor intervenido manualmente",
+   "Alternar entre vista acumulada e incremental: recalcula las celdas sin alterar la estimación",
+   "Editar o excluir un factor de desarrollo: recalcula factores acumulados, siniestro último y reserva en vivo, y marca el factor como ajustado a juicio del actuario con motivo obligatorio",
+   "Excluir una celda atípica: la marca visualmente, la retira del cálculo de factores y actualiza los totales",
+   "Cambiar el método de estimación: muestra en paralelo el resultado anterior y el nuevo antes de confirmar",
+   "Resaltar una diagonal: identifica efectos de período de calendario como cambios de velocidad de pago",
+   "Abrir el detalle de una celda: número de siniestros, pagos del período y reserva de caso",
+   "Exportar el triángulo con los factores y el método aplicados"
+  ],
+  "states": [
+   "Vacío: sin triángulo cargado",
+   "Cargando",
+   "Completo",
+   "Triángulo inmaduro: años de ocurrencia con muy poco desarrollo, señalados como estimación de baja fiabilidad",
+   "Con celdas excluidas",
+   "Con factores intervenidos manualmente: banner persistente hasta documentar el motivo",
+   "Error de carga o de cálculo",
+   "Solo lectura por cierre contable del período"
+  ],
+  "a11y": [
+   "Tabla real con el año de ocurrencia como th scope='row' y el período de desarrollo como th scope='col'",
+   "Caption que indique base, alcance (bruto o neto), moneda y fecha de corte",
+   "Las celdas no observadas tienen texto accesible 'sin desarrollo observado' y no quedan solo vacías",
+   "El mapa de calor acompaña siempre el valor numérico: el color nunca es el único portador de información",
+   "Navegación por teclado celda a celda, con anuncio de año de ocurrencia, período y valor",
+   "Los recálculos tras editar un factor se anuncian en región aria-live='polite' indicando la nueva reserva total",
+   "Los controles de exclusión de celda son botones accesibles, no dobles clics ni gestos exclusivos de ratón"
+  ],
+  "actuarial_notes": [
+   "No rellenar la parte inferior del triángulo con ceros: lo no observado es desconocido, no nulo. Confundir 'sin dato' con 'cero pagado' distorsiona todos los factores",
+   "Los factores por volumen ponderado y por promedio simple dan resultados distintos: la interfaz debe mostrar cuál está activo y permitir compararlos, no elegir por el usuario en silencio",
+   "Chain-ladder aplicado al año de ocurrencia más reciente es muy inestable porque descansa en un único factor acumulado grande: señalarlo como estimación de baja fiabilidad y no presentarlo con la misma autoridad que los años maduros",
+   "Declarar siempre si el triángulo es bruto o neto de reaseguro y si incluye gastos de liquidación asignados: mezclar bases produce reservas no comparables",
+   "Cambios en la velocidad de pago, en la política de reserva de caso o en la mezcla de productos invalidan la hipótesis de patrón de desarrollo estable; la vista debe permitir anotar esos eventos y advertir antes de aplicar el método mecánicamente",
+   "La reserva estimada aquí es una estimación central: no incluye margen de riesgo ni ajuste por valor temporal del dinero salvo que se declare explícitamente, y no debe etiquetarse como reserva técnica suficiente sin esa aclaración",
+   "Un único método no constituye una estimación de reserva defendible: la interfaz no debería permitir cerrar un período con un solo método sin registrar la comparación con al menos otro",
+   "Los requisitos locales de constitución y presentación de reservas técnicas los fija el regulador competente; la herramienta no debe afirmar que un resultado cumple una norma específica sin que esa verificación la haya hecho el actuario responsable",
+   "No ocultar los años de ocurrencia antiguos ya cerrados: su desarrollo residual es la evidencia que sostiene los factores de cola"
+  ]
+ },
+ "reserve-reconciliation": {
+  "id": "reserve-reconciliation",
+  "nombre": "Conciliación del movimiento de reservas",
+  "purpose": "Explica mediante un gráfico de cascada cómo se pasa del saldo inicial al saldo final del pasivo en el período, separando cada componente del movimiento y mostrando cualquier diferencia no explicada.",
+  "anatomy": [
+   "Cabecera con modo (obligación por beneficios definidos o reserva técnica), período comparado, moneda y norma de referencia",
+   "Barras de cascada: saldo inicial, incrementos, decrementos y saldo final, con conectores entre barras",
+   "Etiquetas de valor con signo sobre cada barra y porcentaje opcional sobre el saldo inicial",
+   "Tabla de conciliación equivalente, ordenada igual que la cascada",
+   "Barra específica de diferencia no explicada cuando existe residuo",
+   "Indicador de cuadre con tolerancia configurada",
+   "Acciones: cambiar modo, cambiar período, desglosar componente, conmutar gráfico y tabla, exportar nota de revelación"
+  ],
+  "data": {
+   "campos": [
+    {
+     "campo": "componente",
+     "tipo": "texto",
+     "unidad": "-",
+     "descripcion": "Concepto del movimiento"
+    },
+    {
+     "campo": "importe",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Importe con signo; los decrementos son negativos"
+    },
+    {
+     "campo": "tipo",
+     "tipo": "enum",
+     "unidad": "-",
+     "descripcion": "saldo_inicial, incremento, decremento, saldo_final o diferencia_no_explicada"
+    },
+    {
+     "campo": "reconocimiento",
+     "tipo": "enum",
+     "unidad": "-",
+     "descripcion": "Resultados, otro resultado integral o no aplica"
+    },
+    {
+     "campo": "acumulado",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Saldo corrido tras aplicar el componente"
+    }
+   ],
+   "ejemplo_modo_dbo_nic19": {
+    "periodo": "2026-01-01 a 2026-12-31",
+    "tasa_descuento_apertura_pct": 5.8,
+    "filas": [
+     {
+      "componente": "DBO al inicio del período",
+      "importe": 1146300,
+      "tipo": "saldo_inicial",
+      "reconocimiento": "no aplica",
+      "acumulado": 1146300
+     },
+     {
+      "componente": "Costo del servicio corriente",
+      "importe": 98450,
+      "tipo": "incremento",
+      "reconocimiento": "Resultados",
+      "acumulado": 1244750
+     },
+     {
+      "componente": "Costo financiero (interés)",
+      "importe": 66485,
+      "tipo": "incremento",
+      "reconocimiento": "Resultados",
+      "acumulado": 1311235
+     },
+     {
+      "componente": "Costo del servicio pasado",
+      "importe": 12400,
+      "tipo": "incremento",
+      "reconocimiento": "Resultados",
+      "acumulado": 1323635
+     },
+     {
+      "componente": "Beneficios pagados",
+      "importe": -41600,
+      "tipo": "decremento",
+      "reconocimiento": "no aplica",
+      "acumulado": 1282035
+     },
+     {
+      "componente": "Pérdidas por cambios en hipótesis financieras",
+      "importe": 31200,
+      "tipo": "incremento",
+      "reconocimiento": "Otro resultado integral",
+      "acumulado": 1313235
+     },
+     {
+      "componente": "Ganancias por cambios en hipótesis demográficas",
+      "importe": -8900,
+      "tipo": "decremento",
+      "reconocimiento": "Otro resultado integral",
+      "acumulado": 1304335
+     },
+     {
+      "componente": "Ganancias por ajustes de experiencia",
+      "importe": -19835,
+      "tipo": "decremento",
+      "reconocimiento": "Otro resultado integral",
+      "acumulado": 1284500
+     },
+     {
+      "componente": "DBO al cierre del período",
+      "importe": 1284500,
+      "tipo": "saldo_final",
+      "reconocimiento": "no aplica",
+      "acumulado": 1284500
+     }
+    ]
+   },
+   "ejemplo_modo_reserva_tecnica": {
+    "periodo": "2026-01-01 a 2026-12-31",
+    "filas": [
+     {
+      "componente": "Reserva al inicio del período",
+      "importe": 4612000,
+      "tipo": "saldo_inicial",
+      "acumulado": 4612000
+     },
+     {
+      "componente": "Siniestros ocurridos en el año actual",
+      "importe": 3164500,
+      "tipo": "incremento",
+      "acumulado": 7776500
+     },
+     {
+      "componente": "Pagos del período",
+      "importe": -2985400,
+      "tipo": "decremento",
+      "acumulado": 4791100
+     },
+     {
+      "componente": "Desarrollo de años anteriores",
+      "importe": -182100,
+      "tipo": "decremento",
+      "acumulado": 4609000
+     },
+     {
+      "componente": "Cambio de hipótesis de frecuencia y severidad",
+      "importe": 214700,
+      "tipo": "incremento",
+      "acumulado": 4823700
+     },
+     {
+      "componente": "Desenrollo del descuento",
+      "importe": 118400,
+      "tipo": "incremento",
+      "acumulado": 4942100
+     },
+     {
+      "componente": "Reserva al cierre del período",
+      "importe": 4942100,
+      "tipo": "saldo_final",
+      "acumulado": 4942100
+     }
+    ]
+   },
+   "invariantes_de_los_datos": [
+    "La suma algebraica de todos los movimientos iguala exactamente el saldo final en ambos modos, sin residuo",
+    "El costo financiero de 66.485 equivale al 5,80% del saldo inicial de 1.146.300, coherente con la tasa de descuento de apertura",
+    "Las remediciones del modo DBO suman 31.200 - 8.900 - 19.835 = 2.465, el importe reconocido en otro resultado integral",
+    "El saldo final del modo reserva técnica coincide con la reserva total estimada en el triángulo de run-off"
+   ]
+  },
+  "interactions": [
+   "Cambiar el modo entre obligación por beneficios definidos y reserva técnica: sustituye el conjunto de componentes y la norma de referencia mostrada",
+   "Cambiar el período comparado: recarga saldos y movimientos y advierte si no existe comparativo",
+   "Hacer clic en un componente agregado: lo desglosa en sus fuentes, por ejemplo las ganancias y pérdidas actuariales por hipótesis financieras, demográficas y experiencia",
+   "Conmutar entre cascada y tabla: ambas muestran exactamente los mismos componentes y el mismo orden",
+   "Activar la vista en porcentaje sobre el saldo inicial: sustituye las etiquetas sin cambiar el orden ni el cuadre",
+   "Enfocar una barra: muestra importe con signo, saldo acumulado y dónde se reconoce contablemente",
+   "Exportar la nota de revelación: deshabilitado mientras el estado sea descuadrado"
+  ],
+  "states": [
+   "Cargando",
+   "Cuadrado dentro de tolerancia",
+   "Descuadrado: existe diferencia no explicada por encima de la tolerancia; se muestra como barra propia y se bloquea la exportación",
+   "Sin período comparativo disponible",
+   "Parcial: algún componente pendiente de calcular, marcado como no disponible",
+   "Con desglose abierto de un componente",
+   "Solo lectura por cierre del período",
+   "Error de carga"
+  ],
+  "a11y": [
+   "La cascada ofrece siempre tabla equivalente con las mismas filas y el mismo orden de lectura",
+   "Cada barra es enfocable y su aria-label incluye concepto, signo, importe y saldo acumulado",
+   "Los importes negativos se anuncian con la palabra 'menos' y no solo con paréntesis o color rojo",
+   "Incrementos y decrementos se distinguen por patrón o por etiqueta textual además de por color",
+   "El estado de cuadre o descuadre se comunica con role='status' y se anuncia al cambiar el período",
+   "Los conectores de la cascada son decorativos y se marcan aria-hidden para no ensuciar la lectura",
+   "El desglose de un componente mueve el foco al primer elemento del detalle y es reversible con teclado"
+  ],
+  "actuarial_notes": [
+   "La cascada debe cuadrar exactamente. Si queda residuo, nombrarlo 'diferencia no explicada' y mostrarlo como barra propia: repartirlo proporcionalmente entre los demás componentes es falsificar la conciliación",
+   "Separar las ganancias y pérdidas actuariales por fuente (cambios en hipótesis financieras, cambios en hipótesis demográficas y ajustes por experiencia), porque la revelación de NIC 19 lo requiere y porque agregarlas oculta el origen del movimiento",
+   "El costo financiero se calcula con la tasa de descuento vigente al inicio del período aplicada al saldo inicial ajustado por los flujos del período, nunca sobre el saldo final",
+   "Los beneficios pagados se presentan siempre con signo negativo y jamás netados contra el costo del servicio corriente",
+   "En NIC 19 las remediciones van a otro resultado integral y no deben aparecer en la misma serie visual que el gasto del período sin distintivo claro de reconocimiento",
+   "Una liquidación o una reducción del plan es un componente propio de la conciliación, no un ajuste dentro del costo del servicio pasado",
+   "En el modo reserva técnica, el desarrollo de años anteriores debe presentarse separado de los siniestros del año corriente: mezclarlos impide ver si la reserva previa era suficiente",
+   "El desenrollo del descuento solo debe aparecer si la reserva está descontada; mostrarlo sobre una reserva no descontada es un error de concepto",
+   "No reordenar las barras por tamaño: el orden de la cascada es el orden del movimiento, y alterarlo rompe la lectura del saldo acumulado",
+   "La conciliación debe declarar la fecha de inicio y de cierre del período: un movimiento sin período es ininterpretable"
+  ]
+ },
+ "scenario-compare": {
+  "id": "scenario-compare",
+  "nombre": "Comparador de escenarios de valuación",
+  "purpose": "Compara lado a lado varios juegos de hipótesis aplicados al mismo colectivo y a la misma fecha de valuación, mostrando qué hipótesis difieren del escenario base y cómo cambian los resultados.",
+  "anatomy": [
+   "Columna fija de conceptos y una columna por escenario, con el escenario base marcado de forma permanente",
+   "Encabezado de escenario: nombre, autor, fecha de creación, estado y menú de acciones",
+   "Bloque de hipótesis con las celdas que difieren del base resaltadas y con el delta respecto del base",
+   "Bloque de resultados: DBO, costo del servicio corriente, duración y flujos relevantes",
+   "Fila de variación absoluta y relativa contra el escenario base",
+   "Miniatura de sensibilidad o de perfil de flujos por escenario",
+   "Selector de escenario base y conmutador 'mostrar solo diferencias'",
+   "Aviso de incompatibilidad cuando un escenario no es comparable",
+   "Acciones: añadir, duplicar, renombrar, fijar como base, eliminar y exportar la matriz comparativa"
+  ],
+  "data": {
+   "campos": [
+    {
+     "campo": "escenario_id",
+     "tipo": "texto",
+     "unidad": "-",
+     "descripcion": "Identificador del escenario"
+    },
+    {
+     "campo": "nombre",
+     "tipo": "texto",
+     "unidad": "-",
+     "descripcion": "Nombre descriptivo del escenario"
+    },
+    {
+     "campo": "es_base",
+     "tipo": "booleano",
+     "unidad": "-",
+     "descripcion": "Indica el escenario que sustenta el registro contable"
+    },
+    {
+     "campo": "fecha_valuacion",
+     "tipo": "fecha",
+     "unidad": "AAAA-MM-DD",
+     "descripcion": "Debe ser idéntica en todos los escenarios comparados"
+    },
+    {
+     "campo": "tasa_descuento_pct",
+     "tipo": "decimal",
+     "unidad": "% anual",
+     "descripcion": "Hipótesis financiera"
+    },
+    {
+     "campo": "incremento_salarial_pct",
+     "tipo": "decimal",
+     "unidad": "% anual",
+     "descripcion": "Hipótesis financiera"
+    },
+    {
+     "campo": "rotacion_media_pct",
+     "tipo": "decimal",
+     "unidad": "% anual",
+     "descripcion": "Hipótesis demográfica"
+    },
+    {
+     "campo": "tabla_mortalidad",
+     "tipo": "texto",
+     "unidad": "-",
+     "descripcion": "Tabla con sexo y versión"
+    },
+    {
+     "campo": "dbo",
+     "tipo": "decimal",
+     "unidad": "USD",
+     "descripcion": "Resultado principal"
+    },
+    {
+     "campo": "costo_servicio_corriente",
+     "tipo": "decimal",
+     "unidad": "USD/período",
+     "descripcion": "Resultado del período siguiente"
+    },
+    {
+     "campo": "duracion",
+     "tipo": "decimal",
+     "unidad": "años",
+     "descripcion": "Duración de Macaulay del pasivo"
+    },
+    {
+     "campo": "variacion_dbo_vs_base_pct",
+     "tipo": "decimal",
+     "unidad": "%",
+     "descripcion": "Variación relativa contra el escenario base"
+    },
+    {
+     "campo": "estado",
+     "tipo": "enum",
+     "unidad": "-",
+     "descripcion": "calculado, obsoleto, en cálculo, error o no comparable"
+    }
+   ],
+   "ejemplo_filas": [
+    {
+     "escenario_id": "ESC-BASE",
+     "nombre": "Base aprobado",
+     "es_base": true,
+     "fecha_valuacion": "2026-12-31",
+     "tasa_descuento_pct": 5.85,
+     "incremento_salarial_pct": 3.2,
+     "rotacion_media_pct": 8.5,
+     "tabla_mortalidad": "EMSSA-09 v1",
+     "dbo": 1284500,
+     "costo_servicio_corriente": 104300,
+     "duracion": 12.8,
+     "variacion_dbo_vs_base_pct": 0.0,
+     "estado": "calculado"
+    },
+    {
+     "escenario_id": "ESC-A",
+     "nombre": "Descuento -100 pb",
+     "es_base": false,
+     "fecha_valuacion": "2026-12-31",
+     "tasa_descuento_pct": 4.85,
+     "incremento_salarial_pct": 3.2,
+     "rotacion_media_pct": 8.5,
+     "tabla_mortalidad": "EMSSA-09 v1",
+     "dbo": 1460700,
+     "costo_servicio_corriente": 122600,
+     "duracion": 13.9,
+     "variacion_dbo_vs_base_pct": 13.72,
+     "estado": "calculado"
+    },
+    {
+     "escenario_id": "ESC-B",
+     "nombre": "Salarial +100 pb",
+     "es_base": false,
+     "fecha_valuacion": "2026-12-31",
+     "tasa_descuento_pct": 5.85,
+     "incremento_salarial_pct": 4.2,
+     "rotacion_media_pct": 8.5,
+     "tabla_mortalidad": "EMSSA-09 v1",
+     "dbo": 1444400,
+     "costo_servicio_corriente": 119800,
+     "duracion": 13.1,
+     "variacion_dbo_vs_base_pct": 12.45,
+     "estado": "calculado"
+    },
+    {
+     "escenario_id": "ESC-C",
+     "nombre": "Rotación -25% relativo",
+     "es_base": false,
+     "fecha_valuacion": "2026-12-31",
+     "tasa_descuento_pct": 5.85,
+     "incremento_salarial_pct": 3.2,
+     "rotacion_media_pct": 6.38,
+     "tabla_mortalidad": "EMSSA-09 v1",
+     "dbo": 1359800,
+     "costo_servicio_corriente": 110400,
+     "duracion": 13.4,
+     "variacion_dbo_vs_base_pct": 5.86,
+     "estado": "calculado"
+    },
+    {
+     "escenario_id": "ESC-D",
+     "nombre": "Mortalidad CSO-2017",
+     "es_base": false,
+     "fecha_valuacion": "2026-12-31",
+     "tasa_descuento_pct": 5.85,
+     "incremento_salarial_pct": 3.2,
+     "rotacion_media_pct": 8.5,
+     "tabla_mortalidad": "CSO-2017 v1",
+     "dbo": 1312500,
+     "costo_servicio_corriente": 106400,
+     "duracion": 13.0,
+     "variacion_dbo_vs_base_pct": 2.18,
+     "estado": "calculado"
+    }
+   ],
+   "invariantes_de_los_datos": [
+    "Todos los escenarios comparten fecha de valuación, colectivo y versión del motor",
+    "Cada escenario alternativo difiere del base en una sola hipótesis, lo que hace su variación comparable con la sensibilidad univariante del tornado",
+    "Las variaciones de DBO coinciden exactamente con las del análisis de sensibilidad: 13,72%, 12,45%, 5,86% y 2,18%",
+    "Menor tasa de descuento eleva a la vez la DBO, el costo del servicio corriente y la duración"
+   ]
+  },
+  "interactions": [
+   "Añadir escenario desde el panel de hipótesis: crea una columna nueva en estado en cálculo",
+   "Cambiar el escenario base: recalcula todas las variaciones y traslada la marca de base, con confirmación porque afecta a la lectura contable",
+   "Activar 'mostrar solo diferencias': oculta las filas idénticas en todos los escenarios y deja visible el conteo de filas ocultas",
+   "Ordenar las columnas por DBO o por nombre, manteniendo el base siempre en primera posición",
+   "Fijar la columna de conceptos al desplazar horizontalmente",
+   "Abrir un escenario en la vista de resultados completa",
+   "Duplicar, renombrar o eliminar un escenario, con confirmación en el borrado",
+   "Exportar la matriz comparativa con hipótesis, resultados y autoría"
+  ],
+  "states": [
+   "Solo base: no hay escenarios con los que comparar",
+   "Cargando una o varias columnas, con estado independiente por escenario",
+   "Comparación completa",
+   "Escenario obsoleto: sus hipótesis cambiaron después del último cálculo",
+   "Escenario no comparable: distinta fecha de valuación, distinto colectivo o distinta versión del motor; la columna se bloquea con explicación",
+   "Error en el cálculo de un escenario, sin invalidar el resto",
+   "Límite de escenarios alcanzado",
+   "Solo lectura cuando el escenario base está aprobado y firmado"
+  ],
+  "a11y": [
+   "Tabla con cabeceras de escenario como th scope='col' y conceptos como th scope='row'",
+   "Las celdas que difieren del base llevan aria-describedby que explica 'difiere del escenario base' además del resaltado visual",
+   "El escenario base se identifica con texto en el encabezado, no solo con un color o un icono",
+   "Navegación por teclado entre columnas y filas, con la columna de conceptos fijada también en el orden de lectura",
+   "El cambio de escenario base se anuncia en región aria-live y el foco se mantiene en el control accionado",
+   "Los avisos de escenario no comparable usan role='alert' e indican la causa exacta",
+   "Las variaciones se anuncian con signo y unidad, por ejemplo 'más 13,72 por ciento respecto del base'"
+  ],
+  "actuarial_notes": [
+   "Solo se pueden comparar escenarios con la misma fecha de valuación, el mismo colectivo y la misma versión del motor de cálculo: en cualquier otro caso bloquear la comparación en lugar de mostrar números juntos que no lo son",
+   "El escenario base es el único que sustenta el registro contable y debe estar marcado de forma inequívoca; ningún escenario alternativo debe poder exportarse con el formato del informe oficial",
+   "La combinación de varios choques no equivale a la suma de las sensibilidades univariantes: si un escenario cambia dos o más hipótesis, advertir que su efecto no es aditivo respecto del tornado",
+   "No etiquetar escenarios como optimista o pesimista sin definir exactamente qué hipótesis cambian y con qué justificación: el signo del efecto depende de la métrica y de la perspectiva",
+   "Cambiar la tabla de mortalidad es cambiar la base biométrica, no una hipótesis más: ese escenario debe declarar también el sexo y la versión de la tabla",
+   "Cada escenario debe registrar autor, fecha y motivo para la pista de auditoría; un escenario anónimo no es defendible ante un revisor",
+   "Un escenario cuyas hipótesis se editaron después del cálculo debe marcarse como obsoleto y no mostrar resultados antiguos como si fueran vigentes",
+   "No presentar la media o el promedio de los escenarios como un resultado: no existe una probabilidad asociada a cada escenario y promediarlos carece de significado actuarial"
+  ]
+ },
+ "app-shell": {
+  "id": "app-shell",
+  "nombre": "Marco de aplicación (app-shell)",
+  "purpose": "Marco persistente de actuaria+ que aloja identidad, contexto de cliente, navegación por módulos y el área de trabajo, para que el usuario nunca pierda el hilo al moverse entre nóminas, valuaciones e informes.",
+  "anatomy": [
+   "Topbar fija de 56 px con el imagotipo actuaria+ a la izquierda",
+   "Selector de cliente/empresa activo (define el contexto de todo el shell)",
+   "Disparador de búsqueda que muestra el atajo ⌘K / Ctrl+K",
+   "Campana de notificaciones con badge numérico de no leídas",
+   "Menú de cuenta: avatar, nombre, rol vigente, cambiar de organización, cerrar sesión",
+   "Sidebar colapsable (264 px expandida / 64 px colapsada) con grupos Trabajo, Datos y Configuración",
+   "Ítems de navegación con icono + etiqueta + contador opcional",
+   "Botón de contraer/expandir anclado al pie de la sidebar",
+   "Breadcrumb de la ruta actual bajo la topbar",
+   "Barra de acciones de página: título H1 + acción primaria + acciones secundarias",
+   "Área de contenido (main) con scroll propio e independiente",
+   "Franja de entorno cuando no es Producción (Sandbox / Pre-cierre)",
+   "Región de banners globales: mantenimiento programado, plan por vencer, sesión por expirar",
+   "Región aria-live para anuncios del sistema",
+   "Pie compacto con versión del motor de cálculo y enlace a estado del servicio"
+  ],
+  "data": {
+   "campos": [
+    "organizacionActiva",
+    "clienteActivo",
+    "entorno",
+    "usuario.nombre",
+    "usuario.rol",
+    "moduloActivo",
+    "breadcrumb",
+    "contadoresPorModulo",
+    "versionMotorCalculo"
+   ],
+   "contextoEjemplo": {
+    "organizacionActiva": "Actuaria Consultores Cía. Ltda.",
+    "clienteActivo": "Corporación Favorita S.A.",
+    "entorno": "Producción",
+    "usuario": "Ana Lucía Varela · Analista",
+    "versionMotorCalculo": "motor NIC 19 v4.2.1",
+    "zonaHoraria": "America/Guayaquil (UTC-5)"
+   },
+   "navegacionEjemplo": [
+    {
+     "modulo": "Panel",
+     "ruta": "/panel",
+     "contador": null
+    },
+    {
+     "modulo": "Nóminas",
+     "ruta": "/nominas",
+     "contador": "3 por validar"
+    },
+    {
+     "modulo": "Valuaciones",
+     "ruta": "/valuaciones",
+     "contador": "2 en cálculo"
+    },
+    {
+     "modulo": "Informes",
+     "ruta": "/informes",
+     "contador": "1 firmado nuevo"
+    },
+    {
+     "modulo": "Hipótesis",
+     "ruta": "/hipotesis",
+     "contador": null
+    },
+    {
+     "modulo": "Auditoría",
+     "ruta": "/auditoria",
+     "contador": null
+    },
+    {
+     "modulo": "Equipo",
+     "ruta": "/equipo",
+     "contador": "1 invitación pendiente"
+    },
+    {
+     "modulo": "Facturación",
+     "ruta": "/facturacion",
+     "contador": null,
+     "visiblePara": "solo Propietario"
+    }
+   ]
+  },
+  "interactions": [
+   "Pulsar el botón de contraer (o la tecla [ ) reduce la sidebar a iconos; el estado se persiste por usuario y se restaura en la siguiente sesión",
+   "En modo colapsado, hover o foco sobre un icono muestra un tooltip con el nombre del módulo tras 300 ms",
+   "Cambiar el selector de cliente recarga solo el área de contenido y actualiza breadcrumb, contadores e índice de la paleta, sin recargar la página",
+   "⌘K / Ctrl+K abre la paleta de comandos desde cualquier punto del shell",
+   "Por debajo de 1024 px la sidebar se convierte en drawer con overlay; Esc lo cierra y devuelve el foco al botón hamburguesa",
+   "El scroll ocurre solo en el área de contenido: topbar, sidebar y barra de acciones permanecen fijas",
+   "El enlace Saltar al contenido aparece con el primer Tab y mueve el foco al main",
+   "Los módulos sin permiso para el rol se ocultan del menú (el Auditor no ve Facturación ni Equipo)"
+  ],
+  "states": [
+   "Cargando (esqueleto de topbar, sidebar y contenido)",
+   "Sidebar expandida",
+   "Sidebar colapsada a iconos",
+   "Drawer móvil abierto / cerrado",
+   "Entorno Sandbox (franja de color y etiqueta permanente)",
+   "Banner global activo (mantenimiento, plan por vencer)",
+   "Sin conexión (modo degradado, acciones de escritura deshabilitadas)",
+   "Sesión por expirar (aviso a 2 minutos con botón Continuar)",
+   "Rol con navegación reducida",
+   "Error global 500 con área de contenido en estado de fallo y shell intacto"
+  ],
+  "a11y": [
+   "Landmarks explícitos: topbar con role=banner, sidebar como nav con aria-label=Navegación principal, contenido como main id=contenido tabindex=-1, pie con role=contentinfo",
+   "Enlace Saltar al contenido como primer elemento tabulable, oculto visualmente pero visible al recibir foco",
+   "El ítem activo lleva aria-current=page además de la señal visual; nunca solo color o negrita",
+   "Botón de contraer con aria-expanded y aria-controls=sidebar-principal; su nombre accesible alterna entre Contraer menú y Expandir menú",
+   "En modo colapsado cada ítem conserva su nombre accesible vía aria-label; el tooltip no sustituye al nombre",
+   "Drawer móvil con role=dialog y aria-modal=true, foco atrapado, Esc cierra y restaura el foco al disparador",
+   "El cambio de cliente se anuncia en una región aria-live=polite: Contexto cambiado a Corporación Favorita S.A.",
+   "Orden de tabulación: saltar al contenido → topbar → sidebar → barra de acciones → main; sin trampas de foco en escritorio",
+   "Objetivos táctiles de al menos 44×44 px y anillo de foco visible de 2 px con contraste mínimo 3:1 contra el fondo"
+  ],
+  "pitfalls": [
+   "Señalar el ítem activo solo con color y omitir aria-current: el lector de pantalla no distingue dónde está el usuario",
+   "Usar el tooltip como único nombre accesible de los iconos colapsados: el lector anuncia solo botón",
+   "Doble barra de scroll por poner overflow:auto en body y también en el main",
+   "Ocultar la sidebar en móvil con visibilidad CSS pero dejarla tabulable: el foco desaparece de pantalla",
+   "Reconstruir todo el shell en cada navegación: parpadeo, pérdida de la posición de scroll y de los contadores",
+   "Topbar fija sin scroll-margin-top: las anclas profundas quedan tapadas bajo la barra",
+   "Confundir selector de organización con selector de cliente: el usuario cree que cambió de empresa y sigue viendo otra",
+   "No persistir el estado colapsado: la sidebar se reabre en cada ruta",
+   "Deshabilitar ítems por falta de permiso en lugar de ocultarlos, filtrando información del plan de otros clientes",
+   "Contadores obsoletos: el badge 2 en cálculo no se invalida tras terminar la valuación"
+  ]
+ },
+ "command-palette": {
+  "id": "command-palette",
+  "nombre": "Paleta de comandos (⌘K)",
+  "purpose": "Dar acceso por teclado a cualquier acción, cliente, valuación o informe de actuaria+ sin navegar por menús, pensado para el actuario que repite las mismas tareas decenas de veces al día.",
+  "anatomy": [
+   "Overlay atenuado sobre toda la aplicación",
+   "Diálogo centrado de 640 px máximo anclado al tercio superior",
+   "Campo de entrada con icono de búsqueda y placeholder «Buscar o ejecutar un comando…»",
+   "Chip de ámbito («En Pronaca» / «Toda la organización») eliminable con Retroceso",
+   "Lista de resultados agrupada por secciones con encabezado de grupo",
+   "Fila de resultado: icono de tipo + título + subtítulo contextual + atajo o etiqueta de tipo a la derecha",
+   "Sección Recientes cuando el campo está vacío",
+   "Bloque de Acciones rápidas destacado arriba",
+   "Pie con leyenda de teclas: ↑↓ navegar · ↵ abrir · Esc cerrar",
+   "Indicador de carga en línea para resultados remotos",
+   "Estado vacío con sugerencias de sintaxis (>, @, #)"
+  ],
+  "data": {
+   "campos": [
+    "grupo",
+    "titulo",
+    "subtitulo",
+    "tipo",
+    "atajo",
+    "accionId",
+    "requierePermiso"
+   ],
+   "filasEjemplo": [
+    {
+     "grupo": "Acciones rápidas",
+     "titulo": "Lanzar valuación NIC 19",
+     "subtitulo": "Cliente activo · Pronaca · corte 31/12/2026",
+     "tipo": "acción",
+     "atajo": "G luego V",
+     "requierePermiso": "lanzar_valuacion"
+    },
+    {
+     "grupo": "Acciones rápidas",
+     "titulo": "Subir nómina (XLSX)",
+     "subtitulo": "Plantilla v4 · corte 31/12/2026",
+     "tipo": "acción",
+     "atajo": "U",
+     "requierePermiso": "subir_nomina"
+    },
+    {
+     "grupo": "Valuaciones",
+     "titulo": "VAL-2026-0412 · Jubilación patronal y desahucio",
+     "subtitulo": "Holcim Ecuador · corte 30/09/2026 · Finalizada",
+     "tipo": "registro",
+     "atajo": null
+    },
+    {
+     "grupo": "Clientes",
+     "titulo": "Cervecería Nacional CN S.A.",
+     "subtitulo": "12 valuaciones · 3 usuarios · plan Corporativo",
+     "tipo": "cliente",
+     "atajo": null
+    },
+    {
+     "grupo": "Informes",
+     "titulo": "Informe actuarial firmado 2025 · Banco Pichincha",
+     "subtitulo": "PDF 2,4 MB · firmado por Act. Diego Carrión (SCVS 1094)",
+     "tipo": "archivo",
+     "atajo": null
+    },
+    {
+     "grupo": "Ir a",
+     "titulo": "Hipótesis · tasa de descuento",
+     "subtitulo": "Configuración › Hipótesis financieras",
+     "tipo": "navegación",
+     "atajo": "G luego H"
+    }
+   ],
+   "sintaxis": {
+    ">": "modo comandos",
+    "@": "buscar personas del equipo",
+    "#": "buscar valuaciones por código",
+    "/": "buscar clientes"
+   }
+  },
+  "interactions": [
+   "⌘K / Ctrl+K abre la paleta; Esc o clic en el overlay la cierra y devuelve el foco al elemento disparador",
+   "Escribir filtra con coincidencia difusa sobre título y subtítulo, con debounce de 150 ms y resaltado de los fragmentos coincidentes",
+   "↑ / ↓ mueven la selección sin mover el cursor de texto; Inicio y Fin saltan al primer y último resultado",
+   "↵ ejecuta el resultado resaltado; ⌘↵ / Ctrl+↵ lo abre en una pestaña nueva cuando es navegable",
+   "Escribir > fuerza el modo comandos, @ busca personas, # busca valuaciones por código VAL-AAAA-NNNN",
+   "Retroceso con el campo vacío elimina el chip de ámbito y amplía la búsqueda a toda la organización",
+   "Las acciones destructivas (Anular valuación, Revocar clave) piden confirmación en un segundo paso dentro de la misma paleta, nunca se ejecutan con un solo ↵",
+   "Tab no cambia de resultado: solo alterna entre el campo y el pie de ayuda"
+  ],
+  "states": [
+   "Cerrada",
+   "Abierta vacía mostrando Recientes",
+   "Escribiendo (filtrado local inmediato)",
+   "Cargando resultados remotos (fila de carga, resultados locales ya visibles)",
+   "Con resultados agrupados",
+   "Sin resultados (sugerencia de ampliar ámbito)",
+   "Error de búsqueda con botón Reintentar",
+   "Acción en ejecución (fila con spinner y paleta bloqueada)",
+   "Confirmación de acción destructiva",
+   "Ámbito restringido por rol (comandos no permitidos filtrados fuera del índice)"
+  ],
+  "a11y": [
+   "Diálogo con role=dialog, aria-modal=true y aria-label=Paleta de comandos; foco atrapado mientras está abierta",
+   "Patrón combobox: el input lleva role=combobox, aria-expanded=true, aria-controls=lista-paleta y aria-activedescendant con el id de la opción resaltada",
+   "Lista con role=listbox, filas con role=option y aria-selected; encabezados de grupo con role=group y aria-label",
+   "El foco del DOM nunca sale del input: la navegación es virtual mediante aria-activedescendant, para no romper el dictado ni el modo formulario",
+   "Región aria-live=polite que anuncia el recuento tras cada filtrado («7 resultados»), con debounce para no saturar al lector",
+   "Esc cierra y restaura el foco exactamente al disparador previo",
+   "El atajo se ignora cuando el foco está dentro de un campo de texto del formulario de hipótesis, salvo combinación con modificador",
+   "El disparador de la topbar expone aria-keyshortcuts=Meta+K Control+K",
+   "scrollIntoView con block:nearest al mover la selección para que la opción activa siempre esté visible"
+  ],
+  "pitfalls": [
+   "Mover el foco real a cada fila: el lector vuelve a anunciar el input en cada pulsación y se rompe el dictado",
+   "No devolver el foco al cerrar: el usuario de teclado aterriza en el body y debe tabular desde cero",
+   "Capturar ⌘K globalmente y robar el atajo del navegador incluso mientras el usuario escribe en un campo",
+   "Lanzar una petición por pulsación sin debounce ni cancelación: llegan respuestas desordenadas y se pinta un resultado viejo",
+   "Ofrecer comandos que el rol Auditor no puede ejecutar y fallar con 403 al pulsar ↵",
+   "No desplazar la lista al navegar con flechas: la selección queda fuera de la ventana visible",
+   "Indexar únicamente el cliente activo y que el usuario concluya que una valuación de otra empresa no existe",
+   "Fijar el ancho y truncar sin tooltip nombres largos como «Industrias Ales C.A. — jubilación patronal consolidada»",
+   "Ejecutar acciones destructivas con un único ↵ por el impulso de la navegación rápida"
+  ]
+ },
+ "notification-center": {
+  "id": "notification-center",
+  "nombre": "Centro de notificaciones",
+  "purpose": "Reunir en un único panel los avisos asíncronos de la plataforma —valuaciones terminadas, nóminas rechazadas, informes firmados, límites de plan— para que nadie tenga que vigilar pantallas de proceso.",
+  "anatomy": [
+   "Disparador: botón campana en la topbar con badge de no leídas (tope visual 99+)",
+   "Popover anclado al disparador, máximo 420 × 560 px",
+   "Encabezado con título, pestañas de filtro (Todas / Sin leer / Menciones) y acción Marcar todas como leídas",
+   "Lista agrupada por día: Hoy, Ayer, Esta semana, Anteriores",
+   "Ítem: icono de tipo, texto con entidades enlazadas, marca temporal relativa, punto de no leída y menú «…»",
+   "Acciones en línea por ítem (Ver resultados, Revisar errores, Descargar PDF, Rotar clave)",
+   "Separador «Nuevas desde tu última visita»",
+   "Pie con Ver todo el historial y Preferencias de notificación",
+   "Estado vacío ilustrado con texto explicativo",
+   "Toast efímero para avisos críticos recibidos en vivo con el panel cerrado"
+  ],
+  "data": {
+   "campos": [
+    "id",
+    "tipo",
+    "severidad",
+    "titulo",
+    "cuerpo",
+    "entidad",
+    "cliente",
+    "fechaHora",
+    "leida",
+    "accionPrimaria"
+   ],
+   "filasEjemplo": [
+    {
+     "tipo": "valuacion_finalizada",
+     "severidad": "info",
+     "titulo": "Valuación finalizada",
+     "cuerpo": "VAL-2026-0417 (NIC 19) de Pronaca al corte 30/11/2026 ya tiene DBO calculada: USD 14.238.902",
+     "fechaHora": "hace 8 min",
+     "leida": false,
+     "accionPrimaria": "Ver resultados"
+    },
+    {
+     "tipo": "nomina_rechazada",
+     "severidad": "error",
+     "titulo": "Nómina rechazada",
+     "cuerpo": "PRO-NOM-2026-11.xlsx: 42 registros sin fecha de ingreso y 7 cédulas inválidas",
+     "fechaHora": "hace 1 h",
+     "leida": false,
+     "accionPrimaria": "Revisar errores"
+    },
+    {
+     "tipo": "informe_firmado",
+     "severidad": "exito",
+     "titulo": "Informe firmado disponible",
+     "cuerpo": "Holcim Ecuador 2026, firmado por Act. Diego Carrión (SCVS 1094)",
+     "fechaHora": "ayer 17:05",
+     "leida": true,
+     "accionPrimaria": "Descargar PDF"
+    },
+    {
+     "tipo": "hipotesis_modificada",
+     "severidad": "aviso",
+     "titulo": "Hipótesis modificada",
+     "cuerpo": "Act. María Belén Ortega cambió la tasa de descuento de 8,25% a 7,90% en Cervecería Nacional",
+     "fechaHora": "ayer 09:42",
+     "leida": true,
+     "accionPrimaria": "Ver cambio"
+    },
+    {
+     "tipo": "limite_plan",
+     "severidad": "aviso",
+     "titulo": "Plan al 90%",
+     "cuerpo": "Has usado 18 de 20 valuaciones del plan Corporativo 2026",
+     "fechaHora": "hace 2 días",
+     "leida": true,
+     "accionPrimaria": "Ver consumo"
+    },
+    {
+     "tipo": "clave_por_expirar",
+     "severidad": "aviso",
+     "titulo": "Clave de API por expirar",
+     "cuerpo": "«Integración Nómina SAP · Pronaca» expira el 15/12/2026",
+     "fechaHora": "hace 3 días",
+     "leida": false,
+     "accionPrimaria": "Rotar clave"
+    }
+   ]
+  },
+  "interactions": [
+   "Clic o Enter en la campana abre y cierra el popover; Esc cierra y devuelve el foco a la campana",
+   "↑ / ↓ recorren los ítems, Enter dispara la acción primaria y Espacio alterna leída / no leída sin salir del panel",
+   "Al abrir un ítem se marca como leído y se navega al recurso; el badge se decrementa de forma optimista y se corrige si el servidor responde con error",
+   "Marcar todas como leídas vacía el badge y ofrece Deshacer durante 8 s",
+   "Scroll infinito en bloques de 20; al cargar más, el foco y la posición de lectura no se mueven",
+   "Los avisos en vivo (SSE/WebSocket) se insertan arriba mediante un botón «3 notificaciones nuevas» en lugar de desplazar lo que se está leyendo",
+   "Cambiar de pestaña de filtro no recarga el panel y actualiza el contador de cada pestaña",
+   "El menú «…» de cada ítem permite Silenciar este tipo de aviso para este cliente"
+  ],
+  "states": [
+   "Cerrado sin no leídas",
+   "Cerrado con badge",
+   "Abierto con no leídas",
+   "Abierto todo leído",
+   "Vacío (primer uso)",
+   "Cargando primera página (esqueleto de 5 ítems)",
+   "Cargando más",
+   "Error de conexión con botón Reintentar",
+   "Modo no molestar activo",
+   "Degradado a sondeo cada 60 s cuando cae el canal en tiempo real"
+  ],
+  "a11y": [
+   "La campana lleva aria-haspopup=dialog, aria-expanded y un nombre accesible dinámico: «Notificaciones, 4 sin leer»",
+   "El conteo vive en el nombre accesible del botón, no solo en el badge visual",
+   "Popover con role=dialog y aria-label=Centro de notificaciones; al abrir, el foco va al primer control; Esc cierra y restaura el foco a la campana",
+   "Lista con role=list e ítems con role=listitem; el estado sin leer se expone con texto visualmente oculto, nunca solo con un punto de color",
+   "Los avisos críticos recibidos en vivo se anuncian en aria-live=assertive; los informativos en aria-live=polite y agregados",
+   "Las marcas relativas usan el elemento time con datetime absoluto y zona (-05:00), y el texto accesible incluye la fecha completa",
+   "Decidir y mantener una sola semántica: si el popover es modal, atrapa el foco; si no lo es, Tab debe salir al resto de la página de forma predecible",
+   "Los botones de acción en línea tienen nombre completo («Revisar errores de PRO-NOM-2026-11.xlsx»), no solo «Revisar»"
+  ],
+  "pitfalls": [
+   "Marcar todo como leído con solo abrir el panel: el usuario pierde la pista de lo que aún no revisó",
+   "Anunciar cada notificación entrante en aria-live=assertive e interrumpir continuamente la lectura",
+   "Badge que no se sincroniza entre pestañas del navegador y muestra 4 en una y 0 en otra",
+   "Texto genérico («Tienes una actualización») sin entidad ni cliente: inútil en una consultora con 40 clientes activos",
+   "Insertar ítems nuevos directamente y provocar salto de scroll mientras se lee",
+   "No agregar ráfagas: 300 avisos de «fila de nómina corregida» en vez de uno consolidado",
+   "Mostrar la hora en UTC a un usuario en America/Guayaquil (UTC-5) y desfasar los cortes por un día",
+   "Popover que se corta en viewports pequeños por no reposicionarse (flip/shift) ni limitar su altura",
+   "Acciones en línea no idempotentes: pulsar dos veces Rotar clave genera dos claves"
+  ]
+ },
+ "data-table": {
+  "id": "data-table",
+  "nombre": "Tabla de datos",
+  "purpose": "Listar y operar en lote sobre los volúmenes de trabajo de actuaria+ (valuaciones, nóminas, informes) con orden, filtro, selección múltiple, paginación y acciones masivas.",
+  "anatomy": [
+   "Barra superior: buscador, filter-bar, selector de vistas guardadas, densidad, selector de columnas y Exportar",
+   "Encabezado con celdas ordenables, indicador de dirección y marca de orden secundario",
+   "Checkbox de selección en cabecera (todo / indeterminado) y por fila",
+   "Columna identificadora fija a la izquierda y columna de acciones fija a la derecha",
+   "Celdas tipadas: texto, numérica alineada a la derecha con separador de miles, moneda USD, fecha, chip de estado, avatar + nombre",
+   "Acción primaria en línea y menú «…» por fila",
+   "Fila expandible con resumen de hipótesis aplicadas",
+   "Cinta flotante de acciones masivas que aparece al seleccionar",
+   "Pie: «Mostrando 1-25 de 138», selector de tamaño de página y paginación",
+   "Esqueleto de carga, estado vacío, estado sin resultados de filtro y estado de error con reintento"
+  ],
+  "data": {
+   "campos": [
+    "codigo",
+    "cliente",
+    "tipoBeneficio",
+    "normativa",
+    "fechaCorte",
+    "empleados",
+    "dboUSD",
+    "estado",
+    "actuarioResponsable",
+    "actualizado"
+   ],
+   "filasEjemplo": [
+    {
+     "codigo": "VAL-2026-0417",
+     "cliente": "Pronaca",
+     "tipoBeneficio": "Jubilación patronal + desahucio",
+     "normativa": "NIC 19",
+     "fechaCorte": "30/11/2026",
+     "empleados": 8412,
+     "dboUSD": "14.238.902,00",
+     "estado": "En cálculo",
+     "actuarioResponsable": "Act. Diego Carrión",
+     "actualizado": "hace 8 min"
+    },
+    {
+     "codigo": "VAL-2026-0412",
+     "cliente": "Holcim Ecuador",
+     "tipoBeneficio": "Jubilación patronal",
+     "normativa": "NIC 19",
+     "fechaCorte": "30/09/2026",
+     "empleados": 1236,
+     "dboUSD": "6.104.550,00",
+     "estado": "Finalizada",
+     "actuarioResponsable": "Act. Diego Carrión",
+     "actualizado": "18/11/2026"
+    },
+    {
+     "codigo": "VAL-2026-0398",
+     "cliente": "Cervecería Nacional",
+     "tipoBeneficio": "Desahucio",
+     "normativa": "NIC 19",
+     "fechaCorte": "30/06/2026",
+     "empleados": 2870,
+     "dboUSD": "2.431.117,00",
+     "estado": "Informe firmado",
+     "actuarioResponsable": "Act. María Belén Ortega",
+     "actualizado": "02/10/2026"
+    },
+    {
+     "codigo": "VAL-2026-0355",
+     "cliente": "Banco Pichincha",
+     "tipoBeneficio": "Jubilación patronal + desahucio",
+     "normativa": "NIC 19",
+     "fechaCorte": "31/12/2026",
+     "empleados": 6045,
+     "dboUSD": null,
+     "estado": "Borrador (faltan hipótesis)",
+     "actuarioResponsable": "Sin asignar",
+     "actualizado": "21/11/2026"
+    },
+    {
+     "codigo": "VAL-2026-0341",
+     "cliente": "Corporación Favorita",
+     "tipoBeneficio": "Jubilación patronal",
+     "normativa": "NIC 19",
+     "fechaCorte": "31/12/2025",
+     "empleados": 12907,
+     "dboUSD": "21.776.430,00",
+     "estado": "Archivada",
+     "actuarioResponsable": "Act. María Belén Ortega",
+     "actualizado": "14/03/2026"
+    },
+    {
+     "codigo": "VAL-2026-0327",
+     "cliente": "Industrias Ales",
+     "tipoBeneficio": "Desahucio",
+     "normativa": "NIC 19",
+     "fechaCorte": "31/03/2026",
+     "empleados": 974,
+     "dboUSD": "884.206,00",
+     "estado": "Error de cálculo (nómina incompleta)",
+     "actuarioResponsable": "Act. Diego Carrión",
+     "actualizado": "09/09/2026"
+    }
+   ],
+   "accionesMasivas": [
+    "Exportar a XLSX",
+    "Reasignar actuario responsable",
+    "Recalcular con hipótesis vigentes",
+    "Archivar",
+    "Descargar informes firmados (ZIP)"
+   ],
+   "totalResultados": 138
+  },
+  "interactions": [
+   "Clic en cabecera cicla ascendente → descendente → sin orden; Mayús+clic añade orden secundario (cliente ↑, fecha de corte ↓)",
+   "El checkbox de cabecera selecciona las filas de la página y aparece la cinta «25 seleccionadas · Seleccionar las 138 que cumplen el filtro»",
+   "La selección sobrevive a la paginación y muestra siempre el total real; Limpiar selección la vacía",
+   "Las acciones masivas irreversibles (Archivar, Recalcular) exigen confirmación escribiendo la cantidad afectada",
+   "Arrastrar el borde de la cabecera redimensiona y arrastrar la cabecera reordena columnas; ambos cambios se guardan en la vista activa",
+   "Clic en la fila abre el detalle; los enlaces internos de la fila no disparan la navegación de fila",
+   "Tamaño de página 25 / 50 / 100; orden, página y filtros se reflejan en la URL para compartir el enlace exacto",
+   "Las cifras se muestran con 2 decimales y separador de miles, pero la exportación conserva la precisión completa del cálculo"
+  ],
+  "states": [
+   "Cargando (esqueleto de 10 filas con anchos estables)",
+   "Con datos",
+   "Vacío por primera vez (CTA: Lanzar la primera valuación)",
+   "Sin resultados por filtro (CTA: Limpiar filtros)",
+   "Error de carga con Reintentar",
+   "Recargando con los datos previos atenuados",
+   "Fila en proceso (barra indeterminada en la fila)",
+   "Fila con error (chip rojo y acción Ver detalle del error)",
+   "Selección parcial (checkbox de cabecera indeterminado)",
+   "Solo lectura para el rol Auditor (sin checkboxes ni acciones de escritura)",
+   "Exportación en curso con progreso"
+  ],
+  "a11y": [
+   "Tabla HTML real con caption («Valuaciones, 138 resultados filtrados»), thead, th scope=col y th scope=row en la columna de código",
+   "El orden se expone con aria-sort en el th (ascending / descending / none) y el control es un button dentro del th, no un manejador de clic en la celda",
+   "Cada checkbox tiene nombre accesible propio: «Seleccionar VAL-2026-0417, Pronaca»; el de cabecera usa aria-checked=mixed en selección parcial",
+   "Los cambios de recuento y de selección se anuncian en aria-live=polite: «25 de 138 filas seleccionadas»",
+   "Si se implementa como role=grid: Tab entra una vez a la tabla, las flechas mueven entre celdas con roving tabindex, Espacio alterna la selección de la fila enfocada y Mayús+↑/↓ extiende la selección",
+   "Las columnas fijas no deben tapar el anillo de foco: aplicar scroll-padding-inline y fondo opaco con contraste suficiente",
+   "La paginación es un nav con aria-label=Paginación de valuaciones y aria-current=page en la página activa",
+   "Los chips de estado incluyen texto; el icono va con aria-hidden=true y nunca es el único portador del significado",
+   "Las celdas numéricas usan tabular-nums y su lectura incluye la unidad («14.238.902 dólares»)"
+  ],
+  "pitfalls": [
+   "Construir la tabla con divs y role=grid sin implementar el modelo de teclado completo: resulta peor que una tabla nativa",
+   "«Seleccionar todo» que en realidad marca solo la página visible y luego la acción masiva afecta a 25 de 138 sin avisar",
+   "Virtualizar filas y romper Ctrl+F y la lectura secuencial sin ofrecer alternativa (exportar o paginar)",
+   "Ordenar en cliente solo la página cargada: el resultado miente sobre el conjunto completo",
+   "Perder la selección al reordenar o paginar sin advertencia",
+   "Mostrar coma decimal en pantalla y exportar con punto, rompiendo el XLSX del contador",
+   "No usar tabular-nums: las columnas de DBO bailan entre filas y dificultan la comparación",
+   "Mezclar fecha de corte y fecha de actualización en una sola columna «Fecha»",
+   "Acciones masivas sin idempotencia: un doble clic lanza dos recálculos y consume dos cupos del plan",
+   "Menú «…» recortado por overflow:hidden del contenedor con scroll"
+  ]
+ },
+ "filter-bar": {
+  "id": "filter-bar",
+  "nombre": "Barra de filtros por facetas",
+  "purpose": "Reducir listados largos combinando facetas (cliente, estado, normativa, tipo de beneficio, actuario, fecha de corte) con conteos por opción y traducción a una URL compartible.",
+  "anatomy": [
+   "Fila horizontal de disparadores de faceta con etiqueta, valor resumido y contador de seleccionados",
+   "Popover por faceta: buscador interno, lista de casillas con conteo y acciones Todos / Ninguno",
+   "Conmutador de operador por faceta (Cualquiera / Todos / Ninguno) cuando aplica",
+   "Chips de filtros aplicados, cada uno con botón de quitar",
+   "Botón Limpiar todo visible solo cuando hay filtros activos",
+   "Botón + Añadir filtro con el menú de facetas disponibles",
+   "Botón Guardar como vista que enlaza con saved-views",
+   "Contador de resultados en vivo junto a la barra",
+   "Indicador de desbordamiento «+3 filtros» cuando no caben en una línea",
+   "Variante móvil: hoja inferior a pantalla completa con botón Aplicar (24)"
+  ],
+  "data": {
+   "facetas": {
+    "cliente": [
+     {
+      "Pronaca": 23
+     },
+     {
+      "Corporación Favorita": 19
+     },
+     {
+      "Banco Pichincha": 17
+     },
+     {
+      "Holcim Ecuador": 12
+     },
+     {
+      "Cervecería Nacional": 9
+     },
+     {
+      "Industrias Ales": 6
+     }
+    ],
+    "estado": [
+     {
+      "Borrador": 14
+     },
+     {
+      "En cálculo": 3
+     },
+     {
+      "Finalizada": 62
+     },
+     {
+      "Informe firmado": 48
+     },
+     {
+      "Error de cálculo": 5
+     },
+     {
+      "Archivada": 6
+     }
+    ],
+    "normativa": [
+     {
+      "NIC 19": 121
+     },
+     {
+      "NIIF para PYMES, sección 28": 11
+     },
+     {
+      "Política interna del cliente": 6
+     }
+    ],
+    "tipoBeneficio": [
+     {
+      "Jubilación patronal": 88
+     },
+     {
+      "Desahucio": 71
+     },
+     {
+      "Bonificación por desahucio": 23
+     },
+     {
+      "Fondos de reserva": 4
+     }
+    ],
+    "actuarioResponsable": [
+     {
+      "Act. Diego Carrión": 71
+     },
+     {
+      "Act. María Belén Ortega": 52
+     },
+     {
+      "Sin asignar": 15
+     }
+    ],
+    "fechaCorte": "rango de fechas delegado al componente date-range",
+    "empleados": "rango numérico 0 – 15.000"
+   },
+   "chipsAplicadosEjemplo": [
+    "Cliente: Pronaca",
+    "Estado: Finalizada o Informe firmado",
+    "Fecha de corte: 01/01/2026 – 30/11/2026",
+    "Actuario: Act. Diego Carrión"
+   ],
+   "resultadosVisibles": 24,
+   "urlEjemplo": "/valuaciones?cliente=pronaca&estado=finalizada,firmado&corte=2026-01-01..2026-11-30&orden=-corte"
+  },
+  "interactions": [
+   "Abrir una faceta y marcar opciones aplica el filtro con debounce de 250 ms y actualiza el contador global de resultados",
+   "El buscador interno filtra las opciones visibles sin ocultar las ya marcadas, que quedan fijadas arriba de la lista",
+   "Quitar un chip revierte solo esa faceta; Limpiar todo las revierte todas y ofrece Deshacer durante 8 s",
+   "Los filtros se serializan en la URL y sobreviven a recarga, botón atrás y enlace compartido",
+   "Los conteos se recalculan excluyendo la propia faceta, de modo que las demás opciones de esa faceta siguen mostrando valores útiles",
+   "Las opciones con conteo 0 se deshabilitan pero nunca desaparecen si el usuario las tiene marcadas",
+   "Esc cierra el popover; en facetas en modo Aplicar, descarta lo marcado desde la última apertura",
+   "El filtro de cliente queda bloqueado y visible para roles con alcance restringido (Auditor externo)"
+  ],
+  "states": [
+   "Sin filtros aplicados",
+   "Con filtros aplicados (chips visibles + Limpiar todo)",
+   "Popover de faceta abierto",
+   "Cargando conteos (esqueleto numérico junto a cada opción)",
+   "Faceta sin opciones disponibles",
+   "Cero resultados con el detalle de la combinación («Pronaca + Error + 2024»)",
+   "Filtros heredados de una vista guardada (chips marcados como «de la vista»)",
+   "Filtro fijado por permiso (no eliminable, con explicación)",
+   "Error al cargar las facetas con reintento",
+   "Desbordamiento con indicador +N"
+  ],
+  "a11y": [
+   "Cada disparador es un button con aria-expanded, aria-haspopup y aria-controls; su nombre accesible completo es «Filtrar por estado, 2 seleccionados»",
+   "Las opciones viven dentro de un fieldset con legend (o role=group con aria-labelledby) y son input type=checkbox reales con su label asociado",
+   "El conteo forma parte del nombre accesible de cada opción: «Finalizada, 62 resultados»",
+   "Tras aplicar, el resultado se anuncia en aria-live=polite: «24 valuaciones coinciden con los filtros»",
+   "Cada chip es un button con nombre «Quitar filtro Cliente: Pronaca»; Supr o Retroceso sobre el chip enfocado lo elimina",
+   "Esc cierra el popover y devuelve el foco al disparador; mientras está abierto como diálogo, Tab cicla dentro",
+   "La barra completa se expone como role=search con aria-label=Filtros de valuaciones",
+   "Las opciones deshabilitadas usan aria-disabled=true y conservan el foco para poder leer el motivo",
+   "El operador de la faceta se expone como grupo de radios con legend («Combinar estados con:»)"
+  ],
+  "pitfalls": [
+   "Aplicar el filtro en cada tecla sin debounce: la tabla parpadea y el servidor recibe una ráfaga de peticiones",
+   "Calcular los conteos sobre el resultado ya filtrado por la propia faceta: todas las opciones muestran 0 salvo la marcada",
+   "Chips que no revelan el operador: «Estado: Finalizada, Error» sin indicar si es Y u O",
+   "Perder los filtros al entrar al detalle y volver, por no restaurarlos desde la URL",
+   "Dejar marcada una opción que ahora tiene 0 resultados y devolver una lista vacía sin explicación",
+   "Usar divs con manejador de clic en lugar de checkboxes: sin estado anunciado ni soporte de Espacio",
+   "Desbordamiento horizontal que esconde facetas en 1280 px sin indicador +N",
+   "URLs que superan el límite del servidor al seleccionar decenas de clientes, sin fallback a POST",
+   "Tratar el filtro de cliente como si fuese control de acceso: filtrar no es autorizar"
+  ]
+ },
+ "date-range": {
+  "id": "date-range",
+  "nombre": "Selector de rango de fechas",
+  "purpose": "Elegir un periodo —corte contable, ventana de auditoría o ciclo de consumo— mediante presets del calendario fiscal ecuatoriano y entrada manual validada.",
+  "anatomy": [
+   "Disparador con icono de calendario y texto «01 ene 2026 – 30 nov 2026 (334 días)»",
+   "Popover de dos paneles: columna de presets a la izquierda y calendario doble (dos meses) a la derecha",
+   "Dos campos de texto editables, Desde y Hasta, con máscara dd/mm/aaaa",
+   "Navegación de meses (‹ ›) y selectores de mes y año",
+   "Celdas de día con estados: extremo del rango, dentro del rango, hoy, deshabilitada, fuera del mes",
+   "Conmutador opcional «Comparar con el periodo anterior»",
+   "Mensaje de validación en línea bajo los campos",
+   "Pie con resumen del rango, botón Cancelar y botón Aplicar"
+  ],
+  "data": {
+   "campos": [
+    "desde",
+    "hasta",
+    "presetActivo",
+    "zonaHoraria",
+    "diasSeleccionados",
+    "limiteMin",
+    "limiteMax",
+    "comparacion"
+   ],
+   "presets": [
+    "Hoy",
+    "Últimos 7 días",
+    "Últimos 30 días",
+    "Mes en curso (noviembre 2026)",
+    "Trimestre en curso (4T 2026)",
+    "Año en curso (2026)",
+    "Año anterior (2025)",
+    "Cierre 31/12/2025",
+    "Cierre 31/12/2026",
+    "Ejercicio fiscal 2026 (01/01/2026 – 31/12/2026)",
+    "Desde el último informe firmado (18/11/2026 – hoy)",
+    "Personalizado"
+   ],
+   "ejemploValores": {
+    "fechaDeCorte": "31/12/2026",
+    "ventanaAuditoria": "01/11/2026 – 25/11/2026 (25 días)",
+    "comparativo": "01/01/2025 – 31/12/2025",
+    "zonaHoraria": "America/Guayaquil (UTC-5)",
+    "limiteMin": "01/01/2018 (primera nómina cargada del cliente)",
+    "limiteMax": "31/12/2027 (cortes proyectados permitidos)"
+   }
+  },
+  "interactions": [
+   "Clic en un preset aplica el rango y cierra el popover; el disparador muestra el nombre del preset, no solo las fechas",
+   "El primer clic en el calendario fija el inicio y el segundo el fin; si el segundo es anterior, el rango se invierte automáticamente en lugar de mostrar error",
+   "Al pasar el cursor por el calendario con el inicio ya fijado se previsualiza el rango resultante",
+   "Los campos aceptan 31/12/2026, 31-12-2026 y 2026-12-31, y se normalizan a dd/mm/aaaa al perder el foco",
+   "Flechas mueven un día, RePág / AvPág un mes, Mayús+RePág / AvPág un año, Inicio y Fin van al principio y fin de la semana",
+   "Enter aplica, Esc cancela y restaura el rango anterior",
+   "Un rango inválido (fin anterior al inicio, fuera de límites, superior a 24 meses en auditoría) bloquea Aplicar y muestra el motivo exacto",
+   "El modo fecha única (corte contable) oculta el segundo campo y el preview de rango"
+  ],
+  "states": [
+   "Cerrado con valor",
+   "Cerrado sin valor («Selecciona un periodo»)",
+   "Abierto con preset activo",
+   "Seleccionando (solo inicio fijado, previsualizando)",
+   "Rango completo seleccionado",
+   "Fecha mal formada en el campo de texto",
+   "Rango fuera de límites permitidos",
+   "Días deshabilitados por falta de datos cargados",
+   "Cargando disponibilidad de datos",
+   "Solo lectura",
+   "Con comparación activa"
+  ],
+  "a11y": [
+   "El disparador es un button con aria-haspopup=dialog y aria-expanded, y su nombre accesible incluye el rango en palabras: «Periodo: del 1 de enero de 2026 al 30 de noviembre de 2026»",
+   "Popover con role=dialog y aria-label=Seleccionar rango de fechas, con foco atrapado mientras está abierto",
+   "La rejilla de días usa role=grid con role=row y role=gridcell; un único día tiene tabindex=0 (roving) y el resto tabindex=-1",
+   "Cada celda expone aria-label completo («martes, 30 de junio de 2026») y aria-selected; los extremos añaden texto oculto «inicio del rango» / «fin del rango»",
+   "Los días no disponibles llevan aria-disabled=true y una descripción del motivo; no se eliminan del DOM",
+   "El cambio de mes se anuncia en aria-live=polite («noviembre 2026»)",
+   "La lista de presets es navegable con flechas y el preset activo lleva aria-pressed=true",
+   "Los errores de validación usan aria-invalid=true y aria-describedby apuntando al mensaje",
+   "Los campos de texto aceptan pegado y teclado numérico: nunca obligar a usar el calendario"
+  ],
+  "pitfalls": [
+   "Interpretar las fechas en UTC y desplazar un día el corte 31/12 para un usuario en UTC-5",
+   "Usar formato mm/dd/aaaa: en Ecuador 03/04/2026 es 3 de abril, no 4 de marzo",
+   "Deshabilitar Aplicar sin explicar qué condición falla",
+   "Calendario operable solo con ratón, sin roving tabindex ni atajos de mes/año",
+   "Guardar «Últimos 30 días» como fechas absolutas dentro de una vista y congelar el periodo para siempre",
+   "No permitir rangos de un solo día, imprescindibles para un corte puntual",
+   "Popover que se abre fuera de pantalla cuando el disparador está en la última fila de la tabla",
+   "Validar solo en el cliente y aceptar en la API un corte anterior a la primera nómina cargada",
+   "Reutilizar el componente para «fecha de corte» sin modo de fecha única y forzar rangos sin sentido",
+   "Mezclar fecha de corte con fecha de generación del informe en el mismo control"
+  ]
+ },
+ "saved-views": {
+  "id": "saved-views",
+  "nombre": "Vistas guardadas / segmentos",
+  "purpose": "Guardar combinaciones de filtros, orden, columnas y densidad como vistas reutilizables y compartibles, para que cada rol abra actuaria+ directamente en su subconjunto de trabajo.",
+  "anatomy": [
+   "Selector de vista en la barra superior de la tabla con el nombre activo y chevron",
+   "Menú con secciones: Mis vistas, Compartidas con el equipo, Del sistema",
+   "Buscador dentro del menú y marcado de favoritas con estrella",
+   "Indicador «Modificada» con botones Guardar cambios y Descartar",
+   "Menú «…» por vista: Renombrar, Duplicar, Compartir, Fijar como predeterminada, Copiar enlace, Eliminar",
+   "Diálogo de creación: nombre, descripción, visibilidad (Privada / Equipo / Organización) y casilla Fijar como mi vista inicial",
+   "Resumen legible del contenido de la vista: «3 filtros · orden por fecha de corte ↓ · 7 columnas»",
+   "Pestañas ancladas para hasta 5 vistas favoritas",
+   "Estado vacío con CTA Crear mi primera vista"
+  ],
+  "data": {
+   "campos": [
+    "id",
+    "nombre",
+    "descripcion",
+    "propietario",
+    "visibilidad",
+    "filtros",
+    "orden",
+    "columnas",
+    "densidad",
+    "esPredeterminada",
+    "usos",
+    "actualizada"
+   ],
+   "filasEjemplo": [
+    {
+     "nombre": "Cierre 2026 · pendientes de firma",
+     "propietario": "Act. Diego Carrión",
+     "visibilidad": "Equipo",
+     "filtros": "estado = Finalizada · fecha de corte = 31/12/2026",
+     "orden": "cliente ↑",
+     "columnas": 8,
+     "usos": 142,
+     "actualizada": "24/11/2026"
+    },
+    {
+     "nombre": "Mis valuaciones en cálculo",
+     "propietario": "Act. María Belén Ortega",
+     "visibilidad": "Privada",
+     "filtros": "actuario = yo · estado = En cálculo",
+     "orden": "actualizado ↓",
+     "columnas": 6,
+     "usos": 87,
+     "actualizada": "25/11/2026"
+    },
+    {
+     "nombre": "Nóminas con errores de validación",
+     "propietario": "Sistema",
+     "visibilidad": "Organización",
+     "filtros": "estado = Error · origen = Carga XLSX",
+     "orden": "fecha de carga ↓",
+     "columnas": 7,
+     "usos": 68,
+     "actualizada": "—"
+    },
+    {
+     "nombre": "Auditoría externa BDO 2026",
+     "propietario": "Renato Puente (Propietario)",
+     "visibilidad": "Equipo (solo lectura)",
+     "filtros": "cliente = Banco Pichincha · estado = Informe firmado · corte 2025-2026",
+     "orden": "fecha de corte ↓",
+     "columnas": 5,
+     "usos": 23,
+     "actualizada": "19/11/2026"
+    },
+    {
+     "nombre": "Clientes con plan por agotarse",
+     "propietario": "Sistema",
+     "visibilidad": "Organización",
+     "filtros": "consumo del plan ≥ 80%",
+     "orden": "% consumo ↓",
+     "columnas": 6,
+     "usos": 31,
+     "actualizada": "—"
+    },
+    {
+     "nombre": "Archivadas 2024-2025",
+     "propietario": "Act. Diego Carrión",
+     "visibilidad": "Privada",
+     "filtros": "estado = Archivada · corte ≤ 31/12/2025",
+     "orden": "corte ↓",
+     "columnas": 6,
+     "usos": 12,
+     "actualizada": "03/09/2026"
+    }
+   ],
+   "limite": "50 vistas por usuario, 5 ancladas como pestañas"
+  },
+  "interactions": [
+   "Seleccionar una vista aplica filtros, orden, columnas y densidad en una sola operación y sincroniza la URL",
+   "Cualquier cambio posterior marca la vista como Modificada; Guardar cambios sobrescribe solo si el usuario es propietario, si no ofrece Guardar como nueva",
+   "Compartir genera un enlace que reproduce la vista; si el destinatario no tiene alcance sobre el cliente filtrado ve la vista vacía con un aviso explicativo, no un 403 seco",
+   "Fijar como predeterminada hace que la ruta de la lista abra en esa vista; la preferencia personal prevalece sobre la de la organización",
+   "Arrastrar para reordenar las pestañas ancladas, con máximo de 5 y el resto accesible desde el menú",
+   "Eliminar pide confirmación y advierte cuánta gente la usa («La usan 4 miembros del equipo»)",
+   "Cambiar de vista con modificaciones sin guardar abre una confirmación explícita con las opciones Guardar, Descartar y Cancelar",
+   "Duplicar crea una copia privada editable a partir de una vista del sistema"
+  ],
+  "states": [
+   "Vista del sistema activa (no editable)",
+   "Vista propia activa",
+   "Vista compartida activa en modo solo lectura",
+   "Modificada sin guardar",
+   "Guardando",
+   "Conflicto: otro usuario la modificó (ofrecer Recargar o Duplicar)",
+   "Vista rota: una faceta dejó de existir tras cambiar el catálogo",
+   "Sin vistas (estado vacío)",
+   "Límite de 50 vistas alcanzado",
+   "Vista eliminada por otro usuario mientras estaba activa"
+  ],
+  "a11y": [
+   "El selector es un button con aria-haspopup=menu y aria-expanded, con nombre accesible «Vista: Cierre 2026, pendientes de firma, modificada»",
+   "El menú usa role=menu con role=menuitemradio y aria-checked en la vista activa; flechas navegan, Inicio y Fin saltan y escribir una letra salta a la coincidencia",
+   "Las secciones del menú se agrupan con role=group y aria-label (Mis vistas, Compartidas, Del sistema)",
+   "El estado Modificada se expone como texto, no solo como punto de color",
+   "El diálogo de guardar usa role=dialog con aria-modal=true, foco inicial en el campo Nombre y Esc para cancelar",
+   "Al aplicar una vista se anuncia en aria-live=polite: «Vista aplicada: 24 valuaciones»",
+   "Las pestañas ancladas siguen el patrón role=tablist / role=tab con navegación por ← → y aria-selected",
+   "La confirmación de borrado usa role=alertdialog con el foco inicial en Cancelar",
+   "El resumen de la vista se asocia con aria-describedby al ítem del menú para leerlo sin abrirlo"
+  ],
+  "pitfalls": [
+   "Guardar «Últimos 30 días» como fechas absolutas y dejar la vista congelada en un periodo caduco",
+   "Sobrescribir una vista de equipo sin avisar a quienes la usan a diario",
+   "No distinguir visualmente vistas del sistema y propias: el usuario intenta borrar una del sistema",
+   "Almacenar en la vista criterios sensibles (búsquedas por cédula) y compartirla sin control",
+   "Aplicar la vista sin reflejarla en la URL: el enlace compartido no reproduce el estado",
+   "Ignorar en silencio los filtros cuya faceta ya no existe en vez de avisar «1 filtro obsoleto se omitió»",
+   "Confundir vista con permiso: una vista filtrada por cliente no restringe el acceso a los datos",
+   "Dejar pegado el indicador Modificada después de guardar correctamente",
+   "No limitar el número de vistas ni ofrecer archivado: el menú se vuelve inusable"
+  ]
+ },
+ "onboarding-checklist": {
+  "id": "onboarding-checklist",
+  "nombre": "Lista de puesta en marcha",
+  "purpose": "Guiar a un cliente nuevo desde la creación de la cuenta hasta la entrega de su primera valuación, con pasos verificables automáticamente, progreso visible y responsable asignado.",
+  "anatomy": [
+   "Tarjeta con título, subtítulo y porcentaje de avance",
+   "Barra de progreso con el texto «3 de 7 pasos completados»",
+   "Lista ordenada de pasos: icono de estado, título, descripción, responsable con avatar, tiempo estimado y CTA",
+   "Paso expandible con instrucciones, requisitos previos y enlace a la ayuda",
+   "Marca de paso bloqueado con el motivo de la dependencia",
+   "Acción Omitir por ahora por paso y Ocultar la guía global",
+   "Bloque de cierre al 100% con el siguiente paso natural",
+   "Variante minimizada en la topbar (anillo de progreso)",
+   "Enlace Agendar sesión con tu actuario asignado"
+  ],
+  "data": {
+   "campos": [
+    "orden",
+    "titulo",
+    "descripcion",
+    "responsable",
+    "estado",
+    "tiempoEstimado",
+    "dependeDe",
+    "cta",
+    "completadoEl",
+    "verificacion"
+   ],
+   "filasEjemplo": [
+    {
+     "orden": 1,
+     "titulo": "Confirmar los datos de la empresa",
+     "descripcion": "RUC, razón social, actividad CIIU y número de establecimientos",
+     "responsable": "Ana Lucía Varela (RRHH)",
+     "estado": "Completado",
+     "tiempoEstimado": "3 min",
+     "completadoEl": "10/11/2026",
+     "verificacion": "automática"
+    },
+    {
+     "orden": 2,
+     "titulo": "Invitar a tu contador y al auditor externo",
+     "descripcion": "Asigna los roles Analista y Auditor (solo lectura)",
+     "responsable": "Propietario",
+     "estado": "Completado",
+     "tiempoEstimado": "2 min",
+     "completadoEl": "10/11/2026",
+     "verificacion": "automática"
+    },
+    {
+     "orden": 3,
+     "titulo": "Subir la nómina al corte",
+     "descripcion": "Plantilla XLSX con cédula, fecha de nacimiento, fecha de ingreso, sueldo, cargo y sucursal",
+     "responsable": "Ana Lucía Varela",
+     "estado": "En progreso (412 de 8.412 filas validadas)",
+     "tiempoEstimado": "15 min",
+     "verificacion": "automática"
+    },
+    {
+     "orden": 4,
+     "titulo": "Corregir los errores de la nómina",
+     "descripcion": "42 registros sin fecha de ingreso y 7 cédulas inválidas",
+     "responsable": "Ana Lucía Varela",
+     "estado": "Bloqueado",
+     "dependeDe": "paso 3",
+     "tiempoEstimado": "20 min"
+    },
+    {
+     "orden": 5,
+     "titulo": "Revisar las hipótesis propuestas",
+     "descripcion": "Tasa de descuento 7,90% · incremento salarial 3,50% · rotación tabla propia · mortalidad IESS 2002",
+     "responsable": "Act. Diego Carrión",
+     "estado": "Pendiente",
+     "tiempoEstimado": "10 min"
+    },
+    {
+     "orden": 6,
+     "titulo": "Lanzar la primera valuación NIC 19",
+     "descripcion": "Jubilación patronal y desahucio al 31/12/2026",
+     "responsable": "Act. Diego Carrión",
+     "estado": "Bloqueado",
+     "dependeDe": "pasos 4 y 5",
+     "tiempoEstimado": "1 min"
+    },
+    {
+     "orden": 7,
+     "titulo": "Descargar el informe firmado",
+     "descripcion": "PDF con firma electrónica del actuario calificado",
+     "responsable": "Contador del cliente",
+     "estado": "Bloqueado",
+     "dependeDe": "paso 6",
+     "tiempoEstimado": "2 min"
+    }
+   ],
+   "progreso": {
+    "completados": 3,
+    "total": 7,
+    "porcentaje": 43
+   }
+  },
+  "interactions": [
+   "Los pasos se completan solos cuando el sistema detecta el hecho real (nómina validada, usuario invitado, valuación lanzada), sin depender de que alguien pulse «hecho»",
+   "Los pasos puramente manuales ofrecen una casilla Marcar como completado con opción de deshacer",
+   "Expandir o contraer un paso funciona como acordeón múltiple: abrir uno no cierra los demás",
+   "Omitir por ahora mueve el paso al final y lo marca como omitido; si es obligatorio, la opción no se ofrece",
+   "El CTA lleva a la pantalla correspondiente conservando un enlace de retorno «Volver a la puesta en marcha»",
+   "Al completar el último paso se muestra una confirmación breve (respetando prefers-reduced-motion) y la guía se minimiza sola",
+   "Ocultar la guía la traslada al menú de Ayuda, desde donde siempre se puede recuperar",
+   "La lista se adapta al rol: el Auditor ve solo los pasos que le competen, sin los de carga de nómina"
+  ],
+  "states": [
+   "No iniciada",
+   "En progreso",
+   "Paso bloqueado por dependencia",
+   "Paso en verificación automática (comprobando)",
+   "Paso fallido (carga rechazada, invitación caducada)",
+   "Paso omitido",
+   "Completada al 100%",
+   "Minimizada en la topbar",
+   "Oculta (recuperable desde Ayuda)",
+   "Plan de implantación caducado con aviso al actuario asignado"
+  ],
+  "a11y": [
+   "El contenedor es una section con aria-labelledby apuntando al título; la lista es un ol porque el orden es significativo",
+   "El progreso usa role=progressbar con aria-valuenow=3, aria-valuemin=0, aria-valuemax=7 y aria-valuetext=«3 de 7 pasos completados»",
+   "Cada paso declara su estado como texto («Completado», «Bloqueado: requiere subir la nómina»), nunca solo con un icono de color",
+   "El acordeón usa un button con aria-expanded y aria-controls dentro de un encabezado del nivel correcto; Enter y Espacio alternan",
+   "Los pasos bloqueados llevan aria-disabled=true y aria-describedby con el motivo, y siguen siendo enfocables para poder leerlo",
+   "Al completarse un paso se anuncia en aria-live=polite: «Paso 3 completado, 4 de 7»",
+   "La animación de cierre respeta prefers-reduced-motion y jamás roba el foco del usuario",
+   "El botón de minimizar indica su destino: «Minimizar guía de puesta en marcha; seguirá disponible en Ayuda»",
+   "El tiempo estimado y el responsable forman parte del contenido textual del ítem, no de atributos title"
+  ],
+  "pitfalls": [
+   "Marcar un paso como completado por el mero hecho de visitar la pantalla en vez de por el hecho verificado",
+   "No detectar que el cliente ya cargó la nómina por API y mostrar la guía al 0% a quien ya terminó",
+   "Bloquear el resto de la aplicación hasta completar la guía",
+   "Mostrar la misma lista a todos los roles: el Auditor no puede subir nómina ni lanzar valuaciones",
+   "Tiempos estimados irreales («2 min» para depurar 8.412 filas) que destruyen la confianza en la guía",
+   "Persistir el progreso por usuario y no por organización: cada nuevo invitado ve la guía desde cero",
+   "Que la guía reaparezca tras ocultarla en cada despliegue nuevo",
+   "Celebrar el 100% sin indicar el siguiente paso natural del ciclo (programar el corte del próximo ejercicio)",
+   "Bloquear pasos sin explicar la dependencia concreta que falta"
+  ]
+ },
+ "usage-meter": {
+  "id": "usage-meter",
+  "nombre": "Medidor de consumo del plan",
+  "purpose": "Mostrar el consumo del plan contratado —valuaciones, empleados valuados y almacenamiento de informes— frente a sus límites, avisando con antelación antes de que una operación quede bloqueada.",
+  "anatomy": [
+   "Tarjeta por métrica con nombre, valor usado sobre límite y barra de progreso",
+   "Porcentaje y texto de remanente («Quedan 2 valuaciones»)",
+   "Marca del umbral de advertencia (80%) sobre la barra",
+   "Micrográfico de tendencia de los últimos 6 meses",
+   "Encabezado con nombre del plan, ciclo y fecha de reinicio",
+   "Desglose expandible por cliente en tabla ordenable",
+   "CTA Ampliar plan y enlace Hablar con tu ejecutivo",
+   "Banner de excedente con el cargo estimado",
+   "Enlace a Facturación visible solo con permiso"
+  ],
+  "data": {
+   "plan": {
+    "nombre": "Corporativo 2026",
+    "facturacion": "anual",
+    "ciclo": "01/01/2026 – 31/12/2026",
+    "reinicia": "01/01/2027",
+    "actualizado": "hace 12 min"
+   },
+   "metricas": [
+    {
+     "metrica": "Valuaciones ejecutadas",
+     "usado": 18,
+     "limite": 20,
+     "porcentaje": 90,
+     "remanente": "Quedan 2",
+     "tendencia": "+4 este trimestre",
+     "estado": "advertencia"
+    },
+    {
+     "metrica": "Empleados valuados",
+     "usado": 38214,
+     "limite": 50000,
+     "porcentaje": 76,
+     "remanente": "Quedan 11.786",
+     "estado": "normal"
+    },
+    {
+     "metrica": "Almacenamiento de informes",
+     "usado": "42,6 GB",
+     "limite": "50 GB",
+     "porcentaje": 85,
+     "detalle": "1.284 archivos",
+     "estado": "advertencia"
+    },
+    {
+     "metrica": "Usuarios activos",
+     "usado": 12,
+     "limite": 15,
+     "porcentaje": 80,
+     "estado": "normal"
+    },
+    {
+     "metrica": "Llamadas a la API (mes en curso)",
+     "usado": 184302,
+     "limite": 250000,
+     "porcentaje": 74,
+     "estado": "normal"
+    },
+    {
+     "metrica": "Recálculos sobre la misma valuación",
+     "usado": 7,
+     "limite": 10,
+     "porcentaje": 70,
+     "detalle": "Excedente: USD 85 por recálculo adicional",
+     "estado": "normal"
+    }
+   ],
+   "desglosePorCliente": [
+    {
+     "cliente": "Pronaca",
+     "valuaciones": 6,
+     "empleados": 8412
+    },
+    {
+     "cliente": "Corporación Favorita",
+     "valuaciones": 4,
+     "empleados": 12907
+    },
+    {
+     "cliente": "Banco Pichincha",
+     "valuaciones": 3,
+     "empleados": 6045
+    },
+    {
+     "cliente": "Holcim Ecuador",
+     "valuaciones": 2,
+     "empleados": 1236
+    },
+    {
+     "cliente": "Cervecería Nacional",
+     "valuaciones": 2,
+     "empleados": 2870
+    },
+    {
+     "cliente": "Industrias Ales",
+     "valuaciones": 1,
+     "empleados": 974
+    }
+   ]
+  },
+  "interactions": [
+   "Hover o foco sobre una barra muestra un tooltip con el detalle exacto: «18 de 20 valuaciones · última: VAL-2026-0417 el 25/11/2026»",
+   "Expandir la tarjeta despliega el desglose por cliente, ordenable por valuaciones o empleados",
+   "Al cruzar el 80% se marca la tarjeta y se envía una notificación al Propietario una sola vez por umbral y por ciclo",
+   "Ampliar plan abre el flujo de contratación; para roles sin permiso de facturación muestra Solicitar al propietario, que envía un aviso interno",
+   "El micrográfico alterna entre 6 y 12 meses sin recargar la página",
+   "Al llegar al 100% la acción afectada se deshabilita en su propio punto de uso, con el mismo texto explicativo que aquí",
+   "El valor mostrado indica su antigüedad y se puede refrescar manualmente"
+  ],
+  "states": [
+   "Dentro de límites",
+   "Cerca del límite (≥ 80%)",
+   "Al límite (100%, acciones bloqueadas)",
+   "En excedente facturable",
+   "Plan ilimitado (sin barra, solo conteo acumulado)",
+   "Métrica no aplicable al plan contratado",
+   "Datos retrasados («actualizado hace 3 h»)",
+   "Cargando",
+   "Error al obtener el consumo con reintento",
+   "Plan vencido o suspendido"
+  ],
+  "a11y": [
+   "Cada barra usa role=progressbar con aria-valuenow, aria-valuemin, aria-valuemax y aria-valuetext=«18 de 20 valuaciones, 90% del plan»",
+   "La tarjeta se asocia a su nombre con aria-labelledby y el valor numérico siempre está en texto, nunca solo codificado en la barra",
+   "El nivel de advertencia se comunica con icono más texto («Cerca del límite»), con contraste de texto de al menos 4,5:1",
+   "El micrográfico ofrece alternativa textual: botón Ver datos que despliega una tabla equivalente accesible",
+   "El cruce de umbral se anuncia una sola vez en aria-live=polite, nunca en bucle en cada render",
+   "Los tooltips son accesibles por foco de teclado y se asocian con aria-describedby; no dependen solo de hover",
+   "El acordeón del desglose usa aria-expanded y aria-controls",
+   "El enlace a facturación se omite del DOM para roles sin permiso, no solo se oculta visualmente"
+  ],
+  "pitfalls": [
+   "Pintar la barra en rojo al 100% sin decir qué deja de funcionar exactamente",
+   "Redondear 19,6 a 20 y bloquear antes de tiempo una valuación todavía disponible",
+   "Mezclar unidades sin definirlas: empleados valuados no es lo mismo que empleados de la nómina cargada",
+   "Contar los recálculos como valuaciones nuevas sin advertirlo en el tooltip",
+   "Omitir la fecha de reinicio del ciclo: el usuario no sabe si esperar o comprar",
+   "Mostrar datos de facturación a roles que no deben verlos",
+   "Servir métricas cacheadas sin indicar su antigüedad: el usuario no ve reflejada la valuación que acaba de lanzar",
+   "Reenviar el aviso del 80% en cada carga de página en vez de una vez por umbral",
+   "Distinguir normal, advertencia y crítico únicamente por color"
+  ]
+ },
+ "team-roles": {
+  "id": "team-roles",
+  "nombre": "Gestión de equipo y matriz de permisos",
+  "purpose": "Administrar quién pertenece a la organización, con qué rol y sobre qué clientes, mediante una matriz de permisos explícita, auditable y sin ambigüedades.",
+  "anatomy": [
+   "Encabezado con número de miembros, asientos disponibles y botón Invitar miembros",
+   "Pestañas: Miembros · Invitaciones pendientes · Roles y permisos",
+   "Tabla de miembros: avatar y nombre, correo, selector de rol, clientes asignados, último acceso, 2FA, estado y menú «…»",
+   "Matriz de permisos: filas de permisos, columnas de roles y celdas Permitido / Denegado / Condicional",
+   "Panel lateral de detalle del miembro con historial de cambios de rol",
+   "Diálogo de invitación: correos, rol, clientes, mensaje y caducidad del enlace",
+   "Aviso de alcance restringido por cliente",
+   "Buscador y filtros por rol y estado",
+   "Banner permanente «Debe existir al menos un Propietario»"
+  ],
+  "data": {
+   "roles": [
+    "Propietario",
+    "Actuario responsable",
+    "Analista",
+    "Auditor (solo lectura)",
+    "Invitado"
+   ],
+   "matrizPermisos": [
+    {
+     "permiso": "Ver valuaciones",
+     "Propietario": "Permitido",
+     "Actuario responsable": "Permitido",
+     "Analista": "Permitido",
+     "Auditor (solo lectura)": "Condicional: solo clientes asignados",
+     "Invitado": "Condicional: solo las compartidas con él"
+    },
+    {
+     "permiso": "Lanzar valuación",
+     "Propietario": "Permitido",
+     "Actuario responsable": "Permitido",
+     "Analista": "Condicional: solo en borrador, requiere aprobación del actuario",
+     "Auditor (solo lectura)": "Denegado",
+     "Invitado": "Denegado"
+    },
+    {
+     "permiso": "Editar hipótesis",
+     "Propietario": "Permitido",
+     "Actuario responsable": "Permitido",
+     "Analista": "Denegado",
+     "Auditor (solo lectura)": "Denegado",
+     "Invitado": "Denegado"
+    },
+    {
+     "permiso": "Subir nómina",
+     "Propietario": "Permitido",
+     "Actuario responsable": "Permitido",
+     "Analista": "Permitido",
+     "Auditor (solo lectura)": "Denegado",
+     "Invitado": "Denegado"
+    },
+    {
+     "permiso": "Descargar informe firmado",
+     "Propietario": "Permitido",
+     "Actuario responsable": "Permitido",
+     "Analista": "Permitido",
+     "Auditor (solo lectura)": "Permitido",
+     "Invitado": "Condicional: con marca de agua y caducidad de 7 días"
+    },
+    {
+     "permiso": "Gestionar equipo",
+     "Propietario": "Permitido",
+     "Actuario responsable": "Condicional: solo invitar Analistas",
+     "Analista": "Denegado",
+     "Auditor (solo lectura)": "Denegado",
+     "Invitado": "Denegado"
+    },
+    {
+     "permiso": "Ver facturación",
+     "Propietario": "Permitido",
+     "Actuario responsable": "Denegado",
+     "Analista": "Denegado",
+     "Auditor (solo lectura)": "Denegado",
+     "Invitado": "Denegado"
+    }
+   ],
+   "miembrosEjemplo": [
+    {
+     "nombre": "Renato Puente",
+     "correo": "rpuente@actuaria.com",
+     "rol": "Propietario",
+     "clientes": "Todos",
+     "ultimoAcceso": "hoy 07:55",
+     "doblefactor": "Activo",
+     "estado": "Activo"
+    },
+    {
+     "nombre": "Act. Diego Carrión",
+     "correo": "diego.carrion@actuaria.com",
+     "rol": "Actuario responsable",
+     "clientes": "9 clientes",
+     "ultimoAcceso": "hoy 08:14",
+     "doblefactor": "Activo",
+     "estado": "Activo"
+    },
+    {
+     "nombre": "Act. María Belén Ortega",
+     "correo": "mb.ortega@actuaria.com",
+     "rol": "Actuario responsable",
+     "clientes": "7 clientes",
+     "ultimoAcceso": "ayer 19:40",
+     "doblefactor": "Activo",
+     "estado": "Activo"
+    },
+    {
+     "nombre": "Ana Lucía Varela",
+     "correo": "avarela@pronaca.com",
+     "rol": "Analista",
+     "clientes": "Pronaca",
+     "ultimoAcceso": "hoy 10:02",
+     "doblefactor": "Pendiente",
+     "estado": "Activo"
+    },
+    {
+     "nombre": "Jorge Medina",
+     "correo": "jmedina@favorita.com.ec",
+     "rol": "Analista",
+     "clientes": "Corporación Favorita",
+     "ultimoAcceso": "19/11/2026",
+     "doblefactor": "Activo",
+     "estado": "Activo"
+    },
+    {
+     "nombre": "Patricia Vinueza",
+     "correo": "pvinueza@bdo.ec",
+     "rol": "Auditor (solo lectura)",
+     "clientes": "Banco Pichincha",
+     "ultimoAcceso": "21/11/2026",
+     "doblefactor": "Activo",
+     "estado": "Acceso temporal hasta 31/03/2027"
+    }
+   ],
+   "invitacionesPendientes": [
+    {
+     "correo": "contabilidad@holcim.com.ec",
+     "rol": "Analista",
+     "enviada": "hace 2 días",
+     "caduca": "en 5 días"
+    }
+   ],
+   "asientos": "12 de 15 usados"
+  },
+  "interactions": [
+   "Cambiar el rol desde el selector muestra un resumen previo de diferencias («Perderá: editar hipótesis, lanzar valuación») y exige confirmación",
+   "La matriz se filtra escribiendo un permiso; al enfocar una celda condicional se muestra la condición exacta",
+   "Las celdas de los roles del sistema no son editables: ofrecen Duplicar rol para personalizar",
+   "Invitar admite varios correos separados por coma, valida el dominio y avisa si el correo ya pertenece a la organización",
+   "Revocar acceso exige escribir el nombre del miembro y ofrece transferir sus valuaciones a otro actuario responsable",
+   "No se permite degradar al último Propietario: el control queda bloqueado con la explicación visible",
+   "El acceso temporal del Auditor muestra cuenta regresiva y permite extenderlo o revocarlo anticipadamente",
+   "Cada cambio de rol, invitación o revocación escribe una entrada en audit-log con autor, valor anterior y valor nuevo"
+  ],
+  "states": [
+   "Cargando",
+   "Lista completa de miembros",
+   "Sin asientos disponibles (Invitar deshabilitado con CTA a ampliar plan)",
+   "Invitación pendiente / caducada / reenviada",
+   "Miembro suspendido",
+   "Miembro con 2FA pendiente",
+   "Rol personalizado (duplicado de uno del sistema)",
+   "Miembro sin ningún cliente asignado (aviso de acceso nulo)",
+   "Conflicto de edición: otro administrador cambió el rol mientras tanto",
+   "Solo lectura para quien no tiene el permiso Gestionar equipo",
+   "Error al guardar con reversión visible del selector"
+  ],
+  "a11y": [
+   "La matriz es una tabla HTML con th scope=col por rol y th scope=row por permiso; cada celda contiene texto accesible (Permitido, Denegado, Condicional + condición), no solo un icono",
+   "Los iconos de check y guion llevan aria-hidden=true y la celda incluye el texto equivalente visualmente oculto",
+   "El selector de rol es un select o combobox con aria-describedby apuntando al resumen de cambios que provoca",
+   "La confirmación de cambio de rol usa role=alertdialog con el foco inicial en Cancelar",
+   "Las pestañas usan role=tablist con navegación por ← →, aria-selected y paneles con aria-labelledby",
+   "Los resultados del buscador de permisos se anuncian en aria-live=polite",
+   "Los controles deshabilitados por regla de negocio usan aria-disabled=true y conservan el foco para poder leer el motivo",
+   "La tabla de miembros declara caption («Miembros de Actuaria Consultores, 12 de 15 asientos») y permite navegación lineal por Tab con orden lógico",
+   "El estado de 2FA se expresa en texto («Doble factor pendiente»), nunca con un punto de color aislado"
+  ],
+  "pitfalls": [
+   "Comunicar el permiso solo con color o solo con iconos, sin texto equivalente",
+   "Permitir que la organización se quede sin ningún Propietario",
+   "Cambiar el rol sin invalidar la sesión activa ni los tokens del usuario degradado",
+   "Confundir rol (qué puede hacer) con alcance (sobre qué clientes): un Analista de Pronaca jamás debe ver Corporación Favorita",
+   "No revocar automáticamente el acceso del auditor externo al vencer el compromiso pactado",
+   "Presentar como editable una matriz de roles del sistema",
+   "Olvidar que descargar informe firmado distribuye un documento con validez legal: debe registrarse quién, cuándo y desde dónde",
+   "Invitaciones sin caducidad ni límite de reenvío",
+   "Eliminar a un miembro y dejar sus valuaciones huérfanas, sin responsable asignado",
+   "Mostrar correos y últimos accesos del equipo del cliente a usuarios de otro cliente"
+  ]
+ },
+ "api-keys": {
+  "id": "api-keys",
+  "nombre": "Gestión de claves de API",
+  "purpose": "Crear, inventariar, rotar y revocar las credenciales con que los sistemas del cliente (nómina, ERP, BI) se integran con actuaria+, mostrando el secreto una única vez.",
+  "anatomy": [
+   "Encabezado con descripción, enlace a la documentación de la API y botón Crear clave",
+   "Tabla de claves: nombre, prefijo visible, entorno, ámbitos, creada por, último uso, caducidad, estado y menú «…»",
+   "Asistente de creación en 3 pasos: nombre y entorno → ámbitos → restricciones (IP permitidas, caducidad)",
+   "Panel de revelado único con el secreto, botón Copiar y casilla «He guardado la clave en un lugar seguro»",
+   "Avisos fijos: «Este valor no volverá a mostrarse» y «Nunca la incrustes en código del lado cliente»",
+   "Diálogo de revocación con confirmación escrita",
+   "Flujo de rotación con periodo de gracia y cuenta regresiva",
+   "Panel de uso por clave: llamadas, errores 401 y 429, últimas IP",
+   "Banner de clave comprometida detectada en repositorios públicos"
+  ],
+  "data": {
+   "campos": [
+    "nombre",
+    "prefijo",
+    "entorno",
+    "ambitos",
+    "creadaPor",
+    "creadaEl",
+    "ultimoUso",
+    "ultimaIP",
+    "caducidad",
+    "estado"
+   ],
+   "filasEjemplo": [
+    {
+     "nombre": "Integración Nómina SAP · Pronaca",
+     "prefijo": "ak_live_7f3…9c2",
+     "entorno": "Producción",
+     "ambitos": "nomina:escribir, valuacion:leer",
+     "creadaPor": "Ana Lucía Varela",
+     "creadaEl": "14/02/2026",
+     "ultimoUso": "hace 12 min desde 186.46.12.84",
+     "caducidad": "15/12/2026",
+     "estado": "Activa (por expirar)"
+    },
+    {
+     "nombre": "Power BI · tablero de cierre",
+     "prefijo": "ak_live_a21…4d8",
+     "entorno": "Producción",
+     "ambitos": "valuacion:leer, informe:leer",
+     "creadaPor": "Jorge Medina",
+     "creadaEl": "30/05/2026",
+     "ultimoUso": "hace 3 h",
+     "caducidad": "Sin caducidad",
+     "estado": "Activa"
+    },
+    {
+     "nombre": "Pruebas de integración",
+     "prefijo": "ak_test_19b…0ff",
+     "entorno": "Sandbox",
+     "ambitos": "nomina:escribir, valuacion:escribir",
+     "creadaPor": "Act. Diego Carrión",
+     "creadaEl": "01/09/2026",
+     "ultimoUso": "hace 2 días",
+     "caducidad": "01/01/2027",
+     "estado": "Activa"
+    },
+    {
+     "nombre": "Conector antiguo Odoo",
+     "prefijo": "ak_live_cc5…71a",
+     "entorno": "Producción",
+     "ambitos": "nomina:escribir",
+     "creadaPor": "Ana Lucía Varela",
+     "creadaEl": "10/03/2025",
+     "ultimoUso": "sin uso en 184 días",
+     "caducidad": "Sin caducidad",
+     "estado": "Inactiva (candidata a revocar)"
+    },
+    {
+     "nombre": "Carga masiva Favorita",
+     "prefijo": "ak_live_be0…2e4",
+     "entorno": "Producción",
+     "ambitos": "nomina:escribir",
+     "creadaPor": "Jorge Medina",
+     "creadaEl": "05/10/2026",
+     "ultimoUso": "hace 1 día",
+     "caducidad": "31/12/2026",
+     "estado": "En rotación (la anterior caduca el 02/12/2026)"
+    },
+    {
+     "nombre": "Clave de ex colaborador",
+     "prefijo": "ak_live_33d…9a1",
+     "entorno": "Producción",
+     "ambitos": "todos",
+     "creadaPor": "Luis Jaramillo (dado de baja)",
+     "creadaEl": "22/08/2024",
+     "ultimoUso": "30/06/2026",
+     "caducidad": "—",
+     "estado": "Revocada el 02/07/2026"
+    }
+   ],
+   "ambitosDisponibles": [
+    "nomina:leer",
+    "nomina:escribir",
+    "valuacion:leer",
+    "valuacion:escribir",
+    "hipotesis:leer",
+    "hipotesis:escribir",
+    "informe:leer",
+    "informe:descargar-firmado",
+    "auditoria:leer"
+   ],
+   "limite": "10 claves activas por entorno"
+  },
+  "interactions": [
+   "Crear clave abre el asistente; el secreto se muestra una sola vez en un panel que no se cierra hasta marcar «He guardado la clave»",
+   "Copiar lleva el valor al portapapeles y confirma con un mensaje accesible; el secreto permanece en el DOM el mínimo tiempo necesario",
+   "El control de revelar afecta solo al prefijo: el secreto completo nunca se vuelve a servir desde el backend",
+   "Rotar genera una clave nueva con los mismos ámbitos y mantiene la anterior válida 7 días, con cuenta regresiva visible en la fila",
+   "Revocar exige escribir el nombre exacto de la clave; el efecto es inmediato y queda registrado en audit-log",
+   "Editar los ámbitos de una clave existente pide confirmación y advierte qué integraciones podrían romperse",
+   "Se puede filtrar por entorno y estado, y ordenar por último uso para detectar claves muertas",
+   "Las claves sin uso en 90 días muestran una sugerencia de revocación con un clic"
+  ],
+  "states": [
+   "Sin claves (estado vacío con guía de primeros pasos)",
+   "Creando (asistente en curso)",
+   "Secreto revelado una única vez",
+   "Activa",
+   "Por expirar (menos de 30 días)",
+   "Expirada",
+   "En rotación con periodo de gracia",
+   "Revocada (visible, no eliminada)",
+   "Comprometida (detectada en un repositorio público)",
+   "Sin permiso para ver claves",
+   "Límite de claves alcanzado",
+   "Error al crear con detalle del motivo"
+  ],
+  "a11y": [
+   "El panel de revelado usa role=alertdialog con aria-modal=true, foco inicial en Copiar y Esc inhabilitado hasta confirmar el guardado",
+   "El secreto se presenta en un campo readonly con aria-label=«Clave secreta, se muestra una sola vez», seleccionable con Ctrl+A y copiable con Ctrl+C",
+   "La confirmación de copiado se anuncia en aria-live=polite: «Clave copiada al portapapeles»",
+   "Los estados (Activa, Por expirar, Revocada) son texto con icono decorativo y aria-describedby con la fecha exacta",
+   "El diálogo de revocación usa role=alertdialog; el campo de confirmación lleva aria-describedby con la instrucción y aria-invalid cuando el texto no coincide",
+   "Los ámbitos se agrupan en un fieldset con legend=«Ámbitos de la clave» y cada casilla describe su alcance mediante aria-describedby",
+   "La tabla declara caption y scope; el prefijo truncado expone el valor completo visible en su nombre accesible",
+   "El control de revelar es un button con aria-pressed y nombre «Mostrar prefijo completo», nunca un icono de ojo sin etiqueta",
+   "La cuenta regresiva de rotación se expone como texto con time datetime, no como animación sin alternativa"
+  ],
+  "pitfalls": [
+   "Volver a mostrar el secreto o almacenarlo en texto plano: solo deben persistirse el hash y el prefijo",
+   "Dejar el secreto en la URL, en el historial del navegador o en los registros de red",
+   "Crear claves con permiso total por defecto por no obligar a elegir ámbitos",
+   "No ofrecer rotación con periodo de gracia: el cliente revoca y se le cae la carga de nómina en pleno cierre anual",
+   "Confundir entornos: una clave de sandbox que acepta peticiones en producción",
+   "No registrar quién creó, usó y revocó cada clave",
+   "Mostrar el último uso sin zona horaria o sin distinguir «nunca usada» de «sin datos»",
+   "Permitir que un Analista cree claves con ámbito informe:descargar-firmado sin aprobación del actuario responsable",
+   "Eliminar la fila al revocar: debe permanecer con estado Revocada para la trazabilidad de la auditoría",
+   "No limitar por IP ni avisar cuando una clave de producción se usa desde una IP nueva"
+  ]
+ },
+ "audit-log": {
+  "id": "audit-log",
+  "nombre": "Registro de auditoría",
+  "purpose": "Registrar de forma inmutable quién hizo qué, sobre qué entidad, desde dónde y cuándo, para responder a auditorías externas y reconstruir el historial completo de una valuación.",
+  "anatomy": [
+   "Barra de filtros: rango de fechas, actor, tipo de acción, entidad, cliente, resultado y origen (web / API)",
+   "Buscador de texto libre sobre descripción e identificadores",
+   "Tabla cronológica descendente agrupada por día",
+   "Fila: marca temporal con zona, actor con rol, verbo de acción, entidad enlazada, cliente, origen e IP, resultado",
+   "Panel lateral de detalle con el diff antes/después en formato legible",
+   "Botón Exportar (CSV o JSON firmado) con los filtros aplicados",
+   "Indicador de retención: «Conservamos 7 años; mostrando desde 2019»",
+   "Enlace permanente copiable por evento",
+   "Aviso fijo de inmutabilidad: «Estas entradas no pueden editarse ni eliminarse»"
+  ],
+  "data": {
+   "campos": [
+    "idEvento",
+    "fechaHora",
+    "actor",
+    "rol",
+    "accion",
+    "entidad",
+    "cliente",
+    "origen",
+    "ip",
+    "resultado",
+    "detalle"
+   ],
+   "filasEjemplo": [
+    {
+     "idEvento": "evt_9f31c0",
+     "fechaHora": "2026-11-20 14:32:07 (UTC-5)",
+     "actor": "Act. Diego Carrión",
+     "rol": "Actuario responsable",
+     "accion": "Recalculó valuación NIC 19",
+     "entidad": "VAL-2026-0417",
+     "cliente": "Pronaca",
+     "origen": "Web",
+     "ip": "186.46.12.84",
+     "resultado": "Éxito",
+     "detalle": "Tasa de descuento 8,25% → 7,90%; DBO USD 14.902.331 → USD 14.238.902"
+    },
+    {
+     "idEvento": "evt_9f30a4",
+     "fechaHora": "2026-11-20 11:05:48 (UTC-5)",
+     "actor": "Ana Lucía Varela",
+     "rol": "Analista",
+     "accion": "Subió nómina",
+     "entidad": "PRO-NOM-2026-11.xlsx (8.412 filas)",
+     "cliente": "Pronaca",
+     "origen": "Web",
+     "ip": "186.46.12.84",
+     "resultado": "Rechazado",
+     "detalle": "42 filas sin fecha de ingreso y 7 cédulas inválidas"
+    },
+    {
+     "idEvento": "evt_9f2d17",
+     "fechaHora": "2026-11-19 17:22:10 (UTC-5)",
+     "actor": "Act. María Belén Ortega",
+     "rol": "Actuario responsable",
+     "accion": "Firmó informe actuarial",
+     "entidad": "INF-2026-0188",
+     "cliente": "Holcim Ecuador",
+     "origen": "Web",
+     "ip": "190.95.221.6",
+     "resultado": "Éxito",
+     "detalle": "Firma electrónica con certificado vigente hasta 14/08/2027"
+    },
+    {
+     "idEvento": "evt_9f2a02",
+     "fechaHora": "2026-11-19 09:48:33 (UTC-5)",
+     "actor": "Integración Nómina SAP (clave ak_live_7f3…9c2, en nombre de Ana Lucía Varela)",
+     "rol": "Clave de API",
+     "accion": "Creó carga de nómina vía API",
+     "entidad": "CARGA-11842",
+     "cliente": "Pronaca",
+     "origen": "API",
+     "ip": "200.110.74.19",
+     "resultado": "Éxito",
+     "detalle": "POST /v1/nominas · 8.412 registros · 2,1 s"
+    },
+    {
+     "idEvento": "evt_9f27b9",
+     "fechaHora": "2026-11-18 16:10:55 (UTC-5)",
+     "actor": "Renato Puente",
+     "rol": "Propietario",
+     "accion": "Cambió el rol de un miembro",
+     "entidad": "Patricia Vinueza",
+     "cliente": "Banco Pichincha",
+     "origen": "Web",
+     "ip": "157.100.3.44",
+     "resultado": "Éxito",
+     "detalle": "Analista → Auditor (solo lectura); acceso temporal hasta 31/03/2027"
+    },
+    {
+     "idEvento": "evt_9f2410",
+     "fechaHora": "2026-11-18 08:02:14 (UTC-5)",
+     "actor": "Patricia Vinueza",
+     "rol": "Auditor (solo lectura)",
+     "accion": "Descargó informe firmado",
+     "entidad": "INF-2025-0142.pdf",
+     "cliente": "Banco Pichincha",
+     "origen": "Web",
+     "ip": "201.183.44.90",
+     "resultado": "Éxito",
+     "detalle": "Descarga marcada con huella del usuario y sello temporal"
+    }
+   ],
+   "tiposDeAccion": [
+    "Inicio de sesión",
+    "Cambio de hipótesis",
+    "Carga de nómina",
+    "Lanzamiento de valuación",
+    "Recálculo",
+    "Firma de informe",
+    "Descarga de informe firmado",
+    "Cambio de rol",
+    "Creación o revocación de clave de API",
+    "Exportación de datos",
+    "Eliminación de archivo"
+   ],
+   "retencion": "7 años · 1.284 eventos en el rango mostrado"
+  },
+  "interactions": [
+   "Filtrar por actor, acción, entidad o cliente reduce la lista y la URL refleja el estado para compartirla con el auditor externo",
+   "Clic o Enter sobre una fila abre el panel de detalle con el diff; ← y → recorren eventos sin cerrar el panel",
+   "Exportar genera CSV o JSON firmado con los filtros aplicados, y la propia exportación queda registrada como un evento más",
+   "El scroll infinito pagina por cursor, no por offset, para que no se dupliquen ni se omitan eventos mientras el log crece",
+   "Copiar el enlace permanente de un evento con confirmación accesible",
+   "Desde el detalle de una valuación, «Ver todo el historial» abre el log ya filtrado por esa entidad",
+   "Las marcas temporales se muestran en la zona del usuario, con un conmutador para verlas en UTC",
+   "Los eventos nuevos en vivo se ofrecen con un botón «3 eventos nuevos» en lugar de insertarse solos"
+  ],
+  "states": [
+   "Cargando",
+   "Con eventos",
+   "Sin eventos para el filtro aplicado",
+   "Cargando más (paginación por cursor)",
+   "Error de consulta con reintento",
+   "Exportación en curso / archivo listo para descargar",
+   "Retención alcanzada (eventos anteriores purgados, con aviso)",
+   "Acceso restringido por alcance (el Analista solo ve su cliente)",
+   "Evento con detalle no disponible por purga de datos personales",
+   "Modo auditoría externa (solo lectura, sin facetas que expongan otros clientes)"
+  ],
+  "a11y": [
+   "Tabla con caption («Registro de auditoría: 1.284 eventos entre el 1 y el 25 de noviembre de 2026») y encabezados con scope",
+   "Cada marca temporal usa el elemento time con datetime completo (2026-11-20T14:32:07-05:00) y texto visible en formato local con la zona explícita",
+   "El panel de detalle es una región con role=region y aria-label=«Detalle del evento evt_9f31c0»; al abrirlo el foco se mueve a su encabezado y Esc lo cierra devolviendo el foco a la fila de origen",
+   "El diff se expone como lista de pares con texto («Tasa de descuento: antes 8,25%, después 7,90%»), nunca solo con colores rojo y verde",
+   "El resultado (Éxito, Rechazado, Denegado) se expresa en texto, con el icono en aria-hidden y contraste mínimo 4,5:1 si se usa color",
+   "Los eventos en vivo se anuncian de forma agregada en aria-live=polite («3 eventos nuevos»), con un botón para insertarlos",
+   "La exportación informa del progreso y del resultado en aria-live: «Exportación lista, 1.284 filas»",
+   "Si las filas se implementan como role=grid, deben soportar navegación por flechas y Enter; nunca filas clicables sin equivalente de teclado",
+   "El aviso de inmutabilidad está en el DOM como texto asociado a la tabla, no solo como icono de candado"
+  ],
+  "pitfalls": [
+   "Permitir editar o eliminar entradas: destruye por completo el valor probatorio del registro",
+   "Guardar «Actualizó valuación» sin el diff de valores: inservible ante un auditor externo",
+   "Mostrar horas en UTC sin indicarlo a usuarios en America/Guayaquil (UTC-5)",
+   "Volcar datos personales de la nómina (cédulas, sueldos individuales) dentro del detalle del evento",
+   "Paginar por offset y duplicar u omitir eventos mientras el log sigue creciendo",
+   "No registrar los accesos de solo lectura, como las descargas de informes firmados, que son justo lo que pregunta el auditor",
+   "Registrar la clave de API como actor y perder a la persona en cuyo nombre actuó: deben constar ambos",
+   "Depender del reloj del cliente para el orden en vez de la marca del servidor y un identificador monótono",
+   "Filtros que permiten a un Analista ver eventos de otro cliente manipulando la URL",
+   "Mezclar en el mismo flujo eventos de aplicación y de depuración técnica, haciendo el registro ilegible"
+  ]
+ }
+}

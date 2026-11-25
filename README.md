@@ -1,139 +1,222 @@
 # Actuaria Design System
 
-Sistema de diseño de Actuaria Consultores. Dos fuentes de verdad, un solo documento:
+Sistema de diseño de **Actuaria Consultores** (Ecuador) y de su plataforma SaaS **actuaria+**.
 
-1. **Tokens y componentes reales de [actuaria.com](https://actuaria.com)** — auditados contra el sitio Webflow en producción (site `6967c96e0fba2ea4f94d3c69`, 31 páginas, publicado 2026-11-24).
-2. **Sistema Neo** — 54 componentes alineados 1:1 con el inventario del Figma oficial (fileKey `N1wh3u4sX3UGyUU5oWOaz6`): Glass UI + Neumorphism + Bento Boxes.
+**En vivo:** https://renatopuente-ux.github.io/actuaria-neo-ds/
 
-## Vista en vivo
-
-**https://renatopuente-ux.github.io/actuaria-neo-ds/**
+Un único `index.html` con los tokens, los componentes y sus contratos de implementación.
+Los demos **funcionan**: no son capturas ni maquetas estáticas.
 
 ---
 
-## Parte 1 · Tokens oficiales de actuaria.com
+## Las tres fuentes de verdad
 
-Extraídos del DOM en vivo + Webflow Data API: **6 colecciones de variables, 357 variables CSS**, en arquitectura de 3 capas.
+No coinciden entre sí. El orden de precedencia es este y no se negocia:
 
-| Capa | Colección Webflow | Qué contiene |
-|------|-------------------|--------------|
-| 1 · Primitive | 🎨 Colours primitive | 84 vars — paleta cruda (blue, orange, amber, green, red, teal, purple, grey-slate, grey-neutral) con rampas 1000/800/200/50 |
-| 2 · Theme | 🖼️ Theme | 26 alias — mapea paleta → roles de marca (`brand--light--1000` → `blue--light--1000`) |
-| 3 · Semantic | 🏷️ Colours semantic | Roles de uso (`text--strong`, `fill--brand-strong`, `stroke--weak`, `icon--brand`) · **con modo Dark** |
-| — | 📐 Spacing | 17 pasos (0→256) + 8 corner-radius (0→32) |
-| — | 🔤 Typography | 4 familias, 8 tamaños con line-height pareado · **con modo Mobile** |
+| # | Fuente | Qué es | Dónde |
+|---|---|---|---|
+| 1 | **Brandbook** | **Normativo.** Lo que la marca *debe* ser | [`actuaria-brandbook-ai`](https://github.com/renatopuente-ux/actuaria-brandbook-ai) · `tokens/tokens.json` · [llms.txt](https://renatopuente-ux.github.io/actuaria-brandbook-ai/llms.txt) |
+| 2 | **Webflow producción** | Lo *implementado* hoy en actuaria.com | site `6967c96e0fba2ea4f94d3c69` · 6 colecciones · 357 variables |
+| 3 | **Figma** | Inventario de componentes | fileKey `N1wh3u4sX3UGyUU5oWOaz6` · node `8703:121838` |
 
-### Marca
+> «Si un color, fuente o valor no aparece en tokens.json o en /brand, **NO es de marca: no lo inventes**.»
+> — Brandbook de Actuaria
 
-```css
---fill-brand-strong:     #151f47;  /* navy · blue--light--1000 */
---fill-brand-alternate:  #e0592a;  /* naranja · orange--1000   */
---text-strong:           #000626e6;
---text-weak:             #000933a6;
---bg-sunken:             #f5f6fa;
+Cuando difieren, **manda el brandbook y la diferencia se reporta** como brecha. Nunca se resuelve
+en silencio eligiendo una. Las brechas detectadas están en la sección *Brandbook vs producción*
+del documento y en `known_gaps` de `ds-spec.json`.
+
+### Valores normativos
+
+| Rol | HEX | Pantone | En producción |
+|---|---|---|---|
+| Navy | `#151F47` | 2766 C | coincide |
+| Azul | `#3061AA` | 7455 C | `#3258a2` (Δ12.2) |
+| Naranja | `#DF5E2D` | 7579 C | `#e0592a` (Δ5.9) |
+| Superficie | `#E8ECF4` | — | `#f3f3f3` (Δ13.1) |
+| Naranja claro | `#FFBBA1` | — | ausente |
+
+Proporción cromática **60/30/10**: navy-neutro / azul / naranja. El naranja es acento, nunca fondo
+dominante ni bloques de texto largos.
+
+---
+
+## Arquitectura atómica
+
+| Capa | Contenido |
+|---|---|
+| **Átomos** | Color, tipografía, iconos, espacios, elevaciones, radios, cuadrículas, z-index, motion, voz y tono |
+| **Moléculas** | Elements, Forms, Chipsets, botones del sitio |
+| **Organismos** | Feedback, Navegación, Surfaces, Content display, Marketing, **Plataforma**, **Dominio actuarial** |
+| **Plantillas** | App shell, Bento, Grids de datos |
+
+### Un concepto = un bloque
+
+El documento tenía **18 duplicados funcionales**: dos sistemas conviviendo (el genérico heredado del
+Figma y el real del sitio) más conceptos partidos en varios bloques. Se fusionaron en **13 canónicos**:
+
+| Canónico | Absorbió |
+|---|---|
+| `el-avatar` | Avatar labelled · dropdown · stack |
+| `el-badge` | Badge count · dot |
+| `el-button` | Button group · icon |
+| `alert` | Alert global |
+| `text` | Text block |
+| `dropdown-menu` | Dropdown menu list |
+| `form-loading` | Progress indicator |
+| `act-navbar-main` | Navigation header (genérico) |
+| `act-hero-section` | Hero (genérico) |
+| `act-footer-section` | Footer (genérico) |
+| `act-testimonials` | Testimonial (genérico) · Rating |
+| `act-card-solutions` | Card (genérico) |
+| `act-chips` | Tag group |
+
+Las antiguas duplicaciones son ahora **filas de variante** dentro del canónico, que es como el diseño
+atómico lo pide. Cada canónico muestra una nota de qué absorbió.
+
+---
+
+## Componentes de plataforma y de dominio
+
+21 componentes que un sistema de marketing no tiene y una plataforma SaaS actuarial necesita.
+
+**Plataforma** · app shell con sidebar colapsable, paleta de comandos ⌘K, centro de notificaciones,
+tabla de datos, barra de filtros, rango de fechas, vistas guardadas, puesta en marcha, medidor de
+consumo, equipo y permisos, claves de API, registro de auditoría.
+
+**Dominio actuarial** · panel de hipótesis, visor de tabla de mortalidad, asistente de valuación,
+resultados, sensibilidad tipo tornado, proyección de flujos, triángulo run-off, conciliación de
+reservas, comparador de escenarios.
+
+### Los datos de ejemplo son coherentes, no decorativos
+
+- La tabla **EMSSA-09** cumple `lx(x+1) = lx(x) − dx(x)` fila a fila, con `qx` creciente y `lx` decreciente
+- La **conciliación cuadra**: DBO inicial + servicio + financiero − pagados ± actuariales = DBO final
+- Los escenarios comparten fecha de valuación, colectivo y versión del motor
+- La normativa citada es real: NIC 19, Código del Trabajo arts. **185** (desahucio) y **216** (jubilación patronal)
+
+Cada bloque lleva sus **advertencias de rigor técnico**: no interpolar `qx` linealmente, no sumar flujos
+sin descontar como si fueran la DBO, no publicar una conciliación que no cuadra, no mostrar una DBO sin
+la fecha de valuación y la tabla usada.
+
+> ⚠️ El recálculo reactivo de la sección de resultados es un **modelo didáctico, no actuarial**.
+> Existe para que el desarrollador vea la dirección del efecto. Una valuación real exige proyección
+> individual por empleado con su tabla de mortalidad, antigüedad y salario. El contrato lo declara.
+
+---
+
+## Interactividad
+
+Motor por **delegación de eventos única** en `document`: un componente nuevo no necesita JS propio,
+basta con marcarlo.
+
+| Atributo | Comportamiento |
+|---|---|
+| `data-group` `data-val` `data-target` `data-multi` | Pestañas, segmentados, facetas |
+| `data-table` `data-sort` `data-tblsearch` `data-faceta` `data-bulk` | Orden, filtro, selección, paginación, acciones masivas |
+| `data-wizard` `data-step` `data-stepdot` `data-stepnav` | Asistente multi-paso |
+| `data-reactive` `data-in` `data-out` `data-echo` `data-sens` | Recálculo entrada → salida |
+| `data-toggle` `data-close` | Popovers, drawers, paleta |
+| `data-toast` | Avisos efímeros |
+| `data-qa-ignore` | Excluye del QA un demo de fallo intencional |
+
+**Teclado:** `⌘K`/`Ctrl+K` abre la paleta · `Esc` cierra toda capa · `← →` entre pestañas.
+Animaciones, shimmer, odómetro, typing y marquee respetan `prefers-reduced-motion`.
+
+---
+
+## QA
+
+`qa.js` — **8 comprobaciones que recorren todo el documento**, no una muestra.
+
+```js
+// en la consola, sobre la página publicada
+document.querySelectorAll('img[loading=lazy]').forEach(i => { i.loading='eager'; i.src=i.src; });
+// esperar a que carguen, luego pegar el contenido de qa.js
 ```
 
-### Logotipo
+Comprueba: familia de titulares · carga real de las 3 fuentes · desbordamiento por contenedor ·
+imágenes rotas **y pendientes** · contratos `data-ai-component` parseables · anclas de navegación ·
+**chips estirados** · contraste WCAG 2.1 **con composición de alpha**.
 
-Imagotipo oficial incrustado inline (velero + wordmark), con los colores exactos del vector:
+Nació de un fallo real: se verificaron selectores sueltos y se declaró el documento correcto mientras
+el `h1` del banner seguía en Nunito. **Muestreo ≠ auditoría.**
 
-```css
---logo-navy:   #111C4E;   /* wordmark + vela mayor */
---logo-orange: #E0592A;   /* vela menor            */
---logo-blue:   #385CAD;   /* casco / estela        */
+El propio QA tuvo que corregirse: su primera versión daba 317 falsos positivos por tratar un tinte con
+alpha como color sólido y por ignorar los degradados. Si un chequeo escupe cientos de fallos idénticos,
+el sospechoso es el chequeo.
+
+---
+
+## Para la IA que opera producción
+
+| Archivo | Para qué |
+|---|---|
+| `AI-INSTRUCTIONS.md` | Reglas narrativas MUST/NEVER y precedencia de fuentes |
+| `ds-spec.json` | Tokens, arquitectura, interactividad y `known_gaps` con deltas medidos |
+| `platform-spec.json` | Las 21 especificaciones funcionales completas |
+| `assets.json` | Manifest de los assets reales del CDN |
+| `qa.js` | Auditoría ejecutable |
+
+Además, cada componente embebe su contrato:
+
+```html
+<details class="ai-spec" data-ai-component="data-table">
+  <summary>Contrato de implementación · legible por IA</summary>
+  <pre>{ purpose, anatomy, interactions, states, a11y, do_not, tokens }</pre>
+</details>
 ```
 
-El navy del **logotipo** (`#111C4E`) no es idéntico al navy de **interfaz** (`#151f47`): son dos valores distintos y conviven a propósito.
+---
 
-### Tipografía
+## Tipografía
 
-| Rol | Familia | Pesos en producción | Uso |
-|-----|---------|---------------------|-----|
-| `font-family--display` | **Lemon Milk Pro** | 400 · 500 · 700 | `h1` (500), `heading-section` (700), títulos de card (500), odómetro (800) |
-| `font-family--heading` | **Nunito** | 400 · 600 · 700 · 800 | `subheading-section`, navbar, botones, chips, autor de testimonio, todo el footer |
-| `font-family--body` / `--subheading` | **Prompt** | 300 · 400 · 500 · 700 | Bajada del hero, párrafos de cards, citas de testimonios |
+Tres familias con roles que **no** son intercambiables:
 
-Las tres se cargan **reales**: Nunito y Prompt desde Google Fonts, y **Lemon Milk Pro por `@font-face` desde el CDN del propio actuaria.com** (`webflow-files-prod…/fonts/…lemon-milk-pro-{400,500,700}.woff2`, servido con `Access-Control-Allow-Origin: *`). Al referenciarla en vez de copiarla, el repo no redistribuye una fuente licenciada.
+| Familia | Rol | Regla |
+|---|---|---|
+| **Lemon Milk Pro** | Títulos | Siempre en **MAYÚSCULAS**. Fallback: **Nunito Black** |
+| **Nunito** | Interfaz, etiquetas, chips, footer | Nunca para párrafos largos |
+| **Prompt** | Cuerpo, citas, párrafos de card | Nunca para títulos |
 
-> ⚠️ Hallazgo: el `body` del sitio resuelve a **Arial 14/20**, no a Prompt. El token `font-family--body` existe pero se aplica por clase, no globalmente — cualquier texto sin clase cae a Arial.
+Pesos reales medidos: `h1` hero Lemon Milk **500** · `heading-section` **700** · odómetro **800** ·
+`link_navbar` Nunito 600 · chips Nunito 700 · autor de testimonio Nunito 800 · bajada del hero Prompt 20/21.6.
 
-### Escalas
+Trampa frecuente: chips y footer parecen cuerpo pero son **Nunito**; las citas de testimonio y los
+párrafos de card parecen interfaz pero son **Prompt**. Medir, nunca inferir del rol del token.
+
+Lemon Milk Pro es **licenciada**: se referencia por `@font-face` desde el CDN de Webflow
+(CORS `*`). **No** se redistribuye el `.woff2` en este repo público.
+
+---
+
+## Contraste
+
+Los tokens `*-1000` son de **relleno, no de texto**. Medidos sobre blanco: naranja 3.73 · verde 2.78 ·
+ámbar 2.16. Pares usables: `--text-orange #a8431c` (6.03) · `--text-weak #000933a6` (6.29).
+
+**Naranja sobre navy: siempre `#FFBBA1`** (9.76:1). El `#DF5E2D` puro da 4.38:1 y está prohibido como texto.
+
+Los niveles `text` del brandbook **no alcanzan 4.5:1** sobre su propio tinte (warn 1.90 · ok 2.41 ·
+info 4.20 · bad 4.34). El DS usa versiones oscurecidas de 7.4–8.1:1 (`#14532d`, `#6b3e00`, `#8f1d1d`,
+`#1d3f8f`) y una variante `.on-dark` para superficies navy. Documentado como brecha pendiente de
+decisión del equipo de marca.
+
+---
+
+## Escalas
 
 - **Spacing**: 0 · 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64 · 80 · 96 · 128 · 192 · 256
 - **Corner radius**: 0 · 4 · 8 · 12 · 16 · 20 · 24 · 32 (+ píldoras 40/50/64 usadas en producción pero **sin token** en Webflow)
-- **Tamaños**: display 56/64 · h1 40/48 · h2 32/40 · h3 24/32 · h4 20/28 · small 16/24 · tiny 14/20 · uppercase 14/20
+- **Tamaños**: display 56/64 · h1 40/48 · h2 32/40 · h3 24/32 · h4 20/28 · small 16/24 · tiny 14/20
 
 ---
 
-## Parte 2 · Componentes del sitio
+## Pendientes del lado Webflow
 
-Réplica de los 21 componentes registrados en Webflow más los patrones del DOM en producción.
-
-| Componente | Instancias | Notas |
-|---|---|---|
-| **Navbar Main** | 27 | Píldora flotante · radius 40px · ES/EN · toggle claro/oscuro · botón `actuaria+` |
-| **Footer** | 26 | 4 columnas sobre degradado navy · iconos naranjas |
-| **Form_Section** | 9 | RUC · Razón social · Nombre · Apellido · Email · 4 checkboxes de servicio · Legal · Cloudflare Turnstile |
-| **Testimonios carrusel** | 5 | Card radius 40px · estrellas naranjas `letter-spacing:8px` · chip de logo 120×44 |
-| **Barra movil contacto** | 26 | Llamar / Correo / WhatsApp · solo <768px |
-| **WhatsApp flotante** | 26 | 60px · `#25d366` |
-| Hero Section | — | H1 Lemon Milk Pro con typing (cursor naranja) + slider Swiper de portadas del blog |
-| Contadores / Odómetro | — | `odo-d` + `odo-roll` dígito a dígito, con IntersectionObserver |
-| Card de Soluciones | 4 | Media con vídeo bajo demanda · chipset · CTA naranja · radius 24px |
-| Marquee de marcas | 20 logos | Cinta infinita en escala de grises con máscara de desvanecido |
-| Grid de certificaciones | 7 | `cert_frame` radius 32px · celda 110×110 |
-| CTA Section | — | Degradado `#1b2757 → #10183a` · radius 32px |
-| Chipsets / icon chips | — | radius 50px · alto 30px |
-| Cabecera de sección | 6 | `heading-section` (display 40/42) + `subheading-section` (Nunito 18/22) |
-
-Grupo **Design System** en Webflow: Card · Bento Grid · Glass Panel · Field · Toggle · Tabs · Alert.
-Grupo **Typography**: Display · Heading 1-4 · Body Small · Body Tiny · Eyebrow.
-
----
-
-## Parte 3 · Sistema Neo (Figma)
-
-| Capa | Componentes |
-|------|-------------|
-| **Fundamentos** | Colores, Tipografía, Iconos, Espacios, Elevaciones, Radios, Cuadrículas, Z-Index, Motion, Voz y Tono |
-| **Elements** (13) | Button, Button group, Button icon, Icon container, Text link, Avatar, Avatar labelled, Avatar dropdown, Tag group, Badge, Badge count, Badge dot, Slot |
-| **Forms** (15) | Text input, Text area, Select, Search input, Autocomplete, Combobox, Date picker, File upload, Slider, Loading bar, Progress indicator, Checkbox group, Radio button group, Stepper, Toggle |
-| **Feedback** (3) | Alert, Alert global, Empty state |
-| **Navigation** (7) | Navigation header, Footer, Tabs, Pagination, Segmented control, Breadcrumbs, Navigation side |
-| **Surfaces** (6) | Modal, Drawer, Card, Tooltip, Dropdown menu, Dropdown menu list |
-| **Content display** (6) | Table, Summary list, Accordion, Text, Text block, Divider |
-| **Marketing** (4) | Hero, Testimonial, Rating, Avatar stack |
-| **Layouts** | App Shell, Bento Grid, Grids de datos |
-| **Patrones** | Glass Recipe, Neumorphic Surfaces, Responsive, Interaction States, Color Guidelines |
-
-Estilos base:
-- **Neumorphism** — Raised = interactivo · Sunken = dato estático
-- **Glass UI** — `backdrop-filter: blur(12px)` + fondo semitransparente
-- **Bento Boxes** — grids asimétricos para dashboards
-
----
-
-## Brechas DS ↔ producción
-
-Resueltas en v2.0:
-
-| Área | Antes | actuaria.com |
-|---|---|---|
-| Color de marca | `#4c64d9` índigo | `#151f47` navy ✅ |
-| Acento | `#de5e2d` | `#e0592a` ✅ |
-| Fondo base | `#e8ecf4` | `#f3f3f3` + patrón topográfico ✅ |
-| Arquitectura de tokens | Plana (1 capa) | 3 capas + modo Dark ✅ |
-| Escala de spacing | No documentada | 17 pasos ✅ |
-| Tipografía | Solo Nunito | Prompt + Nunito + Lemon Milk Pro ✅ |
-| Fuentes reales | Fallback a Tahoma | `@font-face` desde el CDN del sitio ✅ |
-| Logotipo en navbar | Marca improvisada | Imagotipo oficial (velero + wordmark) ✅ |
-| Escala de radios | 4→24, sin píldoras | 0→32 + píldoras 40/50/64 documentadas ✅ |
-| Hex obsoletos en demos | 59 ocurrencias | Remapeados a la paleta real ✅ |
-
-Pendientes:
-1. Registrar `corner-radius--40/50/64` en la colección 📐 Spacing de Webflow (hoy hardcodeados).
-2. Documentar el **modo Dark** de 🏷️ Colours semantic (ya existe en Webflow, sin demo aquí).
-3. Fijar `font-family--body` en el `body` del sitio — hoy cae a Arial.
+1. Registrar `corner-radius--40/50/64` en la colección 📐 Spacing (hoy hardcodeados).
+2. Documentar el **modo Dark** de 🏷️ Colours semantic (existe en Webflow, sin demo aquí).
+3. Fijar `font-family--body` en el `body` del sitio — hoy cae a **Arial 14/20**.
 
 ---
 
@@ -147,10 +230,19 @@ open  index.html      # macOS
 
 CDN: Google Fonts (Nunito + Prompt), Font Awesome 6.5 y el CDN de fuentes de actuaria.com (Lemon Milk Pro).
 
-## Fuentes de verdad
+## Publicar
 
-- **Sitio**: Webflow `6967c96e0fba2ea4f94d3c69` · dominios `actuaria.com` / `www.actuaria.com`
-- **Figma**: Design-System-Actuaria (Actualizado), página "↳ Todos los componentes" (node `8703:121838`)
+```bash
+gh auth switch -u renatopuente-ux        # el repo es de esta cuenta
+git push origin master
+gh api repos/renatopuente-ux/actuaria-neo-ds/pages/builds/latest --jq '.status+" "+.commit[0:7]'
+gh auth switch -u renatopuente           # restaurar
+```
+
+Pages puede quedarse en el commit anterior por la carrera entre push y webhook: comparar el commit
+del build con el HEAD remoto antes de dar nada por publicado.
+
+---
 
 ## Productos
 
