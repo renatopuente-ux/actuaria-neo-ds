@@ -3,25 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Actuaria Neumorphism Design System</title>
+<title>Actuaria Design System · Tokens + Componentes del sitio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-/* ── TOKENS ── */
+/* ═══════════════════════════════════════════════════════════════════
+   TOKENS OFICIALES actuaria.com  —  extraídos del sitio Webflow en vivo
+   (site 6967c96e0fba2ea4f94d3c69 · 6 colecciones · 357 variables CSS)
+   Arquitectura de 3 capas: primitive → theme → semantic
+   ═══════════════════════════════════════════════════════════════════ */
 :root {
-  --navy:#0f1f3d; --navy-2:#1e3a6e; --navy-3:#253d6e;
-  --indigo:#4c64d9; --indigo-2:#3b51c0; --indigo-soft:rgba(76,100,217,0.10);
-  --orange:#de5e2d; --green:#00c781; --green-text:#00925e;
-  --yellow:#ffbb38; --yellow-text:#b07d00; --red:#ff4040; --red-text:#c0392b;
-  --bg:#e8ecf4; --surface:rgba(232,236,244,0.92); --border:rgba(163,177,198,0.35);
-  --text:#0f1f3d; --text-sub:#475569; --text-dim:rgba(15,31,61,0.45);
-  --glass-bg:rgba(232,236,244,0.72); --glass-border:rgba(255,255,255,0.60);
+  /* ── CAPA 1 · 🎨 COLOURS PRIMITIVE ── */
+  --prim-blue-1000:#151f47;   --prim-blue-800:#151f47cc;
+  --prim-blue-200:#151f4733;  --prim-blue-50:#151f470d;
+  --prim-blue-dark-1000:#3258a2;
+  --prim-orange-1000:#e0592a; --prim-orange-800:#e0592acc;
+  --prim-orange-500:#e0592a80;--prim-orange-300:#e0592a4d; --prim-orange-50:#e0592a0d;
+  --prim-amber-1000:#ff9800;  --prim-amber-800:#ff9800cc;  --prim-amber-50:#ff98000d;
+  --prim-green-1000:#4caf50;  --prim-green-800:#4caf50cc;  --prim-green-50:#4caf500d;
+  --prim-red-1000:#c73a3a;    --prim-red-800:#c73a3acc;    --prim-red-50:#ff4a4a0d;
+  --prim-teal-1000:#1a74a8;   --prim-teal-800:#1a74a8cc;   --prim-teal-50:#26b0ff0d;
+  --prim-purple-1000:#763ec4; --prim-purple-800:#763ec4cc; --prim-purple-50:#763ec40d;
+  --prim-yellow-1000:#fec62e;
+  --prim-slate-1000:#000626e6;--prim-slate-700:#000933a6;  --prim-slate-500:#000d4d73;
+  --prim-slate-100:#0011661a; --prim-slate-50:#151f4730;   --prim-slate-25:#00158005;
+  --prim-slate-solid-0:#fff;  --prim-slate-solid-50:#f5f6fa;
+  --prim-slate-solid-800:#292b33; --prim-slate-solid-850:#1d1e26; --prim-slate-solid-900:#12131a;
+
+  /* ── CAPA 2 · 🖼️ THEME (alias de marca) ── */
+  --theme-brand-1000:var(--prim-blue-1000); --theme-brand-800:var(--prim-blue-800);
+  --theme-brand-200:var(--prim-blue-200);   --theme-brand-50:var(--prim-blue-50);
+  --theme-grey-1000:var(--prim-slate-1000); --theme-grey-700:var(--prim-slate-700);
+  --theme-grey-500:var(--prim-slate-500);   --theme-grey-100:var(--prim-slate-100);
+  --theme-grey-50:var(--prim-slate-50);     --theme-grey-25:var(--prim-slate-25);
+  --theme-solid-0:var(--prim-slate-solid-0);     --theme-solid-50:var(--prim-slate-solid-50);
+  --theme-solid-800:var(--prim-slate-solid-800); --theme-solid-900:var(--prim-slate-solid-900);
+
+  /* ── CAPA 3 · 🏷️ COLOURS SEMANTIC ── */
+  --bg-base:var(--theme-solid-0);     --bg-sunken:var(--theme-solid-50);
+  --bg-raised:var(--theme-solid-0);   --bg-alternate:var(--theme-solid-50);
+  --bg-brand:var(--theme-brand-1000); --bg-inverse:var(--theme-solid-900);
+  --text-strong:var(--theme-grey-1000); --text-weak:var(--theme-grey-700);
+  --text-brand:var(--theme-brand-1000); --text-inverse-strong:#fff;
+  --text-inverse-weak:#ffffffc7;
+  --fill-brand-strong:var(--theme-brand-1000); --fill-brand-weak:var(--theme-brand-50);
+  --fill-brand-alternate:var(--prim-orange-1000);
+  --fill-strong:var(--theme-grey-1000); --fill-weak:var(--theme-grey-50);
+  --fill-hover:var(--theme-grey-50);    --fill-press:var(--theme-grey-100);
+  --fill-yellow:var(--prim-yellow-1000);
+  --stroke-weak:var(--theme-grey-100);  --stroke-strong:var(--theme-grey-500);
+  --stroke-brand-strong:var(--theme-brand-800); --stroke-brand-weak:var(--theme-brand-200);
+  --stroke-selected:var(--theme-brand-1000); --stroke-focus:var(--theme-brand-1000);
+  --icon-brand:var(--theme-brand-800);  --icon-neutral:var(--theme-grey-500);
+  /* estados semánticos */
+  --fill-success-strong:var(--prim-green-1000); --fill-success-weak:var(--prim-green-50);
+  --fill-warning-strong:var(--prim-amber-1000); --fill-warning-weak:var(--prim-amber-50);
+  --fill-error-strong:var(--prim-red-1000);     --fill-error-weak:var(--prim-red-50);
+  --fill-info-strong:var(--prim-teal-1000);     --fill-info-weak:var(--prim-teal-50);
+  /* puentes "sitio--" del sitio en producción */
+  --sitio-fondo-f3f3f3:#f3f3f3; --sitio-fondo-e8ecf4:#e8ecf4;
+  --sitio-fondo-1b2757:#1b2757; --sitio-fondo-10183a:#10183a;
+  --sitio-texto-0050bd:#0050bd; --sitio-borde-d8d8dc:#d8d8dc;
+  --sitio-borde-ffffff99:#ffffff99;
+
+  /* ── 📐 SPACING (escala oficial) ── */
+  --sp-0:0px;   --sp-4:4px;   --sp-8:8px;   --sp-12:12px; --sp-16:16px;
+  --sp-20:20px; --sp-24:24px; --sp-32:32px; --sp-40:40px; --sp-48:48px;
+  --sp-56:56px; --sp-64:64px; --sp-80:80px; --sp-96:96px; --sp-128:128px;
+  --sp-192:192px; --sp-256:256px;
+  /* ── 📐 CORNER RADIUS (escala oficial) ── */
+  --cr-0:0px;  --cr-4:4px;  --cr-8:8px;  --cr-12:12px; --cr-16:16px;
+  --cr-20:20px; --cr-24:24px; --cr-32:32px;
+  /* radios de píldora usados en el sitio (fuera de la escala Webflow) */
+  --cr-40:40px; --cr-50:50px; --cr-64:64px; --cr-pill:9999px;
+
+  /* ── 🔤 TYPOGRAPHY (familias oficiales) ── */
+  --ff-display:'Lemon Milk Pro',Tahoma,sans-serif;  /* licenciada · fallback local */
+  --ff-heading:'Nunito',sans-serif;
+  --ff-body:'Prompt',sans-serif;
+  --ff-subheading:'Prompt',sans-serif;
+  --fs-display:56px;   --lh-display:64px;
+  --fs-h1:40px;        --lh-h1:48px;
+  --fs-h2:32px;        --lh-h2:40px;
+  --fs-h3:24px;        --lh-h3:32px;
+  --fs-h4:20px;        --lh-h4:28px;
+  --fs-small:16px;     --lh-small:24px;
+  --fs-tiny:14px;      --lh-tiny:20px;
+  --fs-uppercase:14px; --lh-uppercase:20px;
+  --fw-strong:600;     --fw-weak:400;
+
+  /* ── SOMBRAS DEL SITIO EN PRODUCCIÓN ── */
+  --sh-card:6px 6px 16px rgba(15,23,42,0.12),-6px -6px 14px rgba(255,255,255,0.90);
+  --sh-navbar:0 10px 30px rgba(15,23,42,0.10);
+  --sh-soft:0 4px 16px rgba(15,23,42,0.08);
+
+  /* ── LEGACY NEO/GLASS · remapeado a los valores REALES de actuaria.com ── */
+  --navy:#151f47; --navy-2:#1b2757; --navy-3:#10183a;      /* antes #0f1f3d/#1e3a6e/#253d6e */
+  --indigo:#3258a2; --indigo-2:#0050bd; --indigo-soft:rgba(50,88,162,0.10);  /* antes #4c64d9 */
+  --orange:#e0592a; --green:#4caf50; --green-text:#2e7d32;  /* antes #de5e2d/#00c781 */
+  --yellow:#ff9800; --yellow-text:#b07d00; --red:#c73a3a; --red-text:#c73a3a;
+  --bg:#f3f3f3; --surface:rgba(255,255,255,0.92); --border:rgba(0,17,102,0.10);
+  --text:#000626e6; --text-sub:#000933a6; --text-dim:#000d4d73;
+  --glass-bg:rgba(255,255,255,0.54); --glass-border:rgba(255,255,255,0.60);
   --glass-shine:inset 0 1px 0 rgba(255,255,255,0.95);
-  --neu-out:6px 6px 16px rgba(163,177,198,0.55),-4px -4px 12px rgba(255,255,255,0.95);
-  --neu-out-sm:3px 3px 8px rgba(163,177,198,0.42),-2px -2px 6px rgba(255,255,255,0.88);
-  --neu-in:inset 3px 3px 8px rgba(163,177,198,0.45),inset -2px -2px 6px rgba(255,255,255,0.90);
-  --neu-in-sm:inset 2px 2px 5px rgba(163,177,198,0.38),inset -1px -1px 4px rgba(255,255,255,0.90);
+  --neu-out:6px 6px 16px rgba(15,23,42,0.12),-6px -6px 14px rgba(255,255,255,0.90);
+  --neu-out-sm:3px 3px 8px rgba(15,23,42,0.08),-2px -2px 6px rgba(255,255,255,0.88);
+  --neu-in:inset 3px 3px 8px rgba(15,23,42,0.10),inset -2px -2px 6px rgba(255,255,255,0.90);
+  --neu-in-sm:inset 2px 2px 5px rgba(15,23,42,0.08),inset -1px -1px 4px rgba(255,255,255,0.90);
   --font:'Nunito',sans-serif;
   --ease-out:cubic-bezier(0.4,0,0.2,1); --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
   --dur-fast:120ms; --dur-normal:220ms; --dur-slow:360ms;
@@ -364,6 +454,216 @@ a{text-decoration:none;}
 .track-h .track-name{font-size:11px;}
 .track-h .track-time{font-size:9px;}
 @media (max-width:768px){.track-h{flex-direction:column;}.track-h .track-step{flex-direction:row;text-align:left;}.track-h .track-step::before{left:17px;top:36px;bottom:-4px;width:2px;height:auto;}}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTES REALES DE actuaria.com   ·   prefijo .act-
+   Réplica 1:1 de las clases en producción (navbar-logo-left, hero_section,
+   card_solutions, card_testimonial, cert_frame, footer_section, wa_float…)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Lienzo del sitio: fondo + patrón topográfico ── */
+.act-canvas{background:var(--sitio-fondo-f3f3f3);border-radius:var(--cr-24);padding:var(--sp-24);position:relative;overflow:hidden;}
+.act-canvas::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:radial-gradient(circle at 20% 30%,transparent 38%,rgba(21,31,71,.045) 39%,transparent 40%),
+                   radial-gradient(circle at 20% 30%,transparent 52%,rgba(21,31,71,.045) 53%,transparent 54%),
+                   radial-gradient(circle at 20% 30%,transparent 66%,rgba(21,31,71,.04) 67%,transparent 68%),
+                   radial-gradient(circle at 78% 70%,transparent 30%,rgba(21,31,71,.045) 31%,transparent 32%),
+                   radial-gradient(circle at 78% 70%,transparent 45%,rgba(21,31,71,.04) 46%,transparent 47%);
+  background-size:520px 520px,520px 520px,520px 520px,600px 600px,600px 600px;}
+.act-canvas > *{position:relative;z-index:1;}
+.act-dark{background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--sitio-fondo-10183a));}
+
+/* ── Tipografía de sección (heading-section / subheading-section) ── */
+.act-heading-section{font-family:var(--ff-display);font-size:var(--fs-h1);line-height:42px;font-weight:700;color:var(--text-strong);letter-spacing:-.5px;}
+.act-heading-section.is-cta{color:#fff;}
+.act-subheading-section{font-family:var(--ff-heading);font-size:18px;line-height:22px;font-weight:400;color:var(--text-weak);}
+.act-subheading-section.is-cta{color:var(--text-inverse-weak);}
+.act-eyebrow{font-family:var(--ff-body);font-size:var(--fs-uppercase);line-height:var(--lh-uppercase);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--prim-orange-1000);}
+
+/* ── NAVBAR flotante (navbar-logo-left) ── */
+.act-navbar{display:flex;align-items:center;gap:var(--sp-8);background:#f5f6fa;border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-40);padding:10px 10px 10px var(--sp-20);box-shadow:var(--sh-navbar);}
+.act-logo{display:flex;align-items:center;gap:var(--sp-8);font-family:var(--ff-display);font-size:19px;font-weight:700;color:var(--text-strong);letter-spacing:.5px;}
+.act-logo-mark{width:26px;height:26px;border-radius:5px;background:linear-gradient(135deg,var(--prim-orange-1000) 0 48%,var(--prim-blue-1000) 52% 100%);
+  clip-path:polygon(50% 0,100% 100%,0 100%);}
+.act-nav-links{display:flex;align-items:center;gap:2px;margin-left:auto;}
+.act-nav-link{display:flex;align-items:center;gap:6px;height:44px;padding:0 var(--sp-16);border-radius:var(--cr-8);
+  font-family:var(--ff-heading);font-size:var(--fs-small);font-weight:600;color:var(--text-strong);cursor:pointer;transition:background var(--dur-normal) var(--ease-out);}
+.act-nav-link:hover{background:var(--fill-hover);}
+.act-nav-link i{font-size:11px;opacity:.6;}
+.act-nav-pill{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-pill);padding:5px 10px;font-size:var(--fs-tiny);}
+.act-nav-pill .act-flag{font-size:15px;line-height:1;opacity:.45;cursor:pointer;}
+.act-nav-pill .act-flag.is-on{opacity:1;}
+.act-btn-contacto{display:inline-flex;align-items:center;gap:var(--sp-8);height:44px;padding:0 var(--sp-20);border-radius:var(--cr-pill);
+  background:#fff;border:1px solid var(--sitio-borde-d8d8dc);font-family:var(--ff-heading);font-weight:700;font-size:15px;color:var(--text-strong);cursor:pointer;}
+.act-btn-plus{display:inline-flex;align-items:center;gap:var(--sp-8);height:44px;padding:0 var(--sp-20);border-radius:var(--cr-64);
+  background:var(--prim-blue-1000);color:#fff;font-family:var(--ff-heading);font-weight:700;font-size:15.2px;cursor:pointer;border:none;}
+.act-btn-plus:hover{background:var(--sitio-fondo-1b2757);}
+
+/* mega-menú */
+.act-megamenu{margin-top:var(--sp-8);background:#fff;border:1px solid var(--stroke-weak);border-radius:var(--cr-20);padding:var(--sp-12);box-shadow:var(--sh-navbar);display:grid;gap:2px;min-width:260px;}
+.act-nav-drop{display:flex;align-items:center;gap:var(--sp-12);height:44px;padding:0 var(--sp-16);border-radius:var(--cr-8);
+  font-family:var(--ff-heading);font-size:var(--fs-small);font-weight:500;color:var(--text-strong);cursor:pointer;}
+.act-nav-drop:hover{background:var(--fill-brand-weak);color:var(--text-brand);}
+.act-icon-chip-nav{width:15px;font-size:12px;color:rgba(21,31,71,.8);text-align:center;}
+.act-nav-group-label{font-family:var(--ff-body);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-weak);padding:var(--sp-8) var(--sp-16) var(--sp-4);}
+
+/* ── BOTONES del sitio ── */
+.act-button-ring{display:inline-flex;padding:6px;border-radius:var(--cr-40);background:rgba(255,255,255,.55);box-shadow:var(--sh-soft);}
+.act-btn-primary{display:inline-flex;align-items:center;gap:var(--sp-12);height:52px;padding:0 var(--sp-24);border:none;border-radius:var(--cr-40);
+  background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--prim-blue-1000));color:#fff;
+  font-family:var(--ff-display);font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(21,31,71,.28);transition:transform var(--dur-normal) var(--ease-out);}
+.act-btn-primary:hover{transform:translateY(-1px);}
+.act-btn-ghost{display:inline-flex;align-items:center;gap:var(--sp-8);height:44px;padding:0 var(--sp-20);border-radius:var(--cr-pill);
+  background:transparent;border:1px solid var(--stroke-brand-weak);color:var(--text-brand);font-family:var(--ff-heading);font-weight:700;font-size:15px;cursor:pointer;}
+.act-btn-orange{display:inline-flex;align-items:center;gap:var(--sp-8);height:44px;padding:0 var(--sp-20);border:none;border-radius:var(--cr-pill);
+  background:var(--prim-orange-1000);color:#fff;font-family:var(--ff-heading);font-weight:700;font-size:15px;cursor:pointer;}
+
+/* ── CHIPSET (chipset_cards / icon_chip) ── */
+.act-chipset{display:inline-flex;align-items:center;gap:var(--sp-8);background:rgba(21,31,71,.07);border:1px solid rgba(0,17,102,.1);
+  border-radius:var(--cr-50);padding:var(--sp-4) var(--sp-12);height:30px;
+  font-family:var(--ff-body);font-size:13px;font-weight:500;color:var(--text-weak);}
+.act-chipset i{font-size:12px;color:rgba(0,13,77,.45);}
+.act-chipset.is-brand{background:var(--fill-brand-weak);border-color:var(--stroke-brand-weak);color:var(--text-brand);}
+.act-chipset.is-orange{background:var(--prim-orange-50);border-color:var(--prim-orange-300);color:#a8431c;}
+
+/* ── HERO (hero_section + typing_ghost) ── */
+.act-hero{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-32);align-items:center;}
+.act-hero h1{font-family:var(--ff-display);font-size:48px;line-height:1.08;font-weight:700;color:var(--text-strong);letter-spacing:-1px;margin-bottom:var(--sp-24);min-height:3.24em;}
+.act-typing-cursor{display:inline-block;width:3px;height:.92em;background:var(--prim-orange-1000);vertical-align:text-bottom;animation:act-blink 1s steps(1) infinite;}
+@keyframes act-blink{50%{opacity:0;}}
+.act-hero p{font-family:var(--ff-heading);font-size:18px;line-height:26px;color:var(--text-weak);margin-bottom:var(--sp-24);max-width:46ch;}
+
+/* ── BLOG COVER CARD (slider del hero) ── */
+.act-blogcover{position:relative;border-radius:var(--cr-24);overflow:hidden;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--sp-20);
+  background:linear-gradient(200deg,#2b6fa8,#13406b 60%,#0d2a46);}
+.act-blogcover::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,16,32,.85) 0%,rgba(5,16,32,.15) 55%,transparent 100%);}
+.act-blogcover > *{position:relative;z-index:1;}
+.act-blog-chip{align-self:flex-start;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);border-radius:var(--cr-pill);
+  padding:var(--sp-4) var(--sp-12);font-family:var(--ff-body);font-size:12px;color:#fff;margin-bottom:var(--sp-12);}
+.act-blog-date{font-family:var(--ff-body);font-size:12px;color:rgba(255,255,255,.8);margin-bottom:var(--sp-4);}
+.act-blog-title{font-family:var(--ff-display);font-size:20px;line-height:24.35px;color:#fff;border-left:3px solid #fff;padding-left:var(--sp-8);margin-bottom:var(--sp-12);}
+.act-blog-cta{display:inline-flex;align-items:center;gap:var(--sp-8);font-family:var(--ff-heading);font-size:14px;font-weight:700;color:#fff;}
+.act-blog-nav{position:absolute;right:var(--sp-16);bottom:var(--sp-16);display:flex;gap:var(--sp-8);z-index:2;}
+.act-blog-arrow{width:34px;height:34px;border-radius:var(--cr-pill);background:rgba(255,255,255,.18);backdrop-filter:blur(6px);
+  display:grid;place-items:center;color:#fff;cursor:pointer;border:1px solid rgba(255,255,255,.3);}
+.act-blog-arrow:hover{background:rgba(255,255,255,.32);}
+
+/* ── ODÓMETRO / CONTADORES (odo-roll / odo-d) ── */
+.act-odo{display:flex;align-items:baseline;gap:2px;font-family:var(--ff-display);font-size:44px;font-weight:700;color:var(--text-strong);}
+.act-odo-d{display:inline-block;width:.62em;height:1.08em;overflow:hidden;position:relative;}
+.act-odo-roll{position:absolute;top:0;left:0;display:flex;flex-direction:column;animation:act-roll 2.4s var(--ease-out) forwards;}
+.act-odo-roll span{height:1.08em;line-height:1.08em;text-align:center;}
+@keyframes act-roll{from{transform:translateY(0);}to{transform:translateY(calc(-1.08em * var(--n,0)));}}
+.act-odo-label{font-family:var(--ff-heading);font-size:var(--fs-small);font-weight:700;color:var(--text-strong);margin-top:var(--sp-4);}
+.act-odo-desc{font-family:var(--ff-body);font-size:var(--fs-tiny);line-height:var(--lh-tiny);color:var(--text-weak);max-width:34ch;}
+
+/* ── CARD SOLUCIONES (card_solutions) ── */
+.act-card-sol{display:flex;flex-direction:column;background:#fff;border-radius:var(--cr-24);box-shadow:var(--sh-card);overflow:hidden;}
+.act-card-sol-media{height:140px;background:linear-gradient(135deg,var(--prim-blue-1000),var(--prim-blue-dark-1000));display:grid;place-items:center;color:rgba(255,255,255,.35);font-size:34px;}
+.act-card-sol-body{padding:var(--sp-20);display:flex;flex-direction:column;gap:var(--sp-12);flex:1;}
+.act-card-sol h4{font-family:var(--ff-display);font-size:var(--fs-h4);line-height:var(--lh-h4);color:var(--text-strong);}
+.act-card-sol p{font-family:var(--ff-body);font-size:var(--fs-tiny);line-height:var(--lh-tiny);color:var(--text-weak);flex:1;}
+.act-card-sol-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-heading);font-size:var(--fs-tiny);font-weight:700;color:var(--prim-orange-1000);}
+
+/* ── CARD BASE (card_base) ── */
+.act-card-base{background:#fff;border-radius:var(--cr-24);padding:var(--sp-32);display:flex;flex-direction:column;gap:var(--sp-12);box-shadow:var(--sh-soft);}
+
+/* ── TESTIMONIAL (card_testimonial) ── */
+.act-testi{position:relative;background:#fff;border-radius:var(--cr-40);padding:var(--sp-24);display:flex;flex-direction:column;gap:var(--sp-16);box-shadow:var(--sh-soft);overflow:hidden;}
+.act-testi::after{content:"\201D";position:absolute;right:var(--sp-16);bottom:-34px;font-family:Georgia,serif;font-size:170px;color:var(--prim-blue-50);line-height:1;}
+.act-testi > *{position:relative;z-index:1;}
+.act-stars{color:var(--prim-orange-1000);letter-spacing:8px;font-size:14px;}
+.act-testi-quote{font-family:var(--ff-heading);font-size:var(--fs-small);line-height:1.45;color:var(--text-weak);flex:1;}
+.act-testi-bottom{display:flex;align-items:center;gap:var(--sp-12);}
+.act-testi-logo{width:120px;height:44px;flex-shrink:0;background:#fff;border:1px solid rgba(21,31,71,.08);border-radius:var(--cr-12);
+  display:grid;place-items:center;font-family:var(--ff-display);font-size:13px;font-weight:700;color:var(--prim-blue-1000);}
+.act-testi-name{font-family:var(--ff-heading);font-size:var(--fs-small);font-weight:700;color:var(--text-strong);}
+.act-testi-role{font-family:var(--ff-body);font-size:13px;color:var(--text-weak);}
+
+/* ── MARQUEE de logos (logo_stone) ── */
+.act-marquee{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.act-marquee-track{display:flex;gap:var(--sp-48);width:max-content;animation:act-marq 26s linear infinite;}
+.act-marquee:hover .act-marquee-track{animation-play-state:paused;}
+@keyframes act-marq{to{transform:translateX(-50%);}}
+.act-logo-stone{height:34px;min-width:116px;display:grid;place-items:center;font-family:var(--ff-display);font-size:13px;font-weight:700;
+  color:var(--theme-grey-500);filter:grayscale(1);opacity:.75;white-space:nowrap;}
+
+/* ── CERTIFICACIONES (cert_frame / cert_logo) ── */
+.act-cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--sp-16);}
+.act-cert-frame{border-radius:var(--cr-32);padding:var(--sp-12);background:rgba(255,255,255,.6);border:1px solid var(--stroke-weak);
+  display:flex;flex-direction:column;align-items:center;gap:var(--sp-8);text-align:center;}
+.act-cert-cell{width:100%;aspect-ratio:1;background:#fff;border-radius:var(--cr-24);display:grid;place-items:center;font-size:28px;color:var(--prim-blue-1000);}
+.act-cert-name{font-family:var(--ff-body);font-size:11px;line-height:15px;color:var(--text-weak);}
+.act-cert-link{font-family:var(--ff-heading);font-size:11px;font-weight:700;color:var(--prim-orange-1000);}
+
+/* ── CTA SECTION (cta_section) ── */
+.act-cta{border-radius:var(--cr-32);padding:var(--sp-48);text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--sp-20);
+  background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--sitio-fondo-10183a));}
+
+/* ── FORM SECTION (form_section) ── */
+.act-form{background:#fff;border-radius:var(--cr-32);padding:var(--sp-32);box-shadow:var(--sh-soft);}
+.act-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-16);}
+.act-field{display:flex;flex-direction:column;gap:6px;}
+.act-field label{font-family:var(--ff-body);font-size:13px;font-weight:500;color:var(--text-weak);}
+.act-field label .req{color:var(--prim-orange-1000);}
+.act-field input,.act-field textarea,.act-field select{height:46px;padding:0 var(--sp-16);border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-12);
+  background:#fff;font-family:var(--ff-body);font-size:var(--fs-small);color:var(--text-strong);outline:none;transition:border-color var(--dur-normal) var(--ease-out),box-shadow var(--dur-normal) var(--ease-out);}
+.act-field textarea{height:auto;min-height:92px;padding:var(--sp-12) var(--sp-16);resize:vertical;}
+.act-field input:focus,.act-field textarea:focus,.act-field select:focus{border-color:var(--stroke-focus);box-shadow:0 0 0 3px var(--fill-brand-weak);}
+.act-field input::placeholder,.act-field textarea::placeholder{color:var(--theme-grey-500);}
+.act-check-row{display:flex;flex-wrap:wrap;gap:var(--sp-8);}
+.act-check{display:inline-flex;align-items:center;gap:var(--sp-8);padding:var(--sp-8) var(--sp-16);border:1px solid var(--sitio-borde-d8d8dc);
+  border-radius:var(--cr-pill);font-family:var(--ff-body);font-size:var(--fs-tiny);color:var(--text-strong);cursor:pointer;user-select:none;}
+.act-check input{width:16px;height:16px;height:16px;accent-color:var(--prim-blue-1000);margin:0;padding:0;}
+.act-check:has(input:checked){background:var(--fill-brand-weak);border-color:var(--stroke-brand-weak);color:var(--text-brand);}
+
+/* ── FOOTER (footer_section) ── */
+.act-footer{border-radius:var(--cr-32);padding:var(--sp-40);color:var(--text-inverse-weak);
+  background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--sitio-fondo-10183a));}
+.act-footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--sp-32);}
+.act-footer-title{font-family:var(--ff-display);font-size:var(--fs-small);color:#fff;margin-bottom:var(--sp-16);letter-spacing:.5px;}
+.act-footer-line{display:flex;align-items:center;gap:9px;margin-bottom:var(--sp-12);font-family:var(--ff-body);font-size:var(--fs-tiny);line-height:var(--lh-tiny);}
+.act-footer-icon{width:20px;text-align:center;color:var(--prim-orange-1000);flex-shrink:0;}
+.act-footer-link{display:block;font-family:var(--ff-body);font-size:13px;line-height:19px;color:var(--text-inverse-weak);margin-bottom:var(--sp-8);}
+.act-footer-link:hover{color:#fff;}
+.act-social{display:flex;gap:var(--sp-12);margin-top:var(--sp-16);}
+.act-social-link{width:38px;height:38px;border-radius:var(--cr-pill);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  display:grid;place-items:center;color:#fff;transition:background var(--dur-normal) var(--ease-out);}
+.act-social-link:hover{background:var(--prim-orange-1000);border-color:var(--prim-orange-1000);}
+.act-footer-bottom{margin-top:var(--sp-32);padding-top:var(--sp-20);border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:var(--sp-16);flex-wrap:wrap;font-family:var(--ff-body);font-size:12px;}
+
+/* ── WHATSAPP FLOTANTE (wa_float) ── */
+.act-wa{width:60px;height:60px;border-radius:var(--cr-pill);background:#25d366;display:grid;place-items:center;color:#fff;font-size:30px;
+  box-shadow:0 6px 20px rgba(37,211,102,.45);cursor:pointer;transition:transform var(--dur-normal) var(--ease-spring);}
+.act-wa:hover{transform:scale(1.08);}
+
+/* ── BARRA MÓVIL DE CONTACTO ── */
+.act-mobilebar{display:flex;background:#fff;border-top:1px solid var(--stroke-weak);border-radius:var(--cr-16);overflow:hidden;box-shadow:var(--sh-soft);max-width:420px;}
+.act-mobilebar a{flex:1;padding:var(--sp-12) var(--sp-8);display:flex;flex-direction:column;align-items:center;gap:var(--sp-4);
+  font-family:var(--ff-body);font-size:11px;font-weight:500;color:var(--text-strong);border-right:1px solid var(--stroke-weak);}
+.act-mobilebar a:last-child{border-right:none;}
+.act-mobilebar i{font-size:17px;color:var(--prim-blue-1000);}
+.act-mobilebar a:last-child i{color:#25d366;}
+
+/* ── Utilidades de demo ── */
+.act-demo{background:var(--sitio-fondo-f3f3f3);border-radius:var(--cr-20);padding:var(--sp-24);margin-bottom:var(--sp-16);border:1px solid var(--stroke-weak);}
+.act-demo.is-dark{background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--sitio-fondo-10183a));border-color:transparent;}
+.act-grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--sp-16);}
+.act-grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--sp-16);}
+.act-row{display:flex;flex-wrap:wrap;gap:var(--sp-12);align-items:center;}
+.act-tokentable{width:100%;border-collapse:collapse;font-family:var(--ff-body);font-size:13px;}
+.act-tokentable th{text-align:left;padding:var(--sp-8) var(--sp-12);background:var(--bg-sunken);color:var(--text-weak);
+  font-size:11px;text-transform:uppercase;letter-spacing:.6px;font-weight:700;}
+.act-tokentable td{padding:var(--sp-8) var(--sp-12);border-bottom:1px solid var(--stroke-weak);color:var(--text-strong);vertical-align:middle;}
+.act-sw{width:26px;height:26px;border-radius:var(--cr-8);border:1px solid var(--stroke-weak);display:inline-block;vertical-align:middle;}
+@media (max-width:860px){
+  .act-hero{grid-template-columns:1fr;}
+  .act-form-grid{grid-template-columns:1fr;}
+  .act-navbar{flex-wrap:wrap;border-radius:var(--cr-24);}
+  .act-nav-links{margin-left:0;flex-wrap:wrap;}
+}
 </style>
 </head>
 <body>
@@ -379,8 +679,8 @@ a{text-decoration:none;}
     <path d="M133.673 7.16323H136.683V26.3267H133.673V7.16323Z" fill="#fff"/>
     <path d="M152.435 23.4143H143.366L142.06 26.3267H138.801L147.811 6.77092H147.991L157 26.3267H153.741L152.435 23.4143ZM151.268 20.8343L147.903 13.3434L144.529 20.8343H151.268Z" fill="#fff"/>
   </svg>
-  <span class="ds-topbar-title">Neumorphism Design System</span>
-  <span class="ds-version">v1.0</span>
+  <span class="ds-topbar-title">Design System · Neumorphism + Sitio actuaria.com</span>
+  <span class="ds-version">v2.0</span>
 </header>
 
 <div class="ds-layout">
@@ -435,6 +735,12 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#color-usage">Color Usage</a>
     </div>
     <div class="ds-nav-group">
+      <span class="ds-nav-label">Sitio actuaria.com</span>
+      <a class="ds-nav-link" href="#act-tokens">Tokens oficiales</a>
+      <a class="ds-nav-link" href="#act-components">Componentes del sitio</a>
+      <a class="ds-nav-link" href="#act-gaps">Brechas DS ↔ sitio</a>
+    </div>
+    <div class="ds-nav-group">
       <span class="ds-nav-label">Seguimiento</span>
       <a class="ds-nav-link" href="#cmp-tracking">Tracking</a>
     </div>
@@ -450,12 +756,12 @@ a{text-decoration:none;}
       <span class="ds-hero-badge"><i class="fa-solid fa-atom"></i> Atomic Design</span>
     </div>
     <h1>Actuaria Neumorphism<br>Design System</h1>
-    <p class="hero-sub">Sistema de diseño oficial para productos de Actuaria Consultores.<br>Componentes, tokens y patrones para construir interfaces consistentes y modernas.</p>
+    <p class="hero-sub">Sistema de diseño oficial de Actuaria Consultores.<br>Tokens y componentes verificados contra <strong>actuaria.com</strong> en producción (Webflow · 31 páginas).</p>
     <div class="hero-stats">
-      <div><div class="hero-stat-val">3</div><div class="hero-stat-lbl">Estilos base</div></div>
-      <div><div class="hero-stat-val">30+</div><div class="hero-stat-lbl">Componentes</div></div>
-      <div><div class="hero-stat-val">60+</div><div class="hero-stat-lbl">Tokens CSS</div></div>
-      <div><div class="hero-stat-val">6</div><div class="hero-stat-lbl">Capas atómicas</div></div>
+      <div><div class="hero-stat-val">70+</div><div class="hero-stat-lbl">Componentes</div></div>
+      <div><div class="hero-stat-val">357</div><div class="hero-stat-lbl">Tokens del sitio</div></div>
+      <div><div class="hero-stat-val">3</div><div class="hero-stat-lbl">Capas de tokens</div></div>
+      <div><div class="hero-stat-val">4</div><div class="hero-stat-lbl">Familias tipográficas</div></div>
     </div>
   </div>
 </section>
@@ -3310,6 +3616,659 @@ a{text-decoration:none;}
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════════
+     SITIO actuaria.com · TOKENS OFICIALES
+     Fuente: Webflow site 6967c96e0fba2ea4f94d3c69 (actuaria.com)
+     ═══════════════════════════════════════════════════════════════════ -->
+<section id="act-tokens" class="ds-section">
+  <div class="section-header">
+    <h2>Tokens oficiales de actuaria.com</h2>
+    <p>Extraídos del sitio Webflow en producción: <strong>6 colecciones de variables</strong> y <strong>357 variables CSS</strong> en una arquitectura de 3 capas (primitive → theme → semantic). Estos son los valores canónicos: cualquier componente del sistema debe consumirlos, nunca hardcodear hex.</p>
+  </div>
+
+  <div class="comp-block" id="act-tok-arch">
+    <h3>Arquitectura de 3 capas</h3>
+    <p class="desc-text" style="margin-bottom:12px;">El sitio no usa colores planos: cada valor viaja por tres niveles de indirección. Esto permite cambiar la marca o el modo oscuro tocando una sola capa.</p>
+    <div class="act-demo">
+      <div class="act-grid-3">
+        <div class="act-card-base">
+          <span class="act-chipset is-brand"><i class="fa-solid fa-palette"></i> Capa 1</span>
+          <h4 style="font-family:var(--ff-display);font-size:18px;color:var(--text-strong);">🎨 Colours primitive</h4>
+          <p style="font-family:var(--ff-body);font-size:13px;color:var(--text-weak);">84 variables. La paleta cruda: <code class="ds-code-inline">blue</code>, <code class="ds-code-inline">orange</code>, <code class="ds-code-inline">amber</code>, <code class="ds-code-inline">green</code>, <code class="ds-code-inline">red</code>, <code class="ds-code-inline">teal</code>, <code class="ds-code-inline">purple</code>, <code class="ds-code-inline">grey-slate</code>, <code class="ds-code-inline">grey-neutral</code>. Nunca se consume directo.</p>
+        </div>
+        <div class="act-card-base">
+          <span class="act-chipset is-brand"><i class="fa-solid fa-layer-group"></i> Capa 2</span>
+          <h4 style="font-family:var(--ff-display);font-size:18px;color:var(--text-strong);">🖼️ Theme</h4>
+          <p style="font-family:var(--ff-body);font-size:13px;color:var(--text-weak);">26 alias. Mapea la paleta a roles de marca: <code class="ds-code-inline">brand--light--1000 → blue--light--1000</code>, <code class="ds-code-inline">grey--light--* → grey-slate--light--*</code>.</p>
+        </div>
+        <div class="act-card-base">
+          <span class="act-chipset is-orange"><i class="fa-solid fa-tags"></i> Capa 3</span>
+          <h4 style="font-family:var(--ff-display);font-size:18px;color:var(--text-strong);">🏷️ Colours semantic</h4>
+          <p style="font-family:var(--ff-body);font-size:13px;color:var(--text-weak);">Roles de uso: <code class="ds-code-inline">text--strong</code>, <code class="ds-code-inline">fill--brand-strong</code>, <code class="ds-code-inline">stroke--weak</code>, <code class="ds-code-inline">icon--brand</code>. Tiene modo <strong>Dark</strong>. Es la única capa que consumen los componentes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Colecciones en Webflow</div>
+      <div class="desc-text">Base collection · 🎨 Colours primitive · 🏷️ Colours semantic (modos: Base + Dark) · 🖼️ Theme · 📐 Spacing · 🔤 Typography (modos: Base + Mobile).</div>
+      <div class="usage-note" style="margin-top:8px;">Existe además un puente heredado <span class="ds-code-inline">sitio--fondo--*</span> / <span class="ds-code-inline">sitio--texto--*</span> que mapea hex del sitio antiguo a los tokens semánticos. No usar en componentes nuevos.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="act-tok-brand">
+    <h3>Paleta de marca</h3>
+    <p class="desc-text" style="margin-bottom:12px;">El azul <strong>#151f47</strong> es el color de marca (no un índigo). El naranja <strong>#e0592a</strong> es el acento: estrellas, CTA de cards, iconos de footer y el cursor del typing del hero.</p>
+    <div class="act-demo">
+      <table class="act-tokentable">
+        <thead><tr><th></th><th>Token semántico</th><th>Theme</th><th>Primitive</th><th>Hex</th></tr></thead>
+        <tbody>
+          <tr><td><span class="act-sw" style="background:#151f47"></span></td><td>fill--brand-strong</td><td>brand--light--1000</td><td>blue--light--1000</td><td><code class="ds-code-inline">#151f47</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#e0592a"></span></td><td>fill--brand-alternate</td><td>—</td><td>orange--1000</td><td><code class="ds-code-inline">#e0592a</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#3258a2"></span></td><td>(dark mode brand)</td><td>brand--dark--1000</td><td>blue--dark--1000</td><td><code class="ds-code-inline">#3258a2</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#000626e6"></span></td><td>text--strong</td><td>grey--light--1000</td><td>grey-slate--light--1000</td><td><code class="ds-code-inline">#000626e6</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#000933a6"></span></td><td>text--weak</td><td>grey--light--700</td><td>grey-slate--light--700</td><td><code class="ds-code-inline">#000933a6</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#f5f6fa"></span></td><td>background--sunken</td><td>grey-solid--50</td><td>grey-slate-solid--50</td><td><code class="ds-code-inline">#f5f6fa</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#4caf50"></span></td><td>fill--success-strong</td><td>—</td><td>green--light--1000</td><td><code class="ds-code-inline">#4caf50</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#ff9800"></span></td><td>fill--warning-strong</td><td>—</td><td>amber--light--1000</td><td><code class="ds-code-inline">#ff9800</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#c73a3a"></span></td><td>fill--error-strong</td><td>—</td><td>red--light--1000</td><td><code class="ds-code-inline">#c73a3a</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#1a74a8"></span></td><td>fill--information-strong</td><td>—</td><td>teal--light--1000</td><td><code class="ds-code-inline">#1a74a8</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#763ec4"></span></td><td>(decorativo)</td><td>—</td><td>purple--light--1000</td><td><code class="ds-code-inline">#763ec4</code></td></tr>
+          <tr><td><span class="act-sw" style="background:#fec62e"></span></td><td>fill--yellow</td><td>—</td><td>yellow-solid--1000</td><td><code class="ds-code-inline">#fec62e</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="usage-note">Cada color primitivo tiene rampa de opacidad <span class="ds-code-inline">1000 / 800 / 200-300 / 50</span> para fills y strokes suaves. Ejemplo: <span class="ds-code-inline">orange--50 = #e0592a0d</span> es el fondo de un chip naranja.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="act-tok-type">
+    <h3>Tipografía oficial · 4 familias</h3>
+    <p class="desc-text" style="margin-bottom:12px;">La colección 🔤 Typography define cuatro familias con roles distintos y una escala de 8 tamaños con line-height pareado. Tiene modo <strong>Mobile</strong>.</p>
+    <div class="act-demo">
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div><div class="act-eyebrow" style="margin-bottom:6px;">font-family--display · Lemon Milk Pro</div>
+          <div style="font-family:var(--ff-display);font-size:40px;line-height:44px;font-weight:700;color:var(--text-strong);">Anticipamos los riesgos</div>
+          <div style="font-family:var(--ff-body);font-size:12px;color:var(--text-weak);margin-top:4px;">Titulares y wordmark. Fuente licenciada → en este DS cae a Tahoma. Subir el .woff2 a <code class="ds-code-inline">/fonts</code> para fidelidad total.</div></div>
+        <div><div class="act-eyebrow" style="margin-bottom:6px;">font-family--heading · Nunito</div>
+          <div style="font-family:var(--ff-heading);font-size:32px;line-height:40px;font-weight:700;color:var(--text-strong);">Subtítulos y botones</div></div>
+        <div><div class="act-eyebrow" style="margin-bottom:6px;">font-family--body / subheading · Prompt</div>
+          <div style="font-family:var(--ff-body);font-size:16px;line-height:24px;color:var(--text-weak);">Cuerpo de texto, labels de formulario, metadatos y chips. Prompt es la familia de lectura del sitio: geométrica, con buena altura de x y soporte completo de español.</div></div>
+      </div>
+    </div>
+    <div class="act-demo">
+      <table class="act-tokentable">
+        <thead><tr><th>Token</th><th>Size</th><th>Line-height</th><th>Muestra</th></tr></thead>
+        <tbody>
+          <tr><td>display</td><td>56px</td><td>64px</td><td><span style="font-family:var(--ff-display);font-size:28px;color:var(--text-strong);">Aa</span></td></tr>
+          <tr><td>heading-1</td><td>40px</td><td>48px</td><td><span style="font-family:var(--ff-display);font-size:24px;color:var(--text-strong);">Aa</span></td></tr>
+          <tr><td>heading-2</td><td>32px</td><td>40px</td><td><span style="font-family:var(--ff-heading);font-size:22px;font-weight:700;color:var(--text-strong);">Aa</span></td></tr>
+          <tr><td>heading-3</td><td>24px</td><td>32px</td><td><span style="font-family:var(--ff-heading);font-size:19px;font-weight:700;color:var(--text-strong);">Aa</span></td></tr>
+          <tr><td>heading-4</td><td>20px</td><td>28px</td><td><span style="font-family:var(--ff-heading);font-size:17px;font-weight:700;color:var(--text-strong);">Aa</span></td></tr>
+          <tr><td>small</td><td>16px</td><td>24px</td><td><span style="font-family:var(--ff-body);font-size:16px;color:var(--text-weak);">Aa</span></td></tr>
+          <tr><td>tiny</td><td>14px</td><td>20px</td><td><span style="font-family:var(--ff-body);font-size:14px;color:var(--text-weak);">Aa</span></td></tr>
+          <tr><td>uppercase</td><td>14px</td><td>20px</td><td><span style="font-family:var(--ff-body);font-size:13px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;color:var(--prim-orange-1000);">Aa</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Pesos</div>
+      <div class="desc-text"><span class="ds-code-inline">font-weight--strong = Semi Bold (600)</span> · <span class="ds-code-inline">font-weight--weak = Regular (400)</span>.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="act-tok-space">
+    <h3>Spacing &amp; corner radius oficiales</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Escala de espaciado de 17 pasos y radios de 8 pasos. Los radios de píldora (40/50/64) existen en producción pero <em>fuera</em> de la colección Webflow: están hardcodeados en navbar, botones y cards de testimonio.</p>
+    <div class="act-demo">
+      <div class="act-eyebrow" style="margin-bottom:10px;">📐 spacing</div>
+      <div class="act-row" style="align-items:flex-end;">
+        <div style="text-align:center"><div style="width:4px;height:4px;background:var(--prim-blue-1000);border-radius:2px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">4</span></div>
+        <div style="text-align:center"><div style="width:8px;height:8px;background:var(--prim-blue-1000);border-radius:2px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">8</span></div>
+        <div style="text-align:center"><div style="width:12px;height:12px;background:var(--prim-blue-1000);border-radius:2px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">12</span></div>
+        <div style="text-align:center"><div style="width:16px;height:16px;background:var(--prim-blue-1000);border-radius:2px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">16</span></div>
+        <div style="text-align:center"><div style="width:20px;height:20px;background:var(--prim-blue-1000);border-radius:3px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">20</span></div>
+        <div style="text-align:center"><div style="width:24px;height:24px;background:var(--prim-blue-1000);border-radius:3px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">24</span></div>
+        <div style="text-align:center"><div style="width:32px;height:32px;background:var(--prim-blue-1000);border-radius:4px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">32</span></div>
+        <div style="text-align:center"><div style="width:40px;height:40px;background:var(--prim-blue-1000);border-radius:4px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">40</span></div>
+        <div style="text-align:center"><div style="width:48px;height:48px;background:var(--prim-blue-1000);border-radius:5px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">48</span></div>
+        <div style="text-align:center"><div style="width:56px;height:56px;background:var(--prim-blue-1000);border-radius:5px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">56</span></div>
+        <div style="text-align:center"><div style="width:64px;height:64px;background:var(--prim-blue-1000);border-radius:6px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">64</span></div>
+        <div style="text-align:center"><div style="width:80px;height:80px;background:var(--prim-blue-1000);border-radius:6px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">80</span></div>
+        <div style="text-align:center"><div style="width:96px;height:96px;background:var(--prim-blue-1000);border-radius:7px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">96</span></div>
+      </div>
+      <div style="font-family:var(--ff-body);font-size:12px;color:var(--text-weak);margin-top:12px;">Escala completa: 0 · 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64 · 80 · 96 · 128 · 192 · 256</div>
+    </div>
+    <div class="act-demo">
+      <div class="act-eyebrow" style="margin-bottom:10px;">📐 corner-radius</div>
+      <div class="act-row">
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:4px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">4</span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:8px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">8</span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:12px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">12</span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:16px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">16</span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:20px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">20</span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:24px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">24 <em>card</em></span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:32px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">32 <em>cert</em></span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:40px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--prim-orange-1000)">40 <em>testi</em></span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:50px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--prim-orange-1000)">50 <em>chip</em></span></div>
+        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:64px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--prim-orange-1000)">64 <em>btn+</em></span></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="usage-note">Los valores en <span style="color:var(--prim-orange-1000)">naranja punteado</span> NO están en la colección Webflow. Pendiente: subirlos como <span class="ds-code-inline">corner-radius--40/50/64</span> para cerrar la brecha token↔producción.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SITIO actuaria.com · COMPONENTES
+     ═══════════════════════════════════════════════════════════════════ -->
+<section id="act-components" class="ds-section">
+  <div class="section-header">
+    <h2>Componentes del sitio actuaria.com</h2>
+    <p>Réplica de los componentes reales en producción. Webflow registra 21 componentes: 7 en el grupo <strong>Design System</strong> (Card, Bento Grid, Glass Panel, Field, Toggle, Tabs, Alert), 8 en <strong>Typography</strong>, 3 en <strong>Secciones</strong> y 3 globales (Navbar Main ×27 instancias, Footer ×26, Form_Section ×9).</p>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="comp-block" id="act-navbar-main">
+    <h3>Navbar Main <span class="act-chipset" style="vertical-align:middle;margin-left:8px;">27 instancias</span></h3>
+    <p class="desc-text" style="margin-bottom:12px;">Barra flotante tipo píldora (no pegada al borde). Contiene logo, enlaces con chevron, selector de idioma ES/EN, toggle claro/oscuro, botón <em>Contacto</em> outline y botón <em>actuaria+</em> sólido navy.</p>
+    <div class="act-canvas">
+      <div class="act-navbar">
+        <a class="act-logo"><span class="act-logo-mark"></span> ACTUARIA<sup style="font-size:9px;top:-8px;position:relative">®</sup></a>
+        <div class="act-nav-links">
+          <a class="act-nav-link">Soluciones <i class="fa-solid fa-chevron-down"></i></a>
+          <a class="act-nav-link">Calculadoras <i class="fa-solid fa-chevron-down"></i></a>
+          <a class="act-nav-link">Nosotros <i class="fa-solid fa-chevron-down"></i></a>
+          <a class="act-nav-link">Blog</a>
+          <span class="act-nav-pill"><span class="act-flag is-on">🇪🇸</span><span class="act-flag">🇬🇧</span></span>
+          <span class="act-nav-pill"><i class="fa-solid fa-sun" style="color:var(--prim-amber-1000);font-size:13px"></i><i class="fa-solid fa-moon" style="opacity:.35;font-size:13px"></i></span>
+          <a class="act-btn-contacto">Contacto <i class="fa-solid fa-phone"></i></a>
+          <a class="act-btn-plus"><i class="fa-solid fa-circle-dot" style="font-size:12px"></i> actuaria+</a>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Anatomía medida en producción</div>
+      <div class="desc-text">Altura de link 44px · padding 0 16px · radius 8px · Nunito 600 16px. Contenedor: radius 40px · borde <span class="ds-code-inline">#d8d8dc</span> · sombra <span class="ds-code-inline">0 10px 30px rgba(15,23,42,.10)</span>. Botón actuaria+: navy <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px.</div>
+    </div>
+    <pre class="ds-code">&lt;nav class="act-navbar"&gt;
+  &lt;a class="act-logo"&gt;&lt;span class="act-logo-mark"&gt;&lt;/span&gt; ACTUARIA&lt;/a&gt;
+  &lt;div class="act-nav-links"&gt;
+    &lt;a class="act-nav-link"&gt;Soluciones &lt;i class="fa-solid fa-chevron-down"&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;a class="act-btn-plus"&gt;actuaria+&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</pre>
+  </div>
+
+  <!-- MEGA MENU -->
+  <div class="comp-block" id="act-megamenu">
+    <h3>Mega-menú de navegación</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Cada dropdown abre una lista de <code class="ds-code-inline">nav_link_drop</code> con un <code class="ds-code-inline">icon_chip_nav</code> de 15px a la izquierda. El de Calculadoras agrupa por categoría (Beneficios post empleo / Ahorros e impuestos).</p>
+    <div class="act-canvas">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;align-items:start;">
+        <div>
+          <div class="act-nav-link" style="background:var(--fill-hover);width:max-content;margin-bottom:0;">Soluciones <i class="fa-solid fa-chevron-up"></i></div>
+          <div class="act-megamenu">
+            <a class="act-nav-drop"><i class="fa-solid fa-user-group act-icon-chip-nav"></i> Beneficios Laborales</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-heart-pulse act-icon-chip-nav"></i> Seguros y Salud</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-chart-line act-icon-chip-nav"></i> Análisis de Datos</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-shield-halved act-icon-chip-nav"></i> Riesgos y Finanzas</a>
+          </div>
+        </div>
+        <div>
+          <div class="act-nav-link" style="background:var(--fill-hover);width:max-content;">Calculadoras <i class="fa-solid fa-chevron-up"></i></div>
+          <div class="act-megamenu">
+            <span class="act-nav-group-label">Beneficios post empleo</span>
+            <a class="act-nav-drop"><i class="fa-solid fa-calculator act-icon-chip-nav"></i> Jubilación patronal</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-file-invoice-dollar act-icon-chip-nav"></i> Desahucio</a>
+            <span class="act-nav-group-label">Ahorros e impuestos</span>
+            <a class="act-nav-drop"><i class="fa-solid fa-piggy-bank act-icon-chip-nav"></i> Fondos de reserva</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-receipt act-icon-chip-nav"></i> Impuesto a la renta</a>
+            <a class="act-nav-drop" style="color:var(--prim-orange-1000)"><i class="fa-solid fa-grip act-icon-chip-nav" style="color:var(--prim-orange-1000)"></i> Todas las calculadoras</a>
+          </div>
+        </div>
+        <div>
+          <div class="act-nav-link" style="background:var(--fill-hover);width:max-content;">Nosotros <i class="fa-solid fa-chevron-up"></i></div>
+          <div class="act-megamenu">
+            <a class="act-nav-drop"><i class="fa-solid fa-people-group act-icon-chip-nav"></i> Nuestro equipo</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-briefcase act-icon-chip-nav"></i> Trabaja con nosotros</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-table-list act-icon-chip-nav"></i> Coeficientes JP-AM99</a>
+            <a class="act-nav-drop"><i class="fa-solid fa-lock act-icon-chip-nav"></i> Seguridad de la información</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="usage-note">20 instancias de <span class="ds-code-inline">nav_link_drop</span> en la home. Hover: fondo <span class="ds-code-inline">fill--brand-weak</span> + texto <span class="ds-code-inline">text--brand</span>.</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="comp-block" id="act-hero-section">
+    <h3>Hero Section</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Grid 1:1. Izquierda: H1 en Lemon Milk Pro con <strong>animación de typing</strong> (<code class="ds-code-inline">typing_ghost</code> + cursor naranja), subtítulo Nunito y CTA con <code class="ds-code-inline">button-ring</code>. Derecha: slider de portadas del blog.</p>
+    <div class="act-canvas">
+      <div class="act-hero">
+        <div>
+          <h1>Anticipamos los riesgos antes de que se conviertan<span class="act-typing-cursor"></span></h1>
+          <p>Aplicamos consultoría especializada en finanzas, riesgos y beneficios laborales impulsados por modelos matemáticos de alta precisión.</p>
+          <span class="act-button-ring"><a class="act-btn-primary">Descubre cómo lo hacemos <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:15px"></i></a></span>
+        </div>
+        <div class="act-blogcover">
+          <span class="act-blog-chip">Beneficios Laborales y Actuariales</span>
+          <div class="act-blog-date">2026-11-13</div>
+          <div class="act-blog-title">Fondeo de pasivos laborales: cómo proteger la liquidez de tu empresa</div>
+          <a class="act-blog-cta">Seguir leyendo <i class="fa-solid fa-book-open"></i></a>
+          <div class="act-blog-nav">
+            <span class="act-blog-arrow"><i class="fa-solid fa-chevron-left"></i></span>
+            <span class="act-blog-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Notas de implementación</div>
+      <div class="desc-text">El typing usa un nodo fantasma que reserva el alto máximo para que el layout no salte al cambiar de frase. El cursor es un <span class="ds-code-inline">::after</span> de 3px en <span class="ds-code-inline">orange--1000</span> con parpadeo de 1s.</div>
+      <div class="usage-note" style="margin-top:8px;">El slider en producción es <strong>Swiper</strong> self-hosted (<span class="ds-code-inline">renatopuente-ux.github.io/swiper-selfhosted</span>) + <span class="ds-code-inline">weblocks-slider-script/slider.2.js</span>.</div>
+    </div>
+  </div>
+
+  <!-- CONTADORES -->
+  <div class="comp-block" id="act-counters">
+    <h3>Contadores / Odómetro</h3>
+    <p class="desc-text" style="margin-bottom:12px;">La sección <em>Nuestra Trayectoria</em> anima cifras dígito a dígito. Cada dígito es un <code class="ds-code-inline">odo-d</code> con ventana de overflow y una tira <code class="ds-code-inline">odo-roll</code> de 0-9 que se desplaza.</p>
+    <div class="act-canvas">
+      <div class="act-grid-2">
+        <div class="act-card-base">
+          <div class="act-odo">
+            <span style="color:var(--prim-orange-1000)">+</span>
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:6"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></span></span>
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:5"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></span>
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:0"><span>0</span></span></span>
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:0"><span>0</span></span></span>
+          </div>
+          <div class="act-odo-label">Clientes en la región</div>
+          <div class="act-odo-desc">Empresas que confían en nuestra experiencia para proteger su rentabilidad y gestionar sus riesgos.</div>
+        </div>
+        <div class="act-card-base">
+          <div class="act-odo">
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:4"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></span></span>
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:0"><span>0</span></span></span>
+            <span style="color:var(--text-weak)">.</span>
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:0"><span>0</span></span></span>
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:8"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></span></span>
+            <span class="act-odo-d"><span class="act-odo-roll" style="--n:5"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></span>
+          </div>
+          <div class="act-odo-label">Estudios actuariales</div>
+          <div class="act-odo-desc">Entregados en los últimos 5 años, convertidos en decisiones seguras para nuestros clientes.</div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="usage-note">Dispara con <span class="ds-code-inline">IntersectionObserver</span> al 40% de visibilidad; se ejecuta una sola vez. Respetar <span class="ds-code-inline">prefers-reduced-motion</span>: mostrar el valor final sin animación.</div>
+    </div>
+  </div>
+
+  <!-- CARDS DE SOLUCIONES -->
+  <div class="comp-block" id="act-card-solutions">
+    <h3>Card de Soluciones</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Cuatro cards en la sección <code class="ds-code-inline">#soluciones</code>. Estructura: media (video en loop) → chipset en inglés → titular display → párrafo → CTA naranja. Radius 24px y la sombra de card del sitio.</p>
+    <div class="act-canvas">
+      <div class="act-grid-2">
+        <div class="act-card-sol">
+          <div class="act-card-sol-media"><i class="fa-solid fa-user-group"></i></div>
+          <div class="act-card-sol-body">
+            <span class="act-chipset">Employment Benefits</span>
+            <h4>Beneficios Laborales y Estudios Actuariales</h4>
+            <p>Cumple con tus obligaciones patronales sin sorpresas financieras. Valuaciones bajo NIC 19, cálculo de jubilación y asesoría integral.</p>
+            <a class="act-card-sol-cta">Ver estudios actuariales <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="act-card-sol">
+          <div class="act-card-sol-media"><i class="fa-solid fa-heart-pulse"></i></div>
+          <div class="act-card-sol-body">
+            <span class="act-chipset">Insurance &amp; Healthcare</span>
+            <h4>Seguros y Medicina Prepagada</h4>
+            <p>Asegura la solvencia técnica y rentabilidad de tu operación. Diseñamos productos y calculamos reservas con precisión matemática.</p>
+            <a class="act-card-sol-cta">Ver modelos de solvencia <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="act-card-sol">
+          <div class="act-card-sol-media"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="act-card-sol-body">
+            <span class="act-chipset">Data Wave</span>
+            <h4>Análisis de Datos para Negocios</h4>
+            <p>Transforma la complejidad de tu información en modelos predictivos y visuales que aceleran tus decisiones estratégicas.</p>
+            <a class="act-card-sol-cta">Ver soluciones de datos <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="act-card-sol">
+          <div class="act-card-sol-media"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="act-card-sol-body">
+            <span class="act-chipset">Risk &amp; Finance</span>
+            <h4>Riesgo, SS y Finanzas Corporativas</h4>
+            <p>Anticípate al mercado antes de que ocurra. Proyecciones exactas y análisis integral para proteger tu patrimonio y optimizar capital.</p>
+            <a class="act-card-sol-cta">Ver análisis de riesgos <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Medidas reales</div>
+      <div class="desc-text">radius 24px · <span class="ds-code-inline">box-shadow: 6px 6px 16px rgba(15,23,42,.12), -6px -6px 14px rgba(255,255,255,.9)</span> · display grid · chipset radius 50px con borde <span class="ds-code-inline">rgba(0,17,102,.1)</span> y fondo <span class="ds-code-inline">rgba(21,31,71,.07)</span>.</div>
+      <div class="usage-note" style="margin-top:8px;">El media carga vídeo bajo demanda vía <span class="ds-code-inline">videosbajodemanda-1.0.0.js</span> — nunca autoplay en móvil.</div>
+    </div>
+  </div>
+
+  <!-- MARQUEE LOGOS -->
+  <div class="comp-block" id="act-brands">
+    <h3>Marquee de marcas <span class="act-chipset" style="vertical-align:middle;margin-left:8px;">20 logos</span></h3>
+    <p class="desc-text" style="margin-bottom:12px;">Sección <em>Nuestro impacto en la región</em>. Cinta infinita de <code class="ds-code-inline">logo_stone</code> en escala de grises, con máscara de desvanecido en los bordes y pausa al hover.</p>
+    <div class="act-canvas">
+      <h2 class="act-heading-section" style="text-align:center;margin-bottom:8px;">Nuestro impacto en la región</h2>
+      <p class="act-subheading-section" style="text-align:center;margin-bottom:28px;">Una trayectoria construida junto a grandes empresas.</p>
+      <div class="act-marquee">
+        <div class="act-marquee-track">
+          <span class="act-logo-stone">BANCO PICHINCHA</span><span class="act-logo-stone">Diners Club</span>
+          <span class="act-logo-stone">Banco Bolivariano</span><span class="act-logo-stone">EL ROSADO</span>
+          <span class="act-logo-stone">adelca</span><span class="act-logo-stone">Sumana</span>
+          <span class="act-logo-stone">BMI</span><span class="act-logo-stone">AIG</span>
+          <span class="act-logo-stone">PlanVital</span><span class="act-logo-stone">Salud S.A.</span>
+          <span class="act-logo-stone">BANCO PICHINCHA</span><span class="act-logo-stone">Diners Club</span>
+          <span class="act-logo-stone">Banco Bolivariano</span><span class="act-logo-stone">EL ROSADO</span>
+          <span class="act-logo-stone">adelca</span><span class="act-logo-stone">Sumana</span>
+          <span class="act-logo-stone">BMI</span><span class="act-logo-stone">AIG</span>
+          <span class="act-logo-stone">PlanVital</span><span class="act-logo-stone">Salud S.A.</span>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="usage-note">La pista se duplica al 100% y se traslada a <span class="ds-code-inline">-50%</span> para un bucle sin costura. Máscara: <span class="ds-code-inline">linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)</span>.</div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIOS -->
+  <div class="comp-block" id="act-testimonials">
+    <h3>Testimonios carrusel <span class="act-chipset" style="vertical-align:middle;margin-left:8px;">5 instancias</span></h3>
+    <p class="desc-text" style="margin-bottom:12px;">Componente Webflow del grupo <em>Secciones</em>, reutilizado en Home y páginas de soluciones. Card de radius <strong>40px</strong> con estrellas naranjas (<code class="ds-code-inline">letter-spacing:8px</code>), comilla decorativa de fondo y chip de logo del cliente de 120×44.</p>
+    <div class="act-canvas">
+      <h2 class="act-heading-section" style="text-align:center;margin-bottom:8px;">Precisión que genera confianza</h2>
+      <p class="act-subheading-section" style="text-align:center;margin-bottom:28px;">La experiencia de trabajar con Actuaria, en palabras de nuestros clientes.</p>
+      <div class="act-grid-2">
+        <div class="act-testi">
+          <div class="act-stars">★★★★★</div>
+          <p class="act-testi-quote">"Trabajar con Actuaria nos genera confianza. Su equipo ha demostrado un alto nivel de profesionalismo y conocimiento. Hemos obtenido soluciones personalizadas que se adaptan a nuestras necesidades."</p>
+          <div class="act-testi-bottom">
+            <div class="act-testi-logo">BMI</div>
+            <div><div class="act-testi-name">Paúl Villagomez</div><div class="act-testi-role">Gerente Técnico y de Riesgos, BMI Ecuador</div></div>
+          </div>
+        </div>
+        <div class="act-testi">
+          <div class="act-stars">★★★★★</div>
+          <p class="act-testi-quote">"El Equipo de Actuaria Consultores ofrece un servicio actuarial excepcional. Su precisión, profesionalismo y atención al detalle han superado nuestras expectativas."</p>
+          <div class="act-testi-bottom">
+            <div class="act-testi-logo">AIG</div>
+            <div><div class="act-testi-name">David Vega</div><div class="act-testi-role">Actuary I, AIG Ecuador</div></div>
+          </div>
+        </div>
+        <div class="act-testi">
+          <div class="act-stars">★★★★★</div>
+          <p class="act-testi-quote">"Conozco a Actuaria hace muchos años. Su profesionalismo y empatía son incomparables. No solo realizan cálculos, sino que son verdaderos asesores."</p>
+          <div class="act-testi-bottom">
+            <div class="act-testi-logo">planvital</div>
+            <div><div class="act-testi-name">Julio Tarré</div><div class="act-testi-role">Gerente General, Plan Vital</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Descripción del componente en Webflow</div>
+      <div class="desc-text">"Sección de testimonios del Home con marquee continuo (glass cards). Una sola fuente para Home y páginas de soluciones. CSS y clon de pista viven en el custom code del SITIO."</div>
+      <div class="usage-note" style="margin-top:8px;">Card medida: 440×414 · radius 40px · padding 16px. Chip de logo: 120×44 · radius 12px · borde <span class="ds-code-inline">rgba(21,31,71,.08)</span>.</div>
+    </div>
+  </div>
+
+  <!-- CERTIFICACIONES -->
+  <div class="comp-block" id="act-credentials">
+    <h3>Grid de certificaciones</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Siete <code class="ds-code-inline">cert_item</code> con marco de radius <strong>32px</strong> y celda interna de 110×110. Dos de ellas (ISO 9001 e ISO 27001) llevan enlace <em>Ver credencial</em>.</p>
+    <div class="act-canvas">
+      <h2 class="act-heading-section" style="text-align:center;margin-bottom:8px;">Respaldados por certificaciones</h2>
+      <p class="act-subheading-section" style="text-align:center;margin-bottom:28px;">Operamos bajo las más estrictas normativas nacionales e internacionales.</p>
+      <div class="act-cert-grid">
+        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-building-columns"></i></div><div class="act-cert-name">Superintendencia de Compañías, Valores y Seguros</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-landmark"></i></div><div class="act-cert-name">Superintendencia de Bancos del Ecuador</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-certificate"></i></div><div class="act-cert-name">IMQ ISO 9001:2015</div><a class="act-cert-link">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-shield-halved"></i></div><div class="act-cert-name">IMQ ISO/IEC 27001:2022</div><a class="act-cert-link">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-globe"></i></div><div class="act-cert-name">International Actuarial Association</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-users-gear"></i></div><div class="act-cert-name">Pensions, Benefits and Social Security Section</div></div>
+        <div class="act-cert-frame"><div class="act-cert-cell"><i class="fa-solid fa-award"></i></div><div class="act-cert-name">Instituto de Actuarios Españoles</div></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="usage-note">Los logos reales son imágenes con <span class="ds-code-inline">alt</span> descriptivo (requisito de accesibilidad y SEO). Aquí se sustituyen por iconos para mantener el DS libre de assets.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="comp-block" id="act-cta-section">
+    <h3>CTA Section</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Bloque de conversión sobre degradado navy. Usa las variantes <code class="ds-code-inline">.is-cta</code> de heading y subheading para invertir el color del texto.</p>
+    <div class="act-cta">
+      <h2 class="act-heading-section is-cta">No dejes tus decisiones críticas al azar</h2>
+      <p class="act-subheading-section is-cta" style="max-width:62ch;">Obtén claridad absoluta antes de actuar. Te asesoramos estratégicamente y te demostramos cómo respaldar tu próximo paso con datos exactos.</p>
+      <div class="act-row" style="justify-content:center;">
+        <a class="act-btn-orange">Solicita una cotización <i class="fa-solid fa-arrow-right"></i></a>
+        <a class="act-btn-ghost" style="border-color:rgba(255,255,255,.35);color:#fff;">Hablar por WhatsApp <i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-text">Degradado: <span class="ds-code-inline">135deg, #1b2757 → #10183a</span> · radius 32px · padding 48px.</div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="comp-block" id="act-form-section">
+    <h3>Form_Section <span class="act-chipset" style="vertical-align:middle;margin-left:8px;">9 instancias</span></h3>
+    <p class="desc-text" style="margin-bottom:12px;">Formulario de captación real: RUC de 13 dígitos, razón social, nombre y apellido, correo corporativo, checkboxes de tipo de servicio, mensaje y aceptación legal. Protegido con <strong>Cloudflare Turnstile</strong>.</p>
+    <div class="act-canvas">
+      <h2 class="act-heading-section" style="margin-bottom:4px;">Asesórate con Actuaria</h2>
+      <p class="act-subheading-section" style="margin-bottom:24px;">Toma el control de tus riesgos</p>
+      <div class="act-form">
+        <div class="act-form-grid">
+          <div class="act-field"><label><span class="req">*</span> RUC</label><input type="text" placeholder="13 dígitos" maxlength="13"></div>
+          <div class="act-field"><label><span class="req">*</span> Razón social</label><input type="text" placeholder="Como consta en el RUC"></div>
+          <div class="act-field"><label><span class="req">*</span> Nombre</label><input type="text" placeholder="Nombre"></div>
+          <div class="act-field"><label><span class="req">*</span> Apellido</label><input type="text" placeholder="Apellido"></div>
+          <div class="act-field" style="grid-column:1/-1"><label><span class="req">*</span> Tu correo electrónico</label><input type="email" placeholder="nombre@empresa.com"></div>
+          <div class="act-field" style="grid-column:1/-1">
+            <label><span class="req">*</span> Tipo de servicio</label>
+            <div class="act-check-row">
+              <label class="act-check"><input type="checkbox"> Estudio Actuarial</label>
+              <label class="act-check"><input type="checkbox"> Riesgos y Finanzas</label>
+              <label class="act-check"><input type="checkbox"> Seguros y Salud</label>
+              <label class="act-check"><input type="checkbox"> Data Analytics</label>
+            </div>
+          </div>
+          <div class="act-field" style="grid-column:1/-1"><label>Mensaje</label><textarea placeholder="Cuéntanos qué necesitas y para cuándo."></textarea></div>
+          <div class="act-field" style="grid-column:1/-1">
+            <label class="act-check" style="border:none;padding:0;"><input type="checkbox"> Acepto la política de privacidad y el tratamiento de mis datos personales.</label>
+          </div>
+        </div>
+        <div style="margin-top:20px;display:flex;justify-content:flex-end;">
+          <button class="act-btn-primary" style="height:46px;font-size:16px;">Enviar solicitud <i class="fa-solid fa-paper-plane" style="font-size:14px"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Campos reales (name=)</div>
+      <div class="desc-text"><span class="ds-code-inline">RUC</span> · <span class="ds-code-inline">Razon-Social</span> · <span class="ds-code-inline">Nombre</span> · <span class="ds-code-inline">Apellido</span> · <span class="ds-code-inline">Email</span> · <span class="ds-code-inline">Estudio-Actuarial</span> · <span class="ds-code-inline">Riesgos-y-Finanzas</span> · <span class="ds-code-inline">Seguros-y-Salud</span> · <span class="ds-code-inline">Data-Analytics</span> · <span class="ds-code-inline">Message</span> · <span class="ds-code-inline">Legal</span></div>
+      <div class="usage-note" style="margin-top:8px;">Focus: borde <span class="ds-code-inline">stroke--focus</span> + halo de 3px en <span class="ds-code-inline">fill--brand-weak</span>. Los placeholders se inyectan con <span class="ds-code-inline">formplaceholders-1.0.1.js</span>. Éxito → <span class="ds-code-inline">/gracias</span>.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="comp-block" id="act-footer-section">
+    <h3>Footer <span class="act-chipset" style="vertical-align:middle;margin-left:8px;">26 instancias</span></h3>
+    <p class="desc-text" style="margin-bottom:12px;">Cuatro columnas sobre degradado navy: Contacto, Direcciones, Gobierno Corporativo y Transparencia. Cada línea de contacto es un <code class="ds-code-inline">footer_line</code> con icono naranja de 20px y gap de 9px.</p>
+    <div class="act-footer">
+      <div class="act-footer-grid">
+        <div>
+          <div class="act-footer-title">Contacto</div>
+          <div class="act-footer-line"><i class="fa-solid fa-phone act-footer-icon"></i> (+593-2) 392-3400</div>
+          <div class="act-footer-line"><i class="fa-brands fa-whatsapp act-footer-icon"></i> (+593-9) 7913-3351</div>
+          <div class="act-footer-line"><i class="fa-solid fa-envelope act-footer-icon"></i> info@actuaria.com</div>
+          <div class="act-social">
+            <a class="act-social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="act-social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a class="act-social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a class="act-social-link"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="act-footer-title">Direcciones</div>
+          <div class="act-footer-line" style="align-items:flex-start"><i class="fa-solid fa-location-dot act-footer-icon" style="margin-top:2px"></i> <span><strong style="color:#fff">Quito:</strong> Av. Orellana E9-195 y Av. 6 de Diciembre, Edif. Alisal de Orellana, Of. 804.</span></div>
+          <div class="act-footer-line" style="align-items:flex-start"><i class="fa-solid fa-location-dot act-footer-icon" style="margin-top:2px"></i> <span><strong style="color:#fff">Guayaquil:</strong> Av. José Santiago Castillo y Av. Francisco de Orellana, Edif. Millenium, Of. 1107.</span></div>
+        </div>
+        <div>
+          <div class="act-footer-title">Gobierno Corporativo</div>
+          <a class="act-footer-link">Código de Conducta Empresarial</a>
+          <a class="act-footer-link">Política de Igualdad de Género</a>
+          <a class="act-footer-link">Código de Buen Gobierno Corporativo</a>
+        </div>
+        <div>
+          <div class="act-footer-title">Transparencia</div>
+          <a class="act-footer-link">Seguridad de la Información</a>
+          <a class="act-footer-link">Política de Privacidad y Protección de Datos</a>
+          <a class="act-footer-link">Prevención de Lavado de Activos y Antisoborno</a>
+          <a class="act-footer-link">Certificación ISO 9001:2015</a>
+          <a class="act-footer-link">Certificación ISO/IEC 27001:2022</a>
+        </div>
+      </div>
+      <div class="act-footer-bottom">
+        <span>© 2026 Actuaria Consultores. Todos los derechos reservados</span>
+        <a style="color:var(--text-inverse-weak)">Configuración cookies</a>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="usage-note">Redes reales: facebook.com/actuariaconsultores · instagram.com/actuaria_ec · linkedin.com/company/2412258 · YouTube UCqtNWXgoRPgo3gmYfyi6B-A.</div>
+    </div>
+  </div>
+
+  <!-- FLOTANTES -->
+  <div class="comp-block" id="act-floating">
+    <h3>Elementos flotantes</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Dos componentes globales presentes en las 26 páginas: <code class="ds-code-inline">WhatsApp flotante</code> (esquina inferior derecha, 60px) y <code class="ds-code-inline">Barra movil contacto</code> (solo en móvil, fija abajo).</p>
+    <div class="act-canvas">
+      <div class="act-row" style="gap:40px;align-items:flex-start;">
+        <div>
+          <div class="act-eyebrow" style="margin-bottom:10px;">wa_float</div>
+          <a class="act-wa"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <div>
+          <div class="act-eyebrow" style="margin-bottom:10px;">Barra movil contacto</div>
+          <div class="act-mobilebar">
+            <a><i class="fa-solid fa-phone"></i> Llamar</a>
+            <a><i class="fa-solid fa-envelope"></i> Correo</a>
+            <a><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-text">WhatsApp: 60px · <span class="ds-code-inline">#25d366</span> · sombra <span class="ds-code-inline">0 6px 20px rgba(37,211,102,.45)</span> · hover scale 1.08.</div>
+      <div class="usage-note" style="margin-top:8px;">La barra móvil debe estar en TODAS las páginas (así lo indica la descripción del componente en Webflow). Se oculta en ≥768px.</div>
+    </div>
+  </div>
+
+  <!-- BOTONES -->
+  <div class="comp-block" id="act-buttons">
+    <h3>Botones del sitio</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Cuatro variantes en producción. Ojo: el sitio usa <strong>píldoras</strong> (radius 40-64px), no los radius 12px del sistema NEO.</p>
+    <div class="act-canvas">
+      <div class="act-row" style="gap:20px;">
+        <div style="text-align:center"><span class="act-button-ring"><a class="act-btn-primary">Descubre cómo lo hacemos <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:15px"></i></a></span><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">button-ring + primary</div></div>
+        <div style="text-align:center"><a class="act-btn-plus"><i class="fa-solid fa-circle-dot" style="font-size:12px"></i> actuaria+</a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">actuariaplus-button</div></div>
+        <div style="text-align:center"><a class="act-btn-contacto">Contacto <i class="fa-solid fa-phone"></i></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">outline</div></div>
+        <div style="text-align:center"><a class="act-btn-orange">Solicita cotización <i class="fa-solid fa-arrow-right"></i></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">acento naranja</div></div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Medidas</div>
+      <div class="desc-text"><strong>button-ring:</strong> padding 6px · radius 40px, envuelve al botón creando un halo. <strong>actuaria+:</strong> 112×40 · bg <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px · gap 8px.</div>
+    </div>
+  </div>
+
+  <!-- CHIPSETS -->
+  <div class="comp-block" id="act-chips">
+    <h3>Chipsets e icon chips</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Etiquetas de categoría. El chipset base usa radius 50px, padding 4/12 y alto 30px. Los <code class="ds-code-inline">icon_chip</code> son glifos Font Awesome de 12-14px en <code class="ds-code-inline">rgba(0,13,77,.45)</code>.</p>
+    <div class="act-canvas">
+      <div class="act-row">
+        <span class="act-chipset">Employment Benefits</span>
+        <span class="act-chipset">Insurance &amp; Healthcare</span>
+        <span class="act-chipset">Data Wave</span>
+        <span class="act-chipset">Risk &amp; Finance</span>
+        <span class="act-chipset is-brand"><i class="fa-solid fa-check"></i> Certificado</span>
+        <span class="act-chipset is-orange"><i class="fa-solid fa-bolt"></i> Nuevo</span>
+        <span class="act-chipset"><i class="fa-solid fa-calculator"></i> Calculadora</span>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-text">Base: fondo <span class="ds-code-inline">rgba(21,31,71,.07)</span> · borde <span class="ds-code-inline">rgba(0,17,102,.1)</span> · radius 50px · Prompt 500 13px.</div>
+    </div>
+  </div>
+
+  <!-- TIPOGRAFIA DE SECCION -->
+  <div class="comp-block" id="act-section-head">
+    <h3>Cabecera de sección</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Par <code class="ds-code-inline">heading-section</code> + <code class="ds-code-inline">subheading-section</code>, presente 6 veces en la home. Es el ritmo vertical que separa cada bloque.</p>
+    <div class="act-canvas" style="text-align:center;">
+      <h2 class="act-heading-section" style="margin-bottom:8px;">Soluciones especializadas</h2>
+      <p class="act-subheading-section">El rigor actuarial que convierte la incertidumbre en decisiones estratégicas.</p>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-text"><strong>heading-section:</strong> Lemon Milk Pro 700 · 40px/42px · <span class="ds-code-inline">text--strong</span>. <strong>subheading-section:</strong> Nunito 400 · 18px/22px · <span class="ds-code-inline">text--weak</span>. Variante <span class="ds-code-inline">.is-cta</span> invierte a blanco.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     BRECHAS DS ↔ PRODUCCIÓN
+     ═══════════════════════════════════════════════════════════════════ -->
+<section id="act-gaps" class="ds-section">
+  <div class="section-header">
+    <h2>Brechas entre el DS y actuaria.com</h2>
+    <p>Diferencias detectadas al comparar este sistema de diseño con el sitio en producción. Resueltas en esta versión y pendientes.</p>
+  </div>
+  <div class="comp-block" id="act-gap-table">
+    <h3>Resumen de la auditoría</h3>
+    <div class="act-demo" style="background:#fff;">
+      <table class="act-tokentable">
+        <thead><tr><th>Área</th><th>Antes (DS)</th><th>actuaria.com</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td>Color de marca</td><td><span class="act-sw" style="background:#4c64d9"></span> <code class="ds-code-inline">#4c64d9</code> índigo</td><td><span class="act-sw" style="background:#151f47"></span> <code class="ds-code-inline">#151f47</code> navy</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
+          <tr><td>Acento</td><td><span class="act-sw" style="background:#de5e2d"></span> <code class="ds-code-inline">#de5e2d</code></td><td><span class="act-sw" style="background:#e0592a"></span> <code class="ds-code-inline">#e0592a</code></td><td><span class="act-chipset is-brand">corregido</span></td></tr>
+          <tr><td>Fondo base</td><td><code class="ds-code-inline">#e8ecf4</code></td><td><code class="ds-code-inline">#f3f3f3</code> + patrón topográfico</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
+          <tr><td>Tipografía</td><td>Solo Nunito</td><td>Prompt + Nunito + Lemon Milk Pro</td><td><span class="act-chipset is-orange">parcial</span></td></tr>
+          <tr><td>Arquitectura de tokens</td><td>Plana (1 capa)</td><td>3 capas + modo Dark</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
+          <tr><td>Escala de spacing</td><td>No documentada</td><td>17 pasos (0→256)</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
+          <tr><td>Radios de píldora</td><td>Ausentes</td><td>40 / 50 / 64 px</td><td><span class="act-chipset is-orange">doc. sin token</span></td></tr>
+          <tr><td>Navbar, Footer, Form</td><td>Genéricos</td><td>Componentes reales ×27/×26/×9</td><td><span class="act-chipset is-brand">añadidos</span></td></tr>
+          <tr><td>Odómetro, marquee, typing</td><td>Ausentes</td><td>En la home</td><td><span class="act-chipset is-brand">añadidos</span></td></tr>
+          <tr><td>WhatsApp + barra móvil</td><td>Ausentes</td><td>En las 26 páginas</td><td><span class="act-chipset is-brand">añadidos</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Pendientes</div>
+      <div class="desc-text">1 · Subir <strong>Lemon Milk Pro</strong> (.woff2) al repo para fidelidad tipográfica — hoy cae a Tahoma. 2 · Registrar <span class="ds-code-inline">corner-radius--40/50/64</span> en la colección 📐 Spacing de Webflow. 3 · Documentar el <strong>modo Dark</strong> de 🏷️ Colours semantic (ya existe en Webflow, aún sin demo aquí).</div>
+      <div class="usage-note" style="margin-top:8px;">Fuente de verdad: Webflow site <span class="ds-code-inline">6967c96e0fba2ea4f94d3c69</span>, 31 páginas, publicado el 2026-11-24. Auditoría hecha sobre el DOM en vivo + Webflow Data API.</div>
+    </div>
+  </div>
+</section>
+
   </main>
 </div>
 
@@ -3805,6 +4764,79 @@ document.querySelectorAll('.ds-section[id], .comp-block[id]').forEach(s => obser
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+})();
+</script>
+
+<script>
+/* ── Animaciones de los componentes del sitio actuaria.com ── */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Odómetro: solo anima al entrar en viewport, una vez */
+  var odos = document.querySelectorAll('.act-odo');
+  if (odos.length) {
+    odos.forEach(function (o) {
+      o.querySelectorAll('.act-odo-roll').forEach(function (r) { r.style.animationPlayState = 'paused'; });
+    });
+    if (reduce) {
+      odos.forEach(function (o) {
+        o.querySelectorAll('.act-odo-roll').forEach(function (r) {
+          r.style.animation = 'none';
+          r.style.transform = 'translateY(calc(-1.08em * ' + (r.style.getPropertyValue('--n') || 0) + '))';
+        });
+      });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.querySelectorAll('.act-odo-roll').forEach(function (r, i) {
+            r.style.animationDelay = (i * 90) + 'ms';
+            r.style.animationPlayState = 'running';
+          });
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.4 });
+      odos.forEach(function (o) { io.observe(o); });
+    }
+  }
+
+  /* Typing del hero: rota frases reales del sitio */
+  var h1 = document.querySelector('#act-hero-section .act-hero h1');
+  if (h1 && !reduce) {
+    var frases = [
+      'Anticipamos los riesgos antes de que se conviertan en pérdidas',
+      'Convertimos la incertidumbre técnica en decisiones rentables',
+      'Transformamos datos complejos en estrategia financiera'
+    ];
+    var cursor = h1.querySelector('.act-typing-cursor');
+    /* vaciar el texto estático del H1: solo el ghost escribe */
+    Array.prototype.slice.call(h1.childNodes).forEach(function (n) {
+      if (n !== cursor) h1.removeChild(n);
+    });
+    var ghost = document.createElement('span');
+    ghost.textContent = frases[0];
+    h1.insertBefore(ghost, cursor);
+    var f = 0, c = frases[0].length, borrando = false;
+    setInterval(function () {
+      if (borrando) { c--; } else { c++; }
+      if (c > frases[f].length) { borrando = true; c = frases[f].length; return; }
+      if (c < 0) { borrando = false; f = (f + 1) % frases.length; c = 0; return; }
+      ghost.textContent = frases[f].slice(0, c);
+    }, 55);
+  }
+
+  /* Marquee: pausar si el usuario pide menos movimiento */
+  if (reduce) {
+    document.querySelectorAll('.act-marquee-track').forEach(function (t) { t.style.animation = 'none'; });
+  }
+
+  /* Mega-menú del DS: alternar visibilidad al hacer clic en el toggle */
+  document.querySelectorAll('.act-nav-link').forEach(function (l) {
+    l.addEventListener('click', function () {
+      var mm = l.parentElement && l.parentElement.querySelector('.act-megamenu');
+      if (mm) mm.style.display = (mm.style.display === 'none' ? 'grid' : 'none');
+    });
+  });
 })();
 </script>
 </body>
