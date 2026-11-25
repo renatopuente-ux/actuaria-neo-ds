@@ -33,15 +33,29 @@ Extraídos del DOM en vivo + Webflow Data API: **6 colecciones de variables, 357
 --bg-sunken:             #f5f6fa;
 ```
 
+### Logotipo
+
+Imagotipo oficial incrustado inline (velero + wordmark), con los colores exactos del vector:
+
+```css
+--logo-navy:   #111C4E;   /* wordmark + vela mayor */
+--logo-orange: #E0592A;   /* vela menor            */
+--logo-blue:   #385CAD;   /* casco / estela        */
+```
+
+El navy del **logotipo** (`#111C4E`) no es idéntico al navy de **interfaz** (`#151f47`): son dos valores distintos y conviven a propósito.
+
 ### Tipografía
 
-| Rol | Familia | Uso |
-|-----|---------|-----|
-| `font-family--display` | **Lemon Milk Pro** | Titulares y wordmark |
-| `font-family--heading` | **Nunito** | Subtítulos y botones |
-| `font-family--body` / `--subheading` | **Prompt** | Cuerpo, labels, chips |
+| Rol | Familia | Pesos en producción | Uso |
+|-----|---------|---------------------|-----|
+| `font-family--display` | **Lemon Milk Pro** | 400 · 500 · 700 | `h1` (500), `heading-section` (700), títulos de card (500), odómetro (800) |
+| `font-family--heading` | **Nunito** | 400 · 600 · 700 · 800 | `subheading-section`, navbar, botones, chips, autor de testimonio, todo el footer |
+| `font-family--body` / `--subheading` | **Prompt** | 300 · 400 · 500 · 700 | Bajada del hero, párrafos de cards, citas de testimonios |
 
-> ⚠️ Lemon Milk Pro es una fuente licenciada. Este repo cae a Tahoma. Para fidelidad total, subir el `.woff2` a `/fonts`.
+Las tres se cargan **reales**: Nunito y Prompt desde Google Fonts, y **Lemon Milk Pro por `@font-face` desde el CDN del propio actuaria.com** (`webflow-files-prod…/fonts/…lemon-milk-pro-{400,500,700}.woff2`, servido con `Access-Control-Allow-Origin: *`). Al referenciarla en vez de copiarla, el repo no redistribuye una fuente licenciada.
+
+> ⚠️ Hallazgo: el `body` del sitio resuelve a **Arial 14/20**, no a Prompt. El token `font-family--body` existe pero se aplica por clase, no globalmente — cualquier texto sin clase cae a Arial.
 
 ### Escalas
 
@@ -110,12 +124,16 @@ Resueltas en v2.0:
 | Fondo base | `#e8ecf4` | `#f3f3f3` + patrón topográfico ✅ |
 | Arquitectura de tokens | Plana (1 capa) | 3 capas + modo Dark ✅ |
 | Escala de spacing | No documentada | 17 pasos ✅ |
-| Tipografía | Solo Nunito | Prompt + Nunito + Lemon Milk Pro ⚠️ parcial |
+| Tipografía | Solo Nunito | Prompt + Nunito + Lemon Milk Pro ✅ |
+| Fuentes reales | Fallback a Tahoma | `@font-face` desde el CDN del sitio ✅ |
+| Logotipo en navbar | Marca improvisada | Imagotipo oficial (velero + wordmark) ✅ |
+| Escala de radios | 4→24, sin píldoras | 0→32 + píldoras 40/50/64 documentadas ✅ |
+| Hex obsoletos en demos | 59 ocurrencias | Remapeados a la paleta real ✅ |
 
 Pendientes:
-1. Subir **Lemon Milk Pro** (`.woff2`) al repo.
-2. Registrar `corner-radius--40/50/64` en la colección 📐 Spacing de Webflow.
-3. Documentar el **modo Dark** de 🏷️ Colours semantic (ya existe en Webflow, sin demo aquí).
+1. Registrar `corner-radius--40/50/64` en la colección 📐 Spacing de Webflow (hoy hardcodeados).
+2. Documentar el **modo Dark** de 🏷️ Colours semantic (ya existe en Webflow, sin demo aquí).
+3. Fijar `font-family--body` en el `body` del sitio — hoy cae a Arial.
 
 ---
 
@@ -127,7 +145,7 @@ start index.html      # Windows
 open  index.html      # macOS
 ```
 
-Único CDN: Google Fonts (Nunito + Prompt) y Font Awesome 6.5.
+CDN: Google Fonts (Nunito + Prompt), Font Awesome 6.5 y el CDN de fuentes de actuaria.com (Lemon Milk Pro).
 
 ## Fuentes de verdad
 

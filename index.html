@@ -6,8 +6,22 @@
 <title>Actuaria Design System · Tokens + Componentes del sitio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://webflow-files-prod.global.ssl.fastly.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   FUENTES OFICIALES · servidas desde el CDN del propio actuaria.com
+   Lemon Milk Pro es licenciada: se REFERENCIA desde el CDN del sitio
+   (CORS: Access-Control-Allow-Origin *), no se redistribuye en el repo.
+   ═══════════════════════════════════════════════════════════════════ */
+@font-face{font-family:'Lemon Milk Pro';src:url(https://webflow-files-prod.global.ssl.fastly.net/6967c96e0fba2ea4f94d3c69/fonts/6aeba20ae9d18b17fe9e2840-lemon-milk-pro-400.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Lemon Milk Pro';src:url(https://webflow-files-prod.global.ssl.fastly.net/6967c96e0fba2ea4f94d3c69/fonts/6aeba20aeaadc3f75487f9b9-lemon-milk-pro-500.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap;}
+@font-face{font-family:'Lemon Milk Pro';src:url(https://webflow-files-prod.global.ssl.fastly.net/6967c96e0fba2ea4f94d3c69/fonts/6aeba20a563b6dd8d197f85f-lemon-milk-pro-700.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+/* Lemon Milk Pro solo trae 400/500/700 — 800 del odómetro se sintetiza desde 700 */
+@font-face{font-family:'Lemon Milk Pro';src:url(https://webflow-files-prod.global.ssl.fastly.net/6967c96e0fba2ea4f94d3c69/fonts/6aeba20a563b6dd8d197f85f-lemon-milk-pro-700.woff2) format('woff2');font-weight:800;font-style:normal;font-display:swap;}
+</style>
+
 <style>
 /* ═══════════════════════════════════════════════════════════════════
    TOKENS OFICIALES actuaria.com  —  extraídos del sitio Webflow en vivo
@@ -63,7 +77,7 @@
   --fill-error-strong:var(--prim-red-1000);     --fill-error-weak:var(--prim-red-50);
   --fill-info-strong:var(--prim-teal-1000);     --fill-info-weak:var(--prim-teal-50);
   /* puentes "sitio--" del sitio en producción */
-  --sitio-fondo-f3f3f3:#f3f3f3; --sitio-fondo-e8ecf4:#e8ecf4;
+  --sitio-fondo-f3f3f3:#f3f3f3; --sitio-fondo-e8ecf4:#f3f3f3;
   --sitio-fondo-1b2757:#1b2757; --sitio-fondo-10183a:#10183a;
   --sitio-texto-0050bd:#0050bd; --sitio-borde-d8d8dc:#d8d8dc;
   --sitio-borde-ffffff99:#ffffff99;
@@ -80,7 +94,7 @@
   --cr-40:40px; --cr-50:50px; --cr-64:64px; --cr-pill:9999px;
 
   /* ── 🔤 TYPOGRAPHY (familias oficiales) ── */
-  --ff-display:'Lemon Milk Pro',Tahoma,sans-serif;  /* licenciada · fallback local */
+  --ff-display:'Lemon Milk Pro',Tahoma,sans-serif;  /* servida desde el CDN de actuaria.com */
   --ff-heading:'Nunito',sans-serif;
   --ff-body:'Prompt',sans-serif;
   --ff-subheading:'Prompt',sans-serif;
@@ -93,6 +107,9 @@
   --fs-tiny:14px;      --lh-tiny:20px;
   --fs-uppercase:14px; --lh-uppercase:20px;
   --fw-strong:600;     --fw-weak:400;
+
+  /* ── LOGOTIPO OFICIAL (colores exactos del vector) ── */
+  --logo-navy:#111C4E; --logo-orange:#E0592A; --logo-blue:#385CAD;
 
   /* ── SOMBRAS DEL SITIO EN PRODUCCIÓN ── */
   --sh-card:6px 6px 16px rgba(15,23,42,0.12),-6px -6px 14px rgba(255,255,255,0.90);
@@ -177,7 +194,7 @@ a{text-decoration:none;}
 .token-table tr:last-child td{border-bottom:none;}
 
 /* ── CODE BLOCKS ── */
-.ds-code{background:#1a2332;color:#e8ecf4;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;overflow-x:auto;margin-top:8px;white-space:pre;}
+.ds-code{background:#1a2332;color:#f3f3f3;border-radius:10px;padding:16px 20px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;overflow-x:auto;margin-top:8px;white-space:pre;}
 .ds-code-inline{font-family:'Courier New',monospace;background:rgba(76,100,217,0.1);color:var(--indigo);padding:2px 6px;border-radius:4px;font-size:11px;}
 
 /* ── SWATCH GRID ── */
@@ -227,13 +244,13 @@ a{text-decoration:none;}
 .btn-neu{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:10px;border:none;background:var(--bg);box-shadow:var(--neu-out-sm);color:var(--text-sub);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:all var(--dur-fast) var(--ease-out);}
 .btn-neu:hover{box-shadow:var(--neu-out);transform:translateY(-1px);}
 .btn-neu:active{box-shadow:var(--neu-in-sm);transform:translateY(0);}
-.btn-neu.primary{background:linear-gradient(90deg,#1e3a6e,#0f1f3d);color:#fff;box-shadow:4px 4px 14px rgba(15,31,61,0.42),-2px -2px 8px rgba(255,255,255,0.9),var(--glass-shine);}
-.btn-neu.primary:hover{background:linear-gradient(90deg,#253d6e,#1a2f52);}
+.btn-neu.primary{background:linear-gradient(90deg,#1b2757,#151f47);color:#fff;box-shadow:4px 4px 14px rgba(15,31,61,0.42),-2px -2px 8px rgba(255,255,255,0.9),var(--glass-shine);}
+.btn-neu.primary:hover{background:linear-gradient(90deg,#10183a,#1a2f52);}
 .btn-neu.danger{color:var(--red-text);}
 .btn-neu.danger:hover{background:rgba(255,64,64,0.06);}
 .btn-neu.icon-only{width:38px;height:38px;padding:0;justify-content:center;}
-.btn-exec{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;border:none;background:linear-gradient(90deg,#1e3a6e,#0f1f3d);color:#fff;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;box-shadow:4px 4px 12px rgba(15,31,61,0.42),-2px -2px 8px rgba(255,255,255,0.9);}
-.btn-exec:hover{background:linear-gradient(90deg,#253d6e,#1a2f52);transform:translateY(-1px);}
+.btn-exec{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;border:none;background:linear-gradient(90deg,#1b2757,#151f47);color:#fff;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;box-shadow:4px 4px 12px rgba(15,31,61,0.42),-2px -2px 8px rgba(255,255,255,0.9);}
+.btn-exec:hover{background:linear-gradient(90deg,#10183a,#1a2f52);transform:translateY(-1px);}
 .chip,.status-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:99px;font-size:10px;font-weight:700;cursor:default;user-select:none;}
 .chip-gray{background:var(--bg);color:var(--text-sub);box-shadow:var(--neu-in-sm);}
 .chip-blue{background:var(--indigo-soft);color:var(--indigo);}
@@ -474,7 +491,7 @@ a{text-decoration:none;}
 .act-dark{background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--sitio-fondo-10183a));}
 
 /* ── Tipografía de sección (heading-section / subheading-section) ── */
-.act-heading-section{font-family:var(--ff-display);font-size:var(--fs-h1);line-height:42px;font-weight:700;color:var(--text-strong);letter-spacing:-.5px;}
+.act-heading-section{font-family:var(--ff-display);font-size:var(--fs-h2);line-height:36px;font-weight:700;color:var(--text-strong);letter-spacing:-.5px;}
 .act-heading-section.is-cta{color:#fff;}
 .act-subheading-section{font-family:var(--ff-heading);font-size:18px;line-height:22px;font-weight:400;color:var(--text-weak);}
 .act-subheading-section.is-cta{color:var(--text-inverse-weak);}
@@ -482,12 +499,11 @@ a{text-decoration:none;}
 
 /* ── NAVBAR flotante (navbar-logo-left) ── */
 .act-navbar{display:flex;align-items:center;gap:var(--sp-8);background:#f5f6fa;border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-40);padding:10px 10px 10px var(--sp-20);box-shadow:var(--sh-navbar);}
-.act-logo{display:flex;align-items:center;gap:var(--sp-8);font-family:var(--ff-display);font-size:19px;font-weight:700;color:var(--text-strong);letter-spacing:.5px;}
-.act-logo-mark{width:26px;height:26px;border-radius:5px;background:linear-gradient(135deg,var(--prim-orange-1000) 0 48%,var(--prim-blue-1000) 52% 100%);
-  clip-path:polygon(50% 0,100% 100%,0 100%);}
+.act-logo{display:flex;align-items:center;gap:var(--sp-8);}
+.act-logo-svg{height:30px;width:auto;display:block;flex-shrink:0;}
 .act-nav-links{display:flex;align-items:center;gap:2px;margin-left:auto;}
 .act-nav-link{display:flex;align-items:center;gap:6px;height:44px;padding:0 var(--sp-16);border-radius:var(--cr-8);
-  font-family:var(--ff-heading);font-size:var(--fs-small);font-weight:600;color:var(--text-strong);cursor:pointer;transition:background var(--dur-normal) var(--ease-out);}
+  font-family:var(--ff-heading);font-size:var(--fs-small);line-height:20px;font-weight:600;color:var(--text-strong);cursor:pointer;transition:background var(--dur-normal) var(--ease-out);}
 .act-nav-link:hover{background:var(--fill-hover);}
 .act-nav-link i{font-size:11px;opacity:.6;}
 .act-nav-pill{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--sitio-borde-d8d8dc);border-radius:var(--cr-pill);padding:5px 10px;font-size:var(--fs-tiny);}
@@ -502,7 +518,7 @@ a{text-decoration:none;}
 /* mega-menú */
 .act-megamenu{margin-top:var(--sp-8);background:#fff;border:1px solid var(--stroke-weak);border-radius:var(--cr-20);padding:var(--sp-12);box-shadow:var(--sh-navbar);display:grid;gap:2px;min-width:260px;}
 .act-nav-drop{display:flex;align-items:center;gap:var(--sp-12);height:44px;padding:0 var(--sp-16);border-radius:var(--cr-8);
-  font-family:var(--ff-heading);font-size:var(--fs-small);font-weight:500;color:var(--text-strong);cursor:pointer;}
+  font-family:var(--ff-heading);font-size:var(--fs-small);line-height:20px;font-weight:400;color:var(--text-strong);cursor:pointer;}
 .act-nav-drop:hover{background:var(--fill-brand-weak);color:var(--text-brand);}
 .act-icon-chip-nav{width:15px;font-size:12px;color:rgba(21,31,71,.8);text-align:center;}
 .act-nav-group-label{font-family:var(--ff-body);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-weak);padding:var(--sp-8) var(--sp-16) var(--sp-4);}
@@ -521,17 +537,17 @@ a{text-decoration:none;}
 /* ── CHIPSET (chipset_cards / icon_chip) ── */
 .act-chipset{display:inline-flex;align-items:center;gap:var(--sp-8);background:rgba(21,31,71,.07);border:1px solid rgba(0,17,102,.1);
   border-radius:var(--cr-50);padding:var(--sp-4) var(--sp-12);height:30px;
-  font-family:var(--ff-body);font-size:13px;font-weight:500;color:var(--text-weak);}
+  font-family:var(--ff-heading);font-size:12px;line-height:18px;font-weight:700;color:var(--text-weak);}
 .act-chipset i{font-size:12px;color:rgba(0,13,77,.45);}
 .act-chipset.is-brand{background:var(--fill-brand-weak);border-color:var(--stroke-brand-weak);color:var(--text-brand);}
 .act-chipset.is-orange{background:var(--prim-orange-50);border-color:var(--prim-orange-300);color:#a8431c;}
 
 /* ── HERO (hero_section + typing_ghost) ── */
 .act-hero{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-32);align-items:center;}
-.act-hero h1{font-family:var(--ff-display);font-size:48px;line-height:1.08;font-weight:700;color:var(--text-strong);letter-spacing:-1px;margin-bottom:var(--sp-24);min-height:3.24em;}
+.act-hero h1{font-family:var(--ff-display);font-size:48px;line-height:50px;font-weight:500;color:var(--text-strong);letter-spacing:-1px;margin-bottom:var(--sp-24);min-height:3.24em;}
 .act-typing-cursor{display:inline-block;width:3px;height:.92em;background:var(--prim-orange-1000);vertical-align:text-bottom;animation:act-blink 1s steps(1) infinite;}
 @keyframes act-blink{50%{opacity:0;}}
-.act-hero p{font-family:var(--ff-heading);font-size:18px;line-height:26px;color:var(--text-weak);margin-bottom:var(--sp-24);max-width:46ch;}
+.act-hero p{font-family:var(--ff-body);font-size:20px;line-height:1.1;color:var(--text-weak);margin-bottom:var(--sp-24);max-width:46ch;}
 
 /* ── BLOG COVER CARD (slider del hero) ── */
 .act-blogcover{position:relative;border-radius:var(--cr-24);overflow:hidden;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--sp-20);
@@ -549,7 +565,7 @@ a{text-decoration:none;}
 .act-blog-arrow:hover{background:rgba(255,255,255,.32);}
 
 /* ── ODÓMETRO / CONTADORES (odo-roll / odo-d) ── */
-.act-odo{display:flex;align-items:baseline;gap:2px;font-family:var(--ff-display);font-size:44px;font-weight:700;color:var(--text-strong);}
+.act-odo{display:flex;align-items:baseline;gap:2px;font-family:var(--ff-display);font-size:38px;font-weight:800;color:var(--text-strong);}
 .act-odo-d{display:inline-block;width:.62em;height:1.08em;overflow:hidden;position:relative;}
 .act-odo-roll{position:absolute;top:0;left:0;display:flex;flex-direction:column;animation:act-roll 2.4s var(--ease-out) forwards;}
 .act-odo-roll span{height:1.08em;line-height:1.08em;text-align:center;}
@@ -561,8 +577,8 @@ a{text-decoration:none;}
 .act-card-sol{display:flex;flex-direction:column;background:#fff;border-radius:var(--cr-24);box-shadow:var(--sh-card);overflow:hidden;}
 .act-card-sol-media{height:140px;background:linear-gradient(135deg,var(--prim-blue-1000),var(--prim-blue-dark-1000));display:grid;place-items:center;color:rgba(255,255,255,.35);font-size:34px;}
 .act-card-sol-body{padding:var(--sp-20);display:flex;flex-direction:column;gap:var(--sp-12);flex:1;}
-.act-card-sol h4{font-family:var(--ff-display);font-size:var(--fs-h4);line-height:var(--lh-h4);color:var(--text-strong);}
-.act-card-sol p{font-family:var(--ff-body);font-size:var(--fs-tiny);line-height:var(--lh-tiny);color:var(--text-weak);flex:1;}
+.act-card-sol h4{font-family:var(--ff-display);font-size:var(--fs-h4);line-height:22px;font-weight:500;color:var(--text-strong);}
+.act-card-sol p{font-family:var(--ff-body);font-size:var(--fs-small);line-height:20px;color:var(--text-weak);flex:1;}
 .act-card-sol-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-heading);font-size:var(--fs-tiny);font-weight:700;color:var(--prim-orange-1000);}
 
 /* ── CARD BASE (card_base) ── */
@@ -573,12 +589,12 @@ a{text-decoration:none;}
 .act-testi::after{content:"\201D";position:absolute;right:var(--sp-16);bottom:-34px;font-family:Georgia,serif;font-size:170px;color:var(--prim-blue-50);line-height:1;}
 .act-testi > *{position:relative;z-index:1;}
 .act-stars{color:var(--prim-orange-1000);letter-spacing:8px;font-size:14px;}
-.act-testi-quote{font-family:var(--ff-heading);font-size:var(--fs-small);line-height:1.45;color:var(--text-weak);flex:1;}
+.act-testi-quote{font-family:var(--ff-body);font-size:var(--fs-small);line-height:20px;color:var(--text-weak);flex:1;}
 .act-testi-bottom{display:flex;align-items:center;gap:var(--sp-12);}
 .act-testi-logo{width:120px;height:44px;flex-shrink:0;background:#fff;border:1px solid rgba(21,31,71,.08);border-radius:var(--cr-12);
   display:grid;place-items:center;font-family:var(--ff-display);font-size:13px;font-weight:700;color:var(--prim-blue-1000);}
-.act-testi-name{font-family:var(--ff-heading);font-size:var(--fs-small);font-weight:700;color:var(--text-strong);}
-.act-testi-role{font-family:var(--ff-body);font-size:13px;color:var(--text-weak);}
+.act-testi-name{font-family:var(--ff-heading);font-size:var(--fs-small);line-height:20px;font-weight:800;color:var(--text-strong);}
+.act-testi-role{font-family:var(--ff-heading);font-size:13px;line-height:16px;font-weight:600;color:var(--text-weak);}
 
 /* ── MARQUEE de logos (logo_stone) ── */
 .act-marquee{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
@@ -622,10 +638,10 @@ a{text-decoration:none;}
 .act-footer{border-radius:var(--cr-32);padding:var(--sp-40);color:var(--text-inverse-weak);
   background:linear-gradient(135deg,var(--sitio-fondo-1b2757),var(--sitio-fondo-10183a));}
 .act-footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--sp-32);}
-.act-footer-title{font-family:var(--ff-display);font-size:var(--fs-small);color:#fff;margin-bottom:var(--sp-16);letter-spacing:.5px;}
-.act-footer-line{display:flex;align-items:center;gap:9px;margin-bottom:var(--sp-12);font-family:var(--ff-body);font-size:var(--fs-tiny);line-height:var(--lh-tiny);}
+.act-footer-title{font-family:var(--ff-heading);font-size:15px;line-height:22px;font-weight:700;color:#fff;margin-bottom:var(--sp-16);letter-spacing:.5px;}
+.act-footer-line{display:flex;align-items:center;gap:9px;margin-bottom:var(--sp-12);font-family:var(--ff-heading);font-size:var(--fs-tiny);line-height:24px;}
 .act-footer-icon{width:20px;text-align:center;color:var(--prim-orange-1000);flex-shrink:0;}
-.act-footer-link{display:block;font-family:var(--ff-body);font-size:13px;line-height:19px;color:var(--text-inverse-weak);margin-bottom:var(--sp-8);}
+.act-footer-link{display:block;font-family:var(--ff-heading);font-size:var(--fs-tiny);line-height:21px;color:var(--text-inverse-weak);margin-bottom:var(--sp-8);}
 .act-footer-link:hover{color:#fff;}
 .act-social{display:flex;gap:var(--sp-12);margin-top:var(--sp-16);}
 .act-social-link{width:38px;height:38px;border-radius:var(--cr-pill);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
@@ -776,64 +792,131 @@ a{text-decoration:none;}
   <!-- COLORS -->
   <div class="comp-block" id="colors">
     <h3>Colores</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Paleta real de actuaria.com, extraída de las colecciones <code class="ds-code-inline">🎨 Colours primitive</code> y <code class="ds-code-inline">🖼️ Theme</code> del sitio Webflow. El color de marca es <strong>navy</strong>, no índigo.</p>
     <div class="demo-box demo-box-col" style="gap:24px;">
       <div>
-        <div class="swatch-group-label">Brand</div>
+        <div class="swatch-group-label">Marca · del vector del logotipo</div>
         <div class="swatch-grid">
-          <div class="swatch-item"><div class="swatch" style="background:#0f1f3d"></div><span class="swatch-name">--navy</span><span class="swatch-hex">#0f1f3d</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#1e3a6e"></div><span class="swatch-name">--navy-2</span><span class="swatch-hex">#1e3a6e</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#253d6e"></div><span class="swatch-name">--navy-3</span><span class="swatch-hex">#253d6e</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#4c64d9"></div><span class="swatch-name">--indigo</span><span class="swatch-hex">#4c64d9</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#3b51c0"></div><span class="swatch-name">--indigo-2</span><span class="swatch-hex">#3b51c0</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#de5e2d"></div><span class="swatch-name">--orange</span><span class="swatch-hex">#de5e2d</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#111C4E"></div><span class="swatch-name">--logo-navy</span><span class="swatch-hex">#111C4E</span><span class="swatch-hex" style="opacity:.7">wordmark + vela mayor</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#E0592A"></div><span class="swatch-name">--logo-orange</span><span class="swatch-hex">#E0592A</span><span class="swatch-hex" style="opacity:.7">vela menor</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#385CAD"></div><span class="swatch-name">--logo-blue</span><span class="swatch-hex">#385CAD</span><span class="swatch-hex" style="opacity:.7">casco / estela</span></div>
         </div>
       </div>
       <div>
-        <div class="swatch-group-label">Semántico</div>
+        <div class="swatch-group-label">Marca · tokens de interfaz (🖼️ Theme)</div>
         <div class="swatch-grid">
-          <div class="swatch-item"><div class="swatch" style="background:#00c781"></div><span class="swatch-name">--green</span><span class="swatch-hex">#00c781</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#00925e"></div><span class="swatch-name">--green-text</span><span class="swatch-hex">#00925e</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#ffbb38"></div><span class="swatch-name">--yellow</span><span class="swatch-hex">#ffbb38</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#b07d00"></div><span class="swatch-name">--yellow-text</span><span class="swatch-hex">#b07d00</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#ff4040"></div><span class="swatch-name">--red</span><span class="swatch-hex">#ff4040</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:#c0392b"></div><span class="swatch-name">--red-text</span><span class="swatch-hex">#c0392b</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#151f47"></div><span class="swatch-name">--theme-brand-1000</span><span class="swatch-hex">#151f47</span><span class="swatch-hex" style="opacity:.7">brand--light--1000</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#3258a2"></div><span class="swatch-name">--prim-blue-dark-1000</span><span class="swatch-hex">#3258a2</span><span class="swatch-hex" style="opacity:.7">brand--dark--1000</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#e0592a"></div><span class="swatch-name">--fill-brand-alternate</span><span class="swatch-hex">#e0592a</span><span class="swatch-hex" style="opacity:.7">orange--1000</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#1b2757"></div><span class="swatch-name">--sitio-fondo-1b2757</span><span class="swatch-hex">#1b2757</span><span class="swatch-hex" style="opacity:.7">degradado CTA</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#10183a"></div><span class="swatch-name">--sitio-fondo-10183a</span><span class="swatch-hex">#10183a</span><span class="swatch-hex" style="opacity:.7">degradado CTA</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#0050bd"></div><span class="swatch-name">--sitio-texto-0050bd</span><span class="swatch-hex">#0050bd</span><span class="swatch-hex" style="opacity:.7">enlaces heredados</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="swatch-group-label">Texto (grey-slate)</div>
+        <div class="swatch-grid">
+          <div class="swatch-item"><div class="swatch" style="background:#000626e6"></div><span class="swatch-name">--text-strong</span><span class="swatch-hex">#000626e6</span><span class="swatch-hex" style="opacity:.7">grey--light--1000</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#000933a6"></div><span class="swatch-name">--text-weak</span><span class="swatch-hex">#000933a6</span><span class="swatch-hex" style="opacity:.7">grey--light--700</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#000d4d73"></div><span class="swatch-name">--theme-grey-500</span><span class="swatch-hex">#000d4d73</span><span class="swatch-hex" style="opacity:.7">grey--light--500</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#0011661a"></div><span class="swatch-name">--stroke-weak</span><span class="swatch-hex">#0011661a</span><span class="swatch-hex" style="opacity:.7">grey--light--100</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="swatch-group-label">Semántico · estados</div>
+        <div class="swatch-grid">
+          <div class="swatch-item"><div class="swatch" style="background:#4caf50"></div><span class="swatch-name">--fill-success-strong</span><span class="swatch-hex">#4caf50</span><span class="swatch-hex" style="opacity:.7">green--light--1000</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#ff9800"></div><span class="swatch-name">--fill-warning-strong</span><span class="swatch-hex">#ff9800</span><span class="swatch-hex" style="opacity:.7">amber--light--1000</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#c73a3a"></div><span class="swatch-name">--fill-error-strong</span><span class="swatch-hex">#c73a3a</span><span class="swatch-hex" style="opacity:.7">red--light--1000</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#1a74a8"></div><span class="swatch-name">--fill-info-strong</span><span class="swatch-hex">#1a74a8</span><span class="swatch-hex" style="opacity:.7">teal--light--1000</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#763ec4"></div><span class="swatch-name">--prim-purple-1000</span><span class="swatch-hex">#763ec4</span><span class="swatch-hex" style="opacity:.7">decorativo</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#fec62e"></div><span class="swatch-name">--fill-yellow</span><span class="swatch-hex">#fec62e</span><span class="swatch-hex" style="opacity:.7">yellow-solid--1000</span></div>
         </div>
       </div>
       <div>
         <div class="swatch-group-label">Superficies</div>
         <div class="swatch-grid">
-          <div class="swatch-item"><div class="swatch" style="background:#e8ecf4;border:1px solid rgba(163,177,198,0.35)"></div><span class="swatch-name">--bg</span><span class="swatch-hex">#e8ecf4</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:rgba(232,236,244,0.72);border:1px solid rgba(255,255,255,0.6)"></div><span class="swatch-name">--glass-bg</span><span class="swatch-hex">rgba</span></div>
-          <div class="swatch-item"><div class="swatch" style="background:rgba(163,177,198,0.35);border:1px solid rgba(163,177,198,0.5)"></div><span class="swatch-name">--border</span><span class="swatch-hex">rgba</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#ffffff;border:1px solid rgba(0,17,102,0.14)"></div><span class="swatch-name">--bg-base</span><span class="swatch-hex">#ffffff</span><span class="swatch-hex" style="opacity:.7">grey-solid--0</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#f5f6fa;border:1px solid rgba(0,17,102,0.14)"></div><span class="swatch-name">--bg-sunken</span><span class="swatch-hex">#f5f6fa</span><span class="swatch-hex" style="opacity:.7">grey-solid--50</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#f3f3f3;border:1px solid rgba(0,17,102,0.14)"></div><span class="swatch-name">--sitio-fondo-f3f3f3</span><span class="swatch-hex">#f3f3f3</span><span class="swatch-hex" style="opacity:.7">lienzo del sitio</span></div>
+          <div class="swatch-item"><div class="swatch" style="background:#12131a"></div><span class="swatch-name">--bg-inverse</span><span class="swatch-hex">#12131a</span><span class="swatch-hex" style="opacity:.7">grey-solid--900</span></div>
         </div>
       </div>
     </div>
     <div class="comp-desc">
       <div class="desc-title">Uso</div>
-      <div class="desc-text">Navy = jerarquía, títulos, acciones primarias. Indigo = brand interactivo, estados activos, CTAs. Orange = acento/alerta. Semánticos solo para estados (éxito, advertencia, error).</div>
+      <div class="desc-text"><strong>Navy</strong> = jerarquía, títulos, acciones primarias y fondos oscuros. <strong>Naranja</strong> = acento único: estrellas de testimonio, CTA de cards, iconos de footer y el cursor del typing. <strong>Azul #385CAD</strong> vive solo en el logotipo y en bordes muy tenues. Los semánticos, solo para estados.</div>
+      <div class="usage-note" style="margin-top:8px;">Cada primitivo tiene rampa <span class="ds-code-inline">1000 / 800 / 200-300 / 50</span> para fills y strokes suaves — p.ej. <span class="ds-code-inline">orange--50 = #e0592a0d</span> es el fondo de un chip naranja. Nunca hardcodear hex: consumir siempre la capa semántica.</div>
     </div>
   </div>
 
   <!-- TYPOGRAPHY -->
   <div class="comp-block" id="typography">
     <h3>Tipografía</h3>
-    <div class="demo-box demo-box-col" style="padding:24px;">
-      <div class="type-scale">
-        <div class="type-row"><div class="type-meta"><span class="type-token">display</span><span class="type-size">56px / 64px</span></div><div class="type-sample" style="font-size:56px;font-weight:900;line-height:1">Actuaria</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">h1</span><span class="type-size">40px / 48px</span></div><div class="type-sample" style="font-size:40px;font-weight:900;line-height:1">Actuaria</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">h2</span><span class="type-size">32px / 40px</span></div><div class="type-sample" style="font-size:32px;font-weight:800">Actuaria Consultores</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">h3</span><span class="type-size">24px / 32px</span></div><div class="type-sample" style="font-size:24px;font-weight:800">Actuaria Consultores</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">h4</span><span class="type-size">20px / 28px</span></div><div class="type-sample" style="font-size:20px;font-weight:700">Actuaria Consultores</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">body</span><span class="type-size">16px / 24px</span></div><div class="type-sample" style="font-size:16px;font-weight:400">Actuaria Consultores, 35+ años de experiencia</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">small</span><span class="type-size">14px / 20px</span></div><div class="type-sample" style="font-size:14px;font-weight:400">Actuaria Consultores, 35+ años de experiencia</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">mini</span><span class="type-size">12px / 18px</span></div><div class="type-sample" style="font-size:12px;font-weight:600">Actuaria Consultores, 35+ años de experiencia actuarial</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">micro</span><span class="type-size">10px / 16px</span></div><div class="type-sample" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">ETIQUETA DE CAMPO · UPPERCASE</div></div>
-        <div class="type-row"><div class="type-meta"><span class="type-token">nano</span><span class="type-size">8px / 14px</span></div><div class="type-sample" style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px">METADATO · TIMESTAMP</div></div>
+    <p class="desc-text" style="margin-bottom:12px;">actuaria.com usa <strong>tres familias con roles distintos</strong>, no una. La colección <code class="ds-code-inline">🔤 Typography</code> de Webflow las define como <code class="ds-code-inline">font-family--display</code>, <code class="ds-code-inline">--heading</code> y <code class="ds-code-inline">--body</code>/<code class="ds-code-inline">--subheading</code>. Cada muestra de abajo está renderizada en su familia real.</p>
+
+    <div class="demo-box demo-box-col" style="padding:24px;gap:28px;align-items:stretch;">
+      <div>
+        <div class="swatch-group-label">font-family--display · Lemon Milk Pro</div>
+        <div style="font-family:var(--ff-display);font-size:48px;line-height:50px;font-weight:500;color:var(--text-strong);">Anticipamos los riesgos</div>
+        <div style="font-family:var(--ff-body);font-size:13px;color:var(--text-sub);margin-top:8px;">Titulares (<span class="ds-code-inline">h1</span>, <span class="ds-code-inline">heading-section</span>), wordmark, cifras del odómetro y títulos de card. Fuente <strong>licenciada</strong>: se carga por <span class="ds-code-inline">@font-face</span> desde el CDN de actuaria.com, sin redistribuirla en el repo. Pesos disponibles: 400 · 500 · 700.</div>
+      </div>
+      <div>
+        <div class="swatch-group-label">font-family--heading · Nunito</div>
+        <div style="font-family:var(--ff-heading);font-size:32px;line-height:40px;font-weight:700;color:var(--text-strong);">Subtítulos, navegación y botones</div>
+        <div style="font-family:var(--ff-body);font-size:13px;color:var(--text-sub);margin-top:8px;">La familia de interfaz: <span class="ds-code-inline">subheading-section</span>, enlaces del navbar, botones, chips, autor de testimonio y todo el footer.</div>
+      </div>
+      <div>
+        <div class="swatch-group-label">font-family--body / --subheading · Prompt</div>
+        <div style="font-family:var(--ff-body);font-size:20px;line-height:1.2;font-weight:400;color:var(--text-strong);">Cuerpo de lectura y párrafos largos</div>
+        <div style="font-family:var(--ff-body);font-size:13px;color:var(--text-sub);margin-top:8px;">Bajada del hero, párrafos de cards de soluciones y citas de testimonios. Geométrica, buena altura de x y set completo para español.</div>
       </div>
     </div>
+
+    <div class="demo-box demo-box-col" style="padding:24px;align-items:stretch;">
+      <div class="swatch-group-label" style="margin-bottom:12px;">Escala oficial · 8 tamaños con line-height pareado</div>
+      <div class="type-scale">
+        <div class="type-row"><div class="type-meta"><span class="type-token">display</span><span class="type-size">56px / 64px</span></div><div class="type-sample" style="font-family:var(--ff-display);font-size:56px;font-weight:500;line-height:1">Actuaria</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">heading-1</span><span class="type-size">40px / 48px</span></div><div class="type-sample" style="font-family:var(--ff-display);font-size:40px;font-weight:700;line-height:1">Actuaria</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">heading-2</span><span class="type-size">32px / 40px</span></div><div class="type-sample" style="font-family:var(--ff-display);font-size:32px;font-weight:700;line-height:36px">Soluciones especializadas</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">heading-3</span><span class="type-size">24px / 32px</span></div><div class="type-sample" style="font-family:var(--ff-heading);font-size:24px;font-weight:700">Actuaria Consultores</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">heading-4</span><span class="type-size">20px / 28px</span></div><div class="type-sample" style="font-family:var(--ff-display);font-size:20px;font-weight:500;line-height:22px">Beneficios Laborales</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">small</span><span class="type-size">16px / 24px</span></div><div class="type-sample" style="font-family:var(--ff-body);font-size:16px;font-weight:400">Cumple con tus obligaciones patronales sin sorpresas financieras.</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">tiny</span><span class="type-size">14px / 20px</span></div><div class="type-sample" style="font-family:var(--ff-heading);font-size:14px;font-weight:400">Teléfono: (+593-2) 392-3400</div></div>
+        <div class="type-row"><div class="type-meta"><span class="type-token">uppercase</span><span class="type-size">14px / 20px</span></div><div class="type-sample" style="font-family:var(--ff-body);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--prim-orange-1000)">Nuestra Trayectoria</div></div>
+      </div>
+    </div>
+
+    <div class="demo-box demo-box-col" style="padding:24px;align-items:stretch;">
+      <div class="swatch-group-label" style="margin-bottom:12px;">Mapeo medido en producción · qué familia usa cada elemento</div>
+      <table class="act-tokentable">
+        <thead><tr><th>Clase en el sitio</th><th>Familia</th><th>Tamaño / interlínea</th><th>Peso</th></tr></thead>
+        <tbody>
+          <tr><td><code class="ds-code-inline">h1</code> (hero)</td><td>Lemon Milk Pro</td><td>48 / 50</td><td>500</td></tr>
+          <tr><td><code class="ds-code-inline">heading-section</code></td><td>Lemon Milk Pro</td><td>32 / 36</td><td>700</td></tr>
+          <tr><td><code class="ds-code-inline">heading_cards_solutions</code></td><td>Lemon Milk Pro</td><td>20 / 22</td><td>500</td></tr>
+          <tr><td><code class="ds-code-inline">blog_heading_cover</code></td><td>Lemon Milk Pro</td><td>20 / 22</td><td>400</td></tr>
+          <tr><td><code class="ds-code-inline">odo-d</code> (odómetro)</td><td>Lemon Milk Pro</td><td>38 / 38</td><td>800</td></tr>
+          <tr><td><code class="ds-code-inline">subheading-section</code></td><td>Nunito</td><td>18 / 22</td><td>400</td></tr>
+          <tr><td><code class="ds-code-inline">link_navbar</code></td><td>Nunito</td><td>16 / 20</td><td>600</td></tr>
+          <tr><td><code class="ds-code-inline">nav_link_drop</code></td><td>Nunito</td><td>16 / 20</td><td>400</td></tr>
+          <tr><td><code class="ds-code-inline">actuariaplus-button</code></td><td>Nunito</td><td>13.6 / 20</td><td>700</td></tr>
+          <tr><td><code class="ds-code-inline">text_chip_cards</code></td><td>Nunito</td><td>12 / 18</td><td>700</td></tr>
+          <tr><td><code class="ds-code-inline">testimonial_author</code></td><td>Nunito</td><td>16 / 20</td><td>800</td></tr>
+          <tr><td><code class="ds-code-inline">p_cards-testimonial-cargo</code></td><td>Nunito</td><td>13 / 16</td><td>600</td></tr>
+          <tr><td><code class="ds-code-inline">footer_title</code></td><td>Nunito</td><td>15 / 22</td><td>700</td></tr>
+          <tr><td><code class="ds-code-inline">footer_text</code> / <code class="ds-code-inline">footer_link</code></td><td>Nunito</td><td>14 / 24 · 14 / 21</td><td>400</td></tr>
+          <tr><td><code class="ds-code-inline">p</code> (hero)</td><td><strong>Prompt</strong></td><td>20 / 21.6</td><td>400</td></tr>
+          <tr><td><code class="ds-code-inline">p_cards_solutions</code></td><td><strong>Prompt</strong></td><td>16 / 20</td><td>400</td></tr>
+          <tr><td><code class="ds-code-inline">p_cards-testimonial</code></td><td><strong>Prompt</strong></td><td>16 / 20</td><td>400</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="comp-desc">
-      <div class="desc-title">Font Family</div>
-      <div class="desc-text">Nunito en todos los pesos (400–900). Micro y nano siempre en uppercase + letter-spacing para legibilidad. H4+ requiere font-weight mínimo 700.</div>
+      <div class="desc-title">Pesos</div>
+      <div class="desc-text"><span class="ds-code-inline">font-weight--strong = Semi Bold (600)</span> · <span class="ds-code-inline">font-weight--weak = Regular (400)</span>. En producción Lemon Milk Pro aparece en 400/500/700/800 y Nunito en 400/600/700/800 — la colección Webflow solo declara dos pesos, así que el resto está hardcodeado por clase.</div>
+      <div class="usage-note" style="margin-top:8px;">⚠️ Hallazgo: el <span class="ds-code-inline">body</span> del sitio resuelve a <strong>Arial 14/20</strong>, no a Prompt. El token <span class="ds-code-inline">font-family--body</span> existe pero se aplica por clase, no globalmente. Cualquier texto sin clase cae a Arial — conviene fijar la familia en el <span class="ds-code-inline">body</span> de Webflow.</div>
     </div>
   </div>
 
@@ -897,24 +980,35 @@ a{text-decoration:none;}
   <!-- SPACING -->
   <div class="comp-block" id="spacing">
     <h3>Espacios</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Colección <code class="ds-code-inline">📐 Spacing</code> de Webflow: <strong>17 pasos</strong>. En el sitio se nombran <code class="ds-code-inline">spacing--N</code>; en este DS se exponen como <code class="ds-code-inline">--sp-N</code>.</p>
     <div class="demo-box demo-box-col" style="padding:24px;">
       <div class="spacing-rows">
-        <div class="spacing-row"><span class="spacing-token">--spacing-4</span><span class="spacing-val">4px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-8</span><span class="spacing-val">8px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-12</span><span class="spacing-val">12px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-16</span><span class="spacing-val">16px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-20</span><span class="spacing-val">20px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:40px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-24</span><span class="spacing-val">24px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-32</span><span class="spacing-val">32px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-40</span><span class="spacing-val">40px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:80px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-48</span><span class="spacing-val">48px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-64</span><span class="spacing-val">64px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:128px"></div></div></div>
-        <div class="spacing-row"><span class="spacing-token">--spacing-80</span><span class="spacing-val">80px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:160px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-0</span><span class="spacing-val">0px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:0px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-4</span><span class="spacing-val">4px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-8</span><span class="spacing-val">8px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-12</span><span class="spacing-val">12px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-16</span><span class="spacing-val">16px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-20</span><span class="spacing-val">20px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:40px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-24</span><span class="spacing-val">24px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-32</span><span class="spacing-val">32px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-40</span><span class="spacing-val">40px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:80px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-48</span><span class="spacing-val">48px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-56</span><span class="spacing-val">56px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:112px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-64</span><span class="spacing-val">64px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:128px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-80</span><span class="spacing-val">80px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:160px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-96</span><span class="spacing-val">96px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:192px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-128</span><span class="spacing-val">128px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:256px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-192</span><span class="spacing-val">192px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:384px"></div></div></div>
+        <div class="spacing-row"><span class="spacing-token">--sp-256</span><span class="spacing-val">256px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:420px"></div></div></div>
       </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Uso</div>
+      <div class="desc-text">4-12 para gaps internos de componente · 16-24 para padding de card · 32-48 entre bloques · 64-96 entre secciones · 128+ solo para separaciones de página completa.</div>
+      <div class="usage-note" style="margin-top:8px;">La barra es 2× el valor del token para que los pasos pequeños se distingan.</div>
     </div>
   </div>
 
-  <!-- SHADOWS -->
   <div class="comp-block" id="shadows">
     <h3>Elevaciones</h3>
     <div class="demo-box" style="background:var(--bg);min-height:120px;">
@@ -951,21 +1045,17 @@ a{text-decoration:none;}
 
   <!-- RADIUS -->
   <div class="comp-block" id="radius">
-    <h3>Border Radius</h3>
-    <div class="demo-box">
-      <div class="radius-row">
-        <div class="radius-item"><div class="radius-box" style="border-radius:4px"></div><span class="radius-label">--r-4<br>4px</span></div>
-        <div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><span class="radius-label">--r-8<br>8px</span></div>
-        <div class="radius-item"><div class="radius-box" style="border-radius:12px"></div><span class="radius-label">--r-12<br>12px</span></div>
-        <div class="radius-item"><div class="radius-box" style="border-radius:16px"></div><span class="radius-label">--r-16<br>16px</span></div>
-        <div class="radius-item"><div class="radius-box" style="border-radius:20px"></div><span class="radius-label">--r-20<br>20px</span></div>
-        <div class="radius-item"><div class="radius-box" style="border-radius:24px"></div><span class="radius-label">--r-24<br>24px</span></div>
-        <div class="radius-item"><div class="radius-box" style="border-radius:9999px;width:52px;height:52px"></div><span class="radius-label">--r-full<br>9999px</span></div>
-      </div>
+    <h3>Radios</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Colección <code class="ds-code-inline">📐 Spacing</code> → <code class="ds-code-inline">corner-radius</code>: <strong>8 pasos oficiales</strong> (0→32). Los radios de píldora que el sitio usa en navbar, botones y cards de testimonio están <strong>fuera</strong> de la colección.</p>
+    <div class="demo-box"><div class="radius-row"><div class="radius-item"><div class="radius-box" style="border-radius:0px"></div><span class="radius-label">--cr-0<br>0px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:4px"></div><span class="radius-label">--cr-4<br>4px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><span class="radius-label">--cr-8<br>8px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:12px"></div><span class="radius-label">--cr-12<br>12px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:16px"></div><span class="radius-label">--cr-16<br>16px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:20px"></div><span class="radius-label">--cr-20<br>20px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:24px"></div><span class="radius-label">--cr-24<br>24px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:32px"></div><span class="radius-label">--cr-32<br>32px</span></div></div></div>
+    <div class="demo-box"><div class="radius-row"><div class="radius-item"><div class="radius-box" style="border-radius:40px;border:1px dashed var(--prim-orange-300)"></div><span class="radius-label">--cr-40<br>40px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:50px;border:1px dashed var(--prim-orange-300)"></div><span class="radius-label">--cr-50<br>50px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:64px;border:1px dashed var(--prim-orange-300)"></div><span class="radius-label">--cr-64<br>64px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:9999px;border:1px dashed var(--prim-orange-300)"></div><span class="radius-label">--cr-pill<br>9999px</span></div></div></div>
+    <div class="comp-desc">
+      <div class="desc-title">Mapeo en producción</div>
+      <div class="desc-text"><span class="ds-code-inline">8</span> enlaces del navbar · <span class="ds-code-inline">12</span> inputs y chip de logo · <span class="ds-code-inline">24</span> cards de solución y blog cover · <span class="ds-code-inline">32</span> marco de certificación, CTA y formulario · <span class="ds-code-inline">40</span> contenedor del navbar y card de testimonio · <span class="ds-code-inline">50</span> chipsets · <span class="ds-code-inline">64</span> botón actuaria+.</div>
+      <div class="usage-note" style="margin-top:8px;">Los marcados en <span style="color:var(--prim-orange-1000)">naranja punteado</span> no existen como token en Webflow — pendiente registrarlos como <span class="ds-code-inline">corner-radius--40/50/64</span>.</div>
     </div>
   </div>
 
-  <!-- GRID -->
   <div class="comp-block" id="grid">
     <h3>Cuadrículas</h3>
     <p class="desc-text" style="margin-bottom:12px;">Sistema de <strong>grid responsivo de 12 columnas</strong> con gutter tomado de los tokens de espacios (<span class="ds-code-inline">--spacing-12</span>). Alineado con los breakpoints de la sección <a href="#responsive" class="ds-code-inline" style="text-decoration:none">Responsivo</a>.</p>
@@ -2543,7 +2633,7 @@ a{text-decoration:none;}
       <div class="usage-note" style="margin-top:8px"><strong>Variantes Figma:</strong> sin props de variante expuestas — composición por zonas Content (Icon &amp; text) + Button group · node 8708:141122.</div>
     </div>
     <div class="demo-box" style="padding:0;">
-      <div data-overlay style="position:relative;width:100%;min-height:420px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#0f1f3d 0%,#27407e 45%,#4c64d9 100%);display:flex;align-items:center;justify-content:center;padding:32px;">
+      <div data-overlay style="position:relative;width:100%;min-height:420px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#151f47 0%,#27407e 45%,#3258a2 100%);display:flex;align-items:center;justify-content:center;padding:32px;">
         <div style="position:absolute;inset:0;background:radial-gradient(circle at 18% 28%,rgba(255,255,255,0.20),transparent 42%),radial-gradient(circle at 82% 72%,rgba(143,163,232,0.45),transparent 52%);"></div>
         <div style="position:absolute;inset:0;background:rgba(0,13,77,0.45);backdrop-filter:blur(2px);"></div>
         <button type="button" data-overlay-hint><i class="fa-solid fa-eye"></i> Ver modal de nuevo</button>
@@ -2552,7 +2642,7 @@ a{text-decoration:none;}
             <div style="width:48px;height:48px;border-radius:48px;background:rgba(15,31,61,0.10);display:flex;align-items:center;justify-content:center;">
               <i class="fa-solid fa-calculator" style="font-size:24px;color:var(--navy);"></i>
             </div>
-            <div style="font-family:'Nunito',sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#0f1f3d;">¿Recalcular reservas IBNR?</div>
+            <div style="font-family:'Nunito',sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#151f47;">¿Recalcular reservas IBNR?</div>
             <div style="font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);">Se ejecutará el método Chain-Ladder sobre los triángulos de siniestros del ramo Vida Grupo al cierre de mayo 2026. El cálculo anterior quedará archivado con trazabilidad ISO 9001.</div>
           </div>
           <div style="display:flex;gap:16px;justify-content:flex-end;">
@@ -2587,19 +2677,19 @@ a{text-decoration:none;}
       <div class="usage-note" style="margin-top:8px"><strong>Variantes Figma:</strong> sin props expuestas — anclado a la derecha (overlay items-end) · zonas Header / Body (Slot) / Footer.</div>
     </div>
     <div class="demo-box" style="padding:0;">
-      <div data-overlay style="position:relative;width:100%;min-height:440px;border-radius:16px;overflow:hidden;background:linear-gradient(120deg,#0f1f3d 0%,#33498f 55%,#4c64d9 100%);">
+      <div data-overlay style="position:relative;width:100%;min-height:440px;border-radius:16px;overflow:hidden;background:linear-gradient(120deg,#151f47 0%,#33498f 55%,#3258a2 100%);">
         <div style="position:absolute;inset:0;background:radial-gradient(circle at 25% 60%,rgba(255,255,255,0.16),transparent 45%);"></div>
         <div style="position:absolute;inset:0;background:rgba(0,13,77,0.45);backdrop-filter:blur(2px);"></div>
         <button type="button" data-overlay-hint><i class="fa-solid fa-eye"></i> Ver drawer de nuevo</button>
         <div data-overlay-panel style="position:absolute;top:0;right:0;bottom:0;width:400px;max-width:85%;display:flex;flex-direction:column;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-left:1px solid rgba(255,255,255,0.60);box-shadow:-8px 0 24px rgba(0,0,0,0.12),inset 0 1px 0 rgba(255,255,255,0.95);">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 32px;border-bottom:1px solid rgba(0,17,102,0.10);">
-            <div style="font-family:'Nunito',sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#0f1f3d;">Póliza VG-2026-0417</div>
+            <div style="font-family:'Nunito',sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#151f47;">Póliza VG-2026-0417</div>
             <i class="fa-solid fa-xmark" data-overlay-close style="font-size:24px;color:rgba(15,31,61,0.65);cursor:pointer;"></i>
           </div>
           <div style="flex:1;padding:32px;display:flex;flex-direction:column;gap:16px;">
-            <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Tomador</span><strong style="color:#0f1f3d;">Banco del Austro</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Prima anual</span><strong style="color:#0f1f3d;">$148.250</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Reserva matemática</span><strong style="color:#0f1f3d;">$1.024.300</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Tomador</span><strong style="color:#151f47;">Banco del Austro</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Prima anual</span><strong style="color:#151f47;">$148.250</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:16px;line-height:24px;"><span style="color:rgba(15,31,61,0.65);">Reserva matemática</span><strong style="color:#151f47;">$1.024.300</strong></div>
             <div style="border:1px dashed rgba(0,13,77,0.45);background:rgba(0,21,128,0.02);border-radius:8px;padding:24px 32px;text-align:center;font-size:14px;color:rgba(15,31,61,0.55);">Slot — contenido libre</div>
           </div>
           <div style="display:flex;gap:16px;justify-content:flex-end;padding:24px 32px;border-top:1px solid rgba(0,17,102,0.10);">
@@ -2633,7 +2723,7 @@ a{text-decoration:none;}
           <i class="fa-solid fa-chart-line" style="font-size:24px;color:var(--indigo);"></i>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="font-family:'Nunito',sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#0f1f3d;">Data Wave</div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#151f47;">Data Wave</div>
           <div style="font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);">Dashboards de analytics personalizados: siniestralidad por ramo, evolución de reservas y KPIs de suficiencia de prima en tiempo real.</div>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -2684,11 +2774,11 @@ a{text-decoration:none;}
     </div>
     <div class="demo-box" style="align-items:flex-start;padding-bottom:200px;">
       <div style="position:relative;display:inline-block;">
-        <button data-dropdown-trigger data-open-shadow="var(--neu-in)" data-closed-shadow="var(--neu-out)" aria-expanded="true" aria-haspopup="listbox" style="height:48px;display:inline-flex;align-items:center;gap:4px;padding:0 16px;border:none;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in);font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#0f1f3d;cursor:pointer;">Ramo: Vida Grupo <i class="fa-solid fa-chevron-up" style="font-size:14px;color:rgba(15,31,61,0.65);"></i></button>
+        <button data-dropdown-trigger data-open-shadow="var(--neu-in)" data-closed-shadow="var(--neu-out)" aria-expanded="true" aria-haspopup="listbox" style="height:48px;display:inline-flex;align-items:center;gap:4px;padding:0 16px;border:none;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in);font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#151f47;cursor:pointer;">Ramo: Vida Grupo <i class="fa-solid fa-chevron-up" style="font-size:14px;color:rgba(15,31,61,0.65);"></i></button>
         <div data-dropdown-menu data-dropdown-select style="position:absolute;top:calc(100% + 10px);left:0;width:280px;background:var(--bg);box-shadow:var(--neu-out);border:1px solid rgba(255,255,255,0.6);border-radius:8px;padding:8px 0;z-index:5;" role="listbox">
-          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;background:rgba(76,100,217,0.10);cursor:pointer;"><i class="fa-solid fa-check" style="font-size:14px;color:var(--indigo);"></i> Vida Grupo</div>
-          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;cursor:pointer;">Vida Individual</div>
-          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;cursor:pointer;">Salud</div>
+          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;background:rgba(76,100,217,0.10);cursor:pointer;"><i class="fa-solid fa-check" style="font-size:14px;color:var(--indigo);"></i> Vida Grupo</div>
+          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;cursor:pointer;">Vida Individual</div>
+          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;cursor:pointer;">Salud</div>
         </div>
       </div>
     </div>
@@ -2710,10 +2800,10 @@ a{text-decoration:none;}
     </div>
     <div class="demo-box">
       <div style="width:280px;background:var(--bg);box-shadow:var(--neu-out),0 20px 24px -4px rgba(0,0,0,0.08);border:1px solid rgba(255,255,255,0.6);border-radius:8px;padding:8px 0;">
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;cursor:pointer;"><i class="fa-solid fa-file-export" style="font-size:18px;color:rgba(15,31,61,0.65);"></i> Exportar triángulos</div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#0f1f3d;cursor:pointer;"><i class="fa-solid fa-clock-rotate-left" style="font-size:18px;color:rgba(15,31,61,0.65);"></i> Historial de cálculos</div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;cursor:pointer;"><i class="fa-solid fa-file-export" style="font-size:18px;color:rgba(15,31,61,0.65);"></i> Exportar triángulos</div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;cursor:pointer;"><i class="fa-solid fa-clock-rotate-left" style="font-size:18px;color:rgba(15,31,61,0.65);"></i> Historial de cálculos</div>
         <div style="padding:8px 16px;"><div style="height:1px;background:rgba(0,17,102,0.10);"></div></div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#c0392b;cursor:pointer;"><i class="fa-solid fa-trash" style="font-size:18px;"></i> Eliminar escenario</div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#c73a3a;cursor:pointer;"><i class="fa-solid fa-trash" style="font-size:18px;"></i> Eliminar escenario</div>
       </div>
     </div>
     <pre class="ds-code">&lt;div class="dropdown-list"&gt; &lt;!-- 280px · radius 8 · py 8
@@ -2748,19 +2838,19 @@ a{text-decoration:none;}
           <div style="text-align:right;padding-right:24px;">Siniestralidad</div>
           <div>Estado</div>
         </div>
-        <div style="display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;align-items:center;height:80px;padding:0 20px;margin-bottom:10px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:#0f1f3d;">
+        <div style="display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;align-items:center;height:80px;padding:0 20px;margin-bottom:10px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:#151f47;">
           <div style="font-weight:600;">Vida Grupo</div>
           <div style="text-align:right;padding-right:24px;">$12.430.500</div>
           <div style="text-align:right;padding-right:24px;color:#1e7e4a;">58,2% <i class="fa-solid fa-arrow-trend-down" style="font-size:13px;"></i></div>
           <div><span class="chip chip-green"><i class="fa-solid fa-circle-check"></i> Suficiente</span></div>
         </div>
-        <div style="display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;align-items:center;height:80px;padding:0 20px;margin-bottom:10px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:#0f1f3d;">
+        <div style="display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;align-items:center;height:80px;padding:0 20px;margin-bottom:10px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:#151f47;">
           <div style="font-weight:600;">Salud</div>
           <div style="text-align:right;padding-right:24px;">$8.917.040</div>
-          <div style="text-align:right;padding-right:24px;color:#c0392b;">81,7% <i class="fa-solid fa-arrow-trend-up" style="font-size:13px;"></i></div>
+          <div style="text-align:right;padding-right:24px;color:#c73a3a;">81,7% <i class="fa-solid fa-arrow-trend-up" style="font-size:13px;"></i></div>
           <div><span class="chip chip-yellow"><i class="fa-solid fa-clock"></i> En revisión</span></div>
         </div>
-        <div style="display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;align-items:center;height:80px;padding:0 20px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:#0f1f3d;">
+        <div style="display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;align-items:center;height:80px;padding:0 20px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:#151f47;">
           <div style="font-weight:600;">Desgravamen</div>
           <div style="text-align:right;padding-right:24px;">$4.203.880</div>
           <div style="text-align:right;padding-right:24px;color:#1e7e4a;">42,9% <i class="fa-solid fa-arrow-trend-down" style="font-size:13px;"></i></div>
@@ -2828,21 +2918,21 @@ a{text-decoration:none;}
       <div style="width:100%;max-width:720px;font-family:'Nunito',sans-serif;border-bottom:1px solid rgba(0,17,102,0.10);" data-accordion>
         <div style="border-top:1px solid rgba(0,17,102,0.10);">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 4px;cursor:pointer;" data-acc-header role="button" tabindex="0" aria-expanded="true">
-            <span style="font-size:16px;line-height:24px;font-weight:600;color:#0f1f3d;">¿Cómo se calcula la reserva IBNR?</span>
+            <span style="font-size:16px;line-height:24px;font-weight:600;color:#151f47;">¿Cómo se calcula la reserva IBNR?</span>
             <i class="fa-solid fa-chevron-up" style="font-size:16px;color:rgba(15,31,61,0.65);"></i>
           </div>
           <div style="margin:0 4px 16px;padding:16px 24px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);" data-acc-panel>Aplicamos triángulos de desarrollo de siniestros con Chain-Ladder y, cuando la historia es corta, Bornhuetter-Ferguson. El resultado se contrasta contra el mínimo regulatorio antes de contabilizarse.</div>
         </div>
         <div style="border-top:1px solid rgba(0,17,102,0.10);">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 4px;cursor:pointer;" data-acc-header role="button" tabindex="0" aria-expanded="false">
-            <span style="font-size:16px;line-height:24px;font-weight:600;color:#0f1f3d;">¿Qué tablas de mortalidad usa Actuaria Plus?</span>
+            <span style="font-size:16px;line-height:24px;font-weight:600;color:#151f47;">¿Qué tablas de mortalidad usa Actuaria Plus?</span>
             <i class="fa-solid fa-chevron-down" style="font-size:16px;color:rgba(15,31,61,0.65);"></i>
           </div>
           <div style="margin:0 4px 16px;padding:16px 24px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);" data-acc-panel class="acc-collapsed">Actuaria Plus incorpora las tablas CSO 2017 ajustadas y las tablas de experiencia EMSSA-09 y RV-2009. La selección depende del ramo y se documenta en cada nota técnica con trazabilidad ISO 9001.</div>
         </div>
         <div style="border-top:1px solid rgba(0,17,102,0.10);">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 4px;cursor:pointer;" data-acc-header role="button" tabindex="0" aria-expanded="false">
-            <span style="font-size:16px;line-height:24px;font-weight:600;color:#0f1f3d;">¿Con qué frecuencia se recalibran los modelos ML?</span>
+            <span style="font-size:16px;line-height:24px;font-weight:600;color:#151f47;">¿Con qué frecuencia se recalibran los modelos ML?</span>
             <i class="fa-solid fa-chevron-down" style="font-size:16px;color:rgba(15,31,61,0.65);"></i>
           </div>
           <div style="margin:0 4px 16px;padding:16px 24px;background:var(--bg);box-shadow:var(--neu-in);border-radius:12px;font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);" data-acc-panel class="acc-collapsed">Los modelos de deserción, liquidez y fraude de Data Analytics se recalibran trimestralmente, o antes si el monitoreo de deriva (drift) supera el umbral definido en el plan de gobierno de datos.</div>
@@ -2869,7 +2959,7 @@ a{text-decoration:none;}
       <div class="desc-text">Escala tipográfica de encabezados. H1 en Nunito SemiBold <span class="ds-code-inline">40px/48px</span> con letter-spacing −0.5px, color fuerte. Toda la jerarquía usa Nunito; el peso "Bold" del sistema equivale a SemiBold 600.</div>
       <div class="usage-note" style="margin-top:8px"><strong>Variantes Figma:</strong> type=H1 (escala de encabezados tipográficos).</div>
     </div>
-    <div class="demo-box" style="display:block;font-family:'Nunito',sans-serif;color:#0f1f3d;">
+    <div class="demo-box" style="display:block;font-family:'Nunito',sans-serif;color:#151f47;">
       <div style="font-weight:600;font-size:40px;line-height:48px;letter-spacing:-0.5px;margin-bottom:12px;">Suficiencia de prima 2026</div>
       <div style="font-weight:600;font-size:24px;line-height:32px;margin-bottom:12px;">H3 — Resultados por ramo</div>
       <div style="font-weight:600;font-size:20px;line-height:28px;margin-bottom:12px;">H4 — Supuestos del modelo</div>
@@ -2877,7 +2967,7 @@ a{text-decoration:none;}
     </div>
     <pre class="ds-code">&lt;h1 class="text-h1"&gt;Suficiencia de prima 2026&lt;/h1&gt;
 /* Nunito 600 · 40px / 48px · letter-spacing -0.5px ·
-   color: rgba(0,6,38,0.9) → NEO: #0f1f3d */</pre>
+   color: rgba(0,6,38,0.9) → NEO: #151f47 */</pre>
   </div>
 
   <!-- TEXT BLOCK -->
@@ -2893,7 +2983,7 @@ a{text-decoration:none;}
           <i class="fa-solid fa-shield-halved" style="font-size:24px;color:var(--indigo);"></i>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="font-weight:600;font-size:24px;line-height:32px;color:#0f1f3d;">Capital basado en riesgo</div>
+          <div style="font-weight:600;font-size:24px;line-height:32px;color:#151f47;">Capital basado en riesgo</div>
           <div style="font-size:16px;line-height:24px;color:rgba(15,31,61,0.65);">Calcula el requerimiento de capital por módulo — suscripción, mercado, crédito — y proyecta el ratio de solvencia bajo escenarios de estrés.</div>
         </div>
         <a href="#" style="font-size:16px;line-height:24px;font-weight:600;color:var(--navy);text-decoration:underline;">Conocer la metodología</a>
@@ -2949,24 +3039,24 @@ a{text-decoration:none;}
       <div style="display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:auto auto;gap:20px;padding:32px;border-radius:20px;background:rgba(0,21,128,0.02);border:1px solid rgba(0,17,102,0.10);font-family:'Nunito',sans-serif;">
         <div style="grid-row:1 / 3;display:flex;flex-direction:column;gap:28px;justify-content:center;padding:24px 12px;">
           <div style="display:flex;flex-direction:column;gap:16px;">
-            <div style="font-weight:600;font-size:40px;line-height:48px;letter-spacing:-1px;color:#0f1f3d;">Cálculo actuarial en tiempo real</div>
+            <div style="font-weight:600;font-size:40px;line-height:48px;letter-spacing:-1px;color:#151f47;">Cálculo actuarial en tiempo real</div>
             <div style="font-size:20px;line-height:28px;color:rgba(15,31,61,0.65);">Reservas, capital y primas con Actuaria Plus. 35 años de experiencia, ahora en la nube.</div>
           </div>
           <div style="display:flex;gap:16px;flex-wrap:wrap;">
-            <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:linear-gradient(135deg,#0f1f3d,#1d3563);color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;box-shadow:var(--neu-out);cursor:pointer;">Solicitar demo</button>
+            <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:linear-gradient(135deg,#151f47,#1d3563);color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;box-shadow:var(--neu-out);cursor:pointer;">Solicitar demo</button>
             <button style="height:56px;padding:0 24px;border:1px solid rgba(15,31,61,0.8);border-radius:12px;background:var(--bg);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;box-shadow:var(--neu-out);cursor:pointer;">Ver metodología</button>
           </div>
           <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
             <div style="display:flex;align-items:center;">
-              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4c64d9,#8fa3e8);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">MV</div>
-              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0f1f3d,#33498f);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">JC</div>
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3258a2,#6f8fc9);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">MV</div>
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#151f47,#33498f);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">JC</div>
               <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#de7c3a,#e8a36b);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">AT</div>
               <div style="width:48px;height:48px;border-radius:50%;background:rgba(15,31,61,0.16);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:rgba(15,31,61,0.65);font-weight:600;font-size:15px;">99+</div>
             </div>
             <div style="display:flex;flex-direction:column;gap:4px;">
               <div style="display:flex;align-items:center;gap:6px;color:#e8a912;font-size:18px;">
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                <span style="font-weight:600;font-size:16px;color:#0f1f3d;">4,8</span>
+                <span style="font-weight:600;font-size:16px;color:#151f47;">4,8</span>
               </div>
               <a href="#" style="font-size:14px;line-height:20px;color:var(--navy);text-decoration:underline;">De 6.000+ clientes</a>
             </div>
@@ -2976,7 +3066,7 @@ a{text-decoration:none;}
           <div style="font-weight:600;font-size:32px;line-height:38px;color:var(--indigo);">$2.400M</div>
           <div style="font-size:14px;line-height:20px;color:rgba(15,31,61,0.65);">en reservas calculadas cada mes</div>
         </div>
-        <div style="background:linear-gradient(135deg,#0f1f3d,#27407e);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--neu-out);">
+        <div style="background:linear-gradient(135deg,#151f47,#27407e);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--neu-out);">
           <div style="font-weight:600;font-size:32px;line-height:38px;color:#fff;">99,7%</div>
           <div style="font-size:14px;line-height:20px;color:rgba(255,255,255,0.75);">de precisión vs. cierre auditado</div>
         </div>
@@ -3008,9 +3098,9 @@ a{text-decoration:none;}
     <div class="demo-box">
       <div style="width:364px;max-width:100%;background:var(--bg);box-shadow:var(--neu-out);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:24px;font-family:'Nunito',sans-serif;">
         <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4c64d9,#8fa3e8);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:18px;border:1px solid rgba(0,17,102,0.10);">PG</div>
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3258a2,#6f8fc9);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:18px;border:1px solid rgba(0,17,102,0.10);">PG</div>
           <div style="display:flex;flex-direction:column;">
-            <span style="font-size:16px;line-height:24px;color:#0f1f3d;">Paula Guzmán</span>
+            <span style="font-size:16px;line-height:24px;color:#151f47;">Paula Guzmán</span>
             <span style="font-size:14px;line-height:20px;color:rgba(15,31,61,0.65);">Gerente Técnica · Seguros Equinoccial</span>
           </div>
         </div>
@@ -3041,7 +3131,7 @@ a{text-decoration:none;}
       <div style="display:flex;gap:4px;color:#e8a912;font-size:24px;">
         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><i class="fa-regular fa-star" style="color:rgba(15,31,61,0.35);"></i>
       </div>
-      <span style="font-family:'Nunito',sans-serif;font-weight:600;font-size:16px;line-height:24px;color:#0f1f3d;">3,5</span>
+      <span style="font-family:'Nunito',sans-serif;font-weight:600;font-size:16px;line-height:24px;color:#151f47;">3,5</span>
       <a href="#" style="font-size:14px;line-height:20px;color:var(--navy);text-decoration:underline;">(23 reseñas)</a>
     </div>
     <pre class="ds-code">&lt;div class="rating"&gt; &lt;!-- flex · gap 8 · items-center --&gt;
@@ -3066,8 +3156,8 @@ a{text-decoration:none;}
       <div style="display:flex;flex-direction:column;gap:8px;">
         <span style="font-size:13px;font-weight:600;color:rgba(15,31,61,0.55);">Small — 32px · solape −8px</span>
         <div style="display:flex;align-items:center;">
-          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4c64d9,#8fa3e8);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:12px;">MV</div>
-          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#0f1f3d,#33498f);border:2px solid var(--bg);margin-left:-8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:12px;">JC</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3258a2,#6f8fc9);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:12px;">MV</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#151f47,#33498f);border:2px solid var(--bg);margin-left:-8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:12px;">JC</div>
           <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#de7c3a,#e8a36b);border:2px solid var(--bg);margin-left:-8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:12px;">AT</div>
           <div style="width:32px;height:32px;border-radius:50%;background:rgba(15,31,61,0.16);border:2px solid var(--bg);margin-left:-8px;display:flex;align-items:center;justify-content:center;color:rgba(15,31,61,0.65);font-weight:600;font-size:11px;">99+</div>
         </div>
@@ -3075,8 +3165,8 @@ a{text-decoration:none;}
       <div style="display:flex;flex-direction:column;gap:8px;">
         <span style="font-size:13px;font-weight:600;color:rgba(15,31,61,0.55);">Medium — 48px · solape −12px</span>
         <div style="display:flex;align-items:center;">
-          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4c64d9,#8fa3e8);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">MV</div>
-          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0f1f3d,#33498f);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">JC</div>
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3258a2,#6f8fc9);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">MV</div>
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#151f47,#33498f);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">JC</div>
           <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#de7c3a,#e8a36b);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">AT</div>
           <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1e7e4a,#5cb785);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:16px;">LR</div>
           <div style="width:48px;height:48px;border-radius:50%;background:rgba(15,31,61,0.16);border:2px solid var(--bg);margin-left:-12px;display:flex;align-items:center;justify-content:center;color:rgba(15,31,61,0.65);font-weight:600;font-size:15px;">99+</div>
@@ -3345,16 +3435,16 @@ a{text-decoration:none;}
           <div class="donut-chart">
             <svg width="124" height="124" viewBox="0 0 42 42" style="flex-shrink:0">
               <circle cx="21" cy="21" r="15.915" fill="none" stroke="rgba(163,177,198,0.3)" stroke-width="6"></circle>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#0f1f3d" stroke-width="6" stroke-dasharray="52 48" stroke-dashoffset="25" stroke-linecap="round"></circle>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#4c64d9" stroke-width="6" stroke-dasharray="32 68" stroke-dashoffset="-27" stroke-linecap="round"></circle>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#de5e2d" stroke-width="6" stroke-dasharray="16 84" stroke-dashoffset="-59" stroke-linecap="round"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#151f47" stroke-width="6" stroke-dasharray="52 48" stroke-dashoffset="25" stroke-linecap="round"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#3258a2" stroke-width="6" stroke-dasharray="32 68" stroke-dashoffset="-27" stroke-linecap="round"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#e0592a" stroke-width="6" stroke-dasharray="16 84" stroke-dashoffset="-59" stroke-linecap="round"></circle>
               <text x="21" y="20.5" text-anchor="middle" style="font:800 7px Nunito;fill:var(--navy)">6.000+</text>
               <text x="21" y="26" text-anchor="middle" style="font:700 3.4px Nunito;fill:var(--text-dim)">clientes</text>
             </svg>
             <div class="donut-legend">
-              <div class="dl-item"><span class="dl-dot" style="background:#0f1f3d"></span> Vida · 52%</div>
-              <div class="dl-item"><span class="dl-dot" style="background:#4c64d9"></span> Salud · 32%</div>
-              <div class="dl-item"><span class="dl-dot" style="background:#de5e2d"></span> Generales · 16%</div>
+              <div class="dl-item"><span class="dl-dot" style="background:#151f47"></span> Vida · 52%</div>
+              <div class="dl-item"><span class="dl-dot" style="background:#3258a2"></span> Salud · 32%</div>
+              <div class="dl-item"><span class="dl-dot" style="background:#e0592a"></span> Generales · 16%</div>
             </div>
           </div>
         </div>
@@ -3416,7 +3506,7 @@ a{text-decoration:none;}
 }
 
 /* IMPORTANTE: requiere fondo con variación (gradiente o imagen)
-   No visible sobre fondo plano --bg #e8ecf4 */</pre>
+   No visible sobre fondo plano --bg #f3f3f3 */</pre>
     <div class="comp-desc">
       <div class="desc-title">Cuándo usar Glass</div>
       <div class="desc-text">Modales sobre contenido con gradiente · Overlays sobre dashboards con gráficas · Panels flotantes en pantallas con background imagen. <strong>No usar</strong> sobre fondo plano --bg — el blur no es visible.</div>
@@ -3689,7 +3779,7 @@ a{text-decoration:none;}
       <div style="display:flex;flex-direction:column;gap:20px;">
         <div><div class="act-eyebrow" style="margin-bottom:6px;">font-family--display · Lemon Milk Pro</div>
           <div style="font-family:var(--ff-display);font-size:40px;line-height:44px;font-weight:700;color:var(--text-strong);">Anticipamos los riesgos</div>
-          <div style="font-family:var(--ff-body);font-size:12px;color:var(--text-weak);margin-top:4px;">Titulares y wordmark. Fuente licenciada → en este DS cae a Tahoma. Subir el .woff2 a <code class="ds-code-inline">/fonts</code> para fidelidad total.</div></div>
+          <div style="font-family:var(--ff-body);font-size:12px;color:var(--text-weak);margin-top:4px;">Titulares y wordmark. Fuente licenciada → el DS la carga por <code class="ds-code-inline">@font-face</code> desde el CDN del propio actuaria.com (pesos 400/500/700). Fidelidad 1:1.</div></div>
         <div><div class="act-eyebrow" style="margin-bottom:6px;">font-family--heading · Nunito</div>
           <div style="font-family:var(--ff-heading);font-size:32px;line-height:40px;font-weight:700;color:var(--text-strong);">Subtítulos y botones</div></div>
         <div><div class="act-eyebrow" style="margin-bottom:6px;">font-family--body / subheading · Prompt</div>
@@ -3775,7 +3865,7 @@ a{text-decoration:none;}
     <p class="desc-text" style="margin-bottom:12px;">Barra flotante tipo píldora (no pegada al borde). Contiene logo, enlaces con chevron, selector de idioma ES/EN, toggle claro/oscuro, botón <em>Contacto</em> outline y botón <em>actuaria+</em> sólido navy.</p>
     <div class="act-canvas">
       <div class="act-navbar">
-        <a class="act-logo"><span class="act-logo-mark"></span> ACTUARIA<sup style="font-size:9px;top:-8px;position:relative">®</sup></a>
+        <a class="act-logo"><svg class="act-logo-svg" viewBox="0 5.25219 164.918 39.6005" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Actuaria"><g fill="var(--logo-navy)"><path d="M47.1299 29.8474H37.603L36.231 32.9067H32.8081L42.2719 12.3646H42.461L51.9248 32.9067H48.5019L47.1299 29.8474ZM45.9033 27.1372L42.3689 19.2685L38.8248 27.1372H45.9033Z"/><path d="M51.7744 22.8562C51.7744 17.1886 56.5063 12.4276 62.1642 12.4276C64.7726 12.4664 67.1821 13.5767 69.1554 15.5014L67.3179 17.9886C65.9071 16.5777 64.0696 15.642 62.0963 15.642C58.4504 15.642 54.9645 18.837 54.9645 22.8708C54.9645 26.9045 58.4989 30.0656 62.106 30.0656C64.1665 30.0656 65.941 29.0426 67.3276 27.6657L69.1505 30.211C67.4149 31.9225 65.2041 33.2315 62.2078 33.2315C56.5014 33.2315 51.7695 28.5335 51.7695 22.8562H51.7744Z"/><path d="M84.2821 15.9135H78.886V32.9067H75.7152V15.9135H70.3191V12.7767H84.2821V15.9135Z"/><path d="M86.6045 25.2804V12.7767H89.7752V25.2658C89.7752 28.0487 91.7339 30.085 94.1969 30.085C96.6598 30.085 98.6427 28.0487 98.6427 25.2658V12.7767H101.828V25.2755C101.828 29.8959 98.4924 33.28 94.2114 33.28C89.9304 33.28 86.6045 29.8959 86.6045 25.2755V25.2804Z"/><path d="M116.315 29.8474H106.788L105.416 32.9067H101.993L111.457 12.3646H111.646L121.11 32.9067H117.687L116.315 29.8474ZM115.088 27.1372L111.554 19.2685L108.01 27.1372H115.088Z"/><path d="M134.408 32.9067L128.988 25.1155H126.515V32.9067H123.354L123.34 12.7767H129.594C133.342 12.7767 136.41 15.6614 136.41 19.2443C136.41 21.8429 134.738 24.1022 132.425 24.8489L138.282 32.9018H134.398L134.408 32.9067ZM129.676 22.4926C131.577 22.5072 133.162 20.9703 133.162 19.1716C133.162 17.3729 131.553 15.9135 129.676 15.9135H126.506V22.4926H129.676Z"/><path d="M140.415 12.7767H143.576V32.9067H140.415V12.7767Z"/><path d="M160.123 29.8474H150.596L149.224 32.9067H145.802L155.265 12.3646H155.454L164.918 32.9067H161.495L160.123 29.8474ZM158.897 27.1372L155.362 19.2685L151.818 27.1372H158.897Z"/></g><g><path d="M0 32.9115H10.8116V12.7961C10.8116 12.7961 8.74141 22.8514 0 32.9115Z" fill="var(--logo-orange)"/><path d="M12.6929 5.25219C21.4828 8.2775 27.7807 15.9474 27.7807 25.547C27.7807 28.1263 27.3249 30.6037 26.491 32.9067H12.6977V5.25219H12.6929Z" fill="var(--logo-navy)"/><path d="M5.40576 44.8527C13.5605 44.8527 21.7056 40.8093 25.5212 34.7974H5.40576V44.8527Z" fill="var(--logo-blue)"/></g></svg></a>
         <div class="act-nav-links">
           <a class="act-nav-link">Soluciones <i class="fa-solid fa-chevron-down"></i></a>
           <a class="act-nav-link">Calculadoras <i class="fa-solid fa-chevron-down"></i></a>
@@ -3790,10 +3880,10 @@ a{text-decoration:none;}
     </div>
     <div class="comp-desc">
       <div class="desc-title">Anatomía medida en producción</div>
-      <div class="desc-text">Altura de link 44px · padding 0 16px · radius 8px · Nunito 600 16px. Contenedor: radius 40px · borde <span class="ds-code-inline">#d8d8dc</span> · sombra <span class="ds-code-inline">0 10px 30px rgba(15,23,42,.10)</span>. Botón actuaria+: navy <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px.</div>
+      <div class="desc-text">Altura de link 44px · padding 0 16px · radius 8px · Nunito 600 16px. Contenedor: radius 40px · borde <span class="ds-code-inline">#d8d8dc</span> · sombra <span class="ds-code-inline">0 10px 30px rgba(15,23,42,.10)</span>. Botón actuaria+: navy <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px. Logotipo: imagotipo oficial inline (velero + wordmark), 30px de alto, con los colores exactos del vector <span class="ds-code-inline">#111C4E</span> / <span class="ds-code-inline">#E0592A</span> / <span class="ds-code-inline">#385CAD</span>.</div>
     </div>
     <pre class="ds-code">&lt;nav class="act-navbar"&gt;
-  &lt;a class="act-logo"&gt;&lt;span class="act-logo-mark"&gt;&lt;/span&gt; ACTUARIA&lt;/a&gt;
+  &lt;a class="act-logo"&gt;&lt;svg class="act-logo-svg" viewBox="0 5.25 164.9 39.6"&gt;…&lt;/svg&gt;&lt;/a&gt;
   &lt;div class="act-nav-links"&gt;
     &lt;a class="act-nav-link"&gt;Soluciones &lt;i class="fa-solid fa-chevron-down"&gt;&lt;/i&gt;&lt;/a&gt;
     &lt;a class="act-btn-plus"&gt;actuaria+&lt;/a&gt;
@@ -4251,19 +4341,21 @@ a{text-decoration:none;}
           <tr><td>Color de marca</td><td><span class="act-sw" style="background:#4c64d9"></span> <code class="ds-code-inline">#4c64d9</code> índigo</td><td><span class="act-sw" style="background:#151f47"></span> <code class="ds-code-inline">#151f47</code> navy</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
           <tr><td>Acento</td><td><span class="act-sw" style="background:#de5e2d"></span> <code class="ds-code-inline">#de5e2d</code></td><td><span class="act-sw" style="background:#e0592a"></span> <code class="ds-code-inline">#e0592a</code></td><td><span class="act-chipset is-brand">corregido</span></td></tr>
           <tr><td>Fondo base</td><td><code class="ds-code-inline">#e8ecf4</code></td><td><code class="ds-code-inline">#f3f3f3</code> + patrón topográfico</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
-          <tr><td>Tipografía</td><td>Solo Nunito</td><td>Prompt + Nunito + Lemon Milk Pro</td><td><span class="act-chipset is-orange">parcial</span></td></tr>
+          <tr><td>Tipografía</td><td>Solo Nunito</td><td>Prompt + Nunito + Lemon Milk Pro</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
           <tr><td>Arquitectura de tokens</td><td>Plana (1 capa)</td><td>3 capas + modo Dark</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
           <tr><td>Escala de spacing</td><td>No documentada</td><td>17 pasos (0→256)</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
           <tr><td>Radios de píldora</td><td>Ausentes</td><td>40 / 50 / 64 px</td><td><span class="act-chipset is-orange">doc. sin token</span></td></tr>
           <tr><td>Navbar, Footer, Form</td><td>Genéricos</td><td>Componentes reales ×27/×26/×9</td><td><span class="act-chipset is-brand">añadidos</span></td></tr>
           <tr><td>Odómetro, marquee, typing</td><td>Ausentes</td><td>En la home</td><td><span class="act-chipset is-brand">añadidos</span></td></tr>
+          <tr><td>Logotipo en navbar</td><td>Marca improvisada</td><td>Imagotipo oficial (velero + wordmark)</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
+          <tr><td>Fuentes reales</td><td>Fallback a Tahoma</td><td>@font-face desde CDN del sitio</td><td><span class="act-chipset is-brand">corregido</span></td></tr>
           <tr><td>WhatsApp + barra móvil</td><td>Ausentes</td><td>En las 26 páginas</td><td><span class="act-chipset is-brand">añadidos</span></td></tr>
         </tbody>
       </table>
     </div>
     <div class="comp-desc">
       <div class="desc-title">Pendientes</div>
-      <div class="desc-text">1 · Subir <strong>Lemon Milk Pro</strong> (.woff2) al repo para fidelidad tipográfica — hoy cae a Tahoma. 2 · Registrar <span class="ds-code-inline">corner-radius--40/50/64</span> en la colección 📐 Spacing de Webflow. 3 · Documentar el <strong>modo Dark</strong> de 🏷️ Colours semantic (ya existe en Webflow, aún sin demo aquí).</div>
+      <div class="desc-text">1 · Registrar <span class="ds-code-inline">corner-radius--40/50/64</span> en la colección 📐 Spacing de Webflow (hoy hardcodeados en navbar, botones y cards). 2 · Documentar el <strong>modo Dark</strong> de 🏷️ Colours semantic (ya existe en Webflow, aún sin demo aquí). 3 · Fijar <span class="ds-code-inline">font-family--body</span> en el <span class="ds-code-inline">body</span> del sitio: hoy resuelve a Arial y Prompt se aplica solo por clase.</div>
       <div class="usage-note" style="margin-top:8px;">Fuente de verdad: Webflow site <span class="ds-code-inline">6967c96e0fba2ea4f94d3c69</span>, 31 páginas, publicado el 2026-11-24. Auditoría hecha sobre el DOM en vivo + Webflow Data API.</div>
     </div>
   </div>
