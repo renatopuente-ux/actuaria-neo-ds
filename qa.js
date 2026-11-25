@@ -42,10 +42,15 @@
     }
   });
 
-  /* ── 4 · Ninguna imagen rota ── */
+  /* ── 4 · Ninguna imagen rota ──
+     Ojo: `complete && naturalWidth===0` solo detecta fallos YA resueltos.
+     Una imagen aún cargando pasa en silencio, así que se reporta aparte. */
+  let pendientes = 0;
   document.querySelectorAll('img').forEach(i => {
-    if (i.complete && i.naturalWidth === 0) add('imagen-rota', i.src.split('/').pop());
+    if (!i.complete) { pendientes++; return; }
+    if (i.naturalWidth === 0) add('imagen-rota', i.src.split('/').pop());
   });
+  if (pendientes) add('imagen-pendiente', `${pendientes} sin resolver — volver a ejecutar tras la carga`);
 
   /* ── 5 · Los contratos para IA deben parsear ── */
   const specs = [...document.querySelectorAll('[data-ai-component]')];
@@ -62,7 +67,25 @@
     if (h && h.startsWith('#') && !document.getElementById(h.slice(1))) add('ancla-rota', h);
   });
 
-  /* ── 7 · Contraste mínimo del texto (WCAG 2.1) ──
+  /* ── 7 · Chips, etiquetas y botones no se estiran al contenedor ──
+     Un hijo de flex-column recibe align-self:stretch y "blockifica" el
+     inline-flex: el chip acaba ocupando todo el ancho. Se compara el ancho
+     real contra el que tendria con width:max-content. */
+  const SEL_INLINE = '.act-chipset,.act-eyebrow,.act-card-sol-cta,.act-cert-link,.act-blog-cta,' +
+                     '.act-btn-primary,.act-btn-ghost,.act-btn-orange,.act-btn-contacto,.act-btn-plus';
+  document.querySelectorAll(SEL_INLINE).forEach(e => {
+    if (!e.offsetHeight || e.closest('[data-qa-ignore]')) return;
+    const probe = e.cloneNode(true);
+    Object.assign(probe.style, { position: 'absolute', visibility: 'hidden', width: 'max-content', alignSelf: 'auto' });
+    document.body.appendChild(probe);
+    const natural = probe.offsetWidth;
+    probe.remove();
+    if (e.offsetWidth > natural + 6) {
+      add('estirado', `${(e.className || '').toString().slice(0, 30)} ${e.offsetWidth}px vs ${natural}px — «${(e.innerText || '').trim().slice(0, 24)}»`);
+    }
+  });
+
+  /* ── 8 · Contraste mínimo del texto (WCAG 2.1) ──
      El fondo se COMPONE: un tinte con alpha sobre su ancestro no es un color
      sólido. Ignorarlo producía falsos positivos (navy 19% leído como navy
      sólido → 1.00:1). Si hay degradado en la cadena, no se puede calcular

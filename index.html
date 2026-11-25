@@ -71,6 +71,40 @@
 .pg-stage.is-dark .track-name{color:#fff;}
 .pg-stage.is-dark .track-time{color:rgba(255,255,255,.7);}
 .pg-stage.is-dark .track-step::before{background:rgba(255,255,255,.22);}
+
+/* ── Componentes que NUNCA deben estirarse al ancho del contenedor ──
+   Un hijo de un flex-container en columna recibe align-self:stretch por
+   defecto, y eso ignora el inline-flex (el display se "blockifica" a flex).
+   Chips, eyebrows y enlaces deben medir solo su contenido, asi que se fijan
+   align-self + width de forma explicita. */
+.act-chipset,
+.act-eyebrow,
+.act-card-sol-cta,
+.act-cert-link,
+.act-blog-cta,
+.act-blog-chip,
+.act-button-ring,
+.act-btn-primary,
+.act-btn-ghost,
+.act-btn-orange,
+.act-btn-contacto,
+.act-btn-plus,
+.act-stars{
+  align-self:flex-start;
+  width:fit-content;
+  max-width:100%;
+}
+/* dentro de una fila (.act-row, .act-check-row) el flex-start vertical
+   descolocaria el centrado: ahi se restituye */
+.act-row > .act-chipset,
+.act-row > .act-button-ring,
+.act-row > .act-btn-primary,
+.act-row > .act-btn-ghost,
+.act-row > .act-btn-orange,
+.act-row > .act-btn-contacto,
+.act-row > .act-btn-plus{align-self:center;}
+/* el eyebrow sigue siendo una etiqueta de bloque: solo limita su ancho */
+.act-eyebrow{display:inline-block;}
 </style>
 
 <style>
