@@ -8,11 +8,16 @@ Léelo completo antes de escribir una sola línea. Las reglas marcadas **MUST** 
 
 ## 1 · Fuentes de verdad, en orden de precedencia
 
-1. **`ds-spec.json`** — tokens y reglas en formato máquina. Es la referencia canónica.
-2. **`index.html`** — el documento vivo. Cada componente lleva un bloque `<details class="ai-spec" data-ai-component="...">` con su contrato en JSON.
-3. **El sitio en producción** (`actuaria.com`, Webflow site `6967c96e0fba2ea4f94d3c69`) — si hay conflicto entre el DS y producción, **gana producción**, y hay que reportar la discrepancia.
+1. **BRANDBOOK — normativo.** `actuaria-brandbook-ai/tokens/tokens.json` es la **fuente canónica de valores de marca**. Índice para LLMs: [`llms.txt`](https://renatopuente-ux.github.io/actuaria-brandbook-ai/llms.txt). Documentos narrativos en `/brand/01-identidad.md` … `/brand/07-gobernanza.md`.
+2. **`ds-spec.json`** — tokens del DS en formato máquina, derivados y reconciliados.
+3. **`index.html`** — el documento vivo. Cada componente lleva `<details class="ai-spec" data-ai-component="...">` con su contrato en JSON.
+4. **El sitio en producción** (Webflow site `6967c96e0fba2ea4f94d3c69`) — es lo **implementado**, no lo normativo.
 
-Si un valor no está en ninguna de las tres: **NO lo inventes**. Pregunta o marca `TODO` explícito.
+> **Regla del propio brandbook:** «Si un color, fuente o valor no aparece en `tokens.json` o en `/brand`, **NO es de marca: no lo inventes**.»
+
+**Cuando brandbook y producción difieran: manda el BRANDBOOK y se reporta la brecha.** NEVER elijas unilateralmente ni silencies la diferencia. Las brechas conocidas están en la sección *Brandbook vs producción* del documento y en `known_gaps` del contrato `brandbook-reconciliation`.
+
+Si un valor no está en ninguna fuente: **NO lo inventes**. Pregunta o marca `TODO` explícito.
 
 ---
 
@@ -51,6 +56,38 @@ Trampas verificadas midiendo producción:
 **MUST**: antes de asignar una familia, consulta `tokens.typography.measured_in_production` en `ds-spec.json`. No deduzcas la familia desde el rol del elemento.
 
 Lemon Milk Pro es **licenciada**. Se carga por `@font-face` desde el CDN de Webflow del propio sitio. **NEVER** copies el `.woff2` a un repo público.
+
+---
+
+## 3·bis · Reglas normativas del brandbook
+
+Valores canónicos (con Pantone, para pieza impresa):
+
+| Rol | HEX | Pantone |
+|---|---|---|
+| Navy institucional | `#151F47` | 2766 C |
+| Azul secundario | `#3061AA` | 7455 C |
+| Naranja acento | `#DF5E2D` | 7579 C |
+| Superficie base | `#E8ECF4` | — |
+| Neutro claro | `#D9DEEB` | — |
+| Naranja claro | `#FFBBA1` | — |
+
+Reglas duras:
+
+- **Proporción 60/30/10** — ~60% navy/neutro, ~30% azul, ~10% naranja. El naranja es **acento**: **NEVER** fondo dominante ni bloques de texto largos.
+- **Naranja sobre navy MUST ser `#FFBBA1`** (9.76:1 AAA). `#DF5E2D` puro sobre navy da 4.38:1 y está **prohibido** como texto.
+- **Títulos en Lemon Milk SIEMPRE en MAYÚSCULAS.** Sin licencia, el fallback es **Nunito Black** — **NEVER** Tahoma ni una sans genérica.
+- **NEVER** uses Nunito para párrafos largos ni Prompt para títulos.
+- **NEVER** mezcles **Nunito Sans**: es otra familia.
+- Logo: el símbolo **nunca** va a la derecha del wordmark; no recolorear el wordmark; no condensar ni estirar. Área de seguridad mínima `0.5x`, donde `x` = altura de la A del wordmark.
+
+Identidad verbal: claim **«Trazamos el camino juntos.»** · arquetipo **El Tutor** (El Sabio + El Cuidador), tono mentor: claro, riguroso, cercano · metáfora **cartas de navegación / «mar de datos»**.
+
+### Advertencia de contraste verificada
+
+El brandbook afirma que sus niveles `text` están verificados contra `#E8ECF4`. **Recalculado, no cumplen:** success-text 2.30:1, warning-text 1.77:1, danger-text 4.34:1, info-text 4.20:1. Ninguno llega a 4.5:1.
+
+**MUST**: no uses esos niveles para texto pequeño de estado sin oscurecerlos. Alternativa segura: color solo en el icono o el punto, y el texto en navy. Decisión de fondo **pendiente del equipo de marca** — no la tomes tú.
 
 ---
 
@@ -151,4 +188,4 @@ Para extraerlos todos programáticamente:
 
 ---
 
-Actuaria Consultores · DS v2.1.0
+Actuaria Consultores · DS v2.2.0 · reconciliado con el brandbook

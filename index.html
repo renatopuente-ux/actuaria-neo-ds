@@ -80,6 +80,29 @@
    Arquitectura de 3 capas: primitive → theme → semantic
    ═══════════════════════════════════════════════════════════════════ */
 :root {
+  /* ═══ CAPA 0 · BRANDBOOK (NORMATIVO) ═══
+     Fuente canonica: github.com/renatopuente-ux/actuaria-brandbook-ai/tokens/tokens.json
+     Regla del brandbook: «Si un color, fuente o valor no aparece en tokens.json
+     o en /brand, NO es de marca: no lo inventes.»
+     Donde el sitio en produccion difiera de estos valores, MANDA EL BRANDBOOK
+     y la diferencia se reporta como brecha (ver seccion Brandbook vs Produccion). */
+  --bb-navy:#151F47;        /* Pantone 2766 C · institucional */
+  --bb-azul:#3061AA;        /* Pantone 7455 C · secundario    */
+  --bb-naranja:#DF5E2D;     /* Pantone 7579 C · acento        */
+  --bb-surface:#E8ECF4;     /* superficie base, cards neumorficas */
+  --bb-light:#D9DEEB;       /* neutro claro, fondos alternos      */
+  --bb-white:#FFFFFF;
+  --bb-naranja-soft:#FFBBA1;/* OBLIGATORIO para texto naranja sobre navy (AA) */
+  /* UI semantico del brandbook: cada rol trae 500 / 100-soft / text */
+  --bb-success-500:#00C781; --bb-success-100:#66DDB3; --bb-success-text:#00B374;
+  --bb-warning-500:#FFBB38; --bb-warning-100:#FFD688; --bb-warning-text:#E6A832;
+  --bb-danger-500:#FF4040;  --bb-danger-100:#FF8C8C;  --bb-danger-text:#CC3333;
+  --bb-info-500:#3C76F1;    --bb-info-100:#ECF1FE;    --bb-info-text:#366AD9;
+  /* forma */
+  --bb-radius-sm:5.333px; --bb-radius-md:16px; --bb-radius-lg:48px;
+  /* proporcion cromatica obligatoria */
+  --bb-proportion:"60% navy/neutro · 30% azul · 10% naranja";
+
   /* ── CAPA 1 · 🎨 COLOURS PRIMITIVE ── */
   --prim-blue-1000:#151f47;   --prim-blue-800:#151f47cc;
   --prim-blue-200:#151f4733;  --prim-blue-50:#151f470d;
@@ -145,7 +168,7 @@
   --cr-40:40px; --cr-50:50px; --cr-64:64px; --cr-pill:9999px;
 
   /* ── 🔤 TYPOGRAPHY (familias oficiales) ── */
-  --ff-display:'Lemon Milk Pro',Tahoma,sans-serif;  /* servida desde el CDN de actuaria.com */
+  --ff-display:'Lemon Milk Pro','Nunito',sans-serif;  /* fallback del brandbook: Nunito Black, NO una sans generica */
   --ff-heading:'Nunito',sans-serif;
   --ff-body:'Prompt',sans-serif;
   --ff-subheading:'Prompt',sans-serif;
@@ -161,11 +184,15 @@
 
   /* ── TEXTO ACCESIBLE SOBRE FONDO CLARO (ratios medidos, WCAG AA) ── */
   /* los *-1000 son colores de FILL; como TEXTO sobre blanco no llegan a 4.5:1 */
-  --text-orange:#a8431c;  /* 6.03:1 · ya existe en el sitio como sitio--texto--a8431c */
-  --text-green:#2e7d32;   /* 5.13:1 */
-  --text-amber:#8a5200;   /* 6.39:1 */
-  --text-teal:#1a74a8;    /* 5.11:1 */
-  --text-red:#c73a3a;     /* 5.13:1 */
+  /* el brandbook YA define el nivel "text" de cada rol: usar esos, no inventar */
+  --text-green:var(--bb-success-text);   /* #00B374 */
+  --text-amber:var(--bb-warning-text);   /* #E6A832 */
+  --text-red:var(--bb-danger-text);      /* #CC3333 */
+  --text-teal:var(--bb-info-text);       /* #366AD9 */
+  /* el brandbook no define naranja-texto sobre claro; #a8431c es derivado del
+     sitio (sitio--texto--a8431c) y se mantiene por contraste AA a 14px */
+  --text-orange:#a8431c;                 /* 6.03:1 sobre blanco */
+  --text-orange-on-navy:var(--bb-naranja-soft); /* #FFBBA1 · regla dura del brandbook */
 
   /* ── FOOTER (medido en produccion: .footer_card) ── */
   --footer-bg:#0e1533; --footer-text:rgba(255,255,255,.75);
@@ -814,6 +841,12 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#app-shell">App Shell</a>
       <a class="ds-nav-link" href="#bento">Bento Grid</a>
       <a class="ds-nav-link" href="#grids">Grids de datos</a>
+    </div>
+
+    <div class="ds-nav-group">
+      <span class="ds-nav-label">📕 Marca</span>
+      <a class="ds-nav-link" href="#act-brandbook">Brandbook vs producción</a>
+      <a class="ds-nav-link" href="#cmp-logos">Logotipos</a>
     </div>
 
     <div class="ds-nav-group">
@@ -4972,6 +5005,165 @@ contratos.find(c =&gt; c.component === 'tracking').spec.do_not;</pre>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     BRANDBOOK (NORMATIVO) vs PRODUCCION (IMPLEMENTADO)
+     ═══════════════════════════════════════════════════════════════════ -->
+<section id="act-brandbook" class="ds-section">
+  <div class="section-header">
+    <h2>Brandbook vs producción</h2>
+    <p>Hay <strong>tres</strong> fuentes de verdad y no coinciden. El <a href="https://actuaria.com/brandbook">brandbook</a> es <strong>normativo</strong> (lo que la marca debe ser), Webflow es lo <strong>implementado</strong>, y Figma define los componentes. Donde difieran manda el brandbook; esta sección expone cada diferencia en vez de ocultarla.</p>
+  </div>
+
+  <div class="comp-block" id="act-bb-fuentes">
+    <h3>Jerarquía de fuentes</h3>
+    <div class="act-demo">
+      <div class="act-grid-3">
+        <div class="act-card-base" style="box-shadow:var(--neu-out);">
+          <span class="act-chipset is-brand"><i class="fa-solid fa-scale-balanced"></i> 1 · Normativo</span>
+          <h4 style="font-family:var(--ff-display);font-size:18px;color:var(--text-strong);">Brandbook</h4>
+          <p style="font-family:var(--ff-body);font-size:13px;line-height:19px;color:var(--text-weak);margin:0;"><code class="ds-code-inline">actuaria-brandbook-ai/tokens/tokens.json</code> — paleta con Pantone/CMYK, tres familias tipográficas, proporción 60/30/10, reglas del imagotipo. <strong>40 páginas A3.</strong></p>
+        </div>
+        <div class="act-card-base">
+          <span class="act-chipset"><i class="fa-solid fa-globe"></i> 2 · Implementado</span>
+          <h4 style="font-family:var(--ff-display);font-size:18px;color:var(--text-strong);">Webflow</h4>
+          <p style="font-family:var(--ff-body);font-size:13px;line-height:19px;color:var(--text-weak);margin:0;">Site <code class="ds-code-inline">6967c96e…</code> — 357 variables CSS en 3 capas. Es lo que el usuario ve hoy.</p>
+        </div>
+        <div class="act-card-base">
+          <span class="act-chipset"><i class="fa-brands fa-figma"></i> 3 · Componentes</span>
+          <h4 style="font-family:var(--ff-display);font-size:18px;color:var(--text-strong);">Figma</h4>
+          <p style="font-family:var(--ff-body);font-size:13px;line-height:19px;color:var(--text-weak);margin:0;">Design-System-Actuaria — inventario de 54 componentes con sus variantes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Regla del propio brandbook</div>
+      <div class="desc-text">«Si un color, fuente o valor no aparece en <code class="ds-code-inline">tokens.json</code> o en <code class="ds-code-inline">/brand</code>, <strong>NO es de marca: no lo inventes</strong>.»</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="act-bb-deltas">
+    <h3>Diferencias detectadas</h3>
+    <p class="desc-text" style="margin-bottom:12px;">Δ RGB es la distancia euclídea entre ambos valores. Por debajo de ~6 la diferencia es imperceptible; por encima de ~10 es visible en superficies grandes.</p>
+    <div class="act-demo" style="background:#fff;overflow-x:auto;">
+      <table class="act-tokentable">
+        <thead><tr><th>Token</th><th>Brandbook (normativo)</th><th>Producción</th><th style="text-align:right">Δ RGB</th><th>Acción</th></tr></thead>
+        <tbody>
+          <tr><td>Navy institucional</td><td><span class="act-sw" style="background:#151F47;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#151F47</code></td><td><span class="act-sw" style="background:#151f47;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#151f47</code></td><td style="text-align:right">0.0</td><td><span class="act-chipset is-brand">✓ coincide</span></td></tr>
+          <tr><td>Azul secundario</td><td><span class="act-sw" style="background:#3061AA;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#3061AA</code></td><td><span class="act-sw" style="background:#3258a2;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#3258a2</code></td><td style="text-align:right">12.2</td><td><span class="act-chipset is-orange">brecha</span></td></tr>
+          <tr><td>Naranja acento</td><td><span class="act-sw" style="background:#DF5E2D;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#DF5E2D</code></td><td><span class="act-sw" style="background:#e0592a;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#e0592a</code></td><td style="text-align:right">5.9</td><td><span class="act-chipset">tolerable</span></td></tr>
+          <tr><td>Superficie base</td><td><span class="act-sw" style="background:#E8ECF4;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#E8ECF4</code></td><td><span class="act-sw" style="background:#f3f3f3;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#f3f3f3</code></td><td style="text-align:right">13.1</td><td><span class="act-chipset is-orange">brecha</span></td></tr>
+          <tr><td>Logo · casco</td><td><span class="act-sw" style="background:#3061AA;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#3061AA</code></td><td><span class="act-sw" style="background:#385CAD;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#385CAD</code></td><td style="text-align:right">9.9</td><td><span class="act-chipset is-orange">brecha</span></td></tr>
+          <tr><td>Logo · vela mayor</td><td><span class="act-sw" style="background:#151F47;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#151F47</code></td><td><span class="act-sw" style="background:#111C4E;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#111C4E</code></td><td style="text-align:right">8.6</td><td><span class="act-chipset is-orange">brecha</span></td></tr>
+          <tr><td>Éxito</td><td><span class="act-sw" style="background:#00C781;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#00C781</code></td><td><span class="act-sw" style="background:#4caf50;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#4caf50</code></td><td style="text-align:right">87.9</td><td><span class="act-chipset is-orange">divergente</span></td></tr>
+          <tr><td>Aviso</td><td><span class="act-sw" style="background:#FFBB38;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#FFBB38</code></td><td><span class="act-sw" style="background:#ff9800;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#ff9800</code></td><td style="text-align:right">64.5</td><td><span class="act-chipset is-orange">divergente</span></td></tr>
+          <tr><td>Error</td><td><span class="act-sw" style="background:#FF4040;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#FF4040</code></td><td><span class="act-sw" style="background:#c73a3a;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#c73a3a</code></td><td style="text-align:right">56.3</td><td><span class="act-chipset is-orange">divergente</span></td></tr>
+          <tr><td>Info</td><td><span class="act-sw" style="background:#3C76F1;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#3C76F1</code></td><td><span class="act-sw" style="background:#1a74a8;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#1a74a8</code></td><td style="text-align:right">76.3</td><td><span class="act-chipset is-orange">divergente</span></td></tr>
+          <tr><td>Fallback de títulos</td><td><code class="ds-code-inline">Nunito Black</code></td><td><code class="ds-code-inline">Tahoma</code></td><td style="text-align:right">—</td><td><span class="act-chipset is-brand">✓ corregido</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Lectura</div>
+      <div class="desc-text">Los cuatro colores semánticos de UI <strong>divergen por completo</strong>: producción usa la paleta Material (<code class="ds-code-inline">#4caf50</code>, <code class="ds-code-inline">#ff9800</code>…) mientras el brandbook define una propia. No es un error de redondeo: son decisiones distintas que hay que conciliar antes de que el producto crezca.</div>
+      <div class="usage-note" style="margin-top:8px;">La superficie base es la brecha de mayor impacto visual: el neumorfismo del brandbook está calculado sobre <span class="ds-code-inline">#E8ECF4</span> (azulado), no sobre el <span class="ds-code-inline">#f3f3f3</span> (neutro) que usa el sitio. Las sombras cambian de carácter.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="act-bb-reglas">
+    <h3>Reglas normativas que el DS no tenía</h3>
+    <div class="act-demo">
+      <div style="display:flex;flex-direction:column;gap:var(--sp-16);">
+        <div>
+          <div class="act-eyebrow" style="margin-bottom:8px;">Proporción cromática 60/30/10</div>
+          <div style="display:flex;height:48px;border-radius:var(--cr-12);overflow:hidden;font-family:var(--ff-heading);font-size:12px;font-weight:700;">
+            <div style="flex:60;background:var(--bb-navy);color:#fff;display:grid;place-items:center;">60% navy / neutro</div>
+            <div style="flex:30;background:var(--bb-azul);color:#fff;display:grid;place-items:center;">30% azul</div>
+            <div style="flex:10;background:var(--bb-naranja);color:#fff;display:grid;place-items:center;">10%</div>
+          </div>
+          <p style="font-family:var(--ff-body);font-size:13px;color:var(--text-weak);margin-top:8px;">El naranja es <strong>acento</strong>: nunca fondo dominante ni bloques de texto largos.</p>
+        </div>
+        <div>
+          <div class="act-eyebrow" style="margin-bottom:8px;">Naranja sobre navy · regla dura</div>
+          <div class="act-row">
+            <div style="background:var(--bb-navy);padding:var(--sp-16) var(--sp-20);border-radius:var(--cr-12);">
+              <span style="color:#DF5E2D;font-family:var(--ff-heading);font-weight:700;font-size:15px;">Naranja puro · 4.38:1</span>
+              <div style="font-family:var(--ff-body);font-size:11px;color:#ff9c9c;margin-top:4px;">✕ PROHIBIDO como texto</div>
+            </div>
+            <div style="background:var(--bb-navy);padding:var(--sp-16) var(--sp-20);border-radius:var(--cr-12);">
+              <span style="color:#FFBBA1;font-family:var(--ff-heading);font-weight:700;font-size:15px;">Naranja claro · 9.76:1</span>
+              <div style="font-family:var(--ff-body);font-size:11px;color:#66DDB3;margin-top:4px;">✓ OBLIGATORIO · <code style="color:#FFBBA1">#FFBBA1</code></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="act-eyebrow" style="margin-bottom:8px;">Títulos en mayúsculas</div>
+          <div style="font-family:var(--ff-display);font-size:26px;font-weight:700;color:var(--text-strong);text-transform:uppercase;letter-spacing:.5px;">Reservas técnicas</div>
+          <p style="font-family:var(--ff-body);font-size:13px;color:var(--text-weak);margin-top:6px;">Lemon Milk va <strong>siempre en mayúsculas</strong> (brandbook pág. 29). Sin licencia, el fallback es <strong>Nunito Black</strong>, nunca una sans genérica ni Nunito Sans.</p>
+        </div>
+      </div>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Identidad verbal</div>
+      <div class="desc-text">Claim: <strong>«Trazamos el camino juntos.»</strong> · Arquetipo: <strong>El Tutor</strong> (El Sabio + El Cuidador) — tono mentor: claro, riguroso, cercano · Metáfora rectora: <strong>cartas de navegación / «mar de datos»</strong> · Símbolo: imagotipo del velero.</div>
+    </div>
+  </div>
+
+  <div class="comp-block" id="act-bb-contraste">
+    <h3>Verificación del contraste declarado</h3>
+    <p class="desc-text" style="margin-bottom:12px;">El brandbook afirma: «Ratios de contraste verificados WCAG 2.1 contra la superficie <code class="ds-code-inline">#E8ECF4</code>». Recalculado con la fórmula de luminancia relativa, <strong>los niveles <em>text</em> no cumplen esa afirmación</strong>.</p>
+    <div class="act-demo" style="background:#fff;">
+      <table class="act-tokentable">
+        <thead><tr><th>Token <em>text</em></th><th>Hex</th><th style="text-align:right">Sobre #E8ECF4</th><th>Veredicto</th></tr></thead>
+        <tbody>
+          <tr><td>success-text</td><td><span class="act-sw" style="background:#00B374;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#00B374</code></td><td style="text-align:right"><strong>2.30:1</strong></td><td><span class="act-chipset is-orange">✕ FALLA</span></td></tr>
+          <tr><td>warning-text</td><td><span class="act-sw" style="background:#E6A832;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#E6A832</code></td><td style="text-align:right"><strong>1.77:1</strong></td><td><span class="act-chipset is-orange">✕ FALLA</span></td></tr>
+          <tr><td>danger-text</td><td><span class="act-sw" style="background:#CC3333;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#CC3333</code></td><td style="text-align:right"><strong>4.34:1</strong></td><td><span class="act-chipset is-orange">solo texto grande</span></td></tr>
+          <tr><td>info-text</td><td><span class="act-sw" style="background:#366AD9;border:1px solid var(--stroke-weak)"></span> <code class="ds-code-inline">#366AD9</code></td><td style="text-align:right"><strong>4.20:1</strong></td><td><span class="act-chipset is-orange">solo texto grande</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="comp-desc">
+      <div class="desc-title">Recomendación</div>
+      <div class="desc-text">Ninguno de los cuatro llega a 4.5:1 sobre la superficie base. Para texto pequeño de estado hay dos salidas: (a) oscurecer los niveles <em>text</em> del brandbook, o (b) restringirlos a texto ≥19px bold y usar navy para el texto pequeño, dejando el color solo en el icono o el punto. <strong>Decisión pendiente del equipo de marca</strong> — este DS no la toma unilateralmente.</div>
+      <div class="usage-note" style="margin-top:8px;">Lo que sí verifica: navy sobre superficie 13.45:1 (AAA) · azul 5.19:1 (AA) · naranja-soft sobre navy 9.76:1 (AAA). La regla del <span class="ds-code-inline">#FFBBA1</span> está bien calibrada.</div>
+    </div>
+    <details class="ai-spec" data-ai-component="brandbook-reconciliation">
+      <summary>Contrato de implementación · legible por IA</summary>
+      <pre>{
+  "source_of_truth": {
+    "order": ["brandbook", "webflow_production", "figma"],
+    "canonical_tokens": "https://github.com/renatopuente-ux/actuaria-brandbook-ai/blob/main/tokens/tokens.json",
+    "llms_index": "https://renatopuente-ux.github.io/actuaria-brandbook-ai/llms.txt",
+    "rule": "Si un color, fuente o valor no aparece en tokens.json o en /brand, NO es de marca: no lo inventes."
+  },
+  "normative_values": {
+    "navy": "#151F47", "azul": "#3061AA", "naranja": "#DF5E2D",
+    "surface": "#E8ECF4", "light": "#D9DEEB", "naranja_soft": "#FFBBA1"
+  },
+  "hard_rules": [
+    "Proporcion cromatica 60/30/10: navy-neutro / azul / naranja.",
+    "El naranja es acento: nunca fondo dominante ni bloques de texto largos.",
+    "Texto naranja sobre navy SIEMPRE #FFBBA1 (9.76:1). #DF5E2D puro esta PROHIBIDO (4.38:1).",
+    "Titulos en Lemon Milk SIEMPRE en mayusculas; fallback Nunito Black, nunca una sans generica.",
+    "No usar Nunito para parrafos largos ni Prompt para titulos.",
+    "No mezclar Nunito Sans: es otra familia.",
+    "El simbolo del logo nunca va a la derecha del wordmark; no recolorear el wordmark."
+  ],
+  "known_gaps": {
+    "azul": { "brandbook": "#3061AA", "production": "#3258a2", "delta_rgb": 12.2 },
+    "surface": { "brandbook": "#E8ECF4", "production": "#f3f3f3", "delta_rgb": 13.1 },
+    "semantic_ui": "Produccion usa paleta Material; el brandbook define la suya. Divergencia total, requiere decision de marca.",
+    "contrast_claim": "Los niveles 'text' del brandbook NO alcanzan 4.5:1 sobre #E8ECF4. Verificado, no estimado."
+  },
+  "do_not": [
+    "No elegir unilateralmente entre brandbook y produccion: reportar la brecha.",
+    "No usar los niveles 'text' del brandbook para texto pequeno sin oscurecerlos antes."
+  ]
+}</pre>
+    </details>
   </div>
 </section>
 

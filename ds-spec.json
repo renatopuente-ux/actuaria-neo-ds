@@ -1,7 +1,7 @@
 {
   "$schema": "https://actuaria.com/ds-spec/v2",
   "name": "Actuaria Design System",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "generated_from": {
     "webflow_site_id": "6967c96e0fba2ea4f94d3c69",
     "domains": [
@@ -108,6 +108,58 @@
         "divider": "rgba(255,255,255,.15)",
         "social-bg": "rgba(255,255,255,.12)",
         "note": "Color PLANO, no degradado."
+      },
+      "brandbook_normative": {
+        "navy": {
+          "hex": "#151F47",
+          "pantone": "2766 C",
+          "role": "institucional"
+        },
+        "azul": {
+          "hex": "#3061AA",
+          "pantone": "7455 C",
+          "role": "secundario"
+        },
+        "naranja": {
+          "hex": "#DF5E2D",
+          "pantone": "7579 C",
+          "role": "acento"
+        },
+        "surface": {
+          "hex": "#E8ECF4",
+          "role": "superficie base, cards neumorficas"
+        },
+        "light": {
+          "hex": "#D9DEEB",
+          "role": "neutro claro"
+        },
+        "naranja_soft": {
+          "hex": "#FFBBA1",
+          "role": "OBLIGATORIO para texto naranja sobre navy",
+          "on_navy": 9.76
+        },
+        "ui": {
+          "success": {
+            "500": "#00C781",
+            "100": "#66DDB3",
+            "text": "#00B374"
+          },
+          "warning": {
+            "500": "#FFBB38",
+            "100": "#FFD688",
+            "text": "#E6A832"
+          },
+          "danger": {
+            "500": "#FF4040",
+            "100": "#FF8C8C",
+            "text": "#CC3333"
+          },
+          "info": {
+            "500": "#3C76F1",
+            "100": "#ECF1FE",
+            "text": "#366AD9"
+          }
+        }
       }
     },
     "typography": {
@@ -121,7 +173,9 @@
           ],
           "licensed": true,
           "source": "https://webflow-files-prod.global.ssl.fastly.net/6967c96e0fba2ea4f94d3c69/fonts/",
-          "use": "h1, heading-section, titulos de card, wordmark, cifras de odometro"
+          "use": "h1, heading-section, titulos de card, wordmark, cifras de odometro",
+          "fallback": "Nunito Black (brandbook). NUNCA Tahoma ni sans generica.",
+          "case": "MAYUSCULAS (obligatorio por brandbook pag. 29)"
         },
         "heading": {
           "stack": "'Nunito', sans-serif",
@@ -376,5 +430,82 @@
     "cdn_base": "https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/",
     "manifest": "assets.json"
   },
-  "components": {}
+  "components": {},
+  "source_of_truth": {
+    "order": [
+      "brandbook",
+      "webflow_production",
+      "figma"
+    ],
+    "brandbook": {
+      "repo": "https://github.com/renatopuente-ux/actuaria-brandbook-ai",
+      "canonical_tokens": "tokens/tokens.json",
+      "llms_index": "https://renatopuente-ux.github.io/actuaria-brandbook-ai/llms.txt",
+      "pdf": "https://renatopuente-ux.github.io/actuaria-brandbook-ai/pdf/Brandbook-Actuaria.pdf",
+      "public_page": "https://actuaria.com/brandbook",
+      "rule": "Si un color, fuente o valor no aparece en tokens.json o en /brand, NO es de marca: no lo inventes."
+    },
+    "conflict_policy": "Manda el brandbook. La diferencia se REPORTA como brecha, nunca se resuelve en silencio."
+  },
+  "brand_identity": {
+    "claim": "Trazamos el camino juntos.",
+    "archetype": "El Tutor (El Sabio + El Cuidador)",
+    "tone": "mentor: claro, riguroso, cercano",
+    "metaphor": "cartas de navegacion / mar de datos",
+    "symbol": "imagotipo del velero",
+    "values": {
+      "CREE": "cultura",
+      "ACTUA": "accion"
+    }
+  },
+  "brandbook_hard_rules": [
+    "Proporcion cromatica 60/30/10: navy-neutro / azul / naranja.",
+    "El naranja es acento: nunca fondo dominante ni bloques de texto largos.",
+    "Texto naranja sobre navy SIEMPRE #FFBBA1. #DF5E2D puro PROHIBIDO (4.38:1).",
+    "Titulos en Lemon Milk SIEMPRE en MAYUSCULAS; fallback Nunito Black.",
+    "No usar Nunito para parrafos largos ni Prompt para titulos.",
+    "No mezclar Nunito Sans.",
+    "El simbolo del logo nunca va a la derecha del wordmark.",
+    "Area de seguridad del logo: minimo 0.5x (x = altura de la A del wordmark)."
+  ],
+  "known_gaps": {
+    "azul": {
+      "brandbook": "#3061AA",
+      "production": "#3258a2",
+      "delta_rgb": 12.2,
+      "status": "brecha"
+    },
+    "surface": {
+      "brandbook": "#E8ECF4",
+      "production": "#f3f3f3",
+      "delta_rgb": 13.1,
+      "status": "brecha",
+      "impact": "El neumorfismo del brandbook esta calculado sobre superficie azulada, no neutra."
+    },
+    "logo_casco": {
+      "brandbook": "#3061AA",
+      "production": "#385CAD",
+      "delta_rgb": 9.9,
+      "status": "brecha"
+    },
+    "logo_navy": {
+      "brandbook": "#151F47",
+      "production": "#111C4E",
+      "delta_rgb": 8.6,
+      "status": "brecha"
+    },
+    "semantic_ui": {
+      "status": "divergente",
+      "detail": "Produccion usa paleta Material (#4caf50/#ff9800/#c73a3a/#1a74a8); el brandbook define la suya. Requiere decision de marca."
+    },
+    "brandbook_contrast_claim": {
+      "status": "no verifica",
+      "detail": "Los niveles 'text' del brandbook sobre #E8ECF4: success 2.30, warning 1.77, danger 4.34, info 4.20. Ninguno alcanza 4.5:1.",
+      "action": "Pendiente de decision del equipo de marca. No usar para texto pequeno sin oscurecer."
+    },
+    "pill_radii": {
+      "status": "sin token",
+      "detail": "40/50/64 en produccion, ausentes en Webflow y en el brandbook (que define sm 5.333 / md 16 / lg 48)."
+    }
+  }
 }
