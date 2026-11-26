@@ -1083,8 +1083,9 @@ a{text-decoration:none;}
 
 <div class="ds-layout">
   <nav class="ds-nav" aria-label="Navegación del design system">
-    <div class="ds-nav-group"><a class="ds-nav-link active" href="#intro">Introducción</a></div>
-
+    <div class="ds-nav-group">
+      <a class="ds-nav-link" href="#intro">Introducción</a>
+    </div>
     <div class="ds-nav-group">
       <span class="ds-nav-label">⚛ Átomos</span>
       <a class="ds-nav-link" href="#colors">Colores</a>
@@ -1099,7 +1100,6 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#cmp-logos">Logotipos</a>
       <a class="ds-nav-link" href="#voice-tone">Voz y Tono</a>
     </div>
-
     <div class="ds-nav-group">
       <span class="ds-nav-label">🧬 Moléculas</span>
       <a class="ds-nav-link" href="#elements">Elements</a>
@@ -1107,7 +1107,6 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#act-chips">Chipsets</a>
       <a class="ds-nav-link" href="#act-buttons">Botones del sitio</a>
     </div>
-
     <div class="ds-nav-group">
       <span class="ds-nav-label">🦠 Organismos</span>
       <a class="ds-nav-link" href="#feedback">Feedback</a>
@@ -1121,27 +1120,23 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#cmp-chart">Chart</a>
       <a class="ds-nav-link" href="#cmp-actuarin">Actuarín</a>
     </div>
-
     <div class="ds-nav-group">
       <span class="ds-nav-label">🧩 Plantillas</span>
       <a class="ds-nav-link" href="#app-shell">App Shell</a>
       <a class="ds-nav-link" href="#bento">Bento Grid</a>
       <a class="ds-nav-link" href="#grids">Grids de datos</a>
     </div>
-
     <div class="ds-nav-group">
       <span class="ds-nav-label">📕 Marca</span>
       <a class="ds-nav-link" href="#act-brandbook">Brandbook vs producción</a>
       <a class="ds-nav-link" href="#cmp-logos">Logotipos</a>
     </div>
-
     <div class="ds-nav-group">
       <span class="ds-nav-label">🏛 Sitio actuaria.com</span>
       <a class="ds-nav-link" href="#act-tokens">Tokens oficiales</a>
       <a class="ds-nav-link" href="#act-components">Componentes del sitio</a>
       <a class="ds-nav-link" href="#act-gaps">Brechas DS ↔ sitio</a>
     </div>
-
     <div class="ds-nav-group">
       <span class="ds-nav-label">✅ Calidad</span>
       <a class="ds-nav-link" href="#act-quality">Contraste y jerarquía</a>
@@ -1149,15 +1144,13 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#color-usage">Color Usage</a>
       <a class="ds-nav-link" href="#responsive">Responsivo</a>
     </div>
-
     <div class="ds-nav-group">
       <span class="ds-nav-label">🎨 Recetas</span>
       <a class="ds-nav-link" href="#glass-recipe">Glass Recipe</a>
       <a class="ds-nav-link" href="#neu-surfaces">Neu Surfaces</a>
     </div>
-
     <div class="ds-nav-group">
-            <span class="ds-nav-label">⚙ Plataforma</span>
+      <span class="ds-nav-label">⚙ Plataforma</span>
       <a class="ds-nav-link" href="#cmp-app-shell">App shell</a>
       <a class="ds-nav-link" href="#cmp-command-palette">Paleta de comandos</a>
       <a class="ds-nav-link" href="#cmp-data-table">Tabla de datos</a>
@@ -1166,6 +1159,8 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#cmp-audit-log">Auditoría</a>
       <a class="ds-nav-link" href="#cmp-usage-meter">Consumo del plan</a>
       <a class="ds-nav-link" href="#cmp-onboarding-checklist">Puesta en marcha</a>
+    </div>
+    <div class="ds-nav-group">
       <span class="ds-nav-label">📐 Dominio actuarial</span>
       <a class="ds-nav-link" href="#cmp-mortality-table-viewer">Tabla de mortalidad</a>
       <a class="ds-nav-link" href="#cmp-valuation-wizard">Asistente de valuación</a>
@@ -1173,6 +1168,8 @@ a{text-decoration:none;}
       <a class="ds-nav-link" href="#cmp-cashflow-projection">Proyección de flujos</a>
       <a class="ds-nav-link" href="#cmp-runoff-triangle">Triángulo run-off</a>
       <a class="ds-nav-link" href="#cmp-reserve-reconciliation">Conciliación de reservas</a>
+    </div>
+    <div class="ds-nav-group">
       <span class="ds-nav-label">🤖 Para la IA</span>
       <a class="ds-nav-link" href="#act-ai">Contratos de implementación</a>
     </div>
@@ -2852,6 +2849,57 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
    No se cambia el boton de produccion (documenta la realidad) pero el DS ofrece
    la variante accesible con --text-orange, un token que YA existe. */
 .act-btn-orange.is-accesible{background:var(--text-orange);}
+
+/* ══════════════════════════════════════════════════════════════════════
+   BARRA LATERAL · un solo activo, y se nota
+   ──────────────────────────────────────────────────────────────────────
+   Antes: 55 pildoras en relieve identicas y .active escrito a mano en el
+   HTML, sin nada que lo moviera. El usuario no podia saber en que seccion
+   estaba porque la unica diferencia del activo era una sombra interior.
+
+   Ahora: el carril es un canal hundido, los inactivos apenas se insinuan
+   dentro de el, y el ACTIVO sale en navy solido con barra naranja. Una
+   sola lectura posible.
+   ══════════════════════════════════════════════════════════════════════ */
+.ds-nav{ box-shadow:var(--neu-in-sm); }
+
+.ds-nav-link{
+  position:relative;
+  border-radius:999px;
+  box-shadow:var(--neu-out-xs);          /* se insinua: es pulsable */
+  background:rgba(255,255,255,.42);
+  color:var(--text-weak);
+  font-weight:600;
+  margin:3px 0;
+  transition:background .15s ease,color .15s ease,box-shadow .15s ease;
+}
+.ds-nav-link:hover{
+  background:rgba(255,255,255,.92);
+  color:var(--bb-navy);
+  box-shadow:var(--neu-out-sm);
+}
+
+/* El activo: navy solido, texto blanco y barra de acento. Imposible confundirlo. */
+.ds-nav-link.active,.ds-nav-link[aria-current="page"]{
+  background:var(--bb-navy);
+  color:#fff;
+  box-shadow:var(--neu-out);
+  padding-left:22px;
+}
+.ds-nav-link.active::before,.ds-nav-link[aria-current="page"]::before{
+  content:"";position:absolute;left:9px;top:50%;transform:translateY(-50%);
+  width:4px;height:15px;border-radius:999px;background:var(--bb-naranja-soft);
+}
+.ds-nav-link.active:hover{ background:var(--bb-navy); color:#fff; }
+
+/* El grupo que contiene al activo tambien se enciende: dice en que familia estas */
+.ds-nav-group.is-current .ds-nav-label{
+  color:var(--bb-navy);
+  background:var(--bb-naranja-soft);
+  border-radius:999px;
+  margin:0 4px;
+  padding-left:12px;padding-right:12px;
+}
 </style>
 
   <div class="section-header">
@@ -7622,6 +7670,88 @@ document.querySelectorAll('.ds-section[id], .comp-block[id]').forEach(s => obser
   document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', () => arrancar())
     : arrancar();
+})();
+
+/* ── Scrollspy de la barra lateral ──────────────────────────────────────
+   No habia ninguno: .active estaba escrito a mano en el HTML y jamas se
+   movia. Se calcula por posicion, no con IntersectionObserver: los destinos
+   anidan (seccion > bloque) y con IO varios quedan visibles a la vez, que
+   es justo el "parecen varios activos" que reporto el usuario.
+   Regla: gana el ultimo destino cuyo borde superior ya paso la linea de
+   lectura. Exactamente uno, siempre. */
+(function spy() {
+  const nav = document.querySelector('.ds-nav');
+  if (!nav) return;
+  const enlaces = [...nav.querySelectorAll('.ds-nav-link')];
+  const destinos = enlaces
+    .map(a => ({ a, el: document.getElementById((a.getAttribute('href') || '').slice(1)) }))
+    .filter(d => d.el);
+  if (!destinos.length) return;
+
+  const LINEA = 140;              /* px desde el borde superior del viewport */
+  let ultimo = null;
+
+  /* La nav NO sigue el orden del documento: medidos 9 saltos hacia atras
+     (p.ej. "Brandbook vs produccion"@69636 precede a "Logotipos"@8964).
+     Recorrerla tal cual y cortar con break devolvia SIEMPRE el primer
+     enlace, que es justo el sintoma que se veia: .active clavado en
+     Introduccion. Hay que ordenar por posicion real en la pagina. */
+  const porPosicion = () => destinos
+    .map(d => ({ ...d, y: d.el.getBoundingClientRect().top + window.scrollY }))
+    .sort((a, b) => a.y - b.y);
+  let orden = porPosicion();
+
+  function marcar() {
+    const fin = window.scrollY + window.innerHeight >= document.body.scrollHeight - 4;
+    let actual = orden[0];
+    for (const d of orden) {
+      if (d.y - window.scrollY <= LINEA) actual = d; else break;
+    }
+    if (fin) actual = orden[orden.length - 1];   /* al final, el ultimo por posicion */
+    if (actual.a === ultimo) return;
+    ultimo = actual.a;
+
+    enlaces.forEach(a => { a.classList.remove('active'); a.removeAttribute('aria-current'); });
+    nav.querySelectorAll('.ds-nav-group').forEach(g => g.classList.remove('is-current'));
+    actual.a.classList.add('active');
+    actual.a.setAttribute('aria-current', 'page');
+    actual.a.closest('.ds-nav-group')?.classList.add('is-current');
+
+    /* mantener el activo a la vista sin arrastrar la pagina */
+    const r = actual.a.getBoundingClientRect(), n = nav.getBoundingClientRect();
+    if (r.top < n.top + 8 || r.bottom > n.bottom - 8)
+      nav.scrollTop += r.top - n.top - n.height / 2 + r.height / 2;
+  }
+
+  /* Sin requestAnimationFrame a proposito. Si rAF se estrangula (pestana en
+     segundo plano, navegador headless, ahorro de energia) el callback no
+     llega, el flag "pedido" se queda en true y la barra se congela PARA
+     SIEMPRE: era exactamente el sintoma de .active clavado. Como "orden"
+     cachea la posicion de cada destino, marcar() solo lee window.scrollY y
+     no mide layout: se puede llamar directo en cada scroll sin coste. */
+  const pedir = marcar;
+  addEventListener('scroll', pedir, { passive: true });
+
+  /* El evento scroll no siempre llega: hay entornos (y desplazamientos
+     programaticos) donde no se emite aunque window.scrollY cambie, y la
+     barra se queda congelada. IntersectionObserver se dispara por cambio
+     de interseccion, no por evento de scroll, asi que cubre ese hueco.
+     Se usa solo como DISPARADOR: quien decide sigue siendo marcar(), que
+     elige UNO por posicion. Con IO a secas habria varios destinos visibles
+     a la vez — justo el "parecen varios activos" del reporte. */
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(pedir, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    destinos.forEach(d => io.observe(d.el));
+  }
+  addEventListener('resize', () => { orden = porPosicion(); pedir(); });
+  addEventListener('load', () => { orden = porPosicion(); pedir(); });
+  /* al pulsar, respuesta inmediata: no esperar al scroll */
+  nav.addEventListener('click', e => {
+    const a = e.target.closest('.ds-nav-link');
+    if (a) setTimeout(marcar, 60);
+  });
+  marcar();
+  window.dsSpy = () => { orden = porPosicion(); marcar(); };
 })();
 </script>
 </body>

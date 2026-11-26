@@ -236,6 +236,41 @@
       add('jerarquia', 'informativo translucido (su contraste cambia segun el fondo): ' + et);
   });
 
+
+  /* ── 11 · Barra lateral: exactamente UN activo ──
+     El scrollspy estaba muerto: .active venia escrito a mano en el HTML y
+     no se movia nunca, asi que el usuario no podia saber en que seccion
+     estaba. Este chequeo fija el invariante en tres puntos del documento. */
+  const navEl = document.querySelector('.ds-nav');
+  if (navEl && typeof window.dsSpy === 'function') {
+    const enlaces = [...navEl.querySelectorAll('.ds-nav-link')];
+    const yGuardado = window.scrollY;
+    const alturas = [0, Math.round(document.body.scrollHeight * 0.45),
+                        Math.round(document.body.scrollHeight * 0.85)];
+    alturas.forEach(y => {
+      window.scrollTo(0, y); window.dsSpy();
+      const act = enlaces.filter(e => e.classList.contains('active'));
+      const aria = enlaces.filter(e => e.getAttribute('aria-current') === 'page');
+      if (act.length !== 1) add('nav', 'a ' + y + 'px hay ' + act.length + ' enlaces activos, debe haber 1');
+      if (aria.length !== act.length) add('a11y', 'aria-current no acompana a .active (' + aria.length + ' vs ' + act.length + ')');
+      if (act.length === 1 && !act[0].closest('.ds-nav-group'))
+        add('nav', 'el enlace activo no cuelga de ningun .ds-nav-group');
+    });
+    window.scrollTo(0, yGuardado); window.dsSpy();
+
+    /* cada etiqueta debe abrir su propio grupo, o closest() devuelve el grupo
+       equivocado y se enciende una familia que no es (paso con
+       "Dominio actuarial", que era un span dentro del grupo "Plataforma") */
+    const grupos = navEl.querySelectorAll('.ds-nav-group');
+    const etiquetas = navEl.querySelectorAll('.ds-nav-label');
+    grupos.forEach(g => {
+      if (g.querySelectorAll('.ds-nav-label').length > 1)
+        add('nav', 'un .ds-nav-group contiene varias etiquetas: closest() marcara el grupo equivocado');
+    });
+    if (etiquetas.length > grupos.length)
+      add('nav', 'hay ' + etiquetas.length + ' etiquetas para ' + grupos.length + ' grupos');
+  }
+
   /* ── Informe ── */
   const porRegla = fallos.reduce((a, f) => { (a[f.regla] = a[f.regla] || []).push(f.detalle); return a; }, {});
   console.log(`%cQA Actuaria DS — ${fallos.length === 0 ? 'SIN FALLOS' : fallos.length + ' FALLOS'}`,
