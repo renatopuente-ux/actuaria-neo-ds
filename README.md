@@ -71,6 +71,23 @@ Figma y el real del sitio) más conceptos partidos en varios bloques. Se fusiona
 | `act-card-solutions` | Card (genérico) |
 | `act-chips` | Tag group |
 
+### Segunda ronda: una paleta, una escala, unos botones
+
+El usuario detectó lo que el QA no mide: **duplicación semántica**.
+
+| Era | Ahora |
+|---|---|
+| 4 bloques pintando paletas | **1**: `colors` absorbe *Paleta de marca* y *Tokens de texto accesible* |
+| 3 bloques de escalas | **2**: `act-tok-space` duplicaba íntegro a `spacing` + `radius` |
+| Botón genérico NEO + botones reales | **1**: `act-buttons` con las 4 variantes de producción |
+
+Los bloques de *brandbook vs producción* **no son paletas**: son auditorías de esos mismos valores,
+y ahora lo declaran en su cabecera.
+
+El botón genérico usaba un gradiente `navy → indigo` **que no existe en producción**. Y el token
+`--indigo` estaba mal nombrado: `#3258a2` es el **azul de marca**, no un índigo. Renombrado a
+`--azul` en 90 ocurrencias.
+
 Las antiguas duplicaciones son ahora **filas de variante** dentro del canónico, que es como el diseño
 atómico lo pide. Cada canónico muestra una nota de qué absorbió.
 

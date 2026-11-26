@@ -1,7 +1,7 @@
 {
   "$schema": "https://actuaria.com/ds-spec/v2",
   "name": "Actuaria Design System",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "generated_from": {
     "webflow_site_id": "6967c96e0fba2ea4f94d3c69",
     "domains": [
@@ -513,6 +513,22 @@
       "workaround": "El DS usa versiones oscurecidas (#14532d, #6b3e00, #8f1d1d, #1d3f8f) que dan 7.4–8.1:1, y una variante .on-dark para superficies navy. Los tokens del brandbook se conservan como relleno, no como color de texto.",
       "action": "Decisión del equipo de marca: oscurecer los niveles 'text' del brandbook o declararlos solo-relleno.",
       "resolution": "Resuelto usando los niveles SOFT del brandbook como relleno OPACO (#66DDB3, #FFD688, #FF8C8C, #ECF1FE) con texto oscurecido. 6 de 7 pares pasan AA directamente; solo 'bad' necesito bajar el texto de #8f1d1d a #7d1919. No se invento ningun color nuevo."
+    },
+    "token_indigo_mal_nombrado": {
+      "estado": "corregido",
+      "detalle": "El token --indigo (#3258a2) no era un indigo: es el AZUL de marca (#3061AA normativo, #3258a2 en produccion). El nombre inducia a usar un color que el brandbook no define.",
+      "accion": "Renombrado a --azul en 90 ocurrencias; 0 menciones de 'indigo' en el documento."
+    },
+    "rampa_naranja_plana": {
+      "estado": "abierto",
+      "detalle": "--prim-orange-50, -300, -500, -800 y -1000 valen TODOS #e0592a. La rampa de naranja no es una rampa: son cinco alias del mismo color.",
+      "accion": "Decidir en Webflow si se construye la rampa real o se colapsa a un unico token."
+    },
+    "boton_naranja_sin_AA": {
+      "estado": "abierto",
+      "detalle": "El boton naranja de produccion lleva texto blanco sobre #e0592a = 3.73:1, por debajo del 4.5:1 que WCAG AA exige a 15px. Ninguna combinacion con el naranja de marca alcanza AA: navy sobre naranja da 4.27.",
+      "workaround": "El DS documenta el boton real tal cual (marcado data-qa-ignore) y ofrece la variante .is-accesible con --text-orange #a8431c = 6.03:1, un token que YA existia.",
+      "accion": "Decision del equipo de marca."
     }
   },
   "architecture": {
@@ -525,7 +541,7 @@
     },
     "unification": {
       "before": 107,
-      "after": 103,
+      "after": 99,
       "note": "107 bloques tenían 18 duplicados funcionales. Se fusionaron en 13 canónicos; después se añadieron 21 componentes de plataforma. Un concepto = un bloque, las antiguas duplicaciones son ahora filas de variante.",
       "merged": {
         "el-avatar": [
@@ -572,6 +588,12 @@
         "act-chips": [
           "Tag group"
         ]
+      },
+      "round_2": {
+        "problema": "Cuatro bloques pintaban paletas y tres listaban escalas de medida. El usuario lo vio antes que el QA: ninguna comprobacion detectaba duplicacion semantica.",
+        "paletas": "colors absorbe 'Paleta de marca' (act-tok-brand) y 'Tokens de texto accesible' (act-text-tokens). UNA sola paleta. Los bloques de brandbook-vs-produccion NO son paletas: son auditorias de esos mismos valores, y ahora lo dicen en cabecera.",
+        "medidas": "act-tok-space duplicaba integro a #spacing + #radius. Eliminado.",
+        "botones": "el-button (generico NEO, gradiente navy->azul inexistente en produccion) eliminado. act-buttons es canonico con las 4 variantes reales + grupo + icono."
       }
     }
   },

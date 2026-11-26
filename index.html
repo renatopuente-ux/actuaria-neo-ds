@@ -117,10 +117,11 @@
 .var-label{font-family:var(--ff-heading);font-size:11px;font-weight:800;letter-spacing:.8px;
   text-transform:uppercase;color:var(--text-weak);}
 .var-row .demo-box{background:transparent;box-shadow:none;border:0;padding:0;min-height:0;}
-.unif-note{display:flex;gap:8px;align-items:flex-start;margin:8px 0 12px;padding:9px 12px;
+.unif-note{display:block;position:relative;margin:8px 0 12px;padding:9px 12px 9px 34px;
   border-radius:10px;background:rgba(48,97,170,.08);border-left:3px solid var(--bb-azul);
   font-family:var(--ff-body);font-size:13px;line-height:19px;color:var(--text-strong);}
-.unif-note i{color:var(--bb-azul);margin-top:3px;}
+.unif-note i{position:absolute;left:12px;top:11px;}
+.unif-note i{color:var(--bb-azul);}
 
 /* ══════════════════════════════════════════════════════════════════
    PLATAFORMA SaaS · primitivas compartidas por los componentes de app
@@ -493,7 +494,7 @@
 
   /* ── LEGACY NEO/GLASS · remapeado a los valores REALES de actuaria.com ── */
   --navy:#151f47; --navy-2:#1b2757; --navy-3:#10183a;      /* antes #0f1f3d/#1e3a6e/#253d6e */
-  --indigo:#3258a2; --indigo-2:#0050bd; --indigo-soft:rgba(50,88,162,0.10);  /* antes #4c64d9 */
+  --azul:#3258a2; --azul-2:#0050bd; --azul-soft:rgba(50,88,162,0.10);  /* antes #4c64d9 */
   --orange:#e0592a; --green:#4caf50; --green-text:#1b5e20;  /* antes #de5e2d/#00c781 */
   --yellow:#ff9800; --yellow-text:#8a5200; --red:#c73a3a; --red-text:#c73a3a;
   --bg:#f3f3f3; --surface:rgba(255,255,255,0.92); --border:rgba(0,17,102,0.10);
@@ -530,7 +531,7 @@ a{text-decoration:none;}
 .ds-nav-label{font-family:var(--ff-body);font-size:10px;font-weight:600;color:var(--text-orange);text-transform:uppercase;letter-spacing:1.4px;padding:14px 12px 4px;display:block;}
 .ds-nav-link{font-family:var(--ff-heading);display:block;padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;color:var(--text-sub);cursor:pointer;}
 .ds-nav-link:hover{color:var(--navy);background:rgba(255,255,255,0.6);}
-.ds-nav-link.active{color:var(--indigo);box-shadow:var(--neu-in-sm);}
+.ds-nav-link.active{color:var(--azul);box-shadow:var(--neu-in-sm);}
 
 /* ── SECTIONS ── */
 .ds-section{margin-bottom:64px;scroll-margin-top:80px;}
@@ -584,7 +585,7 @@ a{text-decoration:none;}
 /* ── SHADOW DEMOS ── */
 .shadow-demos{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
 .shadow-tile{width:130px;height:88px;border-radius:12px;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:10px;font-weight:700;color:var(--text-sub);text-align:center;padding:8px;}
-.shadow-rule{background:rgba(76,100,217,0.08);border:1px solid rgba(76,100,217,0.2);border-radius:10px;padding:12px 20px;font-size:13px;font-weight:700;color:var(--indigo);text-align:center;margin-top:12px;}
+.shadow-rule{background:rgba(76,100,217,0.08);border:1px solid rgba(76,100,217,0.2);border-radius:10px;padding:12px 20px;font-size:13px;font-weight:700;color:var(--azul);text-align:center;margin-top:12px;}
 
 /* ── SPACING ── */
 .spacing-rows{display:flex;flex-direction:column;gap:10px;}
@@ -592,19 +593,19 @@ a{text-decoration:none;}
 .spacing-token{font-size:11px;font-weight:700;color:var(--text-sub);width:90px;font-family:monospace;}
 .spacing-val{font-size:11px;color:var(--text-weak);width:40px;}
 .spacing-bar-wrap{flex:1;}
-.spacing-bar{height:8px;background:var(--indigo);border-radius:4px;opacity:0.7;}
+.spacing-bar{height:8px;background:var(--azul);border-radius:4px;opacity:0.7;}
 
 /* ── RADIUS ── */
 .radius-row{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;}
 .radius-item{display:flex;flex-direction:column;align-items:center;gap:8px;}
-.radius-box{width:52px;height:52px;background:var(--indigo-soft);border:2px solid var(--indigo);}
+.radius-box{width:52px;height:52px;background:var(--azul-soft);border:2px solid var(--azul);}
 .radius-label{font-size:11px;font-weight:700;color:var(--text-weak);text-align:center;font-family:ui-monospace,monospace;}
 
 /* ── Z-INDEX ── */
 .z-layers{display:flex;flex-direction:column;gap:4px;}
-.z-layer{display:flex;align-items:center;gap:12px;padding:8px 14px;border-radius:8px;background:rgba(255,255,255,0.4);border-left:3px solid var(--indigo);}
+.z-layer{display:flex;align-items:center;gap:12px;padding:8px 14px;border-radius:8px;background:rgba(255,255,255,0.4);border-left:3px solid var(--azul);}
 .z-name{font-size:12px;font-weight:700;color:var(--navy);width:100px;font-family:monospace;}
-.z-val{font-size:12px;font-weight:800;color:var(--indigo);width:40px;}
+.z-val{font-size:12px;font-weight:800;color:var(--azul);width:40px;}
 .z-use{font-size:11px;color:var(--text-sub);}
 
 /* ── TYPE SCALE ── */
@@ -628,7 +629,7 @@ a{text-decoration:none;}
 .btn-exec:hover{background:linear-gradient(90deg,#10183a,#1a2f52);transform:translateY(-1px);}
 .chip,.status-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:99px;font-size:10px;font-weight:700;cursor:default;user-select:none;}
 .chip-gray{background:var(--bg);color:var(--text-sub);box-shadow:var(--neu-in-sm);}
-.chip-blue{background:var(--indigo-soft);color:var(--indigo);}
+.chip-blue{background:var(--azul-soft);color:var(--azul);}
 .chip-green{background:rgba(0,199,129,0.12);color:var(--green-text);}
 .chip-green-solid{background:var(--green);color:#fff;}
 .chip-yellow{background:rgba(255,187,56,0.15);color:var(--yellow-text);}
@@ -636,9 +637,9 @@ a{text-decoration:none;}
 .t-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;}
 .t-avatar.navy{background:var(--navy);}
 .t-avatar.orange{background:var(--orange);}
-.t-avatar.indigo{background:var(--indigo);}
+.t-avatar.azul{background:var(--azul);}
 .neu-input{background:var(--bg);box-shadow:var(--neu-in);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font);font-size:13px;color:var(--text);outline:none;transition:box-shadow var(--dur-fast);width:100%;}
-.neu-input:focus{box-shadow:var(--neu-in),0 0 0 2px var(--indigo);border-color:var(--indigo);}
+.neu-input:focus{box-shadow:var(--neu-in),0 0 0 2px var(--azul);border-color:var(--azul);}
 .neu-toggle{position:relative;display:inline-block;cursor:pointer;width:44px;height:24px;}
 .neu-toggle input{opacity:0;width:0;height:0;position:absolute;}
 .neu-toggle-track{display:block;width:44px;height:24px;border-radius:99px;background:var(--bg);box-shadow:var(--neu-in);transition:background var(--dur-normal);position:relative;}
@@ -656,7 +657,7 @@ a{text-decoration:none;}
 .form-hint{font-size:11px;color:var(--text-weak);}
 .nav-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;color:var(--text-sub);cursor:pointer;text-decoration:none;position:relative;transition:all var(--dur-fast) var(--ease-out);}
 .nav-item:hover{box-shadow:var(--neu-out-sm);}
-.nav-item.active{color:var(--indigo);box-shadow:var(--neu-in-sm);}
+.nav-item.active{color:var(--azul);box-shadow:var(--neu-in-sm);}
 .nav-icon{width:20px;text-align:center;flex-shrink:0;}
 .nav-section-label{font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.8px;padding:8px 14px 4px;}
 .breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text-weak);}
@@ -665,25 +666,25 @@ a{text-decoration:none;}
 .tabs-bar{display:flex;gap:4px;padding:12px 16px;background:rgba(255,255,255,0.3);border-radius:12px;box-shadow:var(--neu-in-sm);}
 .tab{padding:8px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-sub);display:flex;align-items:center;gap:8px;transition:all var(--dur-fast) var(--ease-out);}
 .tab.active{color:var(--navy);box-shadow:var(--neu-in-sm);}
-.tab-count{background:var(--indigo-soft);color:var(--indigo);border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800;}
+.tab-count{background:var(--azul-soft);color:var(--azul);border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800;}
 .timeline-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
 .timeline-item:last-child{border-bottom:none;}
 .t-user{font-size:13px;font-weight:700;color:var(--navy);}
 .t-date{font-size:11px;color:var(--text-weak);}
 .metric-tile{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 20px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out-sm);text-align:center;}
-.mt-icon{color:var(--indigo);font-size:18px;margin-bottom:4px;}
+.mt-icon{color:var(--azul);font-size:18px;margin-bottom:4px;}
 .mt-val{font-size:22px;font-weight:900;color:var(--navy);}
 .mt-lbl{font-size:10px;font-weight:700;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;}
 .pipe-step{display:flex;flex-direction:column;align-items:center;gap:6px;}
 .pipe-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
 .pipe-step.completed .pipe-dot{background:var(--green);color:#fff;box-shadow:0 0 0 3px rgba(0,199,129,0.2);}
-.pipe-step.active .pipe-dot{background:var(--indigo);color:#fff;box-shadow:0 0 0 4px var(--indigo-soft);}
+.pipe-step.active .pipe-dot{background:var(--azul);color:#fff;box-shadow:0 0 0 4px var(--azul-soft);}
 .pipe-step.pending .pipe-dot{background:var(--bg);color:var(--text-weak);box-shadow:var(--neu-in-sm);}
 .pipe-lbl{font-size:10px;font-weight:700;color:var(--text-weak);}
-.pipe-step.active .pipe-lbl{color:var(--indigo);}
+.pipe-step.active .pipe-lbl{color:var(--azul);}
 .neu-card{background:var(--bg);border-radius:16px;box-shadow:var(--neu-out);overflow:hidden;}
 .nc-header{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.35);}
-.nc-icon{width:32px;height:32px;border-radius:8px;background:var(--indigo-soft);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.nc-icon{width:32px;height:32px;border-radius:8px;background:var(--azul-soft);color:var(--azul);display:flex;align-items:center;justify-content:center;font-size:14px;}
 .nc-title{font-size:13px;font-weight:800;color:var(--navy);flex:1;}
 .nc-body{padding:18px 20px;}
 .glass-card{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);border-radius:16px;box-shadow:var(--glass-shine),var(--neu-out-sm);}
@@ -700,7 +701,7 @@ a{text-decoration:none;}
 /* ── INTERACTIVIDAD (demos) ── */
 /* Soporte foco visible y cursor para controles activables que no son <button> nativos */
 .tab-neo,.seg-item,.navh-item,.navside-item,.pag-cell{outline:none;}
-.tab-neo:focus-visible,.seg-item:focus-visible,.navh-item:focus-visible,.navside-item:focus-visible,.pag-cell:focus-visible,[data-acc-header]:focus-visible,[data-dropdown-trigger]:focus-visible{box-shadow:var(--neu-out-sm),0 0 0 2px var(--indigo);}
+.tab-neo:focus-visible,.seg-item:focus-visible,.navh-item:focus-visible,.navside-item:focus-visible,.pag-cell:focus-visible,[data-acc-header]:focus-visible,[data-dropdown-trigger]:focus-visible{box-shadow:var(--neu-out-sm),0 0 0 2px var(--azul);}
 /* Accordion: panel colapsable (animación de altura simple) */
 [data-acc-panel]{overflow:hidden;transition:max-height var(--dur-normal) var(--ease-out),opacity var(--dur-fast) var(--ease-out),margin var(--dur-normal) var(--ease-out),padding var(--dur-normal) var(--ease-out);}
 [data-acc-panel].acc-collapsed{max-height:0!important;opacity:0;margin-top:0!important;margin-bottom:0!important;padding-top:0!important;padding-bottom:0!important;}
@@ -715,7 +716,7 @@ a{text-decoration:none;}
 [data-overlay-panel].panel-dismissed{opacity:0;pointer-events:none;}
 [data-overlay-hint]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;background:rgba(255,255,255,0.92);color:var(--navy);border:none;border-radius:99px;padding:10px 18px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(15,31,61,0.25);display:none;align-items:center;gap:8px;}
 [data-overlay-hint].hint-show{display:inline-flex;}
-/* Estado seleccionado para ítems de dropdown list / nav (reutiliza tinte indigo del DS) */
+/* Estado seleccionado para ítems de dropdown list / nav (reutiliza el tinte azul de marca) */
 .dd-item-selected{background:rgba(76,100,217,0.10);}
 
 /* ════════════ NUEVAS SECCIONES (Iconos, Voz, Grid, Marca, Slider, Flip, Chart, Tracking) ════════════ */
@@ -723,7 +724,7 @@ a{text-decoration:none;}
 /* ── ICONOS ── */
 .icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:14px;width:100%;}
 .icon-tile{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out-sm);text-align:center;}
-.icon-tile i{font-size:22px;color:var(--indigo);width:24px;height:24px;line-height:24px;}
+.icon-tile i{font-size:22px;color:var(--azul);width:24px;height:24px;line-height:24px;}
 .icon-tile .icon-name{font-size:11px;font-weight:700;color:var(--text-weak);font-family:monospace;word-break:break-word;}
 .icon-sizes{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;}
 .icon-size-item{display:flex;flex-direction:column;align-items:center;gap:8px;}
@@ -734,10 +735,10 @@ a{text-decoration:none;}
 /* ── VOZ Y TONO ── */
 .voice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;width:100%;}
 .voice-card{background:var(--bg);box-shadow:var(--neu-out-sm);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;}
-.voice-card .vc-icon{width:40px;height:40px;border-radius:12px;background:var(--indigo-soft);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:4px;}
+.voice-card .vc-icon{width:40px;height:40px;border-radius:12px;background:var(--azul-soft);color:var(--azul);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:4px;}
 .voice-card .vc-title{font-size:15px;font-weight:800;color:var(--navy);}
 .voice-card .vc-text{font-size:12px;color:var(--text-sub);line-height:1.5;}
-.voice-card .vc-eg{font-size:12px;color:var(--indigo);font-weight:700;font-style:italic;padding-top:6px;border-top:1px solid var(--border);}
+.voice-card .vc-eg{font-size:12px;color:var(--azul);font-weight:700;font-style:italic;padding-top:6px;border-top:1px solid var(--border);}
 .dodont-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;}
 .dodont-col{border-radius:14px;padding:18px 20px;background:rgba(255,255,255,0.45);box-shadow:var(--neu-in-sm);}
 .dodont-head{font-size:11px;font-weight:800;display:flex;align-items:center;gap:6px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.4px;}
@@ -753,7 +754,7 @@ a{text-decoration:none;}
 
 /* ── CUADRÍCULAS (GRID) ── */
 .grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;width:100%;}
-.grid12 .gcol{background:var(--indigo-soft);border:1px dashed var(--indigo);border-radius:6px;height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--indigo);font-family:monospace;}
+.grid12 .gcol{background:var(--azul-soft);border:1px dashed var(--azul);border-radius:6px;height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--azul);font-family:monospace;}
 .grid-layout{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;width:100%;margin-top:14px;}
 .grid-layout .gbox{background:var(--bg);box-shadow:var(--neu-out-sm);border-radius:10px;min-height:56px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-sub);}
 .gspan-3{grid-column:span 3;}.gspan-4{grid-column:span 4;}.gspan-6{grid-column:span 6;}.gspan-8{grid-column:span 8;}.gspan-9{grid-column:span 9;}.gspan-12{grid-column:span 12;}
@@ -783,8 +784,8 @@ a{text-decoration:none;}
 .neo-slide .sl-sub{font-size:14px;opacity:0.82;max-width:440px;position:relative;z-index:1;}
 .neo-slide .sl-btn{align-self:flex-start;margin-top:8px;background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.3);color:#fff;font-family:var(--font);font-weight:700;font-size:13px;padding:9px 18px;border-radius:99px;cursor:pointer;backdrop-filter:blur(6px);position:relative;z-index:1;}
 .neo-slide.sl-1{background:linear-gradient(135deg,var(--navy-2),var(--navy));}
-.neo-slide.sl-2{background:linear-gradient(135deg,var(--indigo),var(--indigo-2));}
-.neo-slide.sl-3{background:linear-gradient(135deg,#1d3563,var(--indigo-2));}
+.neo-slide.sl-2{background:linear-gradient(135deg,var(--azul),var(--azul-2));}
+.neo-slide.sl-3{background:linear-gradient(135deg,#1d3563,var(--azul-2));}
 .neo-slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--glass-bg);backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(15,31,61,0.25),var(--glass-shine);color:var(--navy);font-size:14px;cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;transition:transform var(--dur-fast) var(--ease-out);}
 .neo-slider-arrow:hover{transform:translateY(-50%) scale(1.08);}
 .neo-slider-arrow.prev{left:14px;}.neo-slider-arrow.next{right:14px;}
@@ -798,7 +799,7 @@ a{text-decoration:none;}
 .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
 .flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:22px;display:flex;flex-direction:column;justify-content:center;gap:8px;background:var(--bg);box-shadow:var(--neu-out);}
 .flip-face.back{transform:rotateY(180deg);background:linear-gradient(135deg,var(--navy-2),var(--navy));color:#fff;}
-.flip-face .ff-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;color:var(--indigo);}
+.flip-face .ff-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;color:var(--azul);}
 .flip-face.back .ff-tag{color:rgba(255,255,255,0.7);}
 .flip-face .ff-val{font-size:30px;font-weight:900;color:var(--navy);}
 .flip-face .ff-lbl{font-size:13px;font-weight:600;color:var(--text-sub);}
@@ -813,7 +814,7 @@ a{text-decoration:none;}
 .chart-title{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .bar-chart{display:flex;align-items:flex-end;gap:12px;height:160px;padding-bottom:24px;position:relative;}
 .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;}
-.bar{width:60%;max-width:30px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,var(--indigo),var(--navy));box-shadow:var(--neu-out-sm);transition:filter var(--dur-fast) var(--ease-out);cursor:default;}
+.bar{width:60%;max-width:30px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,var(--azul),var(--navy));box-shadow:var(--neu-out-sm);transition:filter var(--dur-fast) var(--ease-out);cursor:default;}
 .bar-col:hover .bar{filter:brightness(1.12);}
 .bar-x{position:absolute;bottom:-22px;font-size:11px;font-weight:700;color:var(--text-weak);}
 .bar-tip{position:absolute;top:-26px;background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:6px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:all var(--dur-fast) var(--ease-out);pointer-events:none;}
@@ -832,12 +833,12 @@ a{text-decoration:none;}
 .track-step.done::before{background:var(--green);}
 .track-dot{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;z-index:1;}
 .track-step.done .track-dot{background:var(--bg);color:var(--green-text);box-shadow:var(--neu-in);}
-.track-step.current .track-dot{background:var(--indigo);color:#fff;box-shadow:var(--neu-out),0 0 0 4px var(--indigo-soft);}
+.track-step.current .track-dot{background:var(--azul);color:#fff;box-shadow:var(--neu-out),0 0 0 4px var(--azul-soft);}
 .track-step.pending .track-dot{background:var(--bg);color:var(--text-weak);box-shadow:var(--neu-in-sm);opacity:0.7;}
 .track-body{padding-top:6px;}
 .track-step.pending .track-body{opacity:0.55;}
 .track-name{font-size:14px;font-weight:800;color:var(--navy);}
-.track-step.current .track-name{color:var(--indigo);}
+.track-step.current .track-name{color:var(--azul);}
 .track-time{font-size:11px;color:var(--text-weak);margin-top:2px;}
 .track-h{display:flex;gap:0;width:100%;justify-content:space-between;}
 .track-h .track-step{flex-direction:column;align-items:center;text-align:center;flex:1;padding-bottom:0;gap:8px;}
@@ -1077,7 +1078,7 @@ a{text-decoration:none;}
     <path d="M152.435 23.4143H143.366L142.06 26.3267H138.801L147.811 6.77092H147.991L157 26.3267H153.741L152.435 23.4143ZM151.268 20.8343L147.903 13.3434L144.529 20.8343H151.268Z" fill="#fff"/>
   </svg>
   <span class="ds-topbar-title">Design System · Brandbook + Sitio actuaria.com</span>
-  <span class="ds-version">v2.2</span>
+  <span class="ds-version">v3.1</span>
 </header>
 
 <div class="ds-layout">
@@ -1208,6 +1209,7 @@ a{text-decoration:none;}
   <!-- COLORS -->
   <div class="comp-block" id="colors">
     <h3>Colores</h3>
+    <div class="unif-note"><i class="fa-solid fa-code-branch"></i> Componente unificado: absorbe <strong>Paleta de marca</strong> y <strong>Tokens de texto accesible</strong>. &Uacute;nica paleta del sistema &mdash; los bloques de <em>Brandbook vs producci&oacute;n</em> no son paletas, son <strong>auditor&iacute;as</strong> de estos mismos valores.</div>
     <p class="desc-text" style="margin-bottom:12px;">Paleta real de actuaria.com, extraída de las colecciones <code class="ds-code-inline">🎨 Colours primitive</code> y <code class="ds-code-inline">🖼️ Theme</code> del sitio Webflow. El color de marca es <strong>navy</strong>, no índigo.</p>
     <div class="demo-box demo-box-col" style="gap:24px;">
       <div>
@@ -1383,7 +1385,7 @@ a{text-decoration:none;}
     <div class="comp-desc">
       <div class="desc-title">Licencia y uso</div>
       <div class="desc-text">Iconos bajo <strong>CC BY 4.0</strong>, fuentes bajo <strong>SIL OFL 1.1</strong> y código bajo <strong>MIT</strong> (Font Awesome Free). Aloja los iconos en el componente <a href="#el-icon-container" class="ds-code-inline" style="text-decoration:none">Icon container</a> (cápsula SUNKEN) cuando son decorativos. Tamaños base 16/20/24/32px alineados al sistema de espacios.</div>
-      <div class="usage-note" style="margin-top:8px;">Color por defecto <span class="ds-code-inline">--indigo</span> sobre fondo claro; <span class="ds-code-inline">--navy</span> dentro de cápsulas neumórficas. Nunca uses iconos menores a 16px en UI densa.</div>
+      <div class="usage-note" style="margin-top:8px;">Color por defecto <span class="ds-code-inline">--azul</span> sobre fondo claro; <span class="ds-code-inline">--navy</span> dentro de cápsulas neumórficas. Nunca uses iconos menores a 16px en UI densa.</div>
     </div>
     <pre class="ds-code">&lt;!-- CDN en &lt;head&gt; --&gt;
 &lt;link rel="stylesheet"
@@ -1396,6 +1398,7 @@ a{text-decoration:none;}
   <!-- SPACING -->
   <div class="comp-block" id="spacing">
     <h3>Espacios</h3>
+    <div class="unif-note"><i class="fa-solid fa-code-branch"></i> Componente unificado: absorbe <strong>Spacing &amp; corner radius oficiales</strong>. Una sola escala, una sola fuente.</div>
     <p class="desc-text" style="margin-bottom:12px;">Colección <code class="ds-code-inline">📐 Spacing</code> de Webflow: <strong>17 pasos</strong>. En el sitio se nombran <code class="ds-code-inline">spacing--N</code>; en este DS se exponen como <code class="ds-code-inline">--sp-N</code>.</p>
     <div class="demo-box demo-box-col" style="padding:24px;">
       <div class="spacing-rows">
@@ -1430,12 +1433,12 @@ a{text-decoration:none;}
     <div class="demo-box" style="background:var(--bg);min-height:120px;">
       <div class="shadow-demos">
         <div class="shadow-tile" style="box-shadow:var(--neu-out)">
-          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:16px"></i>
+          <i class="fa-solid fa-hand-pointer" style="color:var(--azul);font-size:16px"></i>
           <span>--neu-out</span>
           <span style="font-size:11px;color:var(--text-weak)">Raised / Interactivo</span>
         </div>
         <div class="shadow-tile" style="box-shadow:var(--neu-out-sm)">
-          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:14px"></i>
+          <i class="fa-solid fa-hand-pointer" style="color:var(--azul);font-size:14px"></i>
           <span>--neu-out-sm</span>
           <span style="font-size:11px;color:var(--text-weak)">Raised SM</span>
         </div>
@@ -1450,7 +1453,7 @@ a{text-decoration:none;}
           <span style="font-size:11px;color:var(--text-weak)">Sunken SM</span>
         </div>
         <div class="shadow-tile" style="background:var(--glass-bg);backdrop-filter:blur(12px);border:1px solid var(--glass-border);box-shadow:var(--glass-shine)">
-          <i class="fa-solid fa-layer-group" style="color:var(--indigo);font-size:16px"></i>
+          <i class="fa-solid fa-layer-group" style="color:var(--azul);font-size:16px"></i>
           <span>Glass</span>
           <span style="font-size:11px;color:var(--text-weak)">Overlay/Modal</span>
         </div>
@@ -1462,6 +1465,7 @@ a{text-decoration:none;}
   <!-- RADIUS -->
   <div class="comp-block" id="radius">
     <h3>Radios</h3>
+    <div class="unif-note"><i class="fa-solid fa-code-branch"></i> Componente unificado: los radios oficiales y los de p&iacute;ldora viv&iacute;an tambi&eacute;n en <em>Spacing &amp; corner radius</em>; ahora solo aqu&iacute;.</div>
     <p class="desc-text" style="margin-bottom:12px;">Colección <code class="ds-code-inline">📐 Spacing</code> → <code class="ds-code-inline">corner-radius</code>: <strong>8 pasos oficiales</strong> (0→32). Los radios de píldora que el sitio usa en navbar, botones y cards de testimonio están <strong>fuera</strong> de la colección.</p>
     <div class="demo-box"><div class="radius-row"><div class="radius-item"><div class="radius-box" style="border-radius:0px"></div><span class="radius-label">--cr-0<br>0px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:4px"></div><span class="radius-label">--cr-4<br>4px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><span class="radius-label">--cr-8<br>8px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:12px"></div><span class="radius-label">--cr-12<br>12px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:16px"></div><span class="radius-label">--cr-16<br>16px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:20px"></div><span class="radius-label">--cr-20<br>20px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:24px"></div><span class="radius-label">--cr-24<br>24px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:32px"></div><span class="radius-label">--cr-32<br>32px</span></div></div></div>
     <div class="demo-box"><div class="radius-row"><div class="radius-item"><div class="radius-box" style="border-radius:40px;border:1px dashed var(--prim-orange-300)"></div><span class="radius-label">--cr-40<br>40px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:50px;border:1px dashed var(--prim-orange-300)"></div><span class="radius-label">--cr-50<br>50px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:64px;border:1px dashed var(--prim-orange-300)"></div><span class="radius-label">--cr-64<br>64px</span></div><div class="radius-item"><div class="radius-box" style="border-radius:9999px;border:1px dashed var(--prim-orange-300)"></div><span class="radius-label">--cr-pill<br>9999px</span></div></div></div>
@@ -1734,52 +1738,7 @@ a{text-decoration:none;}
   </div>
 
   <!-- BUTTON -->
-  <div class="comp-block" id="el-button">
-    <h3>Button</h3>
-    <div class="unif-note"><i class="fa-solid fa-code-merge"></i> <span>Componente unificado: absorbe <strong>Button group, Button icon</strong>. Una sola fuente, variantes abajo.</span></div>
-    <p class="desc-text" style="margin-bottom:12px;">Acción principal del sistema. En NEO el botón primario es una superficie elevada con gradiente navy → indigo que se hunde al presionar.</p>
-    <div class="var-stack">
-      <div class="var-row">
-        <div class="var-label">Button</div>
-        <div class="demo-box" style="gap:16px;flex-wrap:wrap;">
-      <button style="height:56px;padding:0 24px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;box-shadow:var(--neu-out);">
-        <i class="fa-solid fa-calculator"></i> Calcular reserva
-      </button>
-    </div>
-      </div>
-      <div class="var-row">
-        <div class="var-label">Button group</div>
-        <div class="demo-box" style="gap:16px;flex-wrap:wrap;justify-content:flex-start;">
-      <button style="height:56px;padding:0 24px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Emitir póliza</button>
-      <button style="height:56px;padding:0 24px;border:none;border-radius:999px;background:var(--bg);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Guardar borrador</button>
-      <button style="height:56px;padding:0 24px;border:none;border-radius:999px;background:transparent;color:var(--text-orange);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;text-decoration:underline;cursor:pointer;">Cancelar</button>
-    </div>
-      </div>
-      <div class="var-row">
-        <div class="var-label">Button icon</div>
-        <div class="demo-box" style="gap:16px;">
-      <button style="width:48px;height:48px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--neu-out);"><i class="fa-solid fa-download"></i></button>
-      <button style="width:48px;height:48px;border:none;border-radius:999px;background:var(--bg);color:var(--navy);font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--neu-out);"><i class="fa-solid fa-filter"></i></button>
-    </div>
-      </div>
-    </div>
-    <div class="comp-desc">
-      <div class="desc-title">Variantes Figma</div>
-      <div class="desc-text">Type=Primary · Size=LG (h 56px). El component set incluye además Secondary y Ghost/Link (ver Button group).</div>
-      <div class="usage-note" style="margin-top:8px;">RAISED — interactivo. Estructura del spec conservada: h 56px · padding 0 24px · radius 999px (pildora) · Nunito 600 20/28. Sombra Figma Raised → <span class="ds-code-inline">--neu-out</span>.</div>
-    </div>
-    <pre class="ds-code">&lt;button class="neo-btn-primary"&gt;
-  &lt;i class="fa-solid fa-calculator"&gt;&lt;/i&gt; Calcular reserva
-&lt;/button&gt;
-
-.neo-btn-primary {
-  height: 56px; padding: 0 24px; border-radius:999px;
-  background: linear-gradient(135deg, var(--navy), var(--indigo));
-  color: #fff; font: 600 20px/28px 'Nunito', sans-serif;
-  box-shadow: var(--neu-out);          /* raised = interactivo */
-}
-.neo-btn-primary:active { box-shadow: var(--neu-in); }</pre>
-  </div>
+  
 
   <!-- BUTTON GROUP -->
   
@@ -1792,9 +1751,9 @@ a{text-decoration:none;}
     <h3>Icon container</h3>
     <p class="desc-text" style="margin-bottom:12px;">Cápsula circular decorativa que aloja un icono. No es interactiva, por lo que en NEO va hundida (sunken).</p>
     <div class="demo-box" style="gap:16px;">
-      <span style="padding:12px;border-radius:48px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><i class="fa-solid fa-chart-line" style="font-size:24px;width:24px;height:24px;color:var(--indigo);text-align:center;"></i></span>
+      <span style="padding:12px;border-radius:48px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><i class="fa-solid fa-chart-line" style="font-size:24px;width:24px;height:24px;color:var(--azul);text-align:center;"></i></span>
       <span style="padding:12px;border-radius:48px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><i class="fa-solid fa-shield-halved" style="font-size:24px;width:24px;height:24px;color:var(--navy);text-align:center;"></i></span>
-      <span style="padding:12px;border-radius:48px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><i class="fa-solid fa-coins" style="font-size:24px;width:24px;height:24px;color:var(--indigo);text-align:center;"></i></span>
+      <span style="padding:12px;border-radius:48px;background:var(--bg);box-shadow:var(--neu-in);display:inline-flex;align-items:center;justify-content:center;"><i class="fa-solid fa-coins" style="font-size:24px;width:24px;height:24px;color:var(--azul);text-align:center;"></i></span>
     </div>
     <div class="comp-desc">
       <div class="desc-title">Variantes Figma</div>
@@ -1808,7 +1767,7 @@ a{text-decoration:none;}
 .neo-icon-container { padding: 12px; border-radius: 48px;
   background: var(--bg); box-shadow: var(--neu-in);  /* sunken */
   display: inline-flex; }
-.neo-icon-container i { font-size: 24px; color: var(--indigo); }</pre>
+.neo-icon-container i { font-size: 24px; color: var(--azul); }</pre>
   </div>
 
   <!-- TEXT LINK -->
@@ -1846,7 +1805,7 @@ a{text-decoration:none;}
       <span class="t-avatar navy" style="box-shadow:var(--neu-out);">MS</span>
       <!-- Avatar con status -->
       <span style="position:relative;display:inline-block;">
-        <span class="t-avatar indigo" style="box-shadow:var(--neu-out);">JR</span>
+        <span class="t-avatar azul" style="box-shadow:var(--neu-out);">JR</span>
         <span style="position:absolute;bottom:-3px;right:-3px;width:12px;height:12px;border-radius:8px;background:#2e9e5b;border:2px solid var(--bg);display:block;"></span>
       </span>
       <!-- Avatar con notification -->
@@ -1864,7 +1823,7 @@ a{text-decoration:none;}
         <span style="font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;color:var(--navy);">María Salgado · Actuaria Senior</span>
       </span>
       <span style="display:inline-flex;align-items:center;gap:8px;">
-        <span class="t-avatar indigo" style="box-shadow:var(--neu-out);">JR</span>
+        <span class="t-avatar azul" style="box-shadow:var(--neu-out);">JR</span>
         <span style="font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;color:var(--navy);">Jorge Ríos · Suscriptor</span>
       </span>
     </div>
@@ -1875,12 +1834,12 @@ a{text-decoration:none;}
       <button style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:none;border-radius:999px;background:var(--bg);cursor:pointer;box-shadow:var(--neu-out);" data-dropdown-trigger aria-expanded="true" aria-haspopup="true">
         <span class="t-avatar navy">MS</span>
         <span style="font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;color:var(--navy);">María Salgado</span>
-        <i class="fa-solid fa-chevron-down" style="font-size:12px;color:var(--indigo);"></i>
+        <i class="fa-solid fa-chevron-down" style="font-size:12px;color:var(--azul);"></i>
       </button>
       <!-- Menú abierto: glass overlay -->
       <div data-dropdown-menu style="background:rgba(232,236,244,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.60);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.95), 6px 6px 16px rgba(163,177,198,0.35);padding:8px;min-width:220px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--navy);">
-        <div style="padding:8px 12px;border-radius:8px;cursor:pointer;"><i class="fa-solid fa-user" style="color:var(--indigo);width:18px;"></i> Mi perfil</div>
-        <div style="padding:8px 12px;border-radius:8px;cursor:pointer;"><i class="fa-solid fa-file-signature" style="color:var(--indigo);width:18px;"></i> Mis valuaciones firmadas</div>
+        <div style="padding:8px 12px;border-radius:8px;cursor:pointer;"><i class="fa-solid fa-user" style="color:var(--azul);width:18px;"></i> Mi perfil</div>
+        <div style="padding:8px 12px;border-radius:8px;cursor:pointer;"><i class="fa-solid fa-file-signature" style="color:var(--azul);width:18px;"></i> Mis valuaciones firmadas</div>
         <div style="padding:8px 12px;border-radius:8px;cursor:pointer;color:#c73a3a;"><i class="fa-solid fa-right-from-bracket" style="width:18px;"></i> Cerrar sesión</div>
       </div>
     </div>
@@ -2024,7 +1983,7 @@ a{text-decoration:none;}
     /* ---- Forms NEO: estilos compartidos (scoped a #forms) ---- */
     #forms .neo-form-demo{width:100%;max-width:364px}
     #forms .neo-label{display:block;font:600 14px/20px 'Nunito',sans-serif;color:var(--navy);margin-bottom:4px}
-    #forms .neo-label .req{color:var(--indigo);font-weight:700}
+    #forms .neo-label .req{color:var(--azul);font-weight:700}
     #forms .neo-label .opt{font:400 14px/20px 'Nunito',sans-serif;color:var(--text-weak)}
     #forms .neo-hint{font:400 13px/18px 'Nunito',sans-serif;color:rgba(0,9,51,.6);margin:0 0 6px}
     #forms .neo-field{width:100%;height:48px;border:none;outline:none;border-radius:12px;background:var(--bg);box-shadow:var(--neu-in);padding:0 16px;font:400 16px/24px 'Nunito',sans-serif;color:rgba(0,6,38,.9)}
@@ -2044,26 +2003,26 @@ a{text-decoration:none;}
     #forms .neo-btn-sec:active{box-shadow:var(--neu-in)}
     /* file upload */
     #forms .neo-drop{border:1px dashed rgba(0,13,77,.4);border-radius:16px;background:rgba(0,21,128,.02);padding:32px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-    #forms .neo-drop .up-circle{width:48px;height:48px;border-radius:50%;background:var(--bg);box-shadow:var(--neu-out);display:grid;place-items:center;color:var(--indigo);font-size:18px}
+    #forms .neo-drop .up-circle{width:48px;height:48px;border-radius:50%;background:var(--bg);box-shadow:var(--neu-out);display:grid;place-items:center;color:var(--azul);font-size:18px}
     #forms .neo-file-row{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(0,17,102,.1)}
     #forms .neo-file-row .f-circle{width:48px;height:48px;border-radius:50%;background:var(--bg);box-shadow:var(--neu-in);display:grid;place-items:center;color:var(--navy);font-size:16px;flex:none}
     /* tracks (slider / loading / progress) */
     #forms .neo-track{height:8px;border-radius:32px;background:var(--bg);box-shadow:var(--neu-in);position:relative;flex:1}
-    #forms .neo-track .fill{position:absolute;inset:0 auto 0 0;border-radius:32px;background:linear-gradient(90deg,var(--indigo),var(--navy))}
+    #forms .neo-track .fill{position:absolute;inset:0 auto 0 0;border-radius:32px;background:linear-gradient(90deg,var(--azul),var(--navy))}
     #forms .neo-range{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:32px;background:var(--bg);box-shadow:var(--neu-in);outline:none}
-    #forms .neo-range::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#fff,var(--bg));box-shadow:var(--neu-out);border:2px solid var(--indigo);cursor:grab}
+    #forms .neo-range::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#fff,var(--bg));box-shadow:var(--neu-out);border:2px solid var(--azul);cursor:grab}
     #forms .neo-seg{height:8px;border-radius:4px;flex:1;background:var(--bg);box-shadow:var(--neu-in)}
-    #forms .neo-seg.on{background:linear-gradient(90deg,var(--indigo),var(--navy));box-shadow:none}
+    #forms .neo-seg.on{background:linear-gradient(90deg,var(--azul),var(--navy));box-shadow:none}
     /* checkbox / radio / toggle */
     #forms .neo-check,#forms .neo-radio{appearance:none;-webkit-appearance:none;width:32px;height:32px;flex:none;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in);cursor:pointer;position:relative;margin:0}
     #forms .neo-radio{border-radius:50%}
-    #forms .neo-check:checked{background:linear-gradient(135deg,var(--indigo),var(--navy));box-shadow:var(--neu-out)}
+    #forms .neo-check:checked{background:linear-gradient(135deg,var(--azul),var(--navy));box-shadow:var(--neu-out)}
     #forms .neo-check:checked::after{content:'\2713';position:absolute;inset:0;display:grid;place-items:center;color:#fff;font:700 16px/1 'Nunito',sans-serif}
-    #forms .neo-radio:checked::after{content:'';position:absolute;inset:8px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--navy));box-shadow:var(--neu-out)}
+    #forms .neo-radio:checked::after{content:'';position:absolute;inset:8px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--navy));box-shadow:var(--neu-out)}
     #forms .neo-opt-row{display:flex;align-items:center;gap:12px;font:400 16px/24px 'Nunito',sans-serif;color:rgba(0,6,38,.9);cursor:pointer}
     #forms .neo-toggle{appearance:none;-webkit-appearance:none;width:64px;height:32px;flex:none;border-radius:32px;background:var(--bg);box-shadow:var(--neu-in);position:relative;cursor:pointer;transition:background .25s;margin:0}
     #forms .neo-toggle::after{content:'';position:absolute;top:2px;left:2px;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:var(--neu-out);transition:left .25s}
-    #forms .neo-toggle:checked{background:linear-gradient(90deg,var(--indigo),var(--navy))}
+    #forms .neo-toggle:checked{background:linear-gradient(90deg,var(--azul),var(--navy))}
     #forms .neo-toggle:checked::after{left:34px}
     /* stepper */
     #forms .neo-stepper{display:inline-flex;align-items:stretch;width:162px;height:48px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out);overflow:hidden}
@@ -2077,14 +2036,14 @@ a{text-decoration:none;}
 
   <div class="section-header">
     <h2>Forms</h2>
-    <p>Componentes de captura de datos del sistema NEO. Regla de relieve: los campos de entrada son <strong>pozos hundidos</strong> (<span class="ds-code-inline">--neu-in</span>) porque reciben contenido; los controles accionables —botones, toggles, handles, steppers— son <strong>superficies elevadas</strong> (<span class="ds-code-inline">--neu-out</span>). Anatomía base Figma: campo de 48px, radius 999px (pildora: el DS lo lleva a píldora), padding horizontal 16px, label 4px por encima, tipografía Nunito 16/24.</p>
+    <p>Componentes de captura de datos del sistema NEO. Regla de relieve: los campos de entrada son <strong>pozos hundidos</strong> (<span class="ds-code-inline">--neu-in</span>) porque reciben contenido; los controles accionables —botones, toggles, handles, steppers— son <strong>superficies elevadas</strong> (<span class="ds-code-inline">--neu-out</span>). Anatomía base Figma: campo de 48px, radius 999px (píldora: el DS lo lleva a píldora), padding horizontal 16px, label 4px por encima, tipografía Nunito 16/24.</p>
   </div>
 
   <!-- 1 · TEXT INPUT -->
   <div class="comp-block" id="form-text-input">
     <h3>Text input</h3>
     <div class="comp-desc">
-      <div class="desc-text">Campo de una sola línea para valores cortos: tasas, montos, identificadores. Pozo hundido de 48px con radius 999px (pildora); en focus se añade un anillo indigo de 2px sin alterar el relieve.</div>
+      <div class="desc-text">Campo de una sola línea para valores cortos: tasas, montos, identificadores. Pozo hundido de 48px con radius 999px (píldora); en focus se añade un anillo azul de 2px sin alterar el relieve.</div>
       <div class="usage-note">Variantes Figma: Filled · Hint · Label · Optional · Required (default true) · State=Default · Valid=True</div>
     </div>
     <div class="demo-box">
@@ -2288,7 +2247,7 @@ a{text-decoration:none;}
   <div class="comp-block" id="form-slider">
     <h3>Slider</h3>
     <div class="comp-desc">
-      <div class="desc-text">Selección de un valor en un rango continuo. Track hundido de 8px con radius 32px; relleno con gradiente indigo→navy; handle circular elevado de 24px (es el elemento interactivo, por eso es raised).</div>
+      <div class="desc-text">Selección de un valor en un rango continuo. Track hundido de 8px con radius 32px; relleno con gradiente azul→navy; handle circular elevado de 24px (es el elemento interactivo, por eso es raised).</div>
       <div class="usage-note">Variantes Figma: Label (true) · Percentage=50</div>
     </div>
     <div class="demo-box">
@@ -2429,7 +2388,7 @@ a{text-decoration:none;}
   <div class="comp-block" id="form-toggle">
     <h3>Toggle</h3>
     <div class="comp-desc">
-      <div class="desc-text">Interruptor binario de efecto inmediato (sin botón de guardar). Track de 64×32px hundido que se rellena con gradiente indigo→navy al activarse; knob blanco elevado de 28px que se desliza con transición de 250ms. Label a 12px del track.</div>
+      <div class="desc-text">Interruptor binario de efecto inmediato (sin botón de guardar). Track de 64×32px hundido que se rellena con gradiente azul→navy al activarse; knob blanco elevado de 28px que se desliza con transición de 250ms. Label a 12px del track.</div>
       <div class="usage-note">Variantes Figma: Off (default) · con label · Track 64×32 radius 32 · Knob 32px</div>
     </div>
     <div class="demo-box">
@@ -2451,8 +2410,8 @@ a{text-decoration:none;}
   <style>
     /* ── FEEDBACK · NEO ── */
     .alert-neo{position:relative;display:flex;gap:12px;width:100%;padding:16px 44px 16px 20px;border-radius:12px;background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);box-shadow:var(--glass-shine),var(--neu-out-sm);overflow:hidden;}
-    .alert-neo::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;background:var(--indigo);}
-    .alert-neo .alert-icon{width:24px;flex-shrink:0;font-size:16px;padding-top:2px;color:var(--indigo);}
+    .alert-neo::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;background:var(--azul);}
+    .alert-neo .alert-icon{width:24px;flex-shrink:0;font-size:16px;padding-top:2px;color:var(--azul);}
     .alert-neo .alert-heading{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:2px;}
     .alert-neo .alert-body{font-size:12px;color:var(--text-sub);line-height:1.5;}
     .alert-neo .alert-close{position:absolute;top:12px;right:12px;width:24px;height:24px;border:none;border-radius:8px;background:transparent;color:var(--text-weak);cursor:pointer;font-size:12px;transition:all var(--dur-fast) var(--ease-out);}
@@ -2468,11 +2427,11 @@ a{text-decoration:none;}
     .alert-global-neo .ag-close{width:24px;height:24px;border:none;border-radius:8px;background:transparent;color:var(--text-weak);cursor:pointer;font-size:12px;flex-shrink:0;}
     .alert-global-neo .ag-close:hover{box-shadow:var(--neu-in-sm);color:var(--navy);}
     .alert-global-neo.error{background:linear-gradient(0deg,rgba(255,64,64,0.07),rgba(255,64,64,0.07)),var(--glass-bg);} .alert-global-neo.error .ag-icon{color:var(--red-text);}
-    .alert-global-neo.info .ag-icon{color:var(--indigo);}
+    .alert-global-neo.info .ag-icon{color:var(--azul);}
     .btn-neu.sm{padding:6px 12px;font-size:11px;border-radius:8px;}
 
     .empty-neo{display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;padding:16px 0;max-width:480px;}
-    .empty-neo .en-icon{width:64px;height:64px;border-radius:50%;background:var(--bg);box-shadow:var(--neu-in);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--indigo);}
+    .empty-neo .en-icon{width:64px;height:64px;border-radius:50%;background:var(--bg);box-shadow:var(--neu-in);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--azul);}
     .empty-neo .en-heading{font-size:18px;font-weight:800;color:var(--navy);}
     .empty-neo .en-desc{font-size:13px;color:var(--text-sub);line-height:1.5;margin-top:-12px;}
     .empty-neo .en-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
@@ -2611,14 +2570,14 @@ a{text-decoration:none;}
     /* ── NAVIGATION · NEO ── */
     .mini-preview{width:100%;border-radius:12px;overflow:hidden;box-shadow:var(--neu-out-sm);background:var(--bg);border:1px solid var(--border);}
     .mini-logo{font-size:12px;font-weight:900;color:var(--navy);letter-spacing:-0.3px;display:flex;align-items:center;gap:6px;}
-    .mini-logo i{color:var(--indigo);}
+    .mini-logo i{color:var(--azul);}
 
     /* Navigation header */
     .navh-neo{display:flex;align-items:center;gap:20px;height:52px;padding:0 18px;background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--glass-border);box-shadow:var(--glass-shine);}
     .navh-menu{display:flex;align-items:center;gap:4px;flex:1;}
     .navh-item{padding:7px 14px;border-radius:99px;font-size:11px;font-weight:700;color:var(--text-sub);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);white-space:nowrap;}
     .navh-item:hover{box-shadow:var(--neu-out-sm);}
-    .navh-item.active{color:var(--indigo);background:var(--bg);box-shadow:var(--neu-out-sm);}
+    .navh-item.active{color:var(--azul);background:var(--bg);box-shadow:var(--neu-out-sm);}
     .navh-avatar{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border-radius:99px;cursor:pointer;box-shadow:var(--neu-out-sm);background:var(--bg);}
     .navh-avatar:hover{box-shadow:var(--neu-out);}
     .navh-avatar span{font-size:10px;font-weight:700;color:var(--navy);}
@@ -2629,26 +2588,26 @@ a{text-decoration:none;}
     .foot-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
     .foot-social{display:flex;gap:8px;}
     .foot-social a{width:28px;height:28px;border-radius:50%;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-sub);transition:all var(--dur-fast) var(--ease-out);}
-    .foot-social a:hover{color:var(--indigo);box-shadow:var(--neu-out);transform:translateY(-1px);}
+    .foot-social a:hover{color:var(--azul);box-shadow:var(--neu-out);transform:translateY(-1px);}
     .foot-links{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:10px;}
     .foot-links a{font-size:11px;font-weight:600;color:var(--text-sub);text-decoration:none;}
-    .foot-links a:hover{color:var(--indigo);}
+    .foot-links a:hover{color:var(--azul);}
     .foot-copy{font-size:10px;color:var(--text-weak);}
 
     /* Tabs */
     .tabs-neo{display:inline-flex;gap:6px;padding:6px;border-radius:99px;background:var(--bg);box-shadow:var(--neu-in-sm);}
     .tab-neo{display:flex;align-items:center;gap:7px;padding:8px 18px;border-radius:99px;font-size:12px;font-weight:700;color:var(--text-sub);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);user-select:none;}
     .tab-neo:hover{color:var(--navy);}
-    .tab-neo.active{color:var(--indigo);background:var(--bg);box-shadow:var(--neu-out-sm);}
-    .tab-neo .tab-badge{background:var(--indigo-soft);color:var(--indigo);border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800;}
-    .tab-neo.active .tab-badge{background:var(--indigo);color:#fff;}
+    .tab-neo.active{color:var(--azul);background:var(--bg);box-shadow:var(--neu-out-sm);}
+    .tab-neo .tab-badge{background:var(--azul-soft);color:var(--azul);border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800;}
+    .tab-neo.active .tab-badge{background:var(--azul);color:#fff;}
 
     /* Pagination */
     .pag-neo{display:flex;align-items:center;justify-content:space-between;width:100%;gap:16px;flex-wrap:wrap;}
     .pag-pages{display:flex;align-items:center;gap:8px;}
     .pag-cell{min-width:34px;height:34px;padding:0 6px;border:none;border-radius:10px;background:transparent;font-family:var(--font);font-size:12px;font-weight:700;color:var(--text-sub);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all var(--dur-fast) var(--ease-out);}
     .pag-cell:hover{box-shadow:var(--neu-out-sm);}
-    .pag-cell.current{color:var(--indigo);background:var(--bg);box-shadow:var(--neu-in-sm);cursor:default;}
+    .pag-cell.current{color:var(--azul);background:var(--bg);box-shadow:var(--neu-in-sm);cursor:default;}
     .pag-cell.ellipsis{cursor:default;box-shadow:none;color:var(--text-weak);}
     .pag-nav{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:none;border-radius:99px;background:var(--bg);box-shadow:var(--neu-out-sm);font-family:var(--font);font-size:11px;font-weight:700;color:var(--text-sub);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);}
     .pag-nav:hover{box-shadow:var(--neu-out);transform:translateY(-1px);}
@@ -2664,7 +2623,7 @@ a{text-decoration:none;}
     /* Breadcrumbs */
     .crumbs-neo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:600;}
     .crumbs-neo a{color:var(--text-sub);text-decoration:none;padding:3px 8px;border-radius:8px;transition:all var(--dur-fast) var(--ease-out);}
-    .crumbs-neo a:hover{color:var(--indigo);box-shadow:var(--neu-out-sm);}
+    .crumbs-neo a:hover{color:var(--azul);box-shadow:var(--neu-out-sm);}
     .crumbs-neo .crumb-sep{color:var(--text-weak);font-size:10px;}
     .crumbs-neo .crumb-current{color:var(--navy);font-weight:800;padding:3px 8px;}
 
@@ -2677,7 +2636,7 @@ a{text-decoration:none;}
     .navside-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:99px;font-size:11px;font-weight:700;color:var(--text-sub);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);}
     .navside-item i{width:16px;text-align:center;font-size:11px;}
     .navside-item:hover{box-shadow:var(--neu-out-sm);}
-    .navside-item.active{color:var(--indigo);background:var(--bg);box-shadow:var(--neu-out-sm);}
+    .navside-item.active{color:var(--azul);background:var(--bg);box-shadow:var(--neu-out-sm);}
     .navside-bottom{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding-top:10px;}
     .navside-card{padding:10px 12px;border-radius:10px;background:var(--glass-bg);border:1px solid var(--glass-border);box-shadow:var(--glass-shine);backdrop-filter:blur(8px);}
     .navside-card b{display:block;font-size:10px;color:var(--navy);margin-bottom:2px;}
@@ -2884,6 +2843,15 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
 .act-chipset.is-brand{background:#dbe4f3;border-color:#b9cbe9;color:#1d3f8f;}
 .act-chipset.is-orange{background:#ffe3d6;border-color:#f6c3ae;color:#a8431c;}
 .act-chipset i{color:#3a4668;}
+
+/* Botón de icono con la identidad real del sitio, sin gradientes inventados */
+.act-btn-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--bb-navy);background:transparent;color:var(--bb-navy);font-size:16px;cursor:pointer;text-decoration:none;box-shadow:var(--neu-out-sm);}
+.act-btn-icon.is-solid{background:var(--bb-navy);border-color:var(--bb-navy);color:#fff;}
+
+/* El naranja de marca no sostiene texto blanco a 15px: 3.73:1, por debajo de AA.
+   No se cambia el boton de produccion (documenta la realidad) pero el DS ofrece
+   la variante accesible con --text-orange, un token que YA existe. */
+.act-btn-orange.is-accesible{background:var(--text-orange);}
 </style>
 
   <div class="section-header">
@@ -2910,7 +2878,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     </div>
     <div class="comp-desc">
       <div class="desc-title">Descripción</div>
-      <div class="desc-text">Tabs en píldoras neumórficas sobre track hundido (sunken = estático). El tab activo se eleva (raised = interactivo seleccionado) y tinta el label en indigo. Iconos de 20px y badge contador opcionales por tab.</div>
+      <div class="desc-text">Tabs en píldoras neumórficas sobre track hundido (sunken = estático). El tab activo se eleva (raised = interactivo seleccionado) y tinta el label en azul de marca. Iconos de 20px y badge contador opcionales por tab.</div>
       <div class="desc-title">Variantes Figma</div>
       <div class="desc-text">Node 8703:138133 · 928×48 · Tabs: <span class="ds-code-inline">type</span> Text, <span class="ds-code-inline">prop1..prop8</span> boolean (hasta 8 tabs) · Tab item: <span class="ds-code-inline">state</span> Default, <span class="ds-code-inline">type</span> boolean (activo), <span class="ds-code-inline">icon</span> boolean, <span class="ds-code-inline">badge</span> boolean.</div>
       <div class="usage-note">Tabs cambian de vista dentro de la misma página. Para cambiar el modo de un mismo dato, usar Segmented control.</div>
@@ -2942,7 +2910,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     </div>
     <div class="comp-desc">
       <div class="desc-title">Descripción</div>
-      <div class="desc-text">Paginación con botonera a la izquierda y contador a la derecha (<span class="ds-code-inline">justify-between</span>). Las celdas se elevan al hover; la página actual queda hundida (presionada) con número indigo. Anterior/Siguiente son píldoras elevadas que se deshabilitan en los extremos.</div>
+      <div class="desc-text">Paginación con botonera a la izquierda y contador a la derecha (<span class="ds-code-inline">justify-between</span>). Las celdas se elevan al hover; la página actual queda hundida (presionada) con número en azul de marca. Anterior/Siguiente son píldoras elevadas que se deshabilitan en los extremos.</div>
       <div class="desc-title">Variantes Figma</div>
       <div class="desc-text">Node 8703:126588 · 928×40 · <span class="ds-code-inline">device</span>: Desktop · Estados de página: default · actual (con borde) · ellipsis "…" · Labels en español: "Anterior" / "Siguiente" · Contador "Mostrando 11 - 20 de 128".</div>
       <div class="usage-note">Mostrar máximo 5 celdas numéricas + ellipsis. En tablas con más de 200 filas preferir paginación + filtros, no scroll infinito.</div>
@@ -3038,7 +3006,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
             <div class="navside-item"><i class="fa-solid fa-gear"></i> Supuestos</div>
             <div class="navside-bottom">
               <div class="navside-card">
-                <b><i class="fa-solid fa-circle-info" style="color:var(--indigo);"></i> Cierre Q2</b>
+                <b><i class="fa-solid fa-circle-info" style="color:var(--azul);"></i> Cierre Q2</b>
                 <span>La valuación trimestral vence el 30 de junio.</span>
               </div>
               <button class="btn-neu primary" style="width:100%;justify-content:center;font-size:11px;"><i class="fa-solid fa-play"></i> Nueva valuación</button>
@@ -3058,7 +3026,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     </div>
     <div class="comp-desc">
       <div class="desc-title">Descripción</div>
-      <div class="desc-text">Barra lateral en superficie Glass (z-index <span class="ds-code-inline">--z-sidebar</span>) con tres zonas: Top (logo + búsqueda hundida), Middle (items de menú — el activo es una píldora elevada con icono y label indigo) y Bottom (alert card glass, CTA primario full-width y avatar del usuario).</div>
+      <div class="desc-text">Barra lateral en superficie Glass (z-index <span class="ds-code-inline">--z-sidebar</span>) con tres zonas: Top (logo + búsqueda hundida), Middle (items de menú — el activo es una píldora elevada con icono y label en azul de marca) y Bottom (alert card glass, CTA primario full-width y avatar del usuario).</div>
       <div class="desc-title">Variantes Figma</div>
       <div class="desc-text">Node 8703:126471 · 320×1024 · Item: Default vs Seleccionado · Zonas configurables: Top (logo + search), Middle (items expandibles con chevron), Bottom (footer items, alert card, botón CTA, slot intercambiable, avatar dropdown 48px).</div>
       <div class="usage-note">Preview a escala reducida. En producción: ancho 320px, search h 48px, items con padding 24px/12px. En móvil se convierte en drawer off-canvas.</div>
@@ -3210,7 +3178,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
       <div style="position:relative;display:inline-block;">
         <button data-dropdown-trigger data-open-shadow="var(--neu-in)" data-closed-shadow="var(--neu-out)" aria-expanded="true" aria-haspopup="listbox" style="height:48px;display:inline-flex;align-items:center;gap:4px;padding:0 16px;border:none;border-radius:999px;background:var(--bg);box-shadow:var(--neu-in);font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#151f47;cursor:pointer;">Ramo: Vida Grupo <i class="fa-solid fa-chevron-up" style="font-size:14px;color:rgba(15,31,61,0.65);"></i></button>
         <div data-dropdown-menu data-dropdown-select style="position:absolute;top:calc(100% + 10px);left:0;width:280px;background:var(--bg);box-shadow:var(--neu-out);border:1px solid rgba(255,255,255,0.6);border-radius:8px;padding:8px 0;z-index:5;" role="listbox">
-          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;background:rgba(76,100,217,0.10);cursor:pointer;"><i class="fa-solid fa-check" style="font-size:14px;color:var(--indigo);"></i> Vida Grupo</div>
+          <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;background:rgba(76,100,217,0.10);cursor:pointer;"><i class="fa-solid fa-check" style="font-size:14px;color:var(--azul);"></i> Vida Grupo</div>
           <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;cursor:pointer;">Vida Individual</div>
           <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;cursor:pointer;">Salud</div>
         </div>
@@ -3401,7 +3369,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
         <div class="demo-box">
       <div style="width:364px;max-width:100%;display:flex;flex-direction:column;gap:16px;font-family:'Nunito',sans-serif;">
         <div style="width:48px;height:48px;border-radius:48px;background:rgba(76,100,217,0.10);border:1px solid rgba(15,31,61,0.12);box-shadow:var(--neu-out);display:flex;align-items:center;justify-content:center;">
-          <i class="fa-solid fa-shield-halved" style="font-size:24px;color:var(--indigo);"></i>
+          <i class="fa-solid fa-shield-halved" style="font-size:24px;color:var(--azul);"></i>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="font-weight:600;font-size:24px;line-height:32px;color:#151f47;">Capital basado en riesgo</div>
@@ -3476,7 +3444,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
         <div style="width:64px;flex-shrink:0;background:linear-gradient(160deg,rgba(232,236,244,0.98),rgba(220,228,242,0.95));border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:8px;">
           <div style="width:28px;height:28px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff">A</div>
           <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
-            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in-sm);display:flex;align-items:center;justify-content:center;color:var(--indigo);font-size:12px"><i class="fa-solid fa-house"></i></div>
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in-sm);display:flex;align-items:center;justify-content:center;color:var(--azul);font-size:12px"><i class="fa-solid fa-house"></i></div>
             <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-weak);font-size:12px"><i class="fa-solid fa-briefcase"></i></div>
             <div style="width:32px;height:32px;border-radius:8px;background:var(--bg);box-shadow:var(--neu-out-sm);display:flex;align-items:center;justify-content:center;color:var(--text-weak);font-size:12px"><i class="fa-solid fa-chart-bar"></i></div>
           </div>
@@ -3516,7 +3484,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
       <div>
         <div style="font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">2+1 — dos cols + full-width</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div class="bento-cell" style="background:var(--indigo-soft);color:var(--indigo)">Panel A</div>
+          <div class="bento-cell" style="background:var(--azul-soft);color:var(--azul)">Panel A</div>
           <div class="bento-cell" style="background:rgba(0,199,129,0.08);color:var(--green-text)">Panel B</div>
           <div class="bento-cell span-2" style="background:rgba(255,187,56,0.1);color:var(--yellow-text)">Panel C — ancho completo</div>
         </div>
@@ -3524,7 +3492,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
       <div>
         <div style="font-size:11px;font-weight:800;color:var(--text-weak);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Dashboard — 4 cols asimétrico</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
-          <div class="bento-cell span-2" style="background:var(--indigo-soft);color:var(--indigo);min-height:90px">Feature Card</div>
+          <div class="bento-cell span-2" style="background:var(--azul-soft);color:var(--azul);min-height:90px">Feature Card</div>
           <div class="bento-cell" style="font-size:11px">KPI 1</div>
           <div class="bento-cell" style="font-size:11px">KPI 2</div>
           <div class="bento-cell" style="font-size:11px">Métrica</div>
@@ -3625,7 +3593,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     <div class="comp-desc">
       <div class="desc-title">Variantes Figma</div>
       <div class="desc-text">Slots: 2–3 banners por producto. Controles: flechas prev/next (glass circular) + dots; el dot activo se expande a píldora. Autoplay opcional vía <span class="ds-code-inline">data-autoplay="ms"</span>, en pausa mientras el cursor está encima.</div>
-      <div class="usage-note" style="margin-top:8px;">Cada banner usa un gradiente de marca (navy / indigo). El texto siempre en blanco con suficiente contraste.</div>
+      <div class="usage-note" style="margin-top:8px;">Cada banner usa un gradiente de marca (navy / azul). El texto siempre en blanco con suficiente contraste.</div>
     </div>
     <pre class="ds-code">&lt;div class="neo-slider" data-slider data-autoplay="5000"&gt;
   &lt;div class="neo-slider-track" data-slider-track&gt;
@@ -3695,11 +3663,11 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
   <!-- CHART -->
   <div class="comp-block" id="cmp-chart">
     <h3>Chart</h3>
-    <p class="desc-text" style="margin-bottom:12px;">Gráficas en estilo neumórfico construidas solo con CSS y SVG (sin librerías). Barras y arco en gradiente navy→indigo, ejes y labels sobrios.</p>
+    <p class="desc-text" style="margin-bottom:12px;">Gráficas en estilo neumórfico construidas solo con CSS y SVG (sin librerías). Barras y arco en gradiente navy→azul, ejes y labels sobrios.</p>
     <div class="demo-box" style="display:block;padding:24px;">
       <div class="chart-wrap">
         <div class="chart-card">
-          <div class="chart-title"><i class="fa-solid fa-chart-column" style="color:var(--indigo)"></i> Reservas por mes (MM USD)</div>
+          <div class="chart-title"><i class="fa-solid fa-chart-column" style="color:var(--azul)"></i> Reservas por mes (MM USD)</div>
           <div class="bar-chart">
             <div class="bar-col"><span class="bar-tip">$180M</span><div class="bar" style="height:48%"></div><span class="bar-x">Ene</span></div>
             <div class="bar-col"><span class="bar-tip">$205M</span><div class="bar" style="height:56%"></div><span class="bar-x">Feb</span></div>
@@ -3710,7 +3678,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
           </div>
         </div>
         <div class="chart-card">
-          <div class="chart-title"><i class="fa-solid fa-chart-pie" style="color:var(--indigo)"></i> Distribución de cartera</div>
+          <div class="chart-title"><i class="fa-solid fa-chart-pie" style="color:var(--azul)"></i> Distribución de cartera</div>
           <div class="donut-chart">
             <svg width="124" height="124" viewBox="0 0 42 42" style="flex-shrink:0">
               <circle cx="21" cy="21" r="15.915" fill="none" stroke="rgba(163,177,198,0.3)" stroke-width="6"></circle>
@@ -3731,7 +3699,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     </div>
     <div class="comp-desc">
       <div class="desc-title">Variantes Figma</div>
-      <div class="desc-text">Bar chart (categorías) y donut chart (proporciones). Contenedor SUNKEN (<span class="ds-code-inline">--neu-in</span>) que enmarca el dato; barras RAISED en gradiente navy→indigo. Tooltip al pasar el cursor sobre cada barra.</div>
+      <div class="desc-text">Bar chart (categorías) y donut chart (proporciones). Contenedor SUNKEN (<span class="ds-code-inline">--neu-in</span>) que enmarca el dato; barras RAISED en gradiente navy→azul. Tooltip al pasar el cursor sobre cada barra.</div>
       <div class="usage-note" style="margin-top:8px;">Sin dependencias JS de terceros: las barras son <span class="ds-code-inline">height</span> en % y el donut usa <span class="ds-code-inline">stroke-dasharray</span> sobre un círculo de circunferencia 100.</div>
     </div>
     <pre class="ds-code">&lt;!-- Bar: altura en % · tooltip CSS --&gt;
@@ -3752,7 +3720,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
 
   <div class="comp-block" id="glass-recipe">
     <h3>Glass Effect Recipe</h3>
-    <div class="demo-box" style="position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy-2) 0%,var(--indigo) 50%,var(--navy) 100%);padding:44px;min-height:300px;display:flex;align-items:center;justify-content:center;">
+    <div class="demo-box" style="position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy-2) 0%,var(--azul) 50%,var(--navy) 100%);padding:44px;min-height:300px;display:flex;align-items:center;justify-content:center;">
       <!-- Contenido detrás del glass: formas con detalle/contraste para que el blur sea visible -->
       <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;">
         <div style="position:absolute;width:170px;height:170px;border-radius:50%;background:#e0592a;top:-34px;left:26px;opacity:.92"></div>
@@ -3763,7 +3731,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
         <div style="position:absolute;left:20px;bottom:12px;font-size:12px;font-weight:800;color:rgba(255,255,255,0.78);letter-spacing:3px">RESERVAS · CAPITAL · PRIMAS</div>
       </div>
       <div style="position:relative;z-index:1;background:rgba(232,236,244,0.54);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.5);box-shadow:none;border-radius:16px;padding:24px;max-width:340px;width:100%">
-        <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-droplet" style="color:var(--indigo);margin-right:6px"></i>Superficie Glass</div>
+        <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px"><i class="fa-solid fa-droplet" style="color:var(--azul);margin-right:6px"></i>Superficie Glass</div>
         <div style="font-size:12px;color:var(--text-sub)">backdrop-filter:blur(12px) + borde de 1px blanco al 50%, sin sombra. El contorno define el panel sin elevarlo del fondo.</div>
       </div>
     </div>
@@ -3797,11 +3765,11 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     <div class="demo-box" style="gap:24px;flex-wrap:wrap;">
       <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
         <div style="width:140px;height:90px;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;">
-          <i class="fa-solid fa-hand-pointer" style="color:var(--indigo);font-size:20px"></i>
+          <i class="fa-solid fa-hand-pointer" style="color:var(--azul);font-size:20px"></i>
           <span style="font-size:11px;font-weight:700;color:var(--text-sub)">Raised</span>
         </div>
         <div style="text-align:center">
-          <div style="font-size:11px;font-weight:800;color:var(--indigo)">--neu-out</div>
+          <div style="font-size:11px;font-weight:800;color:var(--azul)">--neu-out</div>
           <div style="font-size:10px;color:var(--text-weak)">Interactivo · Clickeable</div>
           <div style="font-size:10px;color:var(--text-weak)">Botones · Cards · Tabs default</div>
         </div>
@@ -3869,8 +3837,8 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
         <span style="font-size:10px;color:var(--text-weak)">--neu-in-sm + translateY(0)</span>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-        <button class="btn-neu" style="box-shadow:var(--neu-out),0 0 0 2px var(--indigo);pointer-events:none">Focus</button>
-        <span style="font-size:10px;color:var(--text-weak)">--neu-out + outline indigo</span>
+        <button class="btn-neu" style="box-shadow:var(--neu-out),0 0 0 2px var(--azul);pointer-events:none">Focus</button>
+        <span style="font-size:10px;color:var(--text-weak)">--neu-out + outline azul</span>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
         <button class="btn-neu" style="opacity:0.45;cursor:not-allowed;pointer-events:none">Disabled</button>
@@ -3891,7 +3859,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
           <div style="font-size:11px;font-weight:800;color:var(--green-text);margin-bottom:12px;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-circle-check"></i> SÍ hacer</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
             <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--navy para títulos principales y valores importantes</li>
-            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--indigo para elementos interactivos y brand</li>
+            <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--azul para elementos interactivos y brand</li>
             <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--text-sub para texto secundario y labels</li>
             <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>--text-dim para metadatos y timestamps</li>
             <li style="font-size:12px;color:var(--text-sub);display:flex;gap:8px"><i class="fa-solid fa-check" style="color:var(--green);margin-top:2px;flex-shrink:0"></i>Semánticos (green/yellow/red) solo para estados</li>
@@ -4061,32 +4029,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     </div>
   </div>
 
-  <div class="comp-block" id="act-tok-brand">
-    <h3>Paleta de marca</h3>
-    <p class="desc-text" style="margin-bottom:12px;">El azul <strong>#151f47</strong> es el color de marca (no un índigo). El naranja <strong>#e0592a</strong> es el acento: estrellas, CTA de cards, iconos de footer y el cursor del typing del hero.</p>
-    <div class="act-demo">
-      <table class="act-tokentable">
-        <thead><tr><th></th><th>Token semántico</th><th>Theme</th><th>Primitive</th><th>Hex</th></tr></thead>
-        <tbody>
-          <tr><td><span class="act-sw" style="background:#151f47"></span></td><td>fill--brand-strong</td><td>brand--light--1000</td><td>blue--light--1000</td><td><code class="ds-code-inline">#151f47</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#e0592a"></span></td><td>fill--brand-alternate</td><td>—</td><td>orange--1000</td><td><code class="ds-code-inline">#e0592a</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#3258a2"></span></td><td>(dark mode brand)</td><td>brand--dark--1000</td><td>blue--dark--1000</td><td><code class="ds-code-inline">#3258a2</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#000626e6"></span></td><td>text--strong</td><td>grey--light--1000</td><td>grey-slate--light--1000</td><td><code class="ds-code-inline">#000626e6</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#000933a6"></span></td><td>text--weak</td><td>grey--light--700</td><td>grey-slate--light--700</td><td><code class="ds-code-inline">#000933a6</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#f5f6fa"></span></td><td>background--sunken</td><td>grey-solid--50</td><td>grey-slate-solid--50</td><td><code class="ds-code-inline">#f5f6fa</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#4caf50"></span></td><td>fill--success-strong</td><td>—</td><td>green--light--1000</td><td><code class="ds-code-inline">#4caf50</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#ff9800"></span></td><td>fill--warning-strong</td><td>—</td><td>amber--light--1000</td><td><code class="ds-code-inline">#ff9800</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#c73a3a"></span></td><td>fill--error-strong</td><td>—</td><td>red--light--1000</td><td><code class="ds-code-inline">#c73a3a</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#1a74a8"></span></td><td>fill--information-strong</td><td>—</td><td>teal--light--1000</td><td><code class="ds-code-inline">#1a74a8</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#763ec4"></span></td><td>(decorativo)</td><td>—</td><td>purple--light--1000</td><td><code class="ds-code-inline">#763ec4</code></td></tr>
-          <tr><td><span class="act-sw" style="background:#fec62e"></span></td><td>fill--yellow</td><td>—</td><td>yellow-solid--1000</td><td><code class="ds-code-inline">#fec62e</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="comp-desc">
-      <div class="usage-note">Cada color primitivo tiene rampa de opacidad <span class="ds-code-inline">1000 / 800 / 200-300 / 50</span> para fills y strokes suaves. Ejemplo: <span class="ds-code-inline">orange--50 = #e0592a0d</span> es el fondo de un chip naranja.</div>
-    </div>
-  </div>
+  
 
   <div class="comp-block" id="act-tok-type">
     <h3>Tipografía oficial · 4 familias</h3>
@@ -4123,47 +4066,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     </div>
   </div>
 
-  <div class="comp-block" id="act-tok-space">
-    <h3>Spacing &amp; corner radius oficiales</h3>
-    <p class="desc-text" style="margin-bottom:12px;">Escala de espaciado de 17 pasos y radios de 8 pasos. Los radios de píldora (40/50/64) existen en producción pero <em>fuera</em> de la colección Webflow: están hardcodeados en navbar, botones y cards de testimonio.</p>
-    <div class="act-demo">
-      <div class="act-eyebrow" style="margin-bottom:10px;">📐 spacing</div>
-      <div class="act-row" style="align-items:flex-end;">
-        <div style="text-align:center"><div style="width:4px;height:4px;background:var(--prim-blue-1000);border-radius:2px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">4</span></div>
-        <div style="text-align:center"><div style="width:8px;height:8px;background:var(--prim-blue-1000);border-radius:2px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">8</span></div>
-        <div style="text-align:center"><div style="width:12px;height:12px;background:var(--prim-blue-1000);border-radius:2px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">12</span></div>
-        <div style="text-align:center"><div style="width:16px;height:16px;background:var(--prim-blue-1000);border-radius:2px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">16</span></div>
-        <div style="text-align:center"><div style="width:20px;height:20px;background:var(--prim-blue-1000);border-radius:3px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">20</span></div>
-        <div style="text-align:center"><div style="width:24px;height:24px;background:var(--prim-blue-1000);border-radius:3px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">24</span></div>
-        <div style="text-align:center"><div style="width:32px;height:32px;background:var(--prim-blue-1000);border-radius:4px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">32</span></div>
-        <div style="text-align:center"><div style="width:40px;height:40px;background:var(--prim-blue-1000);border-radius:4px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">40</span></div>
-        <div style="text-align:center"><div style="width:48px;height:48px;background:var(--prim-blue-1000);border-radius:5px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">48</span></div>
-        <div style="text-align:center"><div style="width:56px;height:56px;background:var(--prim-blue-1000);border-radius:5px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">56</span></div>
-        <div style="text-align:center"><div style="width:64px;height:64px;background:var(--prim-blue-1000);border-radius:6px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">64</span></div>
-        <div style="text-align:center"><div style="width:80px;height:80px;background:var(--prim-blue-1000);border-radius:6px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">80</span></div>
-        <div style="text-align:center"><div style="width:96px;height:96px;background:var(--prim-blue-1000);border-radius:7px;margin:0 auto 6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">96</span></div>
-      </div>
-      <div style="font-family:var(--ff-body);font-size:12px;color:var(--text-weak);margin-top:12px;">Escala completa: 0 · 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64 · 80 · 96 · 128 · 192 · 256</div>
-    </div>
-    <div class="act-demo">
-      <div class="act-eyebrow" style="margin-bottom:10px;">📐 corner-radius</div>
-      <div class="act-row">
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:4px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">4</span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:8px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">8</span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:12px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">12</span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:16px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">16</span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:20px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">20</span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:24px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">24 <em>card</em></span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px solid var(--stroke-weak);border-radius:32px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak)">32 <em>cert</em></span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:40px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-orange)">40 <em>testi</em></span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:50px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-orange)">50 <em>chip</em></span></div>
-        <div style="text-align:center"><div style="width:58px;height:58px;background:#fff;border:1px dashed var(--prim-orange-300);border-radius:64px;margin-bottom:6px;"></div><span style="font-family:var(--ff-body);font-size:11px;color:var(--text-orange)">64 <em>btn+</em></span></div>
-      </div>
-    </div>
-    <div class="comp-desc">
-      <div class="usage-note">Los valores en <span style="color:var(--text-orange)">naranja punteado</span> NO están en la colección Webflow. Pendiente: subirlos como <span class="ds-code-inline">corner-radius--40/50/64</span> para cerrar la brecha token↔producción.</div>
-    </div>
-  </div>
+  
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════
@@ -4197,7 +4100,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     </div>
     <div class="comp-desc">
       <div class="desc-title">Anatomía medida en producción</div>
-      <div class="desc-text">Altura de link 44px · padding 0 16px · radius 999px (pildora) · Nunito 600 16px. Contenedor: radius 40px · borde <span class="ds-code-inline">#d8d8dc</span> · sombra <span class="ds-code-inline">0 10px 30px rgba(15,23,42,.10)</span>. Botón actuaria+: navy <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px. Logotipo: imagotipo oficial inline (velero + wordmark), 30px de alto, con los colores exactos del vector <span class="ds-code-inline">#111C4E</span> / <span class="ds-code-inline">#E0592A</span> / <span class="ds-code-inline">#385CAD</span>.</div>
+      <div class="desc-text">Altura de link 44px · padding 0 16px · radius 999px (píldora) · Nunito 600 16px. Contenedor: radius 40px · borde <span class="ds-code-inline">#d8d8dc</span> · sombra <span class="ds-code-inline">0 10px 30px rgba(15,23,42,.10)</span>. Botón actuaria+: navy <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px. Logotipo: imagotipo oficial inline (velero + wordmark), 30px de alto, con los colores exactos del vector <span class="ds-code-inline">#111C4E</span> / <span class="ds-code-inline">#E0592A</span> / <span class="ds-code-inline">#385CAD</span>.</div>
     </div>
     <pre class="ds-code">&lt;nav class="act-navbar"&gt;
   &lt;a class="act-logo"&gt;&lt;svg class="act-logo-svg" viewBox="0 5.25 164.9 39.6"&gt;…&lt;/svg&gt;&lt;/a&gt;
@@ -4234,14 +4137,14 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
   "tokens": {
     "surface": "#f5f6fa",
     "border": "--sitio-borde-d8d8dc",
-    "radius": "40px (pildora, sin token)",
+    "radius": "40px (píldora, sin token)",
     "shadow": "--sh-navbar",
     "link": "Nunito 600 16/20, altura 44, radius 8"
   },
   "rules": [
     "flex-wrap:wrap obligatorio: sin el, desborda por debajo de 1200px.",
     "Los enlaces llevan white-space:nowrap y flex-shrink:0.",
-    "El boton actuaria+ usa su propio SVG (assets.json → logo_plus), nunca un icono generico.",
+    "El botón actuaria+ usa su propio SVG (assets.json → logo_plus), nunca un icono genérico.",
     "aria-current='page' en el enlace activo."
   ],
   "do_not": [
@@ -4583,7 +4486,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     <div class="comp-desc">
       <div class="desc-title">Descripción del componente en Webflow</div>
       <div class="desc-text">"Sección de testimonios del Home con marquee continuo (glass cards). Una sola fuente para Home y páginas de soluciones. CSS y clon de pista viven en el custom code del SITIO."</div>
-      <div class="usage-note" style="margin-top:8px;">Card medida: 440×414 · radius 40px · padding 16px. Chip de logo: 120×44 · radius 999px (pildora) · borde <span class="ds-code-inline">rgba(21,31,71,.08)</span>.</div>
+      <div class="usage-note" style="margin-top:8px;">Card medida: 440×414 · radius 40px · padding 16px. Chip de logo: 120×44 · radius 999px (píldora) · borde <span class="ds-code-inline">rgba(21,31,71,.08)</span>.</div>
     </div>
     <details class="ai-spec" data-ai-component="card-testimonial">
       <summary>Contrato de implementación · legible por IA</summary>
@@ -4613,7 +4516,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     }
   },
   "tokens": {
-    "radius": "40px (pildora, sin token)",
+    "radius": "40px (píldora, sin token)",
     "shadow": "--sh-soft",
     "quote": "Prompt 400 16/20 --text-weak",
     "name": "Nunito 800 16/20",
@@ -4789,7 +4692,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
   "rules": [
     "Todo campo obligatorio lleva marca textual, no solo color.",
     "El foco NUNCA se elimina sin reemplazo visible.",
-    "Protegido con Cloudflare Turnstile en produccion. Exito → /gracias."
+    "Protegido con Cloudflare Turnstile en producción. Exito → /gracias."
   ],
   "do_not": [
     "No usar outline:none sin halo de reemplazo.",
@@ -4914,19 +4817,45 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
 
   <!-- BOTONES -->
   <div class="comp-block" id="act-buttons">
-    <h3>Botones del sitio</h3>
-    <p class="desc-text" style="margin-bottom:12px;">Cuatro variantes en producción. El sitio siempre usó <strong>píldoras</strong> (radius 40-64px); el DS ha unificado ese criterio y ahora <strong>todo lo cliqueable es píldora</strong>, también en el sistema NEO.</p>
+    <h3>Botones</h3>
+    <div class="unif-note" style="border-left-color:var(--bb-danger-500);"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Aviso de contraste:</strong> el botón naranja de producción lleva texto blanco sobre <span class="ds-code-inline">#e0592a</span> = <strong>3.73:1</strong>, por debajo del 4.5:1 que pide WCAG AA para 15px. Se documenta tal cual porque es lo que hay en el sitio. La variante <span class="ds-code-inline">.is-accesible</span> usa <span class="ds-code-inline">--text-orange #a8431c</span> y alcanza 6.03:1 <strong>sin inventar color</strong>. Decisión pendiente del equipo de marca.</div>
+    <div class="unif-note"><i class="fa-solid fa-code-branch"></i> Componente unificado: absorbe <strong>Button, Button group, Button icon</strong> del sistema genérico. Estos son los botones <strong>reales de actuaria.com</strong>; el gradiente navy&rarr;azul del NEO heredado no existe en producción y se ha retirado.</div>
+    <p class="desc-text" style="margin-bottom:12px;">Cuatro variantes en producción, todas <strong>píldora</strong>. El acento naranja se reserva para la acción comercial; el navy para la acción de sistema.</p>
+
     <div class="act-canvas">
+      <div class="demo-label">VARIANTES DEL SITIO</div>
       <div class="act-row" style="gap:20px;">
         <div style="text-align:center"><span class="act-button-ring"><a class="act-btn-primary">Descubre cómo lo hacemos <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:15px"></i></a></span><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">button-ring + primary</div></div>
         <div style="text-align:center"><a class="act-btn-plus"><img class="act-plus-logo" src="https://cdn.prod.website-files.com/6967c96e0fba2ea4f94d3c69/6a70bbeccb6a40ca56c13c67_logo-actuaria-plus.svg" alt="actuaria+" width="84" height="16" loading="lazy"></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">actuariaplus-button</div></div>
         <div style="text-align:center"><a class="act-btn-contacto">Contacto <i class="fa-solid fa-phone"></i></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">outline</div></div>
-        <div style="text-align:center"><a class="act-btn-orange">Solicita cotización <i class="fa-solid fa-arrow-right"></i></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">acento naranja</div></div>
+        <div style="text-align:center"><a class="act-btn-orange" data-qa-ignore="contraste-real-de-producción">Solicita cotización <i class="fa-solid fa-arrow-right"></i></a><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">acento naranja</div></div>
       </div>
     </div>
+
+    <div class="var-stack">
+      <div class="var-row">
+        <div class="var-label">Grupo de botones</div>
+        <div class="act-canvas"><div class="act-row" style="gap:12px;">
+          <a class="act-btn-orange is-accesible">Emitir póliza</a>
+          <a class="act-btn-contacto">Guardar borrador</a>
+          <a class="act-btn-ghost">Cancelar</a>
+        </div></div>
+      </div>
+      <div class="var-row">
+        <div class="var-label">Botón de icono</div>
+        <div class="act-canvas"><div class="act-row" style="gap:12px;">
+          <a class="act-btn-icon is-solid" aria-label="Descargar informe"><i class="fa-solid fa-download"></i></a>
+          <a class="act-btn-icon" aria-label="Filtrar"><i class="fa-solid fa-filter"></i></a>
+          <a class="act-btn-icon" aria-label="Compartir"><i class="fa-solid fa-share-nodes"></i></a>
+        </div></div>
+      </div>
+    </div>
+
     <div class="comp-desc">
-      <div class="desc-title">Medidas</div>
-      <div class="desc-text"><strong>button-ring:</strong> padding 6px · radius 40px, envuelve al botón creando un halo. <strong>actuaria+:</strong> 112×40 · bg <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px · gap 8px.</div>
+      <div class="desc-title">Medidas reales</div>
+      <div class="desc-text"><strong>primary:</strong> h52 &middot; padding 0 24 &middot; píldora. <strong>ghost / contacto / orange / plus:</strong> h44 &middot; padding 0 20. <strong>button-ring:</strong> padding 6px, envuelve al botón creando un halo. <strong>actuaria+:</strong> 112&times;40 &middot; bg <span class="ds-code-inline">#151f47</span> &middot; Nunito 700 15.2px.</div>
+      <div class="desc-title" style="margin-top:10px;">Cuándo usar cada uno</div>
+      <div class="desc-text"><strong>orange</strong> solo para la acción comercial principal (una por pantalla). <strong>primary</strong> navy para la acción de sistema. <strong>contacto</strong> es el secundario con borde. <strong>ghost</strong> para la acción de descarte. Nunca dos naranjas compitiendo en la misma vista.</div>
     </div>
   </div>
 
@@ -4975,6 +4904,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
   </div>
   <div class="comp-block" id="act-gap-table">
     <h3>Resumen de la auditoría</h3>
+    <div class="unif-note" style="border-left-color:var(--bb-naranja);"><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>Esto no es una paleta:</strong> es una <strong>auditoría</strong> de los valores de <a href="#colors">Colores</a>. Los colores se definen una sola vez allí.</div>
     <div class="act-demo" style="background:#fff;">
       <table class="act-tokentable">
         <thead><tr><th>Área</th><th>Antes (DS)</th><th>actuaria.com</th><th>Estado</th></tr></thead>
@@ -5013,6 +4943,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
 
   <div class="comp-block" id="act-contrast">
     <h3>Auditoría de contraste</h3>
+    <div class="unif-note" style="border-left-color:var(--bb-naranja);"><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>Esto no es una paleta:</strong> es una <strong>auditoría</strong> de los valores de <a href="#colors">Colores</a>. Los colores se definen una sola vez allí.</div>
     <p class="desc-text" style="margin-bottom:12px;">Ratios calculados con la fórmula de luminancia relativa de WCAG 2.1, componiendo los colores con alpha sobre su fondo opaco. Umbrales: <strong>4.5:1</strong> texto normal · <strong>3:1</strong> texto grande (≥24px o ≥19px bold).</p>
     <div class="act-demo" style="background:#fff;overflow-x:auto;">
       <table class="act-tokentable">
@@ -5042,22 +4973,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
     </div>
   </div>
 
-  <div class="comp-block" id="act-text-tokens">
-    <h3>Tokens de texto accesible</h3>
-    <p class="desc-text" style="margin-bottom:12px;">Pareja obligatoria para cada color semántico: uno para <em>fill</em> y otro para <em>texto</em>. El naranja de texto ya existía en el sitio como <code class="ds-code-inline">sitio--texto--a8431c</code>; los demás son nuevos.</p>
-    <div class="act-demo" style="background:#fff;">
-      <table class="act-tokentable">
-        <thead><tr><th>Rol</th><th>Fill (no usar como texto)</th><th>Texto accesible</th><th style="text-align:right">Ratio</th></tr></thead>
-        <tbody>
-          <tr><td>Marca alterna</td><td><span class="act-sw" style="background:#e0592a"></span> <code class="ds-code-inline">#e0592a</code> · 3.73</td><td><span class="act-sw" style="background:#a8431c"></span> <code class="ds-code-inline">--text-orange #a8431c</code></td><td style="text-align:right"><strong>6.03:1</strong></td></tr>
-          <tr><td>Éxito</td><td><span class="act-sw" style="background:#4caf50"></span> <code class="ds-code-inline">#4caf50</code> · 2.78</td><td><span class="act-sw" style="background:#2e7d32"></span> <code class="ds-code-inline">--text-green #2e7d32</code></td><td style="text-align:right"><strong>5.13:1</strong></td></tr>
-          <tr><td>Advertencia</td><td><span class="act-sw" style="background:#ff9800"></span> <code class="ds-code-inline">#ff9800</code> · 2.16</td><td><span class="act-sw" style="background:#8a5200"></span> <code class="ds-code-inline">--text-amber #8a5200</code></td><td style="text-align:right"><strong>6.39:1</strong></td></tr>
-          <tr><td>Error</td><td><span class="act-sw" style="background:#c73a3a"></span> <code class="ds-code-inline">#c73a3a</code> · 5.13</td><td><span class="act-sw" style="background:#c73a3a"></span> <code class="ds-code-inline">--text-red</code> (mismo)</td><td style="text-align:right"><strong>5.13:1</strong></td></tr>
-          <tr><td>Información</td><td><span class="act-sw" style="background:#1a74a8"></span> <code class="ds-code-inline">#1a74a8</code> · 5.11</td><td><span class="act-sw" style="background:#1a74a8"></span> <code class="ds-code-inline">--text-teal</code> (mismo)</td><td style="text-align:right"><strong>5.11:1</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  
 
   <div class="comp-block" id="act-neu-hierarchy">
     <h3>Jerarquía neumórfica · reglas duras</h3>
@@ -5097,7 +5013,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
   },
   "do_not": [
     "No anidar raised dentro de raised: el hijo va flat o sunken.",
-    "No usar la sombra como unico indicador de estado (WCAG 1.4.1).",
+    "No usar la sombra como único indicador de estado (WCAG 1.4.1).",
     "No aplicar neumorfismo sobre fondo oscuro: usar borde 1px.",
     "No usar los tokens *-1000 como color de texto pequeno: son de fill."
   ],
@@ -5529,7 +5445,7 @@ a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
             <td><span class="sa-pill info">Actuario responsable</span></td><td class="sa-num"><span class="sa-sub">activa hace 8 min</span></td></tr>
           <tr><td><div class="sa-row" style="gap:9px;"><span class="sa-ava" style="background:var(--bb-naranja);">AV</span><div><strong>Ana Lucía Varela</strong><div class="sa-sub">a.varela@favorita.ec</div></div></div></td>
             <td><span class="sa-pill neutral">Analista</span></td><td class="sa-num"><span class="sa-sub">activa hace 2 h</span></td></tr>
-          <tr><td><div class="sa-row" style="gap:9px;"><span class="sa-ava" style="background:#6b7280;">PV</span><div><strong>Patricia Vinueza</strong><div class="sa-sub">auditoria@externa.ec</div></div></div></td>
+          <tr><td><div class="sa-row" style="gap:9px;"><span class="sa-ava" style="background:#6b7280;">PV</span><div><strong>Patricia Vinueza</strong><div class="sa-sub">auditoría@externa.ec</div></div></div></td>
             <td><span class="sa-pill warn">Auditor · hasta 31/03/2027</span></td><td class="sa-num"><span class="sa-sub">hace 3 días</span></td></tr>
         </tbody></table>
       </div></div></div>
@@ -6651,6 +6567,7 @@ contratos.find(c =&gt; c.component === 'tracking').spec.do_not;</pre>
 
   <div class="comp-block" id="act-bb-deltas">
     <h3>Diferencias detectadas</h3>
+    <div class="unif-note" style="border-left-color:var(--bb-naranja);"><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>Esto no es una paleta:</strong> es una <strong>auditoría</strong> de los valores de <a href="#colors">Colores</a>. Los colores se definen una sola vez allí.</div>
     <p class="desc-text" style="margin-bottom:12px;">Δ RGB es la distancia euclídea entre ambos valores. Por debajo de ~6 la diferencia es imperceptible; por encima de ~10 es visible en superficies grandes.</p>
     <div class="act-demo" style="background:#fff;overflow-x:auto;">
       <table class="act-tokentable">
@@ -6720,6 +6637,7 @@ contratos.find(c =&gt; c.component === 'tracking').spec.do_not;</pre>
 
   <div class="comp-block" id="act-bb-contraste">
     <h3>Verificación del contraste declarado</h3>
+    <div class="unif-note" style="border-left-color:var(--bb-naranja);"><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>Esto no es una paleta:</strong> es una <strong>auditoría</strong> de los valores de <a href="#colors">Colores</a>. Los colores se definen una sola vez allí.</div>
     <p class="desc-text" style="margin-bottom:12px;">El brandbook afirma: «Ratios de contraste verificados WCAG 2.1 contra la superficie <code class="ds-code-inline">#E8ECF4</code>». Recalculado con la fórmula de luminancia relativa, <strong>los niveles <em>text</em> no cumplen esa afirmación</strong>.</p>
     <div class="act-demo" style="background:#fff;">
       <table class="act-tokentable">
@@ -6766,7 +6684,7 @@ contratos.find(c =&gt; c.component === 'tracking').spec.do_not;</pre>
     "contrast_claim": "Los niveles 'text' del brandbook NO alcanzan 4.5:1 sobre #E8ECF4. Verificado, no estimado."
   },
   "do_not": [
-    "No elegir unilateralmente entre brandbook y produccion: reportar la brecha.",
+    "No elegir unilateralmente entre brandbook y producción: reportar la brecha.",
     "No usar los niveles 'text' del brandbook para texto pequeno sin oscurecerlos antes."
   ]
 }</pre>
@@ -7002,7 +6920,7 @@ document.querySelectorAll('.ds-section[id], .comp-block[id]').forEach(s => obser
         if (!ddOption.querySelector('i.fa-check')) {
           var chk = document.createElement('i');
           chk.className = 'fa-solid fa-check';
-          chk.style.cssText = 'font-size:14px;color:var(--indigo);';
+          chk.style.cssText = 'font-size:14px;color:var(--azul);';
           ddOption.insertBefore(chk, ddOption.firstChild);
         }
         var trg = selMenu.parentElement && selMenu.parentElement.querySelector('[data-dropdown-trigger]');
