@@ -199,6 +199,43 @@
     }
   }
 
+
+  /* ── 10 · Jerarquia por relieve ──
+     Regla del usuario: FLAT+OPACO = informativo, RELIEVE = cliqueable.
+     Sin esta comprobacion la regla se erosiona en cuanto alguien anade un
+     componente: el DS vuelve a mezclar botones planos y chips con sombra. */
+  const visible = el => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+  const txt = el => (el.textContent || '').trim();
+  const CLICABLE = 'button,[role="button"],a.ds-nav-link,.sa-btn,.sa-navitem,.sa-icon-btn,.btn-neu,' +
+    '.neo-btn-sec,.act-btn-primary,.act-btn-ghost,.act-btn-orange,.act-btn-contacto,.act-btn-plus,' +
+    '.act-button-ring,.act-card-sol-cta,.act-cert-link,.act-blog-cta,.ds-nav-link,.tab-neo,.seg-item,' +
+    '.pag-cell,.navside-item,.alert-close,.ag-close,.sl-btn,.ico-r,.sa-stepdot,[data-acc-header]';
+  const INFORMATIVO = '.act-chipset,.act-blog-chip,.sa-pill,.el-badge,.badge,.act-eyebrow,.chip';
+
+  document.querySelectorAll(CLICABLE).forEach(e => {
+    if (!visible(e) || e.closest('.ai-spec,pre,code')) return;
+    if (e.classList.contains('ellipsis') || e.classList.contains('flip-card')) return;
+    if (e.hasAttribute('data-qa-ignore')) return;
+    const s = getComputedStyle(e), r = e.getBoundingClientRect();
+    const et = (e.className || e.tagName).toString().slice(0, 30) + ' \u00ab' + txt(e).slice(0, 16) + '\u00bb';
+    if (s.boxShadow === 'none') add('jerarquia', 'cliqueable sin relieve: ' + et);
+    const px = parseFloat(s.borderRadius) || 0;
+    if (!(s.borderRadius.includes('%') || px >= r.height / 2 - 1))
+      add('jerarquia', 'cliqueable sin pildora: ' + et + ' r=' + s.borderRadius.split(' ')[0]);
+  });
+
+  document.querySelectorAll(INFORMATIVO).forEach(e => {
+    if (!visible(e) || e.closest('.ai-spec,pre,code')) return;
+    if (e.matches('a,button,[data-val],[role="button"],[onclick]')) return;   /* si es cliqueable, no aplica */
+    if (e.hasAttribute('data-qa-ignore')) return;
+    const s = getComputedStyle(e);
+    const et = (e.className || '').toString().slice(0, 26) + ' \u00ab' + txt(e).slice(0, 16) + '\u00bb';
+    if (s.boxShadow !== 'none') add('jerarquia', 'informativo con relieve (parece boton): ' + et);
+    const m = s.backgroundColor.match(/rgba\([^)]*,\s*([0-9.]+)\)/);
+    if (m && parseFloat(m[1]) > 0 && parseFloat(m[1]) < 1)
+      add('jerarquia', 'informativo translucido (su contraste cambia segun el fondo): ' + et);
+  });
+
   /* ── Informe ── */
   const porRegla = fallos.reduce((a, f) => { (a[f.regla] = a[f.regla] || []).push(f.detalle); return a; }, {});
   console.log(`%cQA Actuaria DS — ${fallos.length === 0 ? 'SIN FALLOS' : fallos.length + ' FALLOS'}`,

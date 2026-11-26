@@ -1,7 +1,7 @@
 {
   "$schema": "https://actuaria.com/ds-spec/v2",
   "name": "Actuaria Design System",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "generated_from": {
     "webflow_site_id": "6967c96e0fba2ea4f94d3c69",
     "domains": [
@@ -511,7 +511,8 @@
       "status": "confirmado en la práctica",
       "detail": "Al construir las pastillas de estado con los niveles 'text' del brandbook, el QA midió warn 1.90:1, ok 2.41:1, info 4.20:1 y bad 4.34:1 sobre su propio tinte. Ninguno alcanza 4.5:1.",
       "workaround": "El DS usa versiones oscurecidas (#14532d, #6b3e00, #8f1d1d, #1d3f8f) que dan 7.4–8.1:1, y una variante .on-dark para superficies navy. Los tokens del brandbook se conservan como relleno, no como color de texto.",
-      "action": "Decisión del equipo de marca: oscurecer los niveles 'text' del brandbook o declararlos solo-relleno."
+      "action": "Decisión del equipo de marca: oscurecer los niveles 'text' del brandbook o declararlos solo-relleno.",
+      "resolution": "Resuelto usando los niveles SOFT del brandbook como relleno OPACO (#66DDB3, #FFD688, #FF8C8C, #ECF1FE) con texto oscurecido. 6 de 7 pares pasan AA directamente; solo 'bad' necesito bajar el texto de #8f1d1d a #7d1919. No se invento ningun color nuevo."
     }
   },
   "architecture": {
@@ -595,7 +596,7 @@
   },
   "qa": {
     "script": "qa.js",
-    "checks": 8,
+    "checks": 10,
     "list": [
       "titulares en familia display",
       "las 3 fuentes cargan de verdad",
@@ -604,9 +605,35 @@
       "contratos data-ai-component parseables",
       "anclas de navegación",
       "chips estirados",
-      "contraste WCAG 2.1 con composición de alpha"
+      "contraste WCAG 2.1 con composición de alpha",
+      "jerarquia relieve/flat: cliqueable con relieve y pildora, informativo plano y opaco"
     ],
     "run": "Cargar la Pages URL con cache-buster, forzar loading=eager en las imágenes, esperar 6s y evaluar qa.js",
     "status": "0 fallos"
+  },
+  "hierarchy": {
+    "rule": "FLAT+OPACO = informativo (no se pulsa). RELIEVE = cliqueable (sobresale de la superficie).",
+    "rationale": "Binaria y sin zona gris. Un estado intermedio (hundido para informativos) sigue siendo neumorfismo y diluye la senal: el usuario deja de saber que se pulsa.",
+    "clickable": {
+      "shadow": "var(--neu-out-sm) en reposo, --neu-out en hover, --neu-in-sm al pulsar",
+      "radius": "999px siempre (pildora). Los iconos cuadrados pasan a circulo con aspect-ratio:1.",
+      "focus": "outline 2px var(--bb-azul) con offset 3px — la sombra no puede sepultar el foco"
+    },
+    "informational": {
+      "shadow": "none",
+      "background": "OPACO, nunca rgba con alpha",
+      "cursor": "default",
+      "why_opaque": "Un relleno translucido deja pasar la superficie de debajo: el mismo chip daba 8:1 sobre blanco y 1.32:1 sobre el navy de la barra lateral. Opaco = contraste estable en cualquier fondo, y desaparece la necesidad de variantes .on-dark.",
+      "fills": {
+        "ok": "--bb-success-100 + #14532d (5.45:1)",
+        "warn": "--bb-warning-100 + #6b3e00 (6.58:1)",
+        "bad": "--bb-danger-100 + #7d1919 (4.63:1)",
+        "info": "--bb-info-100 + #1d3f8f (8.60:1)",
+        "neutral": "--bb-light + #2c3550 (9.01:1)",
+        "chip": "--bb-surface + --bb-navy (13.45:1)"
+      }
+    },
+    "surfaces": "Tarjetas y paneles son superficie, no boton: tambien planos. Si todo sobresale, el relieve deja de significar nada.",
+    "shadow_color": "Derivada del NAVY DE MARCA #151F47 (21,31,71), no de un gris azulado generico."
   }
 }

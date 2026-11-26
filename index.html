@@ -1742,7 +1742,7 @@ a{text-decoration:none;}
       <div class="var-row">
         <div class="var-label">Button</div>
         <div class="demo-box" style="gap:16px;flex-wrap:wrap;">
-      <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;box-shadow:var(--neu-out);">
+      <button style="height:56px;padding:0 24px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;box-shadow:var(--neu-out);">
         <i class="fa-solid fa-calculator"></i> Calcular reserva
       </button>
     </div>
@@ -1750,30 +1750,30 @@ a{text-decoration:none;}
       <div class="var-row">
         <div class="var-label">Button group</div>
         <div class="demo-box" style="gap:16px;flex-wrap:wrap;justify-content:flex-start;">
-      <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Emitir póliza</button>
-      <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:var(--bg);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Guardar borrador</button>
-      <button style="height:56px;padding:0 24px;border:none;border-radius:12px;background:transparent;color:var(--text-orange);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;text-decoration:underline;cursor:pointer;">Cancelar</button>
+      <button style="height:56px;padding:0 24px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Emitir póliza</button>
+      <button style="height:56px;padding:0 24px;border:none;border-radius:999px;background:var(--bg);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;cursor:pointer;box-shadow:var(--neu-out);">Guardar borrador</button>
+      <button style="height:56px;padding:0 24px;border:none;border-radius:999px;background:transparent;color:var(--text-orange);font-family:'Nunito',sans-serif;font-weight:600;font-size:20px;line-height:28px;text-decoration:underline;cursor:pointer;">Cancelar</button>
     </div>
       </div>
       <div class="var-row">
         <div class="var-label">Button icon</div>
         <div class="demo-box" style="gap:16px;">
-      <button style="width:48px;height:48px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--neu-out);"><i class="fa-solid fa-download"></i></button>
-      <button style="width:48px;height:48px;border:none;border-radius:8px;background:var(--bg);color:var(--navy);font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--neu-out);"><i class="fa-solid fa-filter"></i></button>
+      <button style="width:48px;height:48px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--navy),var(--indigo));color:#fff;font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--neu-out);"><i class="fa-solid fa-download"></i></button>
+      <button style="width:48px;height:48px;border:none;border-radius:999px;background:var(--bg);color:var(--navy);font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--neu-out);"><i class="fa-solid fa-filter"></i></button>
     </div>
       </div>
     </div>
     <div class="comp-desc">
       <div class="desc-title">Variantes Figma</div>
       <div class="desc-text">Type=Primary · Size=LG (h 56px). El component set incluye además Secondary y Ghost/Link (ver Button group).</div>
-      <div class="usage-note" style="margin-top:8px;">RAISED — interactivo. Estructura del spec conservada: h 56px · padding 0 24px · radius 12px · Nunito 600 20/28. Sombra Figma Raised → <span class="ds-code-inline">--neu-out</span>.</div>
+      <div class="usage-note" style="margin-top:8px;">RAISED — interactivo. Estructura del spec conservada: h 56px · padding 0 24px · radius 999px (pildora) · Nunito 600 20/28. Sombra Figma Raised → <span class="ds-code-inline">--neu-out</span>.</div>
     </div>
     <pre class="ds-code">&lt;button class="neo-btn-primary"&gt;
   &lt;i class="fa-solid fa-calculator"&gt;&lt;/i&gt; Calcular reserva
 &lt;/button&gt;
 
 .neo-btn-primary {
-  height: 56px; padding: 0 24px; border-radius: 12px;
+  height: 56px; padding: 0 24px; border-radius:999px;
   background: linear-gradient(135deg, var(--navy), var(--indigo));
   color: #fff; font: 600 20px/28px 'Nunito', sans-serif;
   box-shadow: var(--neu-out);          /* raised = interactivo */
@@ -1872,7 +1872,7 @@ a{text-decoration:none;}
       <div class="var-row">
         <div class="var-label">Avatar dropdown</div>
         <div class="demo-box demo-box-col" style="align-items:flex-start;gap:12px;background:linear-gradient(135deg,#dfe5f0 0%,#eef1f8 55%,#dce3f2 100%);border-radius:16px;padding:32px;">
-      <button style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:none;border-radius:8px;background:var(--bg);cursor:pointer;box-shadow:var(--neu-out);" data-dropdown-trigger aria-expanded="true" aria-haspopup="true">
+      <button style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:none;border-radius:999px;background:var(--bg);cursor:pointer;box-shadow:var(--neu-out);" data-dropdown-trigger aria-expanded="true" aria-haspopup="true">
         <span class="t-avatar navy">MS</span>
         <span style="font-family:'Nunito',sans-serif;font-weight:400;font-size:14px;line-height:20px;color:var(--navy);">María Salgado</span>
         <i class="fa-solid fa-chevron-down" style="font-size:12px;color:var(--indigo);"></i>
@@ -1953,7 +1953,7 @@ a{text-decoration:none;}
         <div class="demo-box" style="gap:24px;">
       <span style="height:24px;min-width:24px;padding:0 8px;border-radius:16px;background:#c73a3a;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:14px;line-height:20px;box-shadow:3px 3px 8px rgba(163,177,198,0.55);">12</span>
       <span style="position:relative;display:inline-block;">
-        <button style="width:48px;height:48px;border:none;border-radius:8px;background:var(--bg);color:var(--navy);font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--neu-out);"><i class="fa-solid fa-bell"></i></button>
+        <button style="width:48px;height:48px;border:none;border-radius:999px;background:var(--bg);color:var(--navy);font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--neu-out);"><i class="fa-solid fa-bell"></i></button>
         <span style="position:absolute;top:-8px;right:-8px;height:24px;min-width:24px;padding:0 8px;border-radius:16px;background:#c73a3a;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:14px;line-height:20px;box-shadow:3px 3px 8px rgba(163,177,198,0.55);">3</span>
       </span>
     </div>
@@ -2040,7 +2040,7 @@ a{text-decoration:none;}
     #forms .neo-field.has-ir{padding-right:42px}
     #forms .neo-field.has-ir2{padding-right:74px}
     /* botones */
-    #forms .neo-btn-sec{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border:none;border-radius:12px;background:var(--bg);box-shadow:var(--neu-out);font:600 14px/20px 'Nunito',sans-serif;color:var(--navy);cursor:pointer}
+    #forms .neo-btn-sec{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border:none;border-radius:999px;background:var(--bg);box-shadow:var(--neu-out);font:600 14px/20px 'Nunito',sans-serif;color:var(--navy);cursor:pointer}
     #forms .neo-btn-sec:active{box-shadow:var(--neu-in)}
     /* file upload */
     #forms .neo-drop{border:1px dashed rgba(0,13,77,.4);border-radius:16px;background:rgba(0,21,128,.02);padding:32px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
@@ -2077,14 +2077,14 @@ a{text-decoration:none;}
 
   <div class="section-header">
     <h2>Forms</h2>
-    <p>Componentes de captura de datos del sistema NEO. Regla de relieve: los campos de entrada son <strong>pozos hundidos</strong> (<span class="ds-code-inline">--neu-in</span>) porque reciben contenido; los controles accionables —botones, toggles, handles, steppers— son <strong>superficies elevadas</strong> (<span class="ds-code-inline">--neu-out</span>). Anatomía base Figma: campo de 48px, radius 8px (NEO lo eleva a 12px), padding horizontal 16px, label 4px por encima, tipografía Nunito 16/24.</p>
+    <p>Componentes de captura de datos del sistema NEO. Regla de relieve: los campos de entrada son <strong>pozos hundidos</strong> (<span class="ds-code-inline">--neu-in</span>) porque reciben contenido; los controles accionables —botones, toggles, handles, steppers— son <strong>superficies elevadas</strong> (<span class="ds-code-inline">--neu-out</span>). Anatomía base Figma: campo de 48px, radius 999px (pildora: el DS lo lleva a píldora), padding horizontal 16px, label 4px por encima, tipografía Nunito 16/24.</p>
   </div>
 
   <!-- 1 · TEXT INPUT -->
   <div class="comp-block" id="form-text-input">
     <h3>Text input</h3>
     <div class="comp-desc">
-      <div class="desc-text">Campo de una sola línea para valores cortos: tasas, montos, identificadores. Pozo hundido de 48px con radius 12px; en focus se añade un anillo indigo de 2px sin alterar el relieve.</div>
+      <div class="desc-text">Campo de una sola línea para valores cortos: tasas, montos, identificadores. Pozo hundido de 48px con radius 999px (pildora); en focus se añade un anillo indigo de 2px sin alterar el relieve.</div>
       <div class="usage-note">Variantes Figma: Filled · Hint · Label · Optional · Required (default true) · State=Default · Valid=True</div>
     </div>
     <div class="demo-box">
@@ -2687,7 +2687,204 @@ a{text-decoration:none;}
     .navside-user .nu-name{font-size:10px;font-weight:800;color:var(--navy);line-height:1.2;}
     .navside-user .nu-mail{font-size:8.5px;color:var(--text-weak);}
     .navside-canvas{flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-weak);}
-  </style>
+  
+/* ══════════════════════════════════════════════════════════════════════
+   NEUMORFISMO UNIVERSAL · nada flat, y la forma dice si se puede pulsar
+   ──────────────────────────────────────────────────────────────────────
+   Dos estados, no uno:
+     RELIEVE (sobresale) = se puede pulsar
+     HUNDIDO (inset)     = etiqueta, badge o superficie; NO se pulsa
+   El radio de pildora refuerza la senal, pero la sombra es la que manda:
+   un chip con pildora y hundido no se confunde con un boton.
+   La sombra oscura deriva del NAVY DE MARCA #151F47 (21,31,71), no de un
+   gris azulado generico: el brandbook prohibe inventar color.
+   ══════════════════════════════════════════════════════════════════════ */
+:root{
+  --neu-sombra:21,31,71;        /* #151F47 navy de marca */
+  --neu-luz:255,255,255;
+  --neu-out:6px 6px 16px rgba(var(--neu-sombra),.13),-6px -6px 14px rgba(var(--neu-luz),.92);
+  --neu-out-sm:3px 3px 8px rgba(var(--neu-sombra),.11),-2px -2px 6px rgba(var(--neu-luz),.9);
+  --neu-out-xs:2px 2px 5px rgba(var(--neu-sombra),.10),-1px -1px 4px rgba(var(--neu-luz),.88);
+  --neu-in:inset 3px 3px 8px rgba(var(--neu-sombra),.12),inset -2px -2px 6px rgba(var(--neu-luz),.92);
+  --neu-in-sm:inset 2px 2px 5px rgba(var(--neu-sombra),.10),inset -1px -1px 4px rgba(var(--neu-luz),.9);
+  /* superficies oscuras: la luz blanca no existe sobre navy */
+  --neu-out-dark:4px 4px 11px rgba(4,8,24,.55),-3px -3px 9px rgba(86,104,165,.26);
+  --neu-in-dark:inset 3px 3px 8px rgba(4,8,24,.55),inset -2px -2px 6px rgba(86,104,165,.24);
+}
+
+/* ── RELIEVE + PILDORA: todo lo cliqueable ── */
+.ds-nav-link,.sa-btn,.sa-btn-sm,.sa-icon-btn,.btn-neu,.neo-btn-sec,.seg-item,.navside-item,.alert-close,.ag-close,.tab-neo,.pag-cell,.pag-nav,.sl-btn,.neo-slider-dot,.neo-slider-arrow,.ico-r,.ico-r2,.act-btn-primary,.act-btn-ghost,.act-btn-orange,.act-btn-contacto,.act-btn-plus,.act-button-ring,.act-card-sol-cta,.act-cert-link,.act-blog-cta,.sa-stepdot,.ds-content .demo-box button{
+  border-radius:999px;
+  box-shadow:var(--neu-out-sm);
+  cursor:pointer;
+  transition:box-shadow .16s ease,transform .16s ease;
+}
+.ds-nav-link:hover,.sa-btn:hover,.sa-btn-sm:hover,.sa-icon-btn:hover,.btn-neu:hover,.neo-btn-sec:hover,.seg-item:hover,.navside-item:hover,.alert-close:hover,.ag-close:hover,.tab-neo:hover,.pag-cell:hover,.pag-nav:hover,.sl-btn:hover,.neo-slider-dot:hover,.neo-slider-arrow:hover,.ico-r:hover,.ico-r2:hover,.act-btn-primary:hover,.act-btn-ghost:hover,.act-btn-orange:hover,.act-btn-contacto:hover,.act-btn-plus:hover,.act-button-ring:hover,.act-card-sol-cta:hover,.act-cert-link:hover,.act-blog-cta:hover,.sa-stepdot:hover,.ds-content .demo-box button:hover{ box-shadow:var(--neu-out); }
+.ds-nav-link:active,.sa-btn:active,.sa-btn-sm:active,.sa-icon-btn:active,.btn-neu:active,.neo-btn-sec:active,.seg-item:active,.navside-item:active,.alert-close:active,.ag-close:active,.tab-neo:active,.pag-cell:active,.pag-nav:active,.sl-btn:active,.neo-slider-dot:active,.neo-slider-arrow:active,.ico-r:active,.ico-r2:active,.act-btn-primary:active,.act-btn-ghost:active,.act-btn-orange:active,.act-btn-contacto:active,.act-btn-plus:active,.act-button-ring:active,.act-card-sol-cta:active,.act-cert-link:active,.act-blog-cta:active,.sa-stepdot:active,.ds-content .demo-box button:active{ box-shadow:var(--neu-in-sm); transform:translateY(1px); }
+
+/* El foco no puede quedar sepultado bajo la sombra */
+.ds-nav-link:focus-visible,.sa-btn:focus-visible,.sa-btn-sm:focus-visible,.sa-icon-btn:focus-visible,.btn-neu:focus-visible,.neo-btn-sec:focus-visible,.seg-item:focus-visible,.navside-item:focus-visible,.alert-close:focus-visible,.ag-close:focus-visible,.tab-neo:focus-visible,.pag-cell:focus-visible,.pag-nav:focus-visible,.sl-btn:focus-visible,.neo-slider-dot:focus-visible,.neo-slider-arrow:focus-visible,.ico-r:focus-visible,.ico-r2:focus-visible,.act-btn-primary:focus-visible,.act-btn-ghost:focus-visible,.act-btn-orange:focus-visible,.act-btn-contacto:focus-visible,.act-btn-plus:focus-visible,.act-button-ring:focus-visible,.act-card-sol-cta:focus-visible,.act-cert-link:focus-visible,.act-blog-cta:focus-visible,.sa-stepdot:focus-visible,.ds-content .demo-box button:focus-visible{
+  outline:2px solid var(--bb-azul); outline-offset:3px;
+}
+
+/* Enlaces de texto que eran planos: necesitan cuerpo para ser pildora */
+.act-card-sol-cta,.act-cert-link,.act-blog-cta{ padding:7px 15px; }
+
+/* Iconos cuadrados -> circulos perfectos */
+.sa-icon-btn,.alert-close,.ag-close,.ico-r,.ico-r2,.pag-cell,.sl-btn,.sa-stepdot{
+  aspect-ratio:1; border-radius:50%;
+}
+
+/* ── HUNDIDO: etiquetas y badges, NO cliqueables ── */
+.act-chipset,.act-blog-chip,.sa-pill,.el-badge,.badge,.act-eyebrow,.chip{
+  box-shadow:var(--neu-in-sm);
+  cursor:default;
+}
+/* ...salvo cuando de verdad lo son */
+a.act-chipset,button.act-chipset,[role="button"].act-chipset,
+a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val]{
+  box-shadow:var(--neu-out-xs); cursor:pointer;
+}
+
+/* ── Superficies navy: sombras propias ── */
+.sa-side .sa-navitem{
+  border-radius:999px; cursor:pointer;
+  box-shadow:var(--neu-out-dark);
+  transition:box-shadow .16s ease;
+}
+.sa-side .sa-navitem:hover{ box-shadow:4px 4px 12px rgba(4,8,24,.6),-3px -3px 10px rgba(86,104,165,.34); }
+.sa-side .sa-navitem[aria-current="page"],.sa-side .sa-navitem.active{ box-shadow:var(--neu-in-dark); }
+.sa-side .sa-pill{ box-shadow:var(--neu-in-dark); }
+
+/* El activo de la nav lateral se hunde: esta "pulsado" */
+.ds-nav-link.active,.ds-nav-link[aria-current="true"],.seg-item.selected,
+.tab-neo.active,.pag-cell.current,.navside-item.active{
+  box-shadow:var(--neu-in-sm);
+}
+
+/* Campos de formulario: hundidos, que es su sitio en neumorfismo */
+.ds-content input[type=text],.ds-content input[type=email],.ds-content input[type=search],
+.ds-content input[type=number],.ds-content textarea,.ds-content select,.sa-input,.sa-search input{
+  box-shadow:var(--neu-in-sm); border-radius:999px;
+}
+.ds-content textarea{ border-radius:18px; }
+
+@media (prefers-reduced-motion:reduce){
+  .ds-nav-link,.sa-btn,.sa-btn-sm,.sa-icon-btn,.btn-neu,.neo-btn-sec,.seg-item,.navside-item,.alert-close,.ag-close,.tab-neo,.pag-cell,.pag-nav,.sl-btn,.neo-slider-dot,.neo-slider-arrow,.ico-r,.ico-r2,.act-btn-primary,.act-btn-ghost,.act-btn-orange,.act-btn-contacto,.act-btn-plus,.act-button-ring,.act-card-sol-cta,.act-cert-link,.act-blog-cta,.sa-stepdot,.ds-content .demo-box button{ transition:none; }
+  .ds-nav-link:active,.sa-btn:active,.sa-btn-sm:active,.sa-icon-btn:active,.btn-neu:active,.neo-btn-sec:active,.seg-item:active,.navside-item:active,.alert-close:active,.ag-close:active,.tab-neo:active,.pag-cell:active,.pag-nav:active,.sl-btn:active,.neo-slider-dot:active,.neo-slider-arrow:active,.ico-r:active,.ico-r2:active,.act-btn-primary:active,.act-btn-ghost:active,.act-btn-orange:active,.act-btn-contacto:active,.act-btn-plus:active,.act-button-ring:active,.act-card-sol-cta:active,.act-cert-link:active,.act-blog-cta:active,.sa-stepdot:active,.ds-content .demo-box button:active{ transform:none; }
+}
+
+/* ── Rezagados detectados por la auditoria, no por muestreo ── */
+
+/* Acordeon: es cliqueable (role=button) aunque no sea un <button> */
+[data-acc-header]{
+  border-radius:999px; cursor:pointer;
+  box-shadow:var(--neu-out-sm);
+  padding-left:20px!important; padding-right:20px!important;
+  transition:box-shadow .16s ease;
+}
+[data-acc-header]:hover{ box-shadow:var(--neu-out); }
+[data-acc-header][aria-expanded="true"]{ box-shadow:var(--neu-in-sm); }
+[data-acc-header]:focus-visible{ outline:2px solid var(--bb-azul); outline-offset:3px; }
+
+/* Segmentado: el carril se hunde, la opcion activa sobresale */
+.pg-seg,.seg-neo,.sa-seg{
+  border-radius:999px; overflow:visible;
+  box-shadow:var(--neu-in-sm); border:none; padding:4px; gap:4px;
+}
+.pg-seg button,.seg-neo button,.sa-seg button{
+  border-radius:999px; border:none; cursor:pointer; background:transparent;
+  box-shadow:none; transition:box-shadow .16s ease;
+}
+.pg-seg button[aria-pressed="true"],.seg-neo button[aria-pressed="true"],
+.sa-seg button[aria-pressed="true"]{ box-shadow:var(--neu-out-xs); }
+.pg-seg button:focus-visible{ outline:2px solid var(--bb-azul); outline-offset:2px; }
+
+/* Flip card: la sombra va en las caras, no en el contenedor transparente */
+.flip-card{ box-shadow:none; }
+.flip-face{ box-shadow:var(--neu-out); border-radius:22px; }
+.flip-card:hover .flip-face{ box-shadow:8px 8px 20px rgba(var(--neu-sombra),.16),-7px -7px 17px rgba(var(--neu-luz),.95); }
+
+/* Los puntos suspensivos de la paginacion NO se pulsan */
+.pag-cell.ellipsis{ box-shadow:none; cursor:default; }
+
+/* Tarjetas y paneles: tampoco deben quedar flat, pero en relieve suave */
+.sa-panel,.sa-card,.act-card-base,.neo-card,.demo-box{
+  box-shadow:var(--neu-out-sm);
+}
+.sa-side .sa-panel{ box-shadow:var(--neu-out-dark); }
+
+/* ── Segmentado: ninguna opcion queda plana ──
+   Primera version: activo en relieve, inactivos planos. Pero un inactivo
+   plano es justo lo que el usuario no quiere, y ademas miente: SI se puede
+   pulsar. Invertido -> inactivo en relieve (pulsable), activo hundido
+   (ya pulsado), que es la metafora correcta del neumorfismo. */
+.pg-seg button,.seg-neo button,.sa-seg button{ box-shadow:var(--neu-out-xs); }
+.pg-seg button[aria-pressed="true"],.seg-neo button[aria-pressed="true"],
+.sa-seg button[aria-pressed="true"]{ box-shadow:var(--neu-in-sm); }
+.pg-seg,.seg-neo,.sa-seg{ box-shadow:none; background:transparent; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   JERARQUIA POR RELIEVE · correccion de criterio
+   ──────────────────────────────────────────────────────────────────────
+   Primera version: los chips informativos iban HUNDIDOS para no parecer
+   botones. Error — hundido sigue siendo neumorfismo y diluye la senal.
+   Regla definitiva, binaria y sin zona gris:
+
+     FLAT + OPACO  = informativo. No se pulsa.
+     RELIEVE       = cliqueable. Sobresale de la superficie.
+
+   El opaco ademas arregla un bug real: un relleno translucido deja pasar
+   la superficie de debajo, y el mismo chip que daba 8:1 sobre blanco caia
+   a 1.32:1 sobre el navy de la barra lateral. Opaco = contraste estable
+   en cualquier fondo, y desaparece la necesidad de variantes .on-dark.
+
+   Los rellenos son los niveles SOFT del brandbook, que existen justo para
+   esto; no se inventa ningun color nuevo.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── Informativos: planos, opacos, sin sombra y sin cursor de mano ── */
+.act-chipset,.act-blog-chip,.sa-pill,.el-badge,.badge,.act-eyebrow,.chip,
+.sa-tag,.act-tag,.pill,.tag{
+  box-shadow:none;
+  cursor:default;
+}
+.act-chipset,.act-blog-chip,.chip,.sa-tag,.act-tag,.tag{
+  background:var(--bb-surface);
+  color:var(--bb-navy);
+}
+.sa-pill.ok      { background:var(--bb-success-100); color:#14532d; }
+.sa-pill.warn    { background:var(--bb-warning-100); color:#6b3e00; }
+.sa-pill.bad     { background:var(--bb-danger-100);  color:#7d1919; }
+.sa-pill.info    { background:var(--bb-info-100);    color:#1d3f8f; }
+.sa-pill.neutral { background:var(--bb-light);       color:#2c3550; }
+
+/* Opaco = mismo chip sobre navy sin perder contraste.
+   Las variantes .on-dark de la version anterior ya no hacen falta. */
+.sa-side .sa-pill.ok,.sa-pill.on-dark{ background:var(--bb-success-100); color:#14532d; }
+.sa-side .sa-pill.info{ background:var(--bb-info-100); color:#1d3f8f; }
+.sa-side .sa-pill.warn{ background:var(--bb-warning-100); color:#6b3e00; }
+.sa-side .sa-pill{ box-shadow:none; }
+
+/* ── ...salvo que el chip SI sea cliqueable: entonces sobresale ── */
+a.act-chipset,button.act-chipset,[role="button"].act-chipset,
+a.sa-pill,button.sa-pill,.act-chipset[data-val],.sa-pill[data-val],
+.chip[data-val],.act-chipset[onclick]{
+  box-shadow:var(--neu-out-xs);
+  cursor:pointer;
+}
+
+/* Tarjetas y paneles son superficie, no boton: planos tambien.
+   Solo lo pulsable sobresale, o el relieve deja de significar nada. */
+.sa-panel,.sa-card,.act-card-base,.neo-card,.demo-box{ box-shadow:none; }
+.sa-side .sa-panel{ box-shadow:none; }
+
+/* Variantes de chip: opacas tambien. Un tinte con alpha cambia de
+   contraste segun lo que tenga debajo; el opaco no. */
+.act-chipset.is-brand{background:#dbe4f3;border-color:#b9cbe9;color:#1d3f8f;}
+.act-chipset.is-orange{background:#ffe3d6;border-color:#f6c3ae;color:#a8431c;}
+.act-chipset i{color:#3a4668;}
+</style>
 
   <div class="section-header">
     <h2>Navegación</h2>
@@ -3011,7 +3208,7 @@ a{text-decoration:none;}
         <div class="var-label">Dropdown menu</div>
         <div class="demo-box" style="align-items:flex-start;padding-bottom:200px;">
       <div style="position:relative;display:inline-block;">
-        <button data-dropdown-trigger data-open-shadow="var(--neu-in)" data-closed-shadow="var(--neu-out)" aria-expanded="true" aria-haspopup="listbox" style="height:48px;display:inline-flex;align-items:center;gap:4px;padding:0 16px;border:none;border-radius:8px;background:var(--bg);box-shadow:var(--neu-in);font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#151f47;cursor:pointer;">Ramo: Vida Grupo <i class="fa-solid fa-chevron-up" style="font-size:14px;color:rgba(15,31,61,0.65);"></i></button>
+        <button data-dropdown-trigger data-open-shadow="var(--neu-in)" data-closed-shadow="var(--neu-out)" aria-expanded="true" aria-haspopup="listbox" style="height:48px;display:inline-flex;align-items:center;gap:4px;padding:0 16px;border:none;border-radius:999px;background:var(--bg);box-shadow:var(--neu-in);font-family:'Nunito',sans-serif;font-size:16px;font-weight:600;color:#151f47;cursor:pointer;">Ramo: Vida Grupo <i class="fa-solid fa-chevron-up" style="font-size:14px;color:rgba(15,31,61,0.65);"></i></button>
         <div data-dropdown-menu data-dropdown-select style="position:absolute;top:calc(100% + 10px);left:0;width:280px;background:var(--bg);box-shadow:var(--neu-out);border:1px solid rgba(255,255,255,0.6);border-radius:8px;padding:8px 0;z-index:5;" role="listbox">
           <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;background:rgba(76,100,217,0.10);cursor:pointer;"><i class="fa-solid fa-check" style="font-size:14px;color:var(--indigo);"></i> Vida Grupo</div>
           <div data-dd-option style="display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:24px;color:#151f47;cursor:pointer;">Vida Individual</div>
@@ -4000,7 +4197,7 @@ a{text-decoration:none;}
     </div>
     <div class="comp-desc">
       <div class="desc-title">Anatomía medida en producción</div>
-      <div class="desc-text">Altura de link 44px · padding 0 16px · radius 8px · Nunito 600 16px. Contenedor: radius 40px · borde <span class="ds-code-inline">#d8d8dc</span> · sombra <span class="ds-code-inline">0 10px 30px rgba(15,23,42,.10)</span>. Botón actuaria+: navy <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px. Logotipo: imagotipo oficial inline (velero + wordmark), 30px de alto, con los colores exactos del vector <span class="ds-code-inline">#111C4E</span> / <span class="ds-code-inline">#E0592A</span> / <span class="ds-code-inline">#385CAD</span>.</div>
+      <div class="desc-text">Altura de link 44px · padding 0 16px · radius 999px (pildora) · Nunito 600 16px. Contenedor: radius 40px · borde <span class="ds-code-inline">#d8d8dc</span> · sombra <span class="ds-code-inline">0 10px 30px rgba(15,23,42,.10)</span>. Botón actuaria+: navy <span class="ds-code-inline">#151f47</span> · radius 64px · Nunito 700 15.2px. Logotipo: imagotipo oficial inline (velero + wordmark), 30px de alto, con los colores exactos del vector <span class="ds-code-inline">#111C4E</span> / <span class="ds-code-inline">#E0592A</span> / <span class="ds-code-inline">#385CAD</span>.</div>
     </div>
     <pre class="ds-code">&lt;nav class="act-navbar"&gt;
   &lt;a class="act-logo"&gt;&lt;svg class="act-logo-svg" viewBox="0 5.25 164.9 39.6"&gt;…&lt;/svg&gt;&lt;/a&gt;
@@ -4386,7 +4583,7 @@ a{text-decoration:none;}
     <div class="comp-desc">
       <div class="desc-title">Descripción del componente en Webflow</div>
       <div class="desc-text">"Sección de testimonios del Home con marquee continuo (glass cards). Una sola fuente para Home y páginas de soluciones. CSS y clon de pista viven en el custom code del SITIO."</div>
-      <div class="usage-note" style="margin-top:8px;">Card medida: 440×414 · radius 40px · padding 16px. Chip de logo: 120×44 · radius 12px · borde <span class="ds-code-inline">rgba(21,31,71,.08)</span>.</div>
+      <div class="usage-note" style="margin-top:8px;">Card medida: 440×414 · radius 40px · padding 16px. Chip de logo: 120×44 · radius 999px (pildora) · borde <span class="ds-code-inline">rgba(21,31,71,.08)</span>.</div>
     </div>
     <details class="ai-spec" data-ai-component="card-testimonial">
       <summary>Contrato de implementación · legible por IA</summary>
@@ -4718,7 +4915,7 @@ a{text-decoration:none;}
   <!-- BOTONES -->
   <div class="comp-block" id="act-buttons">
     <h3>Botones del sitio</h3>
-    <p class="desc-text" style="margin-bottom:12px;">Cuatro variantes en producción. Ojo: el sitio usa <strong>píldoras</strong> (radius 40-64px), no los radius 12px del sistema NEO.</p>
+    <p class="desc-text" style="margin-bottom:12px;">Cuatro variantes en producción. El sitio siempre usó <strong>píldoras</strong> (radius 40-64px); el DS ha unificado ese criterio y ahora <strong>todo lo cliqueable es píldora</strong>, también en el sistema NEO.</p>
     <div class="act-canvas">
       <div class="act-row" style="gap:20px;">
         <div style="text-align:center"><span class="act-button-ring"><a class="act-btn-primary">Descubre cómo lo hacemos <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:15px"></i></a></span><div style="font-family:var(--ff-body);font-size:11px;color:var(--text-weak);margin-top:8px">button-ring + primary</div></div>
@@ -4880,7 +5077,7 @@ a{text-decoration:none;}
           <p style="font-family:var(--ff-body);font-size:14px;color:var(--text-weak);margin:0;">Contenido sin jerarquía propia dentro de una superficie ya elevada. Evita el anidamiento raised&gt;raised.</p>
         </div>
         <div class="act-card-base is-dark" style="background:var(--bg-inverse);border:1px solid rgba(255,255,255,.14);box-shadow:none;">
-          <span class="act-chipset" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff;"><i class="fa-solid fa-moon"></i> sobre oscuro</span>
+          <span class="act-chipset" style="background:var(--bb-surface);border-color:#c9d2e4;color:var(--bb-navy);"><i class="fa-solid fa-moon"></i> sobre oscuro</span>
           <p style="font-family:var(--ff-body);font-size:14px;color:rgba(255,255,255,.78);margin:0;">En fondo oscuro el neumorfismo pierde la luz superior y se ensucia. <strong>Sustituir por borde de 1px.</strong></p>
         </div>
       </div>

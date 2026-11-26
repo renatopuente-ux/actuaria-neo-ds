@@ -235,3 +235,32 @@ en el documento.
 
 Ejecutar `qa.js` **sobre la URL publicada**, no solo en local. Debe dar 0 fallos. Muestrear
 selectores sueltos no es auditar: así se coló un `h1` en Nunito durante dos publicaciones.
+
+
+---
+
+## Jerarquía visual (regla del usuario, no negociable)
+
+### MUST
+
+- **Todo lo cliqueable lleva relieve neumórfico y radio de píldora (999px).** Los botones de icono
+  pasan a círculo con `aspect-ratio:1`. Es la señal de que se puede pulsar.
+- **Todo lo informativo es plano y OPACO**: chips, tags, badges, pastillas de estado. Sin sombra,
+  `cursor:default`.
+- **Fondos opacos, nunca `rgba` con alpha, en cualquier elemento con texto encima.** Un tinte
+  translúcido hereda la superficie de debajo y su contraste cambia solo: el mismo chip pasó de
+  8:1 sobre blanco a 1.32:1 sobre navy.
+- **Usar los niveles soft del brandbook como relleno** (`--bb-success-100`, `--bb-warning-100`,
+  `--bb-danger-100`, `--bb-info-100`, `--bb-light`, `--bb-surface`). Existen para esto.
+- **Preservar el foco visible**: `outline:2px solid var(--bb-azul); outline-offset:3px`. El relieve
+  no puede sepultar el anillo de foco.
+
+### NEVER
+
+- **No usar un estado intermedio** (hundido/inset) para los informativos: sigue siendo neumorfismo
+  y destruye la distinción entre pulsable y no pulsable.
+- **No poner relieve a tarjetas ni paneles.** Son superficie. Si todo sobresale, el relieve deja de
+  significar nada.
+- **No dejar botones cuadrados redondeados.** El radio pequeño no distingue lo cliqueable.
+- **No derivar la sombra de un gris genérico**: se deriva del navy de marca `#151F47` (21,31,71).
+- **No crear variantes `.on-dark`** para arreglar contraste. Si el fondo es opaco, no hacen falta.

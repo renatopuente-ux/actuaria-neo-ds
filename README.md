@@ -105,6 +105,33 @@ la fecha de valuación y la tabla usada.
 
 ---
 
+## Jerarquía: el relieve dice qué se puede pulsar
+
+Regla binaria, sin zona gris:
+
+| | Tratamiento | Significado |
+|---|---|---|
+| **Cliqueable** | Relieve neumórfico + radio de **píldora** (999px) | Sobresale de la superficie: se pulsa |
+| **Informativo** | **Plano y opaco**, sin sombra, `cursor:default` | Chip, tag o badge: no se pulsa |
+| **Superficie** | Plano | Tarjetas y paneles. Si todo sobresale, el relieve no significa nada |
+
+Un estado intermedio no vale: hundir los chips para que «no parezcan botones» sigue siendo
+neumorfismo y diluye la señal.
+
+**Por qué opaco y no un tinte con alpha.** Un relleno translúcido deja pasar lo que tiene debajo:
+el mismo chip medía 8:1 sobre blanco y **1.32:1 sobre el navy** de la barra lateral. Opaco da
+contraste estable en cualquier fondo y elimina la necesidad de variantes `.on-dark`.
+
+Los rellenos son los niveles **soft del brandbook** —`#66DDB3`, `#FFD688`, `#FF8C8C`, `#ECF1FE`—,
+que existen justo para esto. Seis de siete pares pasan AA directamente; solo `bad` necesitó bajar
+el texto a `#7d1919`. No se inventó ningún color.
+
+La sombra deriva del **navy de marca** `#151F47`, no de un gris azulado genérico.
+
+El foco nunca queda sepultado bajo la sombra: `outline 2px var(--bb-azul)` con offset 3px.
+
+---
+
 ## Interactividad
 
 Motor por **delegación de eventos única** en `document`: un componente nuevo no necesita JS propio,
@@ -127,7 +154,7 @@ Animaciones, shimmer, odómetro, typing y marquee respetan `prefers-reduced-moti
 
 ## QA
 
-`qa.js` — **8 comprobaciones que recorren todo el documento**, no una muestra.
+`qa.js` — **10 comprobaciones que recorren todo el documento**, no una muestra.
 
 ```js
 // en la consola, sobre la página publicada
@@ -137,7 +164,8 @@ document.querySelectorAll('img[loading=lazy]').forEach(i => { i.loading='eager';
 
 Comprueba: familia de titulares · carga real de las 3 fuentes · desbordamiento por contenedor ·
 imágenes rotas **y pendientes** · contratos `data-ai-component` parseables · anclas de navegación ·
-**chips estirados** · contraste WCAG 2.1 **con composición de alpha**.
+**chips estirados** · contraste WCAG 2.1 **con composición de alpha** · prueba de humo del motor ·
+**jerarquía relieve/flat**.
 
 Nació de un fallo real: se verificaron selectores sueltos y se declaró el documento correcto mientras
 el `h1` del banner seguía en Nunito. **Muestreo ≠ auditoría.**
